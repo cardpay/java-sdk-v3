@@ -1,0 +1,1 @@
+{"callback_time":"2019-07-01T11:15:22.389Z","payment_method":"BANKCARD","merchant_order":{"id":"1198009"},"payout_data":{"id":"12328919","status":"COMPLETED","amount":13.08,"currency":"USD","created":"2019-07-01T10:14:28Z","rrn":"918211678906"},"card_account":{"masked_pan":"412345...1234","issuing_country_code":"US"}}
