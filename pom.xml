@@ -10,31 +10,43 @@
     <packaging>jar</packaging>
 
     <name>java-sdk</name>
-    <description>Cardpay JAVA SDK</description>
-    <url>https://github.com/cardpay/cardpay-java</url>
+    <description>Cardpay APIv3 JAVA SDK</description>
+
+    <url>https://github.com/cardpay/java-sdk-v3</url>
 
     <scm>
-        <connection>scm:git:git@github.com:cardpay/cardpay-java.git</connection>
-        <developerConnection>scm:git:git@github.com:cardpay/cardpay-java.git</developerConnection>
-        <url>https://github.com/cardpay/cardpay-java</url>
+        <connection>scm:git:git@github.com:cardpay/java-sdk-v3.git</connection>
+        <developerConnection>scm:git:git@github.com:cardpay/java-sdk-v3.git</developerConnection>
+        <url>https://github.com/cardpay/java-sdk-v3</url>
     </scm>
 
     <licenses>
         <license>
-            <name>Unlicense</name>
-            <url>https://integration.cardpay.com</url>
+            <name>MIT</name>
+            <url>https://raw.githubusercontent.com/cardpay/java-sdk-v3/master/LICENSE</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
-
     <developers>
         <developer>
-            <name>Swagger</name>
-            <email>apiteam@swagger.io</email>
-            <organization>Swagger</organization>
-            <organizationUrl>http://swagger.io</organizationUrl>
+            <id>cardpay</id>
+            <organization>Cardpay PSP Ltd.</organization>
+            <organizationUrl>https://integration.cardpay.com</organizationUrl>
+            <roles>
+                <role>developer</role>
+            </roles>
         </developer>
     </developers>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -52,8 +64,6 @@
         <okhttp3-version>3.12.3</okhttp3-version>
 
         <junit-version>4.12</junit-version>
-
-        <oltu-version>1.0.1</oltu-version>
 
         <lombok.version>1.18.4</lombok.version>
     </properties>
@@ -86,17 +96,6 @@
             <version>${okhttp3-version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.oltu.oauth2</groupId>
-            <artifactId>org.apache.oltu.oauth2.client</artifactId>
-            <version>${oltu-version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.oltu.oauth2</groupId>
-                    <artifactId>common</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
         <dependency>
             <groupId>io.gsonfire</groupId>
             <artifactId>gson-fire</artifactId>
@@ -247,13 +246,26 @@
         </profile>
 
         <profile>
-            <id>sign-artifacts</id>
+            <id>publish</id>
             <build>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.5</version>
+                        <version>1.6</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -263,6 +275,16 @@
                                 </goals>
                             </execution>
                         </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.8</version>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>

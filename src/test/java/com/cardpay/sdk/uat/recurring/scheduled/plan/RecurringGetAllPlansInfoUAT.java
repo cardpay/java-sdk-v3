@@ -6,6 +6,7 @@ import com.cardpay.sdk.model.*;
 import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.BaseProducer;
 import io.codearte.jfairy.producer.text.TextProducer;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -47,7 +48,7 @@ public class RecurringGetAllPlansInfoUAT {
         Set<String> ids = IntStream.range(0, 3)
                 .parallel()
                 .mapToObj(index -> createRecurringPlan())
-                .filter(Objects::nonNull)
+                .filter(StringUtils::isNotEmpty)
                 .collect(toSet());
         log.info("ids: {}", ids);
 
@@ -114,7 +115,7 @@ public class RecurringGetAllPlansInfoUAT {
         } catch (IOException e) {
             log.error(e.getMessage(), e);
             fail(e.getMessage());
-            return null;
+            return "";
         }
 
         assertNotNull(response.body());

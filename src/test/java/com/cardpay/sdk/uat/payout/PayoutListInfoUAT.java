@@ -7,6 +7,7 @@ import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.BaseProducer;
 import io.codearte.jfairy.producer.person.Person;
 import io.codearte.jfairy.producer.text.TextProducer;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +19,6 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.IntStream;
 
@@ -31,7 +31,6 @@ import static java.lang.System.currentTimeMillis;
 import static java.util.stream.Collectors.toSet;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
 
 public class PayoutListInfoUAT {
 
@@ -59,7 +58,7 @@ public class PayoutListInfoUAT {
         Set<String> ids = IntStream.range(0, 3)
                 .parallel()
                 .mapToObj(index -> createPayout())
-                .filter(Objects::nonNull)
+                .filter(StringUtils::isNotEmpty)
                 .collect(toSet());
         log.info("ids: {}", ids);
 
@@ -119,10 +118,9 @@ public class PayoutListInfoUAT {
             creationResponse = response.body();
         } catch (IOException e) {
             log.error(e.getMessage(), e);
-            fail(e.getMessage());
         }
 
-        return creationResponse != null ? creationResponse.getPayoutData().getId() : null;
+        return creationResponse != null ? creationResponse.getPayoutData().getId() : "";
     }
 
     private PayoutRequest createPayoutRequest(String cardPan) {
