@@ -13,8 +13,20 @@
 
 package com.cardpay.sdk.client;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class StringUtil {
+
+  public static String formatExpirationDate(Date date) {
+    return new SimpleDateFormat("MM/yyyy").format(date);
+  }
+
+  public static String formatBirthDate( Date date) {
+    return new SimpleDateFormat("yyyy-MM-dd").format(date);
+  }
+
   /**
    * Check if the given array contains the given value (with case-insensitive comparison).
    *

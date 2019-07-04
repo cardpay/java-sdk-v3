@@ -62,7 +62,19 @@ public class ApiClient {
         createDefaultAdapter();
     }
 
-  private void createDefaultAdapter() {
+    public void setBaseUrl(String baseUrl) {
+        this.baseUrl = baseUrl;
+    }
+
+    public void setTerminalCode(String terminalCode) {
+        this.terminalCode = terminalCode;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    private void createDefaultAdapter() {
       this.json = new JSON();
 
       this.okBuilder = new OkHttpClient.Builder()

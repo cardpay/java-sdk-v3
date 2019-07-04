@@ -21,8 +21,10 @@ import java.util.List;
 import java.util.UUID;
 
 import static com.cardpay.sdk.Config.*;
-import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
 import static com.cardpay.sdk.Constants.CARD_NON3DS_CONFIRMED;
+import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
+import static com.cardpay.sdk.client.StringUtil.formatBirthDate;
+import static com.cardpay.sdk.client.StringUtil.formatExpirationDate;
 import static com.cardpay.sdk.model.PaymentPatchRequest.OperationEnum.CHANGE_STATUS;
 import static com.cardpay.sdk.model.PaymentUpdateTransactionData.StatusToEnum.COMPLETE;
 import static com.cardpay.sdk.utils.AssertUtils.assertSuccessResponse;
@@ -143,11 +145,11 @@ public class PaymentChangeStatusUAT {
                         .pan(cardPan)
                         .holder(person.getFullName().toUpperCase())
                         .securityCode("100")
-                        .expiration(formatDate("MM/yyyy", generateCardExpiration()))))
+                        .expiration(formatExpirationDate(generateCardExpiration()))))
                 .customer(new PaymentRequestCustomer()
                         .id(text.randomString(15))
                         .fullName(person.getFullName())
-                        .birthDate(formatDate("yyyy-MM-dd", person.getDateOfBirth().toDate()))
+                        .birthDate(formatBirthDate(person.getDateOfBirth().toDate()))
                         .email(generateEmail())
                         .locale("en")
                         .phone(producer.numerify("+###########")))
