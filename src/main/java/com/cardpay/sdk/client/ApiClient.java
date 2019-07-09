@@ -35,7 +35,7 @@ import static java.lang.System.currentTimeMillis;
 import static java.lang.ThreadLocal.withInitial;
 
 public class ApiClient {
-    public final static String USER_AGENT = "CardpaySdk/1.4.4.8/Java";
+    public final static String USER_AGENT = "CardpaySdk/1.4.4/Java";
 
     private String baseUrl;
     private String terminalCode;
