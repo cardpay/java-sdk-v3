@@ -21,7 +21,7 @@ public class RefundCallbackUAT {
 
     @Before
     public void setup() {
-        client = new ApiClient(CARDPAY_API_URL, GATEWAY_TERMINAL_CODE, GATEWAY_PASSWORD);
+        client = new ApiClient(CARDPAY_API_URL, "", "pzQf529Wa0AV");
     }
 
     @Test
