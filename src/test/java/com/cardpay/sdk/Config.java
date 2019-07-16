@@ -18,7 +18,7 @@ public class Config {
     public static final String GATEWAY_POSTPONED_PASSWORD = System.getProperty("GATEWAY_POSTPONED_PASSWORD", "jehE149L7bHU");
 
     // NONE, BASIC, HEADERS, BODY
-    public static final HttpLoggingInterceptor.Level LOGGING_LEVEL = HttpLoggingInterceptor.Level.valueOf(System.getProperty("LOGGING_LEVEL", "NONE"));
+    public static final HttpLoggingInterceptor.Level LOGGING_LEVEL = HttpLoggingInterceptor.Level.valueOf(System.getProperty("LOGGING_LEVEL", HttpLoggingInterceptor.Level.NONE.name()));
 
     public static final String EMAILS_DOMAIN = System.getProperty("EMAILS_DOMAIN", "mailinator.com");
 

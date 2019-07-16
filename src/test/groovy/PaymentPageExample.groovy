@@ -3,7 +3,7 @@ import com.cardpay.sdk.client.ApiClient
 import com.cardpay.sdk.model.PaymentRequest
 import io.codearte.jfairy.Fairy
 
-@Grab('com.cardpay:java-sdk:1.4.4')
+@Grab('com.cardpay:java-sdk:1.4.4.8')
 @Grab('io.codearte.jfairy:jfairy:0.5.9')
 
 ApiClient client = new ApiClient("https://sandbox.cardpay.com", "18397", "FpK2cy143POj")

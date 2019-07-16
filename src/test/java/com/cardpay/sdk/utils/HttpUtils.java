@@ -32,7 +32,11 @@ public class HttpUtils {
             Response response = client.newCall(request).execute();
             if (verbose) {
                 log.info("{}", response);
-                log.info("BODY: {}", response.body().string());
+                if (response.body() != null) {
+                    log.info("BODY: {}", response.body().string());
+                } else {
+                    log.info("BODY IS EMPTY");
+                }
             }
         } catch (IOException e) {
             log.error(e.getMessage(), e);

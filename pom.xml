@@ -5,7 +5,7 @@
 
     <groupId>com.cardpay</groupId>
     <artifactId>java-sdk</artifactId>
-    <version>1.4.4.8</version>
+    <version>1.4.5.6</version>
 
     <packaging>jar</packaging>
 
@@ -318,7 +318,7 @@
                         <configuration>
                             <serverId>ossrh</serverId>
                             <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
                         </configuration>
                     </plugin>
 

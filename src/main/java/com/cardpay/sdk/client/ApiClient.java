@@ -35,7 +35,7 @@ import static java.lang.System.currentTimeMillis;
 import static java.lang.ThreadLocal.withInitial;
 
 public class ApiClient {
-    public final static String USER_AGENT = "CardpaySdk/1.4.4.8/Java";
+    public final static String USER_AGENT = "CardpaySdk/1.4.5.6/Java";
 
     private String baseUrl;
     private String terminalCode;
@@ -203,6 +203,21 @@ public class ApiClient {
 
     }
 
+    public static class InvalidSignatureException extends RuntimeException {
+
+        public InvalidSignatureException() {
+        }
+
+        public InvalidSignatureException(String message) {
+            super(message);
+        }
+
+        public InvalidSignatureException(String message, Throwable cause) {
+            super(message, cause);
+        }
+
+    }
+
     public static class CallbackProcessor {
 
         private ApiClient client;
@@ -221,7 +236,7 @@ public class ApiClient {
         @SuppressWarnings("unchecked")
         public void process(String json, String signature) {
             if (!client.isValidSignature(json, signature)) {
-                throw new CallbackException("Invalid callback signature");
+                throw new InvalidSignatureException("Invalid callback signature");
             }
 
             Object obj = client.parseCallback(json);

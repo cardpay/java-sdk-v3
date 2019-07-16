@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static com.cardpay.sdk.Config.*;
-import static com.cardpay.sdk.uat.callback.ResourceUtils.readFile;
+import static com.cardpay.sdk.callback.ResourceUtils.readFile;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
