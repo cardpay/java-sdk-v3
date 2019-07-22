@@ -1,6 +1,6 @@
 /*
  * CardPay REST API
- * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a REST resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on OAuth 2.0 standard. For recent changes see changelog section.
+ * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on [OAuth 2.0](https://oauth.net/2/) standard. For recent changes see changelog section.
  *
  * OpenAPI spec version: 3.0
  * 
@@ -44,7 +44,7 @@ public class PaymentResponseCardAccount {
   }
 
   /**
-   * @param expiration Customer’s card expiration date. Format: mm/yyyy. Returned only if setting &#39;Callback: card expiry&#39; in a wallet in PM system is ON
+   * @param expiration Customer’s card expiration date. Format: &#x60;mm/yyyy&#x60;
    * @return bean instance
    **/
   public PaymentResponseCardAccount expiration(String expiration) {
@@ -100,7 +100,7 @@ public class PaymentResponseCardAccount {
   }
 
   /**
-   * @param token Generated card token value. For payment: PaymentResponsePaymentData, for recurring: RecurringResponseRecurringData. Token can be returned only for successful transactions (not for declined transactions)
+   * @param token Generated card token value. Token can be returned only for successful transactions (not for declined transactions). For payment: PaymentResponsePaymentData, for recurring: RecurringResponseRecurringData. 
    * @return bean instance
    **/
   public PaymentResponseCardAccount token(String token) {

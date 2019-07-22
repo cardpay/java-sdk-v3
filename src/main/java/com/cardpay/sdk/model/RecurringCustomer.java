@@ -1,6 +1,6 @@
 /*
  * CardPay REST API
- * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a REST resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on OAuth 2.0 standard. For recent changes see changelog section.
+ * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on [OAuth 2.0](https://oauth.net/2/) standard. For recent changes see changelog section.
  *
  * OpenAPI spec version: 3.0
  * 
@@ -32,6 +32,8 @@ public class RecurringCustomer {
   private String email = null;
   @SerializedName("id")
   private String id = null;
+  @SerializedName("ip")
+  private String ip = null;
   /**
    * Preferred locale for the payment page ([ISO 639-1](https://en.wikipedia.org/wiki/ISO_639-1) language code). The default locale will be applied if the selected locale is not supported. Supported locales are: &#x60;ru&#x60;, &#x60;en&#x60;, &#x60;zh&#x60;, &#x60;ja&#x60;
    */
@@ -116,6 +118,20 @@ public class RecurringCustomer {
   }
 
   
+  public void setIp(String ip) {
+      this.ip = ip;
+  }
+
+  /**
+   * @param ip Customer IPv4
+   * @return bean instance
+   **/
+  public RecurringCustomer ip(String ip) {
+      this.ip = ip;
+      return this;
+  }
+
+  
   public void setLocale(LocaleEnum locale) {
       this.locale = locale;
   }
@@ -151,6 +167,7 @@ public class RecurringCustomer {
     
     if (email != null) sb.append("    email: ").append(toIndentedString(email)).append("\n");
     if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    if (ip != null) sb.append("    ip: ").append(toIndentedString(ip)).append("\n");
     if (locale != null) sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
     if (phone != null) sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
     sb.append("}");

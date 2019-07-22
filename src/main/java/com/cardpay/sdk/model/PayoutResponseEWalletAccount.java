@@ -1,6 +1,6 @@
 /*
  * CardPay REST API
- * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a REST resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on OAuth 2.0 standard. For recent changes see changelog section.
+ * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on [OAuth 2.0](https://oauth.net/2/) standard. For recent changes see changelog section.
  *
  * OpenAPI spec version: 3.0
  * 
@@ -36,7 +36,7 @@ public class PayoutResponseEWalletAccount {
   }
 
   /**
-   * @param id For QIWI: Customer phone number (from 1 to 15 digits) For WEBMONEY: Customer account number For NETELLER: Customer email For &#39;Latin America&#39;: Customer personal identification number For &#39;Asia&#39;: Customer bank account number For YANDEXMONEY: Customer wallet number, 11 to 16 digits, begins with &#x60;410&#x60; For DIRECTBANKINGNGA: bank account number For AIRTEL, MPESA, MTN, UGANDAMOBILE, VODAFONE and TIGO: Customer account number
+   * @param id For QIWI: Customer phone number (from 1 to 15 digits) For WEBMONEY: Customer account number For NETELLER: Customer email For &#39;Latin America&#39;: Customer personal identification number For YANDEXMONEY: Customer wallet number, 11 to 16 digits, begins with &#x60;410&#x60; For DIRECTBANKINGNGA: bank account number For AIRTEL, MPESA, MTN, UGANDAMOBILE, VODAFONE and TIGO: Customer account number
    * @return bean instance
    **/
   public PayoutResponseEWalletAccount id(String id) {

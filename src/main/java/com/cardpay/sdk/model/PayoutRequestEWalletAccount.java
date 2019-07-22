@@ -1,6 +1,6 @@
 /*
  * CardPay REST API
- * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a REST resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on OAuth 2.0 standard. For recent changes see changelog section.
+ * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on [OAuth 2.0](https://oauth.net/2/) standard. For recent changes see changelog section.
  *
  * OpenAPI spec version: 3.0
  * 
@@ -44,7 +44,7 @@ public class PayoutRequestEWalletAccount {
   }
 
   /**
-   * @param bankBranch Customer bank branch number (name). Mandatory for &#39;Latin America&#39;, &#39;Asia&#39; and DIRECTBANKINGNGA methods only. For &#39;Latin America&#39;: &lt;ul&gt;&lt;li&gt;required for methods where country &#x3D; BR, UY&lt;/li&gt;&lt;li&gt;for UY (Uruguay) is optional if &#39;payment_method&#39; is &#x60;UY113&#x60;&lt;/li&gt;&lt;/ul&gt; For &#39;Asia&#39;: must be in Simplified Chinese For DIRECTBANKINGNGA: Customer bank branch number (name), only for Ghana banks (GH******)
+   * @param bankBranch Customer bank branch number (name). Mandatory for &#39;Latin America&#39; and DIRECTBANKINGNGA methods only. For &#39;Latin America&#39;: &lt;ul&gt;&lt;li&gt;required for methods where country &#x3D; BR, UY&lt;/li&gt;&lt;li&gt;for UY (Uruguay) is optional if &#39;payment_method&#39; is &#x60;UY113&#x60;&lt;/li&gt;&lt;/ul&gt; For DIRECTBANKINGNGA: Customer bank branch number (name), only for Ghana banks (GH******)
    * @return bean instance
    **/
   public PayoutRequestEWalletAccount bankBranch(String bankBranch) {
@@ -72,7 +72,7 @@ public class PayoutRequestEWalletAccount {
   }
 
   /**
-   * @param id For QIWI: Customer phone number (from 1 to 15 digits) For WEBMONEY: Customer account number For NETELLER: Customer email For &#39;Latin America&#39;: Customer personal identification number For &#39;Asia&#39;: Customer bank account number For YANDEXMONEY: Customer wallet number, 11 to 16 digits, begins with &#x60;410&#x60; For AIRTEL, MPESA, MTN, UGANDAMOBILE, VODAFONE and TIGO: phone number linked to Customer&#39;s mobile money account. Phone prefix is **required**: AIRTEL - 233 (GHS), 256 (UGX); MTN - 233 (GHS), 256 (UGX); TIGO, VODAFONE - 233; UGANDAMOBILE - 256; MPESA - 254 For DIRECTBANKINGNGA: bank account number *(mandatory for QIWI, WEBMONEY, NETELLER, &#39;Latin America&#39;, &#39;Asia&#39;, YANDEXMONEY, AIRTEL, MPESA, MTN, UGANDAMOBILE, VODAFONE, TIGO and DIRECTBANKINGNGA methods only)*
+   * @param id For QIWI: Customer phone number (from 1 to 15 digits) For WEBMONEY: Customer account number For NETELLER: Customer email For &#39;Latin America&#39;: Customer personal identification number For YANDEXMONEY: Customer wallet number, 11 to 16 digits, begins with &#x60;410&#x60; For AIRTEL, MPESA, MTN, UGANDAMOBILE, VODAFONE and TIGO: phone number linked to Customer&#39;s mobile money account. Phone prefix is **required**: AIRTEL - 233 (GHS), 256 (UGX); MTN - 233 (GHS), 256 (UGX); TIGO, VODAFONE - 233; UGANDAMOBILE - 256; MPESA - 254 For DIRECTBANKINGNGA: bank account number For PAYPAL: Customer email, phone or PayPal account number *(mandatory for QIWI, PAYPAL, WEBMONEY, NETELLER, &#39;Latin America&#39;, YANDEXMONEY, AIRTEL, MPESA, MTN, UGANDAMOBILE, VODAFONE, TIGO and DIRECTBANKINGNGA methods only)*
    * @return bean instance
    **/
   public PayoutRequestEWalletAccount id(String id) {
@@ -86,7 +86,7 @@ public class PayoutRequestEWalletAccount {
   }
 
   /**
-   * @param name Customer bank account name. For &#39;Asia&#39; methods: &lt;ul&gt;&lt;li&gt;mandatory&lt;/li&gt;&lt;li&gt;for &#x60;CNY&#x60; currency: must be in Simplified Chinese&lt;/li&gt;&lt;/ul&gt;
+   * @param name Customer bank account name.
    * @return bean instance
    **/
   public PayoutRequestEWalletAccount name(String name) {

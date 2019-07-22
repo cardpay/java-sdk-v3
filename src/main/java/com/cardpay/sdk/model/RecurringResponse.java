@@ -1,6 +1,6 @@
 /*
  * CardPay REST API
- * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a REST resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on OAuth 2.0 standard. For recent changes see changelog section.
+ * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on [OAuth 2.0](https://oauth.net/2/) standard. For recent changes see changelog section.
  *
  * OpenAPI spec version: 3.0
  * 
@@ -17,8 +17,8 @@ import java.util.Objects;
 import java.util.Arrays;
 import com.cardpay.sdk.model.PaymentResponseCardAccount;
 import com.cardpay.sdk.model.RecurringCustomer;
+import com.cardpay.sdk.model.RecurringResponseMerchantOrder;
 import com.cardpay.sdk.model.RecurringResponseRecurringData;
-import com.cardpay.sdk.model.TransactionResponseMerchantOrder;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -35,7 +35,7 @@ public class RecurringResponse {
   @SerializedName("payment_method")
   private String paymentMethod = null;
   @SerializedName("merchant_order")
-  private TransactionResponseMerchantOrder merchantOrder = null;
+  private RecurringResponseMerchantOrder merchantOrder = null;
   @SerializedName("recurring_data")
   private RecurringResponseRecurringData recurringData = null;
   @SerializedName("card_account")
@@ -57,7 +57,7 @@ public class RecurringResponse {
   }
 
   
-  public void setMerchantOrder(TransactionResponseMerchantOrder merchantOrder) {
+  public void setMerchantOrder(RecurringResponseMerchantOrder merchantOrder) {
       this.merchantOrder = merchantOrder;
   }
 
@@ -65,7 +65,7 @@ public class RecurringResponse {
    * @param merchantOrder Merchant order data
    * @return bean instance
    **/
-  public RecurringResponse merchantOrder(TransactionResponseMerchantOrder merchantOrder) {
+  public RecurringResponse merchantOrder(RecurringResponseMerchantOrder merchantOrder) {
       this.merchantOrder = merchantOrder;
       return this;
   }

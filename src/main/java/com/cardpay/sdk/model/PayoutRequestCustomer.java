@@ -1,6 +1,6 @@
 /*
  * CardPay REST API
- * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a REST resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on OAuth 2.0 standard. For recent changes see changelog section.
+ * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on [OAuth 2.0](https://oauth.net/2/) standard. For recent changes see changelog section.
  *
  * OpenAPI spec version: 3.0
  * 
@@ -70,7 +70,7 @@ public class PayoutRequestCustomer {
   }
 
   /**
-   * @param city Customer city. For &#39;Asia&#39; methods: &lt;ul&gt;&lt;li&gt;mandatory&lt;/li&gt;&lt;li&gt;for &#x60;CNY&#x60; currency: must be in Simplified Chinese&lt;/li&gt;&lt;/ul&gt;
+   * @param city Customer city.
    * @return bean instance
    **/
   public PayoutRequestCustomer city(String city) {
@@ -112,7 +112,7 @@ public class PayoutRequestCustomer {
   }
 
   /**
-   * @param email Customer e-mail address *(mandatory for &#39;Latin America&#39; and &#39;Asia&#39; methods only)* For &#39;Latin America&#39; is required for methods where country &#x3D; CO
+   * @param email Customer e-mail address *(mandatory for &#39;Latin America&#39; methods only)* For &#39;Latin America&#39; is required for methods where country &#x3D; CO
    * @return bean instance
    **/
   public PayoutRequestCustomer email(String email) {
@@ -140,7 +140,7 @@ public class PayoutRequestCustomer {
   }
 
   /**
-   * @param fullName Customer full name. Mandatory for &#39;Asia&#39; and DIRECTBANKINGNGA methods only: For &#39;Asia&#39;: for &#x60;CNY&#x60; currency only in Simplified Chinese For DIRECTBANKINGNGA: only for non NGN currency
+   * @param fullName Customer full name. Mandatory for DIRECTBANKINGNGA methods only: For DIRECTBANKINGNGA: only for non NGN currency
    * @return bean instance
    **/
   public PayoutRequestCustomer fullName(String fullName) {
@@ -196,7 +196,7 @@ public class PayoutRequestCustomer {
   }
 
   /**
-   * @param province Customer province. For &#39;Asia&#39; methods: &lt;ul&gt;&lt;li&gt;mandatory&lt;/li&gt;&lt;li&gt;must be in Simplified Chinese&lt;/li&gt;&lt;/ul&gt;
+   * @param province Customer province.
    * @return bean instance
    **/
   public PayoutRequestCustomer province(String province) {

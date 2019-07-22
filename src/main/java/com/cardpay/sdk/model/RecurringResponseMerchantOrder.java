@@ -23,25 +23,40 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.time.OffsetDateTime;
 import lombok.Data;
 
 @Data
 
-public class NextSubscriptionPayment {
-  @SerializedName("date")
-  private OffsetDateTime date = null;
+public class RecurringResponseMerchantOrder {
+  @SerializedName("description")
+  private String description = null;
+  @SerializedName("id")
+  private String id = null;
   
-  public void setDate(OffsetDateTime date) {
-      this.date = date;
+  public void setDescription(String description) {
+      this.description = description;
   }
 
   /**
-   * @param date The date in &#x60;yyyy-MM-dd&#x60; format when the next payment on subscription will be charged
+   * @param description The description of product / service, provided to Customer
    * @return bean instance
    **/
-  public NextSubscriptionPayment date(OffsetDateTime date) {
-      this.date = date;
+  public RecurringResponseMerchantOrder description(String description) {
+      this.description = description;
+      return this;
+  }
+
+  
+  public void setId(String id) {
+      this.id = id;
+  }
+
+  /**
+   * @param id Merchant&#39;s ID of the order
+   * @return bean instance
+   **/
+  public RecurringResponseMerchantOrder id(String id) {
+      this.id = id;
       return this;
   }
 
@@ -49,9 +64,10 @@ public class NextSubscriptionPayment {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class NextSubscriptionPayment {\n");
+    sb.append("class RecurringResponseMerchantOrder {\n");
     
-    if (date != null) sb.append("    date: ").append(toIndentedString(date)).append("\n");
+    if (description != null) sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

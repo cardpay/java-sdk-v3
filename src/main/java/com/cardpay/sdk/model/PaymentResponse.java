@@ -1,6 +1,6 @@
 /*
  * CardPay REST API
- * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a REST resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on OAuth 2.0 standard. For recent changes see changelog section.
+ * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on [OAuth 2.0](https://oauth.net/2/) standard. For recent changes see changelog section.
  *
  * OpenAPI spec version: 3.0
  * 
@@ -15,9 +15,9 @@ package com.cardpay.sdk.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.cardpay.sdk.model.PaymentRequestCustomer;
 import com.cardpay.sdk.model.PaymentResponseCardAccount;
 import com.cardpay.sdk.model.PaymentResponseCryptocurrencyAccount;
-import com.cardpay.sdk.model.PaymentResponseCustomer;
 import com.cardpay.sdk.model.PaymentResponsePaymentData;
 import com.cardpay.sdk.model.TransactionResponseEWalletAccount;
 import com.cardpay.sdk.model.TransactionResponseMerchantOrder;
@@ -34,8 +34,8 @@ import lombok.Data;
 @Data
 
 public class PaymentResponse {
-  @SerializedName("ewallet_account")
-  private TransactionResponseEWalletAccount ewalletAccount = null;
+  @SerializedName("customer")
+  private PaymentRequestCustomer customer = null;
   @SerializedName("payment_method")
   private String paymentMethod = null;
   @SerializedName("merchant_order")
@@ -46,19 +46,19 @@ public class PaymentResponse {
   private PaymentResponseCardAccount cardAccount = null;
   @SerializedName("cryptocurrency_account")
   private PaymentResponseCryptocurrencyAccount cryptocurrencyAccount = null;
-  @SerializedName("customer")
-  private PaymentResponseCustomer customer = null;
+  @SerializedName("ewallet_account")
+  private TransactionResponseEWalletAccount ewalletAccount = null;
   
-  public void setEwalletAccount(TransactionResponseEWalletAccount ewalletAccount) {
-      this.ewalletAccount = ewalletAccount;
+  public void setCustomer(PaymentRequestCustomer customer) {
+      this.customer = customer;
   }
 
   /**
-   * @param ewalletAccount eWallet account data *(for ALIPAY, QIWI, WEBMONEY, NETELLER, YANDEXMONEY, DIRECTBANKINGNGA, AQRCODE, AIRTEL, MPESA, MTN, UGANDAMOBILE, VODAFONE, TIGO and &#39;Latin America&#39; payment methods only)*
+   * @param customer Customer data
    * @return bean instance
    **/
-  public PaymentResponse ewalletAccount(TransactionResponseEWalletAccount ewalletAccount) {
-      this.ewalletAccount = ewalletAccount;
+  public PaymentResponse customer(PaymentRequestCustomer customer) {
+      this.customer = customer;
       return this;
   }
 
@@ -68,7 +68,7 @@ public class PaymentResponse {
   }
 
   /**
-   * @param paymentMethod Used payment method type name from payment methods list
+   * @param paymentMethod Payment method
    * @return bean instance
    **/
   public PaymentResponse paymentMethod(String paymentMethod) {
@@ -110,7 +110,7 @@ public class PaymentResponse {
   }
 
   /**
-   * @param cardAccount Bank card data *(for BANKCARD payment method only)*
+   * @param cardAccount Card account data *(for BANKCARD payment method only)*
    * @return bean instance
    **/
   public PaymentResponse cardAccount(PaymentResponseCardAccount cardAccount) {
@@ -133,16 +133,16 @@ public class PaymentResponse {
   }
 
   
-  public void setCustomer(PaymentResponseCustomer customer) {
-      this.customer = customer;
+  public void setEwalletAccount(TransactionResponseEWalletAccount ewalletAccount) {
+      this.ewalletAccount = ewalletAccount;
   }
 
   /**
-   * @param customer Customer data
+   * @param ewalletAccount eWallet account data *(for ALIPAY, QIWI, WEBMONEY, NETELLER, YANDEXMONEY, DIRECTBANKINGNGA, AQRCODE, AIRTEL, MPESA, MTN, UGANDAMOBILE, VODAFONE, TIGO and &#39;Latin America&#39; payment methods only)*
    * @return bean instance
    **/
-  public PaymentResponse customer(PaymentResponseCustomer customer) {
-      this.customer = customer;
+  public PaymentResponse ewalletAccount(TransactionResponseEWalletAccount ewalletAccount) {
+      this.ewalletAccount = ewalletAccount;
       return this;
   }
 
@@ -152,13 +152,13 @@ public class PaymentResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class PaymentResponse {\n");
     
-    if (ewalletAccount != null) sb.append("    ewalletAccount: ").append(toIndentedString(ewalletAccount)).append("\n");
+    if (customer != null) sb.append("    customer: ").append(toIndentedString(customer)).append("\n");
     if (paymentMethod != null) sb.append("    paymentMethod: ").append(toIndentedString(paymentMethod)).append("\n");
     if (merchantOrder != null) sb.append("    merchantOrder: ").append(toIndentedString(merchantOrder)).append("\n");
     if (paymentData != null) sb.append("    paymentData: ").append(toIndentedString(paymentData)).append("\n");
     if (cardAccount != null) sb.append("    cardAccount: ").append(toIndentedString(cardAccount)).append("\n");
     if (cryptocurrencyAccount != null) sb.append("    cryptocurrencyAccount: ").append(toIndentedString(cryptocurrencyAccount)).append("\n");
-    if (customer != null) sb.append("    customer: ").append(toIndentedString(customer)).append("\n");
+    if (ewalletAccount != null) sb.append("    ewalletAccount: ").append(toIndentedString(ewalletAccount)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -1,6 +1,6 @@
 /*
  * CardPay REST API
- * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a REST resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on OAuth 2.0 standard. For recent changes see changelog section.
+ * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on [OAuth 2.0](https://oauth.net/2/) standard. For recent changes see changelog section.
  *
  * OpenAPI spec version: 3.0
  * 
@@ -60,7 +60,7 @@ public class PaymentRequestCustomer {
   }
 
   /**
-   * @param email Email address of Customer *(mandatory by default for BANKCARD, &#39;Asia&#39;, &#39;Latin America&#39;, AIRTEL, MPESA, MTN, UGANDAMOBILE, VODAFONE, TIGO, DIRECTBANKINGNGA and AQRCODE payment methods only)*. Can be defined as optional by CardPay manager.
+   * @param email Email address of Customer *(mandatory by default for BANKCARD, PAYPAL, &#39;Latin America&#39;, AIRTEL, MPESA, MTN, UGANDAMOBILE, VODAFONE, TIGO, DIRECTBANKINGNGA and AQRCODE payment methods only)*. Can be defined as optional by CardPay manager.
    * @return bean instance
    **/
   public PaymentRequestCustomer email(String email) {
@@ -74,7 +74,7 @@ public class PaymentRequestCustomer {
   }
 
   /**
-   * @param fullName Customer full name *(mandatory for &#39;Latin America&#39; and &#39;Asia&#39; payment methods only)*
+   * @param fullName Customer full name *(mandatory for &#39;Latin America&#39; payment methods only)*
    * @return bean instance
    **/
   public PaymentRequestCustomer fullName(String fullName) {
@@ -116,7 +116,7 @@ public class PaymentRequestCustomer {
   }
 
   /**
-   * @param phone Customer phone number. Format: &#x60;+&#x60; sign and 10 or 11 digits, example: &#x60;+12345678901&#x60; Mandatory for &#39;Asia&#39; and DIRECTBANKINGNGA payment methods. For other payment methods: optional by default, can be defined as mandatory by CardPay manager.
+   * @param phone Customer phone number. Format: &#x60;+&#x60; sign and 10 or 11 digits, example: &#x60;+12345678901&#x60; Mandatory for DIRECTBANKINGNGA payment method. For other payment methods: optional by default, can be defined as mandatory by CardPay manager.
    * @return bean instance
    **/
   public PaymentRequestCustomer phone(String phone) {

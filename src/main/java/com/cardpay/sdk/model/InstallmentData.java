@@ -1,6 +1,6 @@
 /*
  * CardPay REST API
- * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a REST resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on OAuth 2.0 standard. For recent changes see changelog section.
+ * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on [OAuth 2.0](https://oauth.net/2/) standard. For recent changes see changelog section.
  *
  * OpenAPI spec version: 3.0
  * 
@@ -139,7 +139,7 @@ public class InstallmentData {
   }
 
   /**
-   * @param dynamicDescriptor dynamicDescriptor
+   * @param dynamicDescriptor Short description of the service or product, must be enabled by CardPay manager to be used.
    * @return bean instance
    **/
   public InstallmentData dynamicDescriptor(String dynamicDescriptor) {
@@ -153,7 +153,7 @@ public class InstallmentData {
   }
 
   /**
-   * @param generateToken generateToken
+   * @param generateToken This attribute can be received only in first recurring request. In all requests with recurring_id card.token can&#39;t be generated. If set to &#39;true&#39;, Card token will be generated and returned in GET response. Will be generated only for successful transactions (not for declined).
    * @return bean instance
    **/
   public InstallmentData generateToken(Boolean generateToken) {
@@ -167,7 +167,7 @@ public class InstallmentData {
   }
 
   /**
-   * @param initiator initiator
+   * @param initiator Use &#x60;cit&#x60; for initiator attribute (cardholder initiated transaction).
    * @return bean instance
    **/
   public InstallmentData initiator(String initiator) {
@@ -196,7 +196,7 @@ public class InstallmentData {
   }
 
   /**
-   * @param note note
+   * @param note Note about the recurring that will not be displayed to customer.
    * @return bean instance
    **/
   public InstallmentData note(String note) {

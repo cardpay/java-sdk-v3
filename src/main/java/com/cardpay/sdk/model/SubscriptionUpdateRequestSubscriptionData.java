@@ -1,6 +1,6 @@
 /*
  * CardPay REST API
- * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a REST resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on OAuth 2.0 standard. For recent changes see changelog section.
+ * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on [OAuth 2.0](https://oauth.net/2/) standard. For recent changes see changelog section.
  *
  * OpenAPI spec version: 3.0
  * 
@@ -15,7 +15,6 @@ package com.cardpay.sdk.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.cardpay.sdk.model.RecurringRequestFiling;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -32,8 +31,6 @@ import lombok.Data;
 public class SubscriptionUpdateRequestSubscriptionData {
   @SerializedName("amount")
   private BigDecimal amount = null;
-  @SerializedName("filing")
-  private RecurringRequestFiling filing = null;
   /**
    * Set status and action on subscription. Mandatory for &#x60;CHANGE_STATUS&#x60; operation only: &#x60;CANCELLED&#x60; - cancels and ends &#x60;INACTIVE&#x60; - **for scheduled only**; suspends &#x60;ACTIVE&#x60; - **for scheduled only**; resumes after suspend
    */
@@ -108,20 +105,6 @@ public class SubscriptionUpdateRequestSubscriptionData {
   }
 
   
-  public void setFiling(RecurringRequestFiling filing) {
-      this.filing = filing;
-  }
-
-  /**
-   * @param filing Filing data. Mandatory for &#x60;CHANGE_FILING&#x60; operation only.
-   * @return bean instance
-   **/
-  public SubscriptionUpdateRequestSubscriptionData filing(RecurringRequestFiling filing) {
-      this.filing = filing;
-      return this;
-  }
-
-  
   public void setStatusTo(StatusToEnum statusTo) {
       this.statusTo = statusTo;
   }
@@ -142,7 +125,6 @@ public class SubscriptionUpdateRequestSubscriptionData {
     sb.append("class SubscriptionUpdateRequestSubscriptionData {\n");
     
     if (amount != null) sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-    if (filing != null) sb.append("    filing: ").append(toIndentedString(filing)).append("\n");
     if (statusTo != null) sb.append("    statusTo: ").append(toIndentedString(statusTo)).append("\n");
     sb.append("}");
     return sb.toString();

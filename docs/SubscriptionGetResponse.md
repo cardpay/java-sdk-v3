@@ -6,19 +6,19 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **amountDue** | [**BigDecimal**](BigDecimal.md) | Amount of payments left to be captured |  [optional]
 **amountTotal** | [**BigDecimal**](BigDecimal.md) | Total amount of subscription to be paid before completion |  [optional]
-**created** | [**OffsetDateTime**](OffsetDateTime.md) | Creation time [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format | 
+**created** | [**OffsetDateTime**](OffsetDateTime.md) | Creation time [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format |  [optional]
 **currency** | **String** | [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code |  [optional]
-**customer** | [**PayoutResponseCustomer**](PayoutResponseCustomer.md) | Customer data | 
-**description** | **String** | Description of subscription | 
-**id** | **String** | ID of subscription | 
+**customer** | [**PayoutResponseCustomer**](PayoutResponseCustomer.md) | Customer data |  [optional]
+**description** | **String** | Description of subscription |  [optional]
+**id** | **String** | ID of subscription |  [optional]
 **interval** | **Integer** | Interval of subscription |  [optional]
 **nextPayment** | [**NextSubscriptionPayment**](NextSubscriptionPayment.md) | Next payment data |  [optional]
 **paymentsDue** | **Integer** | Number of payments left to be captured |  [optional]
 **period** | [**PeriodEnum**](#PeriodEnum) | Period of subscription |  [optional]
 **plan** | [**Plan**](Plan.md) | Plan data |  [optional]
-**retries** | **Integer** | Number of retries in retry logic |  [optional]
-**status** | [**StatusEnum**](#StatusEnum) | Status of subscription | 
-**statusReason** | **String** | Reason of subscription cancellation that was made by Cardpay |  [optional]
+**retries** | **Integer** | Number of daily basis retry attempts in case of payment has not been captured successfully. |  [optional]
+**status** | [**StatusEnum**](#StatusEnum) | Status of subscription |  [optional]
+**statusReason** | **String** | Reason of subscription cancellation that was made by CardPay |  [optional]
 **subscriptionStart** | [**OffsetDateTime**](OffsetDateTime.md) | The time in &#39;yyyy-MM-dd&#39; format when subscription actually becomes activated (grace period) |  [optional]
 **type** | [**TypeEnum**](#TypeEnum) | Recurring payment type name; can be ONECLICK, SCHEDULED, INSTALLMENT |  [optional]
 

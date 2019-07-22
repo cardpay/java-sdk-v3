@@ -1,6 +1,6 @@
 /*
  * CardPay REST API
- * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a REST resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on OAuth 2.0 standard. For recent changes see changelog section.
+ * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on [OAuth 2.0](https://oauth.net/2/) standard. For recent changes see changelog section.
  *
  * OpenAPI spec version: 3.0
  * 
@@ -46,7 +46,7 @@ public class PaymentResponseCustomer {
   }
 
   /**
-   * @param email Email address of the customer (mandatory by default for &#39;Asia’, &#39;Latin America’, &#39;NETELLER&#39;, &#39;DIRECTBANKINGNGA&#39;, &#39;AQRCODE&#39;, &#39;AIRTEL&#39;, &#39;MPESA&#39;, &#39;MTN&#39;, &#39;UGANDAMOBILE&#39;, &#39;VODAFONE&#39;, &#39;TIGO&#39; payment methods only)). Can be defined as optional by CardPay manager.
+   * @param email Email address of the customer (mandatory by default for &#39;Latin America&#39;, &#39;NETELLER&#39;, &#39;DIRECTBANKINGNGA&#39;, &#39;AQRCODE&#39;, &#39;AIRTEL&#39;, &#39;MPESA&#39;, &#39;MTN&#39;, &#39;UGANDAMOBILE&#39;, &#39;VODAFONE&#39;, &#39;TIGO&#39; payment methods only)). Can be defined as optional by CardPay manager.
    * @return bean instance
    **/
   public PaymentResponseCustomer email(String email) {
@@ -60,7 +60,7 @@ public class PaymentResponseCustomer {
   }
 
   /**
-   * @param fullName Customer&#39;s full name (mandatory for &#39;Asia’ payment method only)
+   * @param fullName Customer&#39;s full name
    * @return bean instance
    **/
   public PaymentResponseCustomer fullName(String fullName) {
@@ -88,7 +88,7 @@ public class PaymentResponseCustomer {
   }
 
   /**
-   * @param ip IP address of customer, present if wallet (terminal) settings has this option enabled. By default the option is not enabled
+   * @param ip IP address of Customer
    * @return bean instance
    **/
   public PaymentResponseCustomer ip(String ip) {
@@ -116,7 +116,7 @@ public class PaymentResponseCustomer {
   }
 
   /**
-   * @param phone Customer&#39;s phone number. Mandatory for &#39;Asia’ and DIRECTBANKINGNGA payment methods. For other payment methods: optional by default, can be defined as mandatory by CardPay manager.
+   * @param phone Customer&#39;s phone number. Mandatory for DIRECTBANKINGNGA payment method. For other payment methods: optional by default, can be defined as mandatory by CardPay manager.
    * @return bean instance
    **/
   public PaymentResponseCustomer phone(String phone) {

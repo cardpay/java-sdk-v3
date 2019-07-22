@@ -1,6 +1,6 @@
 /*
  * CardPay REST API
- * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a REST resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on OAuth 2.0 standard. For recent changes see changelog section.
+ * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on [OAuth 2.0](https://oauth.net/2/) standard. For recent changes see changelog section.
  *
  * OpenAPI spec version: 3.0
  * 
@@ -32,8 +32,6 @@ import lombok.Data;
 public class OneclickData {
   @SerializedName("amount")
   private BigDecimal amount = null;
-  @SerializedName("begin")
-  private Boolean begin = null;
   @SerializedName("currency")
   private String currency = null;
   @SerializedName("dynamic_descriptor")
@@ -63,20 +61,6 @@ public class OneclickData {
   }
 
   
-  public void setBegin(Boolean begin) {
-      this.begin = begin;
-  }
-
-  /**
-   * @param begin begin
-   * @return bean instance
-   **/
-  public OneclickData begin(Boolean begin) {
-      this.begin = begin;
-      return this;
-  }
-
-  
   public void setCurrency(String currency) {
       this.currency = currency;
   }
@@ -96,7 +80,7 @@ public class OneclickData {
   }
 
   /**
-   * @param dynamicDescriptor dynamicDescriptor
+   * @param dynamicDescriptor Short description of the service or product, must be enabled by CardPay manager to be used.
    * @return bean instance
    **/
   public OneclickData dynamicDescriptor(String dynamicDescriptor) {
@@ -124,7 +108,7 @@ public class OneclickData {
   }
 
   /**
-   * @param generateToken generateToken
+   * @param generateToken This attribute can be received only in first recurring request. If set to &#39;true&#39;, Card token will be generated and returned in GET response for all successful transactions (can&#39;t be generated for declined transactions). In all requests with filing_id card.token can&#39;t be generated.
    * @return bean instance
    **/
   public OneclickData generateToken(Boolean generateToken) {
@@ -138,7 +122,7 @@ public class OneclickData {
   }
 
   /**
-   * @param initiator initiator
+   * @param initiator Can be only 2 values - &#39;mit&#39; (merchant initiated transaction), &#39;cit&#39; (cardholder initiated transaction).
    * @return bean instance
    **/
   public OneclickData initiator(String initiator) {
@@ -152,7 +136,7 @@ public class OneclickData {
   }
 
   /**
-   * @param note note
+   * @param note Note about the recurring that will not be displayed to customer.
    * @return bean instance
    **/
   public OneclickData note(String note) {
@@ -166,7 +150,7 @@ public class OneclickData {
   }
 
   /**
-   * @param preauth If set to &#x60;true&#x60;, the amount will not be captured but only blocked *(for BANKCARD payment method only)*.
+   * @param preauth This parameter allowed to be used only for first recurring payment. If set to &#39;true&#39;, the amount will not be captured but only blocked. One-click payments with &#39;preauth&#39; attribute will be captured automatically in 7 days from the time of creating the preauth transaction. In continue recurring request (with &#39;filing_id&#39;) this parameter shouldn&#39;t be used.
    * @return bean instance
    **/
   public OneclickData preauth(Boolean preauth) {
@@ -181,7 +165,6 @@ public class OneclickData {
     sb.append("class OneclickData {\n");
     
     if (amount != null) sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-    if (begin != null) sb.append("    begin: ").append(toIndentedString(begin)).append("\n");
     if (currency != null) sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     if (dynamicDescriptor != null) sb.append("    dynamicDescriptor: ").append(toIndentedString(dynamicDescriptor)).append("\n");
     if (filing != null) sb.append("    filing: ").append(toIndentedString(filing)).append("\n");

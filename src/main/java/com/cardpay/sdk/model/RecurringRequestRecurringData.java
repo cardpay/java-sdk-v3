@@ -1,6 +1,6 @@
 /*
  * CardPay REST API
- * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a REST resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on OAuth 2.0 standard. For recent changes see changelog section.
+ * Welcome to the CardPay REST API. The CardPay API uses HTTP verbs and a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) resources endpoint structure (see more info about REST). Request and response payloads are formatted as JSON. Merchant uses API to create payments, refunds, payouts or recurrings, check or update transaction status and get information about created transactions. In API authentication process based on [OAuth 2.0](https://oauth.net/2/) standard. For recent changes see changelog section.
  *
  * OpenAPI spec version: 3.0
  * 
@@ -34,8 +34,6 @@ import lombok.Data;
 public class RecurringRequestRecurringData {
   @SerializedName("amount")
   private BigDecimal amount = null;
-  @SerializedName("begin")
-  private Boolean begin = null;
   @SerializedName("currency")
   private String currency = null;
   @SerializedName("dynamic_descriptor")
@@ -130,20 +128,6 @@ public class RecurringRequestRecurringData {
   }
 
   
-  public void setBegin(Boolean begin) {
-      this.begin = begin;
-  }
-
-  /**
-   * @param begin begin
-   * @return bean instance
-   **/
-  public RecurringRequestRecurringData begin(Boolean begin) {
-      this.begin = begin;
-      return this;
-  }
-
-  
   public void setCurrency(String currency) {
       this.currency = currency;
   }
@@ -163,7 +147,7 @@ public class RecurringRequestRecurringData {
   }
 
   /**
-   * @param dynamicDescriptor Short description of the service or product, must be enabled by CardPay manager to be used
+   * @param dynamicDescriptor Short description of the service or product, must be enabled by CardPay manager to be used.
    * @return bean instance
    **/
   public RecurringRequestRecurringData dynamicDescriptor(String dynamicDescriptor) {
@@ -191,7 +175,7 @@ public class RecurringRequestRecurringData {
   }
 
   /**
-   * @param generateToken If set to &#x60;true&#x60;, token will be generated and returned in the response
+   * @param generateToken This attribute can be received only in first recurring request. In all requests with recurring_id card.token can&#39;t be generated. If set to &#39;true&#39;, card token will be generated and returned in GET response. Will be generated only for successful transactions (not for declined).
    * @return bean instance
    **/
   public RecurringRequestRecurringData generateToken(Boolean generateToken) {
@@ -234,7 +218,7 @@ public class RecurringRequestRecurringData {
   }
 
   /**
-   * @param note Note about the transaction that will not be displayed to customer
+   * @param note Note about the recurring that will not be displayed to customer.
    * @return bean instance
    **/
   public RecurringRequestRecurringData note(String note) {
@@ -337,7 +321,6 @@ public class RecurringRequestRecurringData {
     sb.append("class RecurringRequestRecurringData {\n");
     
     if (amount != null) sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-    if (begin != null) sb.append("    begin: ").append(toIndentedString(begin)).append("\n");
     if (currency != null) sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     if (dynamicDescriptor != null) sb.append("    dynamicDescriptor: ").append(toIndentedString(dynamicDescriptor)).append("\n");
     if (filing != null) sb.append("    filing: ").append(toIndentedString(filing)).append("\n");
