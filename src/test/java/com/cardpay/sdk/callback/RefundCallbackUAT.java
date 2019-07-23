@@ -48,7 +48,7 @@ public class RefundCallbackUAT {
                     // ...
                     break;
                 default:
-                    // action to unknown or unsupported status
+                    // unknown action or unsupported status
                     throw new RuntimeException("Unsupported status " + callback.getRefundData().getStatus());
             }
 
