@@ -24,6 +24,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import lombok.Data;
 
@@ -34,6 +35,8 @@ public class ScheduledData {
   private String dynamicDescriptor = null;
   @SerializedName("generate_token")
   private Boolean generateToken = null;
+  @SerializedName("initial_amount")
+  private BigDecimal initialAmount = null;
   @SerializedName("initiator")
   private String initiator = null;
   @SerializedName("note")
@@ -67,6 +70,20 @@ public class ScheduledData {
    **/
   public ScheduledData generateToken(Boolean generateToken) {
       this.generateToken = generateToken;
+      return this;
+  }
+
+  
+  public void setInitialAmount(BigDecimal initialAmount) {
+      this.initialAmount = initialAmount;
+  }
+
+  /**
+   * @param initialAmount The amount of subscription initiated transaction in selected currency with dot as a decimal separator, must be less than 100 millions
+   * @return bean instance
+   **/
+  public ScheduledData initialAmount(BigDecimal initialAmount) {
+      this.initialAmount = initialAmount;
       return this;
   }
 
@@ -134,6 +151,7 @@ public class ScheduledData {
     
     if (dynamicDescriptor != null) sb.append("    dynamicDescriptor: ").append(toIndentedString(dynamicDescriptor)).append("\n");
     if (generateToken != null) sb.append("    generateToken: ").append(toIndentedString(generateToken)).append("\n");
+    if (initialAmount != null) sb.append("    initialAmount: ").append(toIndentedString(initialAmount)).append("\n");
     if (initiator != null) sb.append("    initiator: ").append(toIndentedString(initiator)).append("\n");
     if (note != null) sb.append("    note: ").append(toIndentedString(note)).append("\n");
     if (plan != null) sb.append("    plan: ").append(toIndentedString(plan)).append("\n");

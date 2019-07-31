@@ -28,6 +28,7 @@ PAST_DUE | &quot;PAST_DUE&quot;
 PENDING | &quot;PENDING&quot;
 COMPLETED | &quot;COMPLETED&quot;
 CARD_EXPIRED | &quot;CARD_EXPIRED&quot;
+ACTIVATION_FAILED | &quot;ACTIVATION_FAILED&quot;
 
 
 <a name="TypeEnum"></a>
