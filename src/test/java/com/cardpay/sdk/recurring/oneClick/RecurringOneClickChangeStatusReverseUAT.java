@@ -2,7 +2,21 @@ package com.cardpay.sdk.recurring.oneClick;
 
 import com.cardpay.sdk.api.RecurringsApi;
 import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.*;
+import com.cardpay.sdk.model.PaymentRequestCard;
+import com.cardpay.sdk.model.PaymentRequestCardAccount;
+import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
+import com.cardpay.sdk.model.PaymentUpdateTransactionData;
+import com.cardpay.sdk.model.RecurringCreationRequest;
+import com.cardpay.sdk.model.RecurringCreationResponse;
+import com.cardpay.sdk.model.RecurringCustomer;
+import com.cardpay.sdk.model.RecurringPatchRequest;
+import com.cardpay.sdk.model.RecurringRequestRecurringData;
+import com.cardpay.sdk.model.RecurringResponse;
+import com.cardpay.sdk.model.RecurringResponseRecurringData;
+import com.cardpay.sdk.model.RecurringUpdateResponse;
+import com.cardpay.sdk.model.RecurringsList;
+import com.cardpay.sdk.model.ResponseUpdatedTransactionData;
+import com.cardpay.sdk.model.ReturnUrls;
 import com.cardpay.sdk.utils.HttpUtils;
 import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.BaseProducer;
@@ -12,7 +26,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import retrofit2.Call;
 import retrofit2.Response;
 
 import java.io.IOException;
@@ -20,14 +33,26 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
-import static com.cardpay.sdk.Config.*;
-import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
+import static com.cardpay.sdk.Config.CANCEL_URL;
+import static com.cardpay.sdk.Config.CARDPAY_API_URL;
+import static com.cardpay.sdk.Config.DECLINE_URL;
+import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
+import static com.cardpay.sdk.Config.GATEWAY_TERMINAL_CODE;
+import static com.cardpay.sdk.Config.INPROCESS_URL;
+import static com.cardpay.sdk.Config.LOGGING_LEVEL;
+import static com.cardpay.sdk.Config.SUCCESS_URL;
+import static com.cardpay.sdk.Config.TERMINAL_CURRENCY;
 import static com.cardpay.sdk.Constants.CARD_NON3DS_CONFIRMED;
+import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
 import static com.cardpay.sdk.client.StringUtil.formatExpirationDate;
 import static com.cardpay.sdk.model.PaymentUpdateTransactionData.StatusToEnum.REVERSE;
 import static com.cardpay.sdk.model.RecurringPatchRequest.OperationEnum.CHANGE_STATUS;
-import static com.cardpay.sdk.utils.DataUtils.*;
-import static org.junit.Assert.*;
+import static com.cardpay.sdk.utils.DataUtils.generateCardExpiration;
+import static com.cardpay.sdk.utils.DataUtils.generateEmail;
+import static com.cardpay.sdk.utils.DataUtils.generateMerchantOrderId;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class RecurringOneClickChangeStatusReverseUAT {
 
@@ -57,7 +82,7 @@ public class RecurringOneClickChangeStatusReverseUAT {
         RecurringResponse recurringResponse = doOneClickPayment(CARD_NON3DS_CONFIRMED);
 
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        // Phase 2: change One-click status (reverse)
+        // Phase 2: change one-click status (preauth complete operation)
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
         // prepare update request data
@@ -78,14 +103,14 @@ public class RecurringOneClickChangeStatusReverseUAT {
         assertNotNull(result.body());
 
         // explore response result
-        RecurringUpdateResponse data = result.body();
+        ResponseUpdatedTransactionData data = result.body().getRecurringData();
         log.info("{}", data);
 
-        assertEquals(ResponseUpdatedTransactionData.StatusEnum.VOIDED, data.getRecurringData().getStatus());
+        assertEquals(ResponseUpdatedTransactionData.StatusEnum.VOIDED, data.getStatus());
     }
 
     private RecurringResponse fetchRecurring(String merchantOrderId) throws IOException {
-        Call<RecurringsList> call = recurrings.getRecurrings(
+        Response<RecurringsList> response = recurrings.getRecurrings(
                 UUID.randomUUID().toString(),
                 null,
                 null,
@@ -95,8 +120,7 @@ public class RecurringOneClickChangeStatusReverseUAT {
                 null,
                 null,
                 null
-        );
-        Response<RecurringsList> response = call.execute();
+        ).execute();
         assertTrue(response.message(), response.isSuccessful());
 
         RecurringsList body = response.body();
