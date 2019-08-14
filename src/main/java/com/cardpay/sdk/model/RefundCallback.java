@@ -13,22 +13,7 @@
 
 package com.cardpay.sdk.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.cardpay.sdk.model.RefundResponseCardAccount;
-import com.cardpay.sdk.model.RefundResponseCustomer;
-import com.cardpay.sdk.model.RefundResponsePaymentData;
-import com.cardpay.sdk.model.RefundResponseRefundData;
-import com.cardpay.sdk.model.TransactionResponseEWalletAccount;
-import com.cardpay.sdk.model.TransactionResponseMerchantOrder;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 import lombok.Data;
 
 @Data

@@ -13,24 +13,7 @@
 
 package com.cardpay.sdk.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.cardpay.sdk.model.PaymentRequestCardAccount;
-import com.cardpay.sdk.model.PaymentRequestCryptocurrencyAccount;
-import com.cardpay.sdk.model.PaymentRequestCustomer;
-import com.cardpay.sdk.model.PaymentRequestEWalletAccount;
-import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
-import com.cardpay.sdk.model.PaymentRequestPaymentData;
-import com.cardpay.sdk.model.Request;
-import com.cardpay.sdk.model.ReturnUrls;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 import lombok.Data;
 
 @Data

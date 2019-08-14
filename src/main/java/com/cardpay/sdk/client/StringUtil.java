@@ -16,7 +16,6 @@ package com.cardpay.sdk.client;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 public class StringUtil {
 
   public static String formatExpirationDate(Date date) {

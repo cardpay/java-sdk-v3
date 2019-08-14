@@ -1,18 +1,14 @@
 package com.cardpay.sdk.client;
 
+import static com.cardpay.sdk.model.OAuthError.NameEnum.TOKEN;
+import static java.lang.System.currentTimeMillis;
+import static java.lang.ThreadLocal.withInitial;
+
 import com.cardpay.sdk.api.AuthApi;
 import com.cardpay.sdk.model.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
-import okhttp3.Request;
-import okhttp3.*;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Converter;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
-
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
@@ -29,10 +25,13 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.UUID;
 import java.util.function.Consumer;
-
-import static com.cardpay.sdk.model.OAuthError.NameEnum.TOKEN;
-import static java.lang.System.currentTimeMillis;
-import static java.lang.ThreadLocal.withInitial;
+import okhttp3.*;
+import okhttp3.Request;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Converter;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class ApiClient {
     public final static String USER_AGENT = "CardpaySdk/1.5.0.9/Java";
