@@ -19,10 +19,6 @@ import lombok.Data;
 @Data
 
 public class PayoutRequestCustomer {
-  @SerializedName("address")
-  private String address = null;
-  @SerializedName("city")
-  private String city = null;
   @SerializedName("document_number")
   private String documentNumber = null;
   @SerializedName("document_type")
@@ -37,38 +33,10 @@ public class PayoutRequestCustomer {
   private String id = null;
   @SerializedName("last_name")
   private String lastName = null;
+  @SerializedName("living_address")
+  private PayoutRequestLivingAddress livingAddress = null;
   @SerializedName("phone")
   private String phone = null;
-  @SerializedName("province")
-  private String province = null;
-  
-  public void setAddress(String address) {
-      this.address = address;
-  }
-
-  /**
-   * @param address Customer address *(mandatory for &#39;Latin America&#39; methods only)* For &#39;Latin America&#39; is required for methods where country &#x3D; CO
-   * @return bean instance
-   **/
-  public PayoutRequestCustomer address(String address) {
-      this.address = address;
-      return this;
-  }
-
-  
-  public void setCity(String city) {
-      this.city = city;
-  }
-
-  /**
-   * @param city Customer city.
-   * @return bean instance
-   **/
-  public PayoutRequestCustomer city(String city) {
-      this.city = city;
-      return this;
-  }
-
   
   public void setDocumentNumber(String documentNumber) {
       this.documentNumber = documentNumber;
@@ -168,6 +136,20 @@ public class PayoutRequestCustomer {
   }
 
   
+  public void setLivingAddress(PayoutRequestLivingAddress livingAddress) {
+      this.livingAddress = livingAddress;
+  }
+
+  /**
+   * @param livingAddress Customer address *(mandatory for &#39;Latin America&#39; methods only)* For &#39;Latin America&#39; is required for methods where country &#x3D; CO
+   * @return bean instance
+   **/
+  public PayoutRequestCustomer livingAddress(PayoutRequestLivingAddress livingAddress) {
+      this.livingAddress = livingAddress;
+      return this;
+  }
+
+  
   public void setPhone(String phone) {
       this.phone = phone;
   }
@@ -181,28 +163,12 @@ public class PayoutRequestCustomer {
       return this;
   }
 
-  
-  public void setProvince(String province) {
-      this.province = province;
-  }
-
-  /**
-   * @param province Customer province.
-   * @return bean instance
-   **/
-  public PayoutRequestCustomer province(String province) {
-      this.province = province;
-      return this;
-  }
-
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PayoutRequestCustomer {\n");
     
-    if (address != null) sb.append("    address: ").append(toIndentedString(address)).append("\n");
-    if (city != null) sb.append("    city: ").append(toIndentedString(city)).append("\n");
     if (documentNumber != null) sb.append("    documentNumber: ").append(toIndentedString(documentNumber)).append("\n");
     if (documentType != null) sb.append("    documentType: ").append(toIndentedString(documentType)).append("\n");
     if (email != null) sb.append("    email: ").append(toIndentedString(email)).append("\n");
@@ -210,8 +176,8 @@ public class PayoutRequestCustomer {
     if (fullName != null) sb.append("    fullName: ").append(toIndentedString(fullName)).append("\n");
     if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");
     if (lastName != null) sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
+    if (livingAddress != null) sb.append("    livingAddress: ").append(toIndentedString(livingAddress)).append("\n");
     if (phone != null) sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
-    if (province != null) sb.append("    province: ").append(toIndentedString(province)).append("\n");
     sb.append("}");
     return sb.toString();
   }

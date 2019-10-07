@@ -101,6 +101,61 @@ public class InstallmentData {
   private Integer retries = null;
   @SerializedName("subscription_start")
   private OffsetDateTime subscriptionStart = null;
+  /**
+   * Gets or Sets transType
+   */
+  @JsonAdapter(TransTypeEnum.Adapter.class)
+  public enum TransTypeEnum {
+    _01("01"),
+    
+    _03("03"),
+    
+    _10("10"),
+    
+    _11("11"),
+    
+    _28("28");
+
+    private String value;
+
+    TransTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TransTypeEnum fromValue(String text) {
+      for (TransTypeEnum b : TransTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TransTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TransTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TransTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return TransTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName("trans_type")
+  private TransTypeEnum transType = null;
   
   public void setAmount(BigDecimal amount) {
       this.amount = amount;
@@ -260,6 +315,20 @@ public class InstallmentData {
       return this;
   }
 
+  
+  public void setTransType(TransTypeEnum transType) {
+      this.transType = transType;
+  }
+
+  /**
+   * @param transType transType
+   * @return bean instance
+   **/
+  public InstallmentData transType(TransTypeEnum transType) {
+      this.transType = transType;
+      return this;
+  }
+
 
   @Override
   public String toString() {
@@ -277,6 +346,7 @@ public class InstallmentData {
     if (period != null) sb.append("    period: ").append(toIndentedString(period)).append("\n");
     if (retries != null) sb.append("    retries: ").append(toIndentedString(retries)).append("\n");
     if (subscriptionStart != null) sb.append("    subscriptionStart: ").append(toIndentedString(subscriptionStart)).append("\n");
+    if (transType != null) sb.append("    transType: ").append(toIndentedString(transType)).append("\n");
     sb.append("}");
     return sb.toString();
   }

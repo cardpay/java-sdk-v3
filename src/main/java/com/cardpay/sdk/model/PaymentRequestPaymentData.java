@@ -13,7 +13,12 @@
 
 package com.cardpay.sdk.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import java.math.BigDecimal;
 import lombok.Data;
 
@@ -28,12 +33,69 @@ public class PaymentRequestPaymentData {
   private String currency = null;
   @SerializedName("dynamic_descriptor")
   private String dynamicDescriptor = null;
+  @SerializedName("encrypted_data")
+  private String encryptedData = null;
   @SerializedName("generate_token")
   private Boolean generateToken = null;
   @SerializedName("note")
   private String note = null;
   @SerializedName("preauth")
   private Boolean preauth = null;
+  /**
+   * Gets or Sets transType
+   */
+  @JsonAdapter(TransTypeEnum.Adapter.class)
+  public enum TransTypeEnum {
+    _01("01"),
+    
+    _03("03"),
+    
+    _10("10"),
+    
+    _11("11"),
+    
+    _28("28");
+
+    private String value;
+
+    TransTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TransTypeEnum fromValue(String text) {
+      for (TransTypeEnum b : TransTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TransTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TransTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TransTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return TransTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName("trans_type")
+  private TransTypeEnum transType = null;
   
   public void setAmount(BigDecimal amount) {
       this.amount = amount;
@@ -91,6 +153,20 @@ public class PaymentRequestPaymentData {
   }
 
   
+  public void setEncryptedData(String encryptedData) {
+      this.encryptedData = encryptedData;
+  }
+
+  /**
+   * @param encryptedData The encrypted payment credentials encoded in base64. *(for APPLEPAY payment method only)*
+   * @return bean instance
+   **/
+  public PaymentRequestPaymentData encryptedData(String encryptedData) {
+      this.encryptedData = encryptedData;
+      return this;
+  }
+
+  
   public void setGenerateToken(Boolean generateToken) {
       this.generateToken = generateToken;
   }
@@ -132,6 +208,20 @@ public class PaymentRequestPaymentData {
       return this;
   }
 
+  
+  public void setTransType(TransTypeEnum transType) {
+      this.transType = transType;
+  }
+
+  /**
+   * @param transType transType
+   * @return bean instance
+   **/
+  public PaymentRequestPaymentData transType(TransTypeEnum transType) {
+      this.transType = transType;
+      return this;
+  }
+
 
   @Override
   public String toString() {
@@ -142,9 +232,11 @@ public class PaymentRequestPaymentData {
     if (authenticationRequest != null) sb.append("    authenticationRequest: ").append(toIndentedString(authenticationRequest)).append("\n");
     if (currency != null) sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     if (dynamicDescriptor != null) sb.append("    dynamicDescriptor: ").append(toIndentedString(dynamicDescriptor)).append("\n");
+    if (encryptedData != null) sb.append("    encryptedData: ").append(toIndentedString(encryptedData)).append("\n");
     if (generateToken != null) sb.append("    generateToken: ").append(toIndentedString(generateToken)).append("\n");
     if (note != null) sb.append("    note: ").append(toIndentedString(note)).append("\n");
     if (preauth != null) sb.append("    preauth: ").append(toIndentedString(preauth)).append("\n");
+    if (transType != null) sb.append("    transType: ").append(toIndentedString(transType)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -37,6 +37,8 @@ public class Flights {
   private String passengerName = null;
   @SerializedName("ticket_change_indicator")
   private String ticketChangeIndicator = null;
+  @SerializedName("ticket_number")
+  private String ticketNumber = null;
   @SerializedName("travel_agency_code")
   private String travelAgencyCode = null;
   @SerializedName("travel_agency_name")
@@ -162,6 +164,20 @@ public class Flights {
   }
 
   
+  public void setTicketNumber(String ticketNumber) {
+      this.ticketNumber = ticketNumber;
+  }
+
+  /**
+   * @param ticketNumber Ticket number
+   * @return bean instance
+   **/
+  public Flights ticketNumber(String ticketNumber) {
+      this.ticketNumber = ticketNumber;
+      return this;
+  }
+
+  
   public void setTravelAgencyCode(String travelAgencyCode) {
       this.travelAgencyCode = travelAgencyCode;
   }
@@ -203,6 +219,7 @@ public class Flights {
     if (originationCode != null) sb.append("    originationCode: ").append(toIndentedString(originationCode)).append("\n");
     if (passengerName != null) sb.append("    passengerName: ").append(toIndentedString(passengerName)).append("\n");
     if (ticketChangeIndicator != null) sb.append("    ticketChangeIndicator: ").append(toIndentedString(ticketChangeIndicator)).append("\n");
+    if (ticketNumber != null) sb.append("    ticketNumber: ").append(toIndentedString(ticketNumber)).append("\n");
     if (travelAgencyCode != null) sb.append("    travelAgencyCode: ").append(toIndentedString(travelAgencyCode)).append("\n");
     if (travelAgencyName != null) sb.append("    travelAgencyName: ").append(toIndentedString(travelAgencyName)).append("\n");
     sb.append("}");

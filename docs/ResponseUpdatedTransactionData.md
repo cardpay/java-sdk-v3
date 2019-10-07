@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **isExecuted** | **Boolean** | Indicates was the request successful or not | 
 **status** | [**StatusEnum**](#StatusEnum) | Status of modified or created transaction | 
 **statusTo** | [**StatusToEnum**](#StatusToEnum) | Requested action (status to be set).  Payment: &#x60;COMPLETE&#x60; or &#x60;REVERSE&#x60;.  Refund, payout: &#x60;REVERSE&#x60;. | 
-**updated** | [**OffsetDateTime**](OffsetDateTime.md) | Transaction update date and time up to milliseconds in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format. Returned only for successful update operations. |  [optional]
+**updated** | [**OffsetDateTime**](OffsetDateTime.md) | Transaction update date and time in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format. Returned only for successful update operations. |  [optional]
 
 
 <a name="StatusEnum"></a>

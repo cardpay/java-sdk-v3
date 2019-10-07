@@ -19,6 +19,10 @@ import lombok.Data;
 @Data
 
 public class ShippingAddress {
+  @SerializedName("addr_line_1")
+  private String addrLine1 = null;
+  @SerializedName("addr_line_2")
+  private String addrLine2 = null;
   @SerializedName("city")
   private String city = null;
   @SerializedName("country")
@@ -27,10 +31,36 @@ public class ShippingAddress {
   private String phone = null;
   @SerializedName("state")
   private String state = null;
-  @SerializedName("street")
-  private String street = null;
   @SerializedName("zip")
   private String zip = null;
+  
+  public void setAddrLine1(String addrLine1) {
+      this.addrLine1 = addrLine1;
+  }
+
+  /**
+   * @param addrLine1 Street address. May include whitespaces, hyphens, apostrophes, commas, quotes, dots, slashes and semicolons
+   * @return bean instance
+   **/
+  public ShippingAddress addrLine1(String addrLine1) {
+      this.addrLine1 = addrLine1;
+      return this;
+  }
+
+  
+  public void setAddrLine2(String addrLine2) {
+      this.addrLine2 = addrLine2;
+  }
+
+  /**
+   * @param addrLine2 Second line of the street address or equivalent local portion of the Cardholder billing address associated with the card used for this purchase.
+   * @return bean instance
+   **/
+  public ShippingAddress addrLine2(String addrLine2) {
+      this.addrLine2 = addrLine2;
+      return this;
+  }
+
   
   public void setCity(String city) {
       this.city = city;
@@ -65,7 +95,7 @@ public class ShippingAddress {
   }
 
   /**
-   * @param phone Valid Customer phone number
+   * @param phone Valid customer phone number
    * @return bean instance
    **/
   public ShippingAddress phone(String phone) {
@@ -84,20 +114,6 @@ public class ShippingAddress {
    **/
   public ShippingAddress state(String state) {
       this.state = state;
-      return this;
-  }
-
-  
-  public void setStreet(String street) {
-      this.street = street;
-  }
-
-  /**
-   * @param street Delivery street address. May include whitespaces, hyphens, apostrophes, commas, quotes, dots, slashes and semicolons
-   * @return bean instance
-   **/
-  public ShippingAddress street(String street) {
-      this.street = street;
       return this;
   }
 
@@ -121,11 +137,12 @@ public class ShippingAddress {
     StringBuilder sb = new StringBuilder();
     sb.append("class ShippingAddress {\n");
     
+    if (addrLine1 != null) sb.append("    addrLine1: ").append(toIndentedString(addrLine1)).append("\n");
+    if (addrLine2 != null) sb.append("    addrLine2: ").append(toIndentedString(addrLine2)).append("\n");
     if (city != null) sb.append("    city: ").append(toIndentedString(city)).append("\n");
     if (country != null) sb.append("    country: ").append(toIndentedString(country)).append("\n");
     if (phone != null) sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
     if (state != null) sb.append("    state: ").append(toIndentedString(state)).append("\n");
-    if (street != null) sb.append("    street: ").append(toIndentedString(street)).append("\n");
     if (zip != null) sb.append("    zip: ").append(toIndentedString(zip)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -25,12 +25,18 @@ public class PaymentRequestCustomer {
   private String email = null;
   @SerializedName("full_name")
   private String fullName = null;
+  @SerializedName("home_phone")
+  private String homePhone = null;
   @SerializedName("id")
   private String id = null;
+  @SerializedName("living_address")
+  private PaymentRequestLivingAddress livingAddress = null;
   @SerializedName("locale")
   private String locale = null;
   @SerializedName("phone")
   private String phone = null;
+  @SerializedName("work_phone")
+  private String workPhone = null;
   
   public void setBirthDate(String birthDate) {
       this.birthDate = birthDate;
@@ -74,6 +80,20 @@ public class PaymentRequestCustomer {
   }
 
   
+  public void setHomePhone(String homePhone) {
+      this.homePhone = homePhone;
+  }
+
+  /**
+   * @param homePhone The work phone number provided by the Cardholder. Required (if available), unless market or regional mandate restricts sending this information. Characters Format: string (10-18 symbols) country code + Subscriber number. Refer to ITU-E.164 for additional information on format and length.
+   * @return bean instance
+   **/
+  public PaymentRequestCustomer homePhone(String homePhone) {
+      this.homePhone = homePhone;
+      return this;
+  }
+
+  
   public void setId(String id) {
       this.id = id;
   }
@@ -84,6 +104,20 @@ public class PaymentRequestCustomer {
    **/
   public PaymentRequestCustomer id(String id) {
       this.id = id;
+      return this;
+  }
+
+  
+  public void setLivingAddress(PaymentRequestLivingAddress livingAddress) {
+      this.livingAddress = livingAddress;
+  }
+
+  /**
+   * @param livingAddress Customer address *(mandatory for &#39;Latin America&#39; methods only)* For &#39;Latin America&#39; is required for methods where country &#x3D; CO
+   * @return bean instance
+   **/
+  public PaymentRequestCustomer livingAddress(PaymentRequestLivingAddress livingAddress) {
+      this.livingAddress = livingAddress;
       return this;
   }
 
@@ -115,6 +149,20 @@ public class PaymentRequestCustomer {
       return this;
   }
 
+  
+  public void setWorkPhone(String workPhone) {
+      this.workPhone = workPhone;
+  }
+
+  /**
+   * @param workPhone The home phone number provided by the Cardholder. Required (if available) unless market or regional mandate restricts sending this information. Characters Format: string (10-18 symbols) country code + Subscriber number. Refer to ITU-E.164 for additional information on format and length.
+   * @return bean instance
+   **/
+  public PaymentRequestCustomer workPhone(String workPhone) {
+      this.workPhone = workPhone;
+      return this;
+  }
+
 
   @Override
   public String toString() {
@@ -124,9 +172,12 @@ public class PaymentRequestCustomer {
     if (birthDate != null) sb.append("    birthDate: ").append(toIndentedString(birthDate)).append("\n");
     if (email != null) sb.append("    email: ").append(toIndentedString(email)).append("\n");
     if (fullName != null) sb.append("    fullName: ").append(toIndentedString(fullName)).append("\n");
+    if (homePhone != null) sb.append("    homePhone: ").append(toIndentedString(homePhone)).append("\n");
     if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    if (livingAddress != null) sb.append("    livingAddress: ").append(toIndentedString(livingAddress)).append("\n");
     if (locale != null) sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
     if (phone != null) sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
+    if (workPhone != null) sb.append("    workPhone: ").append(toIndentedString(workPhone)).append("\n");
     sb.append("}");
     return sb.toString();
   }

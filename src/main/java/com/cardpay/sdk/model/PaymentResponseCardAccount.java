@@ -13,12 +13,68 @@
 
 package com.cardpay.sdk.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import lombok.Data;
 
 @Data
 
 public class PaymentResponseCardAccount {
+  /**
+   * Gets or Sets acctType
+   */
+  @JsonAdapter(AcctTypeEnum.Adapter.class)
+  public enum AcctTypeEnum {
+    _01("01"),
+    
+    _02("02"),
+    
+    _03("03");
+
+    private String value;
+
+    AcctTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static AcctTypeEnum fromValue(String text) {
+      for (AcctTypeEnum b : AcctTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<AcctTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final AcctTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public AcctTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return AcctTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName("acct_type")
+  private AcctTypeEnum acctType = null;
   @SerializedName("expiration")
   private String expiration = null;
   @SerializedName("holder")
@@ -29,6 +85,20 @@ public class PaymentResponseCardAccount {
   private String maskedPan = null;
   @SerializedName("token")
   private String token = null;
+  
+  public void setAcctType(AcctTypeEnum acctType) {
+      this.acctType = acctType;
+  }
+
+  /**
+   * @param acctType acctType
+   * @return bean instance
+   **/
+  public PaymentResponseCardAccount acctType(AcctTypeEnum acctType) {
+      this.acctType = acctType;
+      return this;
+  }
+
   
   public void setExpiration(String expiration) {
       this.expiration = expiration;
@@ -105,6 +175,7 @@ public class PaymentResponseCardAccount {
     StringBuilder sb = new StringBuilder();
     sb.append("class PaymentResponseCardAccount {\n");
     
+    if (acctType != null) sb.append("    acctType: ").append(toIndentedString(acctType)).append("\n");
     if (expiration != null) sb.append("    expiration: ").append(toIndentedString(expiration)).append("\n");
     if (holder != null) sb.append("    holder: ").append(toIndentedString(holder)).append("\n");
     if (issuingCountryCode != null) sb.append("    issuingCountryCode: ").append(toIndentedString(issuingCountryCode)).append("\n");

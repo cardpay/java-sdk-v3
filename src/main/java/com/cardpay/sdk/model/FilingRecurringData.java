@@ -13,7 +13,12 @@
 
 package com.cardpay.sdk.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import lombok.Data;
 
 @Data
@@ -29,6 +34,61 @@ public class FilingRecurringData {
   private String initiator = null;
   @SerializedName("note")
   private String note = null;
+  /**
+   * Gets or Sets transType
+   */
+  @JsonAdapter(TransTypeEnum.Adapter.class)
+  public enum TransTypeEnum {
+    _01("01"),
+    
+    _03("03"),
+    
+    _10("10"),
+    
+    _11("11"),
+    
+    _28("28");
+
+    private String value;
+
+    TransTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TransTypeEnum fromValue(String text) {
+      for (TransTypeEnum b : TransTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TransTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TransTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TransTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return TransTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName("trans_type")
+  private TransTypeEnum transType = null;
   
   public void setCurrency(String currency) {
       this.currency = currency;
@@ -99,6 +159,20 @@ public class FilingRecurringData {
       return this;
   }
 
+  
+  public void setTransType(TransTypeEnum transType) {
+      this.transType = transType;
+  }
+
+  /**
+   * @param transType transType
+   * @return bean instance
+   **/
+  public FilingRecurringData transType(TransTypeEnum transType) {
+      this.transType = transType;
+      return this;
+  }
+
 
   @Override
   public String toString() {
@@ -110,6 +184,7 @@ public class FilingRecurringData {
     if (generateToken != null) sb.append("    generateToken: ").append(toIndentedString(generateToken)).append("\n");
     if (initiator != null) sb.append("    initiator: ").append(toIndentedString(initiator)).append("\n");
     if (note != null) sb.append("    note: ").append(toIndentedString(note)).append("\n");
+    if (transType != null) sb.append("    transType: ").append(toIndentedString(transType)).append("\n");
     sb.append("}");
     return sb.toString();
   }

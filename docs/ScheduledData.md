@@ -11,6 +11,18 @@ Name | Type | Description | Notes
 **note** | **String** | Note about the recurring that will not be displayed to customer. |  [optional]
 **plan** | [**Plan**](Plan.md) | Plan data |  [optional]
 **subscriptionStart** | [**OffsetDateTime**](OffsetDateTime.md) | The time in &#39;yyyy-MM-dd&#39; format when subscription will actually become activated (grace period).Leave it empty to activate subscription at once without any grace period applied. |  [optional]
+**transType** | [**TransTypeEnum**](#TransTypeEnum) |  |  [optional]
+
+
+<a name="TransTypeEnum"></a>
+## Enum: TransTypeEnum
+Name | Value
+---- | -----
+_01 | &quot;01&quot;
+_03 | &quot;03&quot;
+_10 | &quot;10&quot;
+_11 | &quot;11&quot;
+_28 | &quot;28&quot;
 
 
 

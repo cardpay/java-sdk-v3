@@ -21,6 +21,8 @@ import lombok.Data;
 @Data
 
 public class PaymentRequestMerchantOrder {
+  @SerializedName("cryptocurrency_indicator")
+  private Boolean cryptocurrencyIndicator = null;
   @SerializedName("description")
   private String description = null;
   @SerializedName("flights")
@@ -31,6 +33,20 @@ public class PaymentRequestMerchantOrder {
   private List<Item> items = null;
   @SerializedName("shipping_address")
   private ShippingAddress shippingAddress = null;
+  
+  public void setCryptocurrencyIndicator(Boolean cryptocurrencyIndicator) {
+      this.cryptocurrencyIndicator = cryptocurrencyIndicator;
+  }
+
+  /**
+   * @param cryptocurrencyIndicator Indicator should be added if there will be cryptocurrency purchase in transaction
+   * @return bean instance
+   **/
+  public PaymentRequestMerchantOrder cryptocurrencyIndicator(Boolean cryptocurrencyIndicator) {
+      this.cryptocurrencyIndicator = cryptocurrencyIndicator;
+      return this;
+  }
+
   
   public void setDescription(String description) {
       this.description = description;
@@ -115,6 +131,7 @@ public class PaymentRequestMerchantOrder {
     StringBuilder sb = new StringBuilder();
     sb.append("class PaymentRequestMerchantOrder {\n");
     
+    if (cryptocurrencyIndicator != null) sb.append("    cryptocurrencyIndicator: ").append(toIndentedString(cryptocurrencyIndicator)).append("\n");
     if (description != null) sb.append("    description: ").append(toIndentedString(description)).append("\n");
     if (flights != null) sb.append("    flights: ").append(toIndentedString(flights)).append("\n");
     if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");

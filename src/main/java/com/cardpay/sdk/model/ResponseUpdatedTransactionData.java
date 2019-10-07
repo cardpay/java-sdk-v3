@@ -225,7 +225,7 @@ public class ResponseUpdatedTransactionData {
   }
 
   /**
-   * @param updated Transaction update date and time up to milliseconds in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format. Returned only for successful update operations.
+   * @param updated Transaction update date and time in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format. Returned only for successful update operations.
    * @return bean instance
    **/
   public ResponseUpdatedTransactionData updated(OffsetDateTime updated) {

@@ -18,46 +18,28 @@ import lombok.Data;
 
 @Data
 
-public class BillingAddress {
-  @SerializedName("addr_line_1")
-  private String addrLine1 = null;
-  @SerializedName("addr_line_2")
-  private String addrLine2 = null;
+public class PaymentRequestLivingAddress {
+  @SerializedName("address")
+  private String address = null;
   @SerializedName("city")
   private String city = null;
   @SerializedName("country")
   private String country = null;
-  @SerializedName("phone")
-  private String phone = null;
   @SerializedName("state")
   private String state = null;
   @SerializedName("zip")
   private String zip = null;
   
-  public void setAddrLine1(String addrLine1) {
-      this.addrLine1 = addrLine1;
+  public void setAddress(String address) {
+      this.address = address;
   }
 
   /**
-   * @param addrLine1 First line of the street address or equivalent local portion of the Cardholder billing address associated with the card used for this purchase.
+   * @param address Customer home address
    * @return bean instance
    **/
-  public BillingAddress addrLine1(String addrLine1) {
-      this.addrLine1 = addrLine1;
-      return this;
-  }
-
-  
-  public void setAddrLine2(String addrLine2) {
-      this.addrLine2 = addrLine2;
-  }
-
-  /**
-   * @param addrLine2 Second line of the street address or equivalent local portion of the Cardholder billing address associated with the card used for this purchase.
-   * @return bean instance
-   **/
-  public BillingAddress addrLine2(String addrLine2) {
-      this.addrLine2 = addrLine2;
+  public PaymentRequestLivingAddress address(String address) {
+      this.address = address;
       return this;
   }
 
@@ -67,10 +49,10 @@ public class BillingAddress {
   }
 
   /**
-   * @param city Billing city. May include whitespaces, hyphens, apostrophes, commas and dots
+   * @param city Customer city.
    * @return bean instance
    **/
-  public BillingAddress city(String city) {
+  public PaymentRequestLivingAddress city(String city) {
       this.city = city;
       return this;
   }
@@ -81,25 +63,11 @@ public class BillingAddress {
   }
 
   /**
-   * @param country [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) code of billing country: 2 or 3 latin letters or numeric code 
+   * @param country ISO 3166-1 code of country: 2 or 3 latin letters or numeric code.
    * @return bean instance
    **/
-  public BillingAddress country(String country) {
+  public PaymentRequestLivingAddress country(String country) {
       this.country = country;
-      return this;
-  }
-
-  
-  public void setPhone(String phone) {
-      this.phone = phone;
-  }
-
-  /**
-   * @param phone Valid Customer phone number
-   * @return bean instance
-   **/
-  public BillingAddress phone(String phone) {
-      this.phone = phone;
       return this;
   }
 
@@ -109,10 +77,10 @@ public class BillingAddress {
   }
 
   /**
-   * @param state Billing state or province. May include whitespaces, hyphens, apostrophes, commas and dots
+   * @param state Living state or province.
    * @return bean instance
    **/
-  public BillingAddress state(String state) {
+  public PaymentRequestLivingAddress state(String state) {
       this.state = state;
       return this;
   }
@@ -123,10 +91,10 @@ public class BillingAddress {
   }
 
   /**
-   * @param zip Billing postal code
+   * @param zip Customer postal code
    * @return bean instance
    **/
-  public BillingAddress zip(String zip) {
+  public PaymentRequestLivingAddress zip(String zip) {
       this.zip = zip;
       return this;
   }
@@ -135,13 +103,11 @@ public class BillingAddress {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class BillingAddress {\n");
+    sb.append("class PaymentRequestLivingAddress {\n");
     
-    if (addrLine1 != null) sb.append("    addrLine1: ").append(toIndentedString(addrLine1)).append("\n");
-    if (addrLine2 != null) sb.append("    addrLine2: ").append(toIndentedString(addrLine2)).append("\n");
+    if (address != null) sb.append("    address: ").append(toIndentedString(address)).append("\n");
     if (city != null) sb.append("    city: ").append(toIndentedString(city)).append("\n");
     if (country != null) sb.append("    country: ").append(toIndentedString(country)).append("\n");
-    if (phone != null) sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
     if (state != null) sb.append("    state: ").append(toIndentedString(state)).append("\n");
     if (zip != null) sb.append("    zip: ").append(toIndentedString(zip)).append("\n");
     sb.append("}");

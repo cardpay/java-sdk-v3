@@ -14,6 +14,8 @@
 package com.cardpay.sdk.model;
 
 import com.google.gson.annotations.SerializedName;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Data;
 
 @Data
@@ -35,6 +37,8 @@ public class PaymentRequest {
   private PaymentRequestPaymentData paymentData = null;
   @SerializedName("payment_method")
   private String paymentMethod = null;
+  @SerializedName("payment_methods")
+  private List<String> paymentMethods = null;
   @SerializedName("return_urls")
   private ReturnUrls returnUrls = null;
   
@@ -99,7 +103,7 @@ public class PaymentRequest {
   }
 
   /**
-   * @param ewalletAccount eWallet account data
+   * @param ewalletAccount eWallet account data *(for all payment method, excluding BANKCARD, BITCOIN, DIRECTBANKINGEU)
    * @return bean instance
    **/
   public PaymentRequest ewalletAccount(PaymentRequestEWalletAccount ewalletAccount) {
@@ -150,6 +154,28 @@ public class PaymentRequest {
   }
 
   
+  public void setPaymentMethods(List<String> paymentMethods) {
+      this.paymentMethods = paymentMethods;
+  }
+
+  /**
+   * @param paymentMethods Array of payment methods to display on Checkout Page. If it is not set then all available methods will be displayed
+   * @return bean instance
+   **/
+  public PaymentRequest paymentMethods(List<String> paymentMethods) {
+      this.paymentMethods = paymentMethods;
+      return this;
+  }
+
+  public PaymentRequest addPaymentMethodsItem(String paymentMethodsItem) {
+    if (this.paymentMethods == null) {
+      this.paymentMethods = new ArrayList<>();
+    }
+    this.paymentMethods.add(paymentMethodsItem);
+    return this;
+  }
+
+  
   public void setReturnUrls(ReturnUrls returnUrls) {
       this.returnUrls = returnUrls;
   }
@@ -177,6 +203,7 @@ public class PaymentRequest {
     if (merchantOrder != null) sb.append("    merchantOrder: ").append(toIndentedString(merchantOrder)).append("\n");
     if (paymentData != null) sb.append("    paymentData: ").append(toIndentedString(paymentData)).append("\n");
     if (paymentMethod != null) sb.append("    paymentMethod: ").append(toIndentedString(paymentMethod)).append("\n");
+    if (paymentMethods != null) sb.append("    paymentMethods: ").append(toIndentedString(paymentMethods)).append("\n");
     if (returnUrls != null) sb.append("    returnUrls: ").append(toIndentedString(returnUrls)).append("\n");
     sb.append("}");
     return sb.toString();

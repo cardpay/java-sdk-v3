@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **rrn** | **String** | RRN (Retrieval Reference Number), supplied by the acquiring financial institution |  [optional]
 **status** | [**StatusEnum**](#StatusEnum) | Current recurring payment status |  [optional]
 **subscription** | [**Subscription**](Subscription.md) | Subscription data. Mandatory if scheduled payment is requested. |  [optional]
+**transType** | [**TransTypeEnum**](#TransTypeEnum) |  |  [optional]
 **type** | [**TypeEnum**](#TypeEnum) | Recurring payment type name; can be ONECLICK, SCHEDULED, INSTALLMENT |  [optional]
 
 
@@ -35,6 +36,17 @@ PARTIALLY_REFUNDED | &quot;PARTIALLY_REFUNDED&quot;
 VOIDED | &quot;VOIDED&quot;
 CHARGED_BACK | &quot;CHARGED_BACK&quot;
 CHARGEBACK_RESOLVED | &quot;CHARGEBACK_RESOLVED&quot;
+
+
+<a name="TransTypeEnum"></a>
+## Enum: TransTypeEnum
+Name | Value
+---- | -----
+_01 | &quot;01&quot;
+_03 | &quot;03&quot;
+_10 | &quot;10&quot;
+_11 | &quot;11&quot;
+_28 | &quot;28&quot;
 
 
 <a name="TypeEnum"></a>

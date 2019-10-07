@@ -29,10 +29,6 @@ public class PaymentResponse {
   private PaymentResponsePaymentData paymentData = null;
   @SerializedName("card_account")
   private PaymentResponseCardAccount cardAccount = null;
-  @SerializedName("cryptocurrency_account")
-  private PaymentResponseCryptocurrencyAccount cryptocurrencyAccount = null;
-  @SerializedName("ewallet_account")
-  private TransactionResponseEWalletAccount ewalletAccount = null;
   
   public void setCustomer(PaymentRequestCustomer customer) {
       this.customer = customer;
@@ -103,34 +99,6 @@ public class PaymentResponse {
       return this;
   }
 
-  
-  public void setCryptocurrencyAccount(PaymentResponseCryptocurrencyAccount cryptocurrencyAccount) {
-      this.cryptocurrencyAccount = cryptocurrencyAccount;
-  }
-
-  /**
-   * @param cryptocurrencyAccount Cryptocurrency account data *(for BITCOIN payment method only)*
-   * @return bean instance
-   **/
-  public PaymentResponse cryptocurrencyAccount(PaymentResponseCryptocurrencyAccount cryptocurrencyAccount) {
-      this.cryptocurrencyAccount = cryptocurrencyAccount;
-      return this;
-  }
-
-  
-  public void setEwalletAccount(TransactionResponseEWalletAccount ewalletAccount) {
-      this.ewalletAccount = ewalletAccount;
-  }
-
-  /**
-   * @param ewalletAccount eWallet account data *(for ALIPAY, QIWI, WEBMONEY, NETELLER, YANDEXMONEY, DIRECTBANKINGNGA, AQRCODE, AIRTEL, MPESA, MTN, UGANDAMOBILE, VODAFONE, TIGO and &#39;Latin America&#39; payment methods only)*
-   * @return bean instance
-   **/
-  public PaymentResponse ewalletAccount(TransactionResponseEWalletAccount ewalletAccount) {
-      this.ewalletAccount = ewalletAccount;
-      return this;
-  }
-
 
   @Override
   public String toString() {
@@ -142,8 +110,6 @@ public class PaymentResponse {
     if (merchantOrder != null) sb.append("    merchantOrder: ").append(toIndentedString(merchantOrder)).append("\n");
     if (paymentData != null) sb.append("    paymentData: ").append(toIndentedString(paymentData)).append("\n");
     if (cardAccount != null) sb.append("    cardAccount: ").append(toIndentedString(cardAccount)).append("\n");
-    if (cryptocurrencyAccount != null) sb.append("    cryptocurrencyAccount: ").append(toIndentedString(cryptocurrencyAccount)).append("\n");
-    if (ewalletAccount != null) sb.append("    ewalletAccount: ").append(toIndentedString(ewalletAccount)).append("\n");
     sb.append("}");
     return sb.toString();
   }

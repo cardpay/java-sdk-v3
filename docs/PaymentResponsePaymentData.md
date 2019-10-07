@@ -14,7 +14,8 @@ Name | Type | Description | Notes
 **is3d** | **Boolean** | Was 3-D Secure authentication made or not *(for BANKCARD payment method only)* |  [optional]
 **note** | **String** | Payment note |  [optional]
 **rrn** | **String** | RRN (Retrieval Reference Number), supplied by the acquiring financial institution *(for BANKCARD payment method only)* |  [optional]
-**status** | [**StatusEnum**](#StatusEnum) | Current payment status | 
+**status** | [**StatusEnum**](#StatusEnum) | Current payment status, *(mandatory for WEBMONEY and BITCOIN payment method only)* |  [optional]
+**transType** | [**TransTypeEnum**](#TransTypeEnum) |  |  [optional]
 
 
 <a name="StatusEnum"></a>
@@ -32,6 +33,17 @@ PARTIALLY_REFUNDED | &quot;PARTIALLY_REFUNDED&quot;
 VOIDED | &quot;VOIDED&quot;
 CHARGED_BACK | &quot;CHARGED_BACK&quot;
 CHARGEBACK_RESOLVED | &quot;CHARGEBACK_RESOLVED&quot;
+
+
+<a name="TransTypeEnum"></a>
+## Enum: TransTypeEnum
+Name | Value
+---- | -----
+_01 | &quot;01&quot;
+_03 | &quot;03&quot;
+_10 | &quot;10&quot;
+_11 | &quot;11&quot;
+_28 | &quot;28&quot;
 
 
 

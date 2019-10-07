@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**cryptocurrencyIndicator** | **Boolean** | Indicator should be added if there will be cryptocurrency purchase in transaction |  [optional]
 **description** | **String** | Description of product/service being sold | 
 **flights** | [**Flights**](Flights.md) | Flights data *(for BANKCARD payment method only)* |  [optional]
 **id** | **String** | Order ID used by Merchant&#39;s shopping cart | 

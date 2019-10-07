@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **originationCode** | **String** | Code of airport of departure, IATA code |  [optional]
 **passengerName** | **String** | First and last name of a passenger |  [optional]
 **ticketChangeIndicator** | **String** | Ticket change indicator |  [optional]
+**ticketNumber** | **String** | Ticket number |  [optional]
 **travelAgencyCode** | **String** | Code of travel agency |  [optional]
 **travelAgencyName** | **String** | Name of travel agency using only latin alphabet |  [optional]
 
