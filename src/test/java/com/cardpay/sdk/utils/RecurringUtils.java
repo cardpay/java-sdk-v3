@@ -1,21 +1,24 @@
 package com.cardpay.sdk.utils;
 
-import com.cardpay.sdk.api.RecurringsApi;
-import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.*;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import retrofit2.Response;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.UUID;
-
 import static com.cardpay.sdk.model.SubscriptionUpdateRequest.OperationEnum.CHANGE_STATUS;
 import static com.cardpay.sdk.model.SubscriptionUpdateRequestSubscriptionData.StatusToEnum.CANCELLED;
 import static com.cardpay.sdk.utils.AssertUtils.assertSuccessResponse;
 import static org.junit.Assert.assertNotNull;
+
+import com.cardpay.sdk.api.RecurringsApi;
+import com.cardpay.sdk.client.ApiClient;
+import com.cardpay.sdk.model.RecurringResponse;
+import com.cardpay.sdk.model.RecurringsList;
+import com.cardpay.sdk.model.SubscriptionUpdateRequest;
+import com.cardpay.sdk.model.SubscriptionUpdateRequestSubscriptionData;
+import com.cardpay.sdk.model.SubscriptionUpdateResponse;
+import java.io.IOException;
+import java.util.List;
+import java.util.UUID;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import retrofit2.Response;
 
 public class RecurringUtils {
 

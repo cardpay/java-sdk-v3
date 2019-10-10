@@ -1,27 +1,35 @@
 package com.cardpay.sdk.recurring.oneClick;
 
+import static com.cardpay.sdk.Config.CARDPAY_API_URL;
+import static com.cardpay.sdk.Config.LOGGING_LEVEL;
+import static com.cardpay.sdk.Config.PAYMENTPAGE_PASSWORD;
+import static com.cardpay.sdk.Config.PAYMENTPAGE_TERMINAL_CODE;
+import static com.cardpay.sdk.Config.TERMINAL_CURRENCY;
+import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
+import static com.cardpay.sdk.utils.DataUtils.generateEmail;
+import static com.cardpay.sdk.utils.DataUtils.generateMerchantOrderId;
+import static com.cardpay.sdk.utils.DataUtils.returnUrls;
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+
 import com.cardpay.sdk.api.RecurringsApi;
 import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.*;
+import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
+import com.cardpay.sdk.model.RecurringCreationRequest;
+import com.cardpay.sdk.model.RecurringCreationResponse;
+import com.cardpay.sdk.model.RecurringCustomer;
+import com.cardpay.sdk.model.RecurringRequestRecurringData;
 import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.BaseProducer;
 import io.codearte.jfairy.producer.text.TextProducer;
+import java.io.IOException;
+import java.math.BigDecimal;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import retrofit2.Response;
-
-import java.io.IOException;
-import java.math.BigDecimal;
-
-import static com.cardpay.sdk.Config.*;
-import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
-import static com.cardpay.sdk.utils.DataUtils.generateEmail;
-import static com.cardpay.sdk.utils.DataUtils.generateMerchantOrderId;
-import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 
 public class RecurringOneClickCreatePaymentPageUAT {
 
@@ -68,12 +76,7 @@ public class RecurringOneClickCreatePaymentPageUAT {
                         .currency(currency)
                         .amount(amount)
                         .initiator(initiator))
-                .returnUrls(new ReturnUrls()
-                        .successUrl(SUCCESS_URL)
-                        .declineUrl(DECLINE_URL)
-                        .cancelUrl(CANCEL_URL)
-                        .inprocessUrl(INPROCESS_URL)
-                );
+                .returnUrls(returnUrls());
 
         log.info("{}", request);
 

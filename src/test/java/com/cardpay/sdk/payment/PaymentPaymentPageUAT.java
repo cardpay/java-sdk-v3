@@ -1,27 +1,37 @@
 package com.cardpay.sdk.payment;
 
+import static com.cardpay.sdk.Config.CARDPAY_API_URL;
+import static com.cardpay.sdk.Config.LOGGING_LEVEL;
+import static com.cardpay.sdk.Config.PAYMENTPAGE_PASSWORD;
+import static com.cardpay.sdk.Config.PAYMENTPAGE_TERMINAL_CODE;
+import static com.cardpay.sdk.Config.TERMINAL_CURRENCY;
+import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
+import static com.cardpay.sdk.utils.DataUtils.formatDate;
+import static com.cardpay.sdk.utils.DataUtils.generateMerchantOrderId;
+import static com.cardpay.sdk.utils.DataUtils.returnUrls;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import com.cardpay.sdk.api.PaymentsApi;
 import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.*;
+import com.cardpay.sdk.model.PaymentCreationResponse;
+import com.cardpay.sdk.model.PaymentRequest;
+import com.cardpay.sdk.model.PaymentRequestCustomer;
+import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
+import com.cardpay.sdk.model.PaymentRequestPaymentData;
 import com.cardpay.sdk.utils.DataUtils;
 import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.BaseProducer;
 import io.codearte.jfairy.producer.person.Person;
 import io.codearte.jfairy.producer.text.TextProducer;
+import java.io.IOException;
+import java.math.BigDecimal;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import retrofit2.Response;
-
-import java.io.IOException;
-import java.math.BigDecimal;
-
-import static com.cardpay.sdk.Config.*;
-import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
-import static com.cardpay.sdk.utils.DataUtils.formatDate;
-import static com.cardpay.sdk.utils.DataUtils.generateMerchantOrderId;
-import static org.junit.Assert.*;
 
 public class PaymentPaymentPageUAT{
 
@@ -74,14 +84,12 @@ public class PaymentPaymentPageUAT{
                         .fullName(customerFullname)
                         .birthDate(customerBirthdate)
                         .email(customerEmail)
-                        .locale(customerLocale)
-                        .phone(customerPhoneNumber))
-                .returnUrls(new ReturnUrls()
-                        .successUrl(SUCCESS_URL)
-                        .declineUrl(DECLINE_URL)
-                        .cancelUrl(CANCEL_URL)
-                        .inprocessUrl(INPROCESS_URL)
-                );
+                        .phone(customerPhoneNumber)
+                        .workPhone(customerPhoneNumber)
+                        .homePhone(customerPhoneNumber)
+                        .locale(customerLocale))
+                .returnUrls(returnUrls());
+
         log.info("{}", paymentRequest);
 
         // perform create payment

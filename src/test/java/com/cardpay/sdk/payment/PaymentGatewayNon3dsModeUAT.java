@@ -1,32 +1,50 @@
 package com.cardpay.sdk.payment;
 
+import static com.cardpay.sdk.Config.CARDPAY_API_URL;
+import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
+import static com.cardpay.sdk.Config.GATEWAY_TERMINAL_CODE;
+import static com.cardpay.sdk.Config.LOGGING_LEVEL;
+import static com.cardpay.sdk.Config.TERMINAL_CURRENCY;
+import static com.cardpay.sdk.Constants.CARD_NON3DS_CONFIRMED;
+import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
+import static com.cardpay.sdk.client.StringUtil.formatBirthDate;
+import static com.cardpay.sdk.client.StringUtil.formatExpirationDate;
+import static com.cardpay.sdk.model.PaymentResponsePaymentData.StatusEnum.COMPLETED;
+import static com.cardpay.sdk.utils.DataUtils.generateCardExpiration;
+import static com.cardpay.sdk.utils.DataUtils.generateEmail;
+import static com.cardpay.sdk.utils.DataUtils.generateMerchantOrderId;
+import static com.cardpay.sdk.utils.DataUtils.returnUrls;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import com.cardpay.sdk.api.PaymentsApi;
 import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.*;
+import com.cardpay.sdk.model.BillingAddress;
+import com.cardpay.sdk.model.PaymentCreationResponse;
+import com.cardpay.sdk.model.PaymentRequest;
+import com.cardpay.sdk.model.PaymentRequestCard;
+import com.cardpay.sdk.model.PaymentRequestCardAccount;
+import com.cardpay.sdk.model.PaymentRequestCustomer;
+import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
+import com.cardpay.sdk.model.PaymentRequestPaymentData;
+import com.cardpay.sdk.model.PaymentResponse;
+import com.cardpay.sdk.model.PaymentResponsePaymentData;
+import com.cardpay.sdk.model.PaymentsList;
 import com.cardpay.sdk.utils.HttpUtils;
 import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.BaseProducer;
 import io.codearte.jfairy.producer.person.Person;
 import io.codearte.jfairy.producer.text.TextProducer;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import retrofit2.Response;
-
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.UUID;
-
-import static com.cardpay.sdk.Config.*;
-import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
-import static com.cardpay.sdk.Constants.CARD_NON3DS_CONFIRMED;
-import static com.cardpay.sdk.client.StringUtil.formatBirthDate;
-import static com.cardpay.sdk.client.StringUtil.formatExpirationDate;
-import static com.cardpay.sdk.model.PaymentResponsePaymentData.StatusEnum.COMPLETED;
-import static com.cardpay.sdk.utils.DataUtils.*;
-import static org.junit.Assert.*;
 
 public class PaymentGatewayNon3dsModeUAT {
 
@@ -79,24 +97,35 @@ public class PaymentGatewayNon3dsModeUAT {
                 .paymentData(new PaymentRequestPaymentData()
                         .currency(currency)
                         .amount(amount)
-                        .note(note))
-                .cardAccount(new PaymentRequestCardAccount().card(new PaymentRequestCard()
-                        .pan(cardPan)
-                        .holder(cardHolder)
-                        .securityCode(securityCode)
-                        .expiration(cardExpiration)))
-                .customer(new PaymentRequestCustomer()
+                        .note(note)
+                        .transType(PaymentRequestPaymentData.TransTypeEnum._01))
+                .cardAccount(new PaymentRequestCardAccount()
+                        .card(new PaymentRequestCard()
+                                .pan(cardPan)
+                                .holder(cardHolder)
+                                .securityCode(securityCode)
+                                .expiration(cardExpiration)
+                                .acctType(PaymentRequestCard.AcctTypeEnum._03))
+                        .billingAddress(new BillingAddress()
+                                .country("USA")
+                                .state("NY")
+                                .zip("10001")
+                                .city("New York")
+                                .phone(producer.numerify("+###########"))
+                                .addrLine1(person.getAddress().getAddressLine1())
+                                .addrLine2(person.getAddress().getAddressLine2()))
+                )
+               .customer(new PaymentRequestCustomer()
                         .id(customerId)
                         .fullName(customerFullname)
                         .birthDate(customerBirthdate)
                         .email(customerEmail)
-                        .locale(customerLocale)
-                        .phone(customerPhoneNumber))
-                .returnUrls(new ReturnUrls()
-                        .successUrl(SUCCESS_URL)
-                        .declineUrl(DECLINE_URL)
-                        .cancelUrl(CANCEL_URL)
-                        .inprocessUrl(INPROCESS_URL));
+                        .phone(customerPhoneNumber)
+                        .workPhone(customerPhoneNumber)
+                        .homePhone(customerPhoneNumber)
+                        .locale(customerLocale))
+                .returnUrls(returnUrls());
+
         log.info("{}", paymentRequest);
 
         // perform api call

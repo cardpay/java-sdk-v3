@@ -1,9 +1,8 @@
 package com.cardpay.sdk.api;
 
-import com.cardpay.sdk.client.CollectionFormats.*;
 import com.cardpay.sdk.model.ApiTokens;
 import retrofit2.Call;
-import retrofit2.http.*;
+import retrofit2.http.POST;
 
 public interface AuthApi {
   /**

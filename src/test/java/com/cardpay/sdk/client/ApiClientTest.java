@@ -1,16 +1,18 @@
 package com.cardpay.sdk.client;
 
+import static com.cardpay.sdk.Config.CARDPAY_API_URL;
+import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
+import static com.cardpay.sdk.Config.GATEWAY_TERMINAL_CODE;
+import static com.cardpay.sdk.callback.ResourceUtils.readFile;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import com.cardpay.sdk.model.PaymentCallback;
 import com.cardpay.sdk.model.PayoutCallback;
 import com.cardpay.sdk.model.RecurringCallback;
 import com.cardpay.sdk.model.RefundCallback;
 import org.junit.Before;
 import org.junit.Test;
-
-import static com.cardpay.sdk.Config.*;
-import static com.cardpay.sdk.callback.ResourceUtils.readFile;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 public class ApiClientTest {
 

@@ -1,6 +1,5 @@
 package com.cardpay.sdk.api;
 
-import com.cardpay.sdk.client.CollectionFormats.*;
 import com.cardpay.sdk.model.RefundRequest;
 import com.cardpay.sdk.model.RefundResponse;
 import com.cardpay.sdk.model.RefundUpdateRequest;
@@ -8,7 +7,10 @@ import com.cardpay.sdk.model.RefundUpdateResponse;
 import com.cardpay.sdk.model.RefundsList;
 import java.time.OffsetDateTime;
 import retrofit2.Call;
-import retrofit2.http.*;
+import retrofit2.http.GET;
+import retrofit2.http.Headers;
+import retrofit2.http.PATCH;
+import retrofit2.http.POST;
 
 public interface RefundsApi {
   /**

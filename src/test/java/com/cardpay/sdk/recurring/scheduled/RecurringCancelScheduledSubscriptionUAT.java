@@ -1,34 +1,55 @@
 package com.cardpay.sdk.recurring.scheduled;
 
+import static com.cardpay.sdk.Config.CARDPAY_API_URL;
+import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
+import static com.cardpay.sdk.Config.GATEWAY_TERMINAL_CODE;
+import static com.cardpay.sdk.Config.LOGGING_LEVEL;
+import static com.cardpay.sdk.Config.TERMINAL_CURRENCY;
+import static com.cardpay.sdk.Constants.CARD_NON3DS_CONFIRMED;
+import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
+import static com.cardpay.sdk.model.RecurringPlanRequestPlanData.PeriodEnum.WEEK;
+import static com.cardpay.sdk.model.SubscriptionUpdateRequestSubscriptionData.StatusToEnum.INACTIVE;
+import static com.cardpay.sdk.utils.AssertUtils.assertSuccessResponse;
+import static com.cardpay.sdk.utils.DataUtils.generateEmail;
+import static com.cardpay.sdk.utils.DataUtils.generateMerchantOrderId;
+import static com.cardpay.sdk.utils.DataUtils.paymentRequestCardAccount;
+import static com.cardpay.sdk.utils.DataUtils.returnUrls;
+import static com.cardpay.sdk.utils.RecurringUtils.fetchRecurring;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import com.cardpay.sdk.api.RecurringsApi;
 import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.*;
+import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
+import com.cardpay.sdk.model.Plan;
+import com.cardpay.sdk.model.RecurringCreationRequest;
+import com.cardpay.sdk.model.RecurringCreationResponse;
+import com.cardpay.sdk.model.RecurringCustomer;
+import com.cardpay.sdk.model.RecurringPlanRequest;
+import com.cardpay.sdk.model.RecurringPlanRequestPlanData;
+import com.cardpay.sdk.model.RecurringPlanResponse;
+import com.cardpay.sdk.model.RecurringRequestRecurringData;
+import com.cardpay.sdk.model.RecurringResponse;
+import com.cardpay.sdk.model.SubscriptionUpdateRequest;
+import com.cardpay.sdk.model.SubscriptionUpdateRequestSubscriptionData;
+import com.cardpay.sdk.model.SubscriptionUpdateResponse;
+import com.cardpay.sdk.model.UpdatedSubscriptionData;
 import com.cardpay.sdk.utils.HttpUtils;
 import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.BaseProducer;
 import io.codearte.jfairy.producer.person.Person;
 import io.codearte.jfairy.producer.text.TextProducer;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.concurrent.locks.LockSupport;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import retrofit2.Response;
-
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.concurrent.locks.LockSupport;
-
-import static com.cardpay.sdk.Config.*;
-import static com.cardpay.sdk.Constants.CARD_NON3DS_CONFIRMED;
-import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
-import static com.cardpay.sdk.client.StringUtil.formatExpirationDate;
-import static com.cardpay.sdk.model.RecurringPlanRequestPlanData.PeriodEnum.WEEK;
-import static com.cardpay.sdk.model.SubscriptionUpdateRequestSubscriptionData.StatusToEnum.INACTIVE;
-import static com.cardpay.sdk.utils.AssertUtils.assertSuccessResponse;
-import static com.cardpay.sdk.utils.DataUtils.*;
-import static com.cardpay.sdk.utils.RecurringUtils.fetchRecurring;
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
-import static org.junit.Assert.*;
 
 public class RecurringCancelScheduledSubscriptionUAT {
 
@@ -159,19 +180,10 @@ public class RecurringCancelScheduledSubscriptionUAT {
                         .id(generateMerchantOrderId())
                         .description(text.sentence()))
                 .paymentMethod(PAYMENT_METHOD_BANKCARD)
-                .cardAccount(new PaymentRequestCardAccount().card(new PaymentRequestCard()
-                        .pan(CARD_NON3DS_CONFIRMED)
-                        .holder(person.getFullName().toUpperCase())
-                        .securityCode("100")
-                        .expiration(formatExpirationDate(generateCardExpiration()))))
+                .cardAccount(paymentRequestCardAccount(CARD_NON3DS_CONFIRMED))
                 .recurringData(new RecurringRequestRecurringData()
                         .plan(new Plan().id(planId))
                         .initiator("cit"))
-                .returnUrls(new ReturnUrls()
-                        .successUrl(SUCCESS_URL)
-                        .declineUrl(DECLINE_URL)
-                        .cancelUrl(CANCEL_URL)
-                        .inprocessUrl(INPROCESS_URL)
-                );
+                .returnUrls(returnUrls());
     }
 }

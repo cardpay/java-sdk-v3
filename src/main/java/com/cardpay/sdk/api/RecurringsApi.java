@@ -1,6 +1,5 @@
 package com.cardpay.sdk.api;
 
-import com.cardpay.sdk.client.CollectionFormats.*;
 import com.cardpay.sdk.model.ChangeSubscriptionStatusClaimResponse;
 import com.cardpay.sdk.model.FilingRequest;
 import com.cardpay.sdk.model.PaymentCreationResponse;
@@ -21,7 +20,11 @@ import com.cardpay.sdk.model.SubscriptionUpdateRequest;
 import com.cardpay.sdk.model.SubscriptionUpdateResponse;
 import java.time.OffsetDateTime;
 import retrofit2.Call;
-import retrofit2.http.*;
+import retrofit2.http.DELETE;
+import retrofit2.http.GET;
+import retrofit2.http.Headers;
+import retrofit2.http.PATCH;
+import retrofit2.http.POST;
 
 public interface RecurringsApi {
   /**

@@ -1,36 +1,47 @@
 package com.cardpay.sdk.payment;
 
+import static com.cardpay.sdk.Config.CARDPAY_API_URL;
+import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
+import static com.cardpay.sdk.Config.GATEWAY_TERMINAL_CODE;
+import static com.cardpay.sdk.Config.LOGGING_LEVEL;
+import static com.cardpay.sdk.Constants.CARD_NON3DS_CONFIRMED;
+import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
+import static com.cardpay.sdk.model.PaymentPatchRequest.OperationEnum.CHANGE_STATUS;
+import static com.cardpay.sdk.model.PaymentUpdateTransactionData.StatusToEnum.COMPLETE;
+import static com.cardpay.sdk.utils.AssertUtils.assertSuccessResponse;
+import static com.cardpay.sdk.utils.DataUtils.generateMerchantOrderId;
+import static com.cardpay.sdk.utils.DataUtils.paymentRequestCardAccount;
+import static com.cardpay.sdk.utils.DataUtils.paymentRequestCustomer;
+import static com.cardpay.sdk.utils.DataUtils.paymentRequestPaymentData;
+import static com.cardpay.sdk.utils.DataUtils.returnUrls;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import com.cardpay.sdk.api.PaymentsApi;
 import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.*;
+import com.cardpay.sdk.model.PaymentCreationResponse;
+import com.cardpay.sdk.model.PaymentPatchRequest;
+import com.cardpay.sdk.model.PaymentRequest;
+import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
+import com.cardpay.sdk.model.PaymentResponse;
+import com.cardpay.sdk.model.PaymentUpdateResponse;
+import com.cardpay.sdk.model.PaymentUpdateTransactionData;
+import com.cardpay.sdk.model.PaymentsList;
+import com.cardpay.sdk.model.ResponseUpdatedTransactionData;
 import com.cardpay.sdk.utils.HttpUtils;
 import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.BaseProducer;
 import io.codearte.jfairy.producer.person.Person;
 import io.codearte.jfairy.producer.text.TextProducer;
+import java.io.IOException;
+import java.util.List;
+import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import retrofit2.Call;
 import retrofit2.Response;
-
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.UUID;
-
-import static com.cardpay.sdk.Config.*;
-import static com.cardpay.sdk.Constants.CARD_NON3DS_CONFIRMED;
-import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
-import static com.cardpay.sdk.client.StringUtil.formatBirthDate;
-import static com.cardpay.sdk.client.StringUtil.formatExpirationDate;
-import static com.cardpay.sdk.model.PaymentPatchRequest.OperationEnum.CHANGE_STATUS;
-import static com.cardpay.sdk.model.PaymentUpdateTransactionData.StatusToEnum.COMPLETE;
-import static com.cardpay.sdk.utils.AssertUtils.assertSuccessResponse;
-import static com.cardpay.sdk.utils.DataUtils.*;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 public class PaymentChangeStatusUAT {
 
@@ -136,29 +147,10 @@ public class PaymentChangeStatusUAT {
                         .id(generateMerchantOrderId())
                         .description(text.sentence()))
                 .paymentMethod(PAYMENT_METHOD_BANKCARD)
-                .paymentData(new PaymentRequestPaymentData()
-                        .currency(TERMINAL_CURRENCY)
-                        .amount(BigDecimal.valueOf(producer.randomBetween(10, 300)))
-                        .note(text.sentence())
-                        .preauth(true))
-                .cardAccount(new PaymentRequestCardAccount().card(new PaymentRequestCard()
-                        .pan(cardPan)
-                        .holder(person.getFullName().toUpperCase())
-                        .securityCode("100")
-                        .expiration(formatExpirationDate(generateCardExpiration()))))
-                .customer(new PaymentRequestCustomer()
-                        .id(text.randomString(15))
-                        .fullName(person.getFullName())
-                        .birthDate(formatBirthDate(person.getDateOfBirth().toDate()))
-                        .email(generateEmail())
-                        .locale("en")
-                        .phone(producer.numerify("+###########")))
-                .returnUrls(new ReturnUrls()
-                        .successUrl(SUCCESS_URL)
-                        .declineUrl(DECLINE_URL)
-                        .cancelUrl(CANCEL_URL)
-                        .inprocessUrl(INPROCESS_URL)
-                );
+                .paymentData(paymentRequestPaymentData().preauth(true))
+                .cardAccount(paymentRequestCardAccount(cardPan))
+                .customer(paymentRequestCustomer())
+                .returnUrls(returnUrls());
     }
 
     private PaymentCreationResponse createPayment(PaymentRequest payment) throws IOException {

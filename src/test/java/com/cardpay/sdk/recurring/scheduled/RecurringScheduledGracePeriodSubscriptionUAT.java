@@ -1,34 +1,49 @@
 package com.cardpay.sdk.recurring.scheduled;
 
+import static com.cardpay.sdk.Config.CARDPAY_API_URL;
+import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
+import static com.cardpay.sdk.Config.GATEWAY_TERMINAL_CODE;
+import static com.cardpay.sdk.Config.LOGGING_LEVEL;
+import static com.cardpay.sdk.Config.TERMINAL_CURRENCY;
+import static com.cardpay.sdk.Constants.CARD_3DS_CONFIRMED;
+import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
+import static com.cardpay.sdk.client.StringUtil.formatExpirationDate;
+import static com.cardpay.sdk.model.RecurringPlanRequestPlanData.PeriodEnum.WEEK;
+import static com.cardpay.sdk.utils.DataUtils.generateCardExpiration;
+import static com.cardpay.sdk.utils.DataUtils.generateEmail;
+import static com.cardpay.sdk.utils.DataUtils.generateMerchantOrderId;
+import static com.cardpay.sdk.utils.DataUtils.paymentRequestCardAccount;
+import static com.cardpay.sdk.utils.DataUtils.returnUrls;
+import static com.cardpay.sdk.utils.RecurringUtils.doCancelSubscription;
+import static java.time.OffsetDateTime.now;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+
 import com.cardpay.sdk.api.RecurringsApi;
 import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.*;
+import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
+import com.cardpay.sdk.model.Plan;
+import com.cardpay.sdk.model.RecurringCreationRequest;
+import com.cardpay.sdk.model.RecurringCreationResponse;
+import com.cardpay.sdk.model.RecurringCustomer;
+import com.cardpay.sdk.model.RecurringPlanRequest;
+import com.cardpay.sdk.model.RecurringPlanRequestPlanData;
+import com.cardpay.sdk.model.RecurringPlanResponse;
+import com.cardpay.sdk.model.RecurringRequestRecurringData;
 import com.cardpay.sdk.utils.HttpUtils;
 import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.BaseProducer;
 import io.codearte.jfairy.producer.person.Person;
 import io.codearte.jfairy.producer.text.TextProducer;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.time.ZoneOffset;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import retrofit2.Response;
-
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.time.ZoneOffset;
-
-import static com.cardpay.sdk.Config.*;
-import static com.cardpay.sdk.Constants.CARD_3DS_CONFIRMED;
-import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
-import static com.cardpay.sdk.client.StringUtil.formatExpirationDate;
-import static com.cardpay.sdk.model.RecurringPlanRequestPlanData.PeriodEnum.WEEK;
-import static com.cardpay.sdk.utils.DataUtils.*;
-import static com.cardpay.sdk.utils.RecurringUtils.doCancelSubscription;
-import static java.time.OffsetDateTime.now;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 
 public class RecurringScheduledGracePeriodSubscriptionUAT {
 
@@ -103,21 +118,12 @@ public class RecurringScheduledGracePeriodSubscriptionUAT {
                         .id(merchantOrderId)
                         .description(merchantDescription))
                 .paymentMethod(PAYMENT_METHOD_BANKCARD)
-                .cardAccount(new PaymentRequestCardAccount().card(new PaymentRequestCard()
-                        .pan(cardPan)
-                        .holder(cardHolder)
-                        .securityCode(securityCode)
-                        .expiration(cardExpiration)))
+                .cardAccount(paymentRequestCardAccount(cardPan))
                 .recurringData(new RecurringRequestRecurringData()
                         .plan(new Plan().id(planId))
                         .initiator(initiator)
                         .subscriptionStart(now().plusMonths(6).withNano(0).atZoneSameInstant(ZoneOffset.UTC).toOffsetDateTime()))
-                .returnUrls(new ReturnUrls()
-                        .successUrl(SUCCESS_URL)
-                        .declineUrl(DECLINE_URL)
-                        .cancelUrl(CANCEL_URL)
-                        .inprocessUrl(INPROCESS_URL)
-                );
+                .returnUrls(returnUrls());
 
         log.info("{}", recurringRequest);
 

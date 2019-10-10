@@ -1,15 +1,17 @@
 package com.cardpay.sdk.callback;
 
+import static com.cardpay.sdk.Config.CARDPAY_API_URL;
+import static com.cardpay.sdk.callback.ResourceUtils.readFile;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.fail;
+
 import com.cardpay.sdk.client.ApiClient;
 import com.cardpay.sdk.model.PaymentCallback;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static com.cardpay.sdk.Config.*;
-import static com.cardpay.sdk.callback.ResourceUtils.readFile;
-import static org.junit.Assert.*;
 
 public class PaymentCallbackUAT {
 
