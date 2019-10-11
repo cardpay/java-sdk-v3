@@ -1,5 +1,6 @@
 package com.cardpay.sdk.api;
 
+import com.cardpay.sdk.client.CollectionFormats.*;
 import com.cardpay.sdk.model.PayoutRequest;
 import com.cardpay.sdk.model.PayoutResponse;
 import com.cardpay.sdk.model.PayoutUpdateRequest;
@@ -7,10 +8,7 @@ import com.cardpay.sdk.model.PayoutUpdateResponse;
 import com.cardpay.sdk.model.PayoutsList;
 import java.time.OffsetDateTime;
 import retrofit2.Call;
-import retrofit2.http.GET;
-import retrofit2.http.Headers;
-import retrofit2.http.PATCH;
-import retrofit2.http.POST;
+import retrofit2.http.*;
 
 public interface PayoutsApi {
   /**
