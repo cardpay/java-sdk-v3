@@ -4,7 +4,7 @@ You can sign up for a Cardpay account at https://www.cardpay.com.
 
 ## Getting Started
 
-Please follow the [installation](#installation) instruction and take a look at [usage examples](src/test/java/com/cardpay/sdk/uat).
+Please follow the [installation](#installation) instruction and take a look at [usage examples](src/test/java/com/cardpay/sdk).
 
 
 ## Requirements
