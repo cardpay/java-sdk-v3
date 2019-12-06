@@ -37,6 +37,8 @@ public class PaymentRequestCustomer {
   private String phone = null;
   @SerializedName("work_phone")
   private String workPhone = null;
+  @SerializedName("ip")
+  private String ip = null;
   
   public void setBirthDate(String birthDate) {
       this.birthDate = birthDate;
@@ -163,6 +165,20 @@ public class PaymentRequestCustomer {
       return this;
   }
 
+  
+  public void setIp(String ip) {
+      this.ip = ip;
+  }
+
+  /**
+   * @param ip IP address of Customer
+   * @return bean instance
+   **/
+  public PaymentRequestCustomer ip(String ip) {
+      this.ip = ip;
+      return this;
+  }
+
 
   @Override
   public String toString() {
@@ -178,6 +194,7 @@ public class PaymentRequestCustomer {
     if (locale != null) sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
     if (phone != null) sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
     if (workPhone != null) sb.append("    workPhone: ").append(toIndentedString(workPhone)).append("\n");
+    if (ip != null) sb.append("    ip: ").append(toIndentedString(ip)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -111,7 +111,7 @@ public class RecurringUpdateRequest {
   }
 
   /**
-   * @param recurringData Recurring data
+   * @param recurringData Transaction data
    * @return bean instance
    **/
   public RecurringUpdateRequest recurringData(PaymentUpdateTransactionData recurringData) {

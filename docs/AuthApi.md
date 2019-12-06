@@ -32,9 +32,9 @@ Bearer.setApiKey("YOUR API KEY");
 
 AuthApi apiInstance = new AuthApi();
 String grantType = "grantType_example"; // String | Token request credentials representation
-String password = "\"secret\""; // String | Terminal password value (only for [password] grant type)
-String refreshToken = "\"eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ2bWRoQz\""; // String | Refresh token string (only for [refresh_token] grant type)
-String terminalCode = "\"1001\""; // String | Terminal code value
+String password = "secret"; // String | Terminal password value (only for [password] grant type)
+String refreshToken = "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ2bWRoQz"; // String | Refresh token string (only for [refresh_token] grant type)
+String terminalCode = "1001"; // String | Terminal code value
 try {
     ApiTokens result = apiInstance.obtainTokens(grantType, password, refreshToken, terminalCode);
     System.out.println(result);

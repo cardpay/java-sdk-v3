@@ -43,7 +43,7 @@ public class PayoutUpdateRequest {
   }
 
   /**
-   * @param payoutData Payout data
+   * @param payoutData Transaction data
    * @return bean instance
    **/
   public PayoutUpdateRequest payoutData(RequestUpdatedTransactionData payoutData) {

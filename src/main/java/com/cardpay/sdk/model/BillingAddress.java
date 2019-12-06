@@ -39,7 +39,7 @@ public class BillingAddress {
   }
 
   /**
-   * @param addrLine1 First line of the street address or equivalent local portion of the Cardholder billing address associated with the card used for this purchase.
+   * @param addrLine1 Street address. May include whitespaces, hyphens, apostrophes, commas, quotes, dots, slashes and semicolons
    * @return bean instance
    **/
   public BillingAddress addrLine1(String addrLine1) {
@@ -67,7 +67,7 @@ public class BillingAddress {
   }
 
   /**
-   * @param city Billing city. May include whitespaces, hyphens, apostrophes, commas and dots
+   * @param city Delivery city. May include whitespaces, hyphens, apostrophes, commas and dots
    * @return bean instance
    **/
   public BillingAddress city(String city) {
@@ -81,7 +81,7 @@ public class BillingAddress {
   }
 
   /**
-   * @param country [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) code of billing country: 2 or 3 latin letters or numeric code 
+   * @param country [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) code of country: 2 or 3 latin letters or numeric code. Mandatory if &#39;shipping_address&#39; is presented.
    * @return bean instance
    **/
   public BillingAddress country(String country) {
@@ -95,7 +95,7 @@ public class BillingAddress {
   }
 
   /**
-   * @param phone Valid Customer phone number
+   * @param phone Valid customer phone number
    * @return bean instance
    **/
   public BillingAddress phone(String phone) {
@@ -109,7 +109,7 @@ public class BillingAddress {
   }
 
   /**
-   * @param state Billing state or province. May include whitespaces, hyphens, apostrophes, commas and dots
+   * @param state Delivery state or province. May include whitespaces, hyphens, apostrophes, commas and dots
    * @return bean instance
    **/
   public BillingAddress state(String state) {
@@ -123,7 +123,7 @@ public class BillingAddress {
   }
 
   /**
-   * @param zip Billing postal code
+   * @param zip Delivery postal code
    * @return bean instance
    **/
   public BillingAddress zip(String zip) {

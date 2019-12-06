@@ -43,7 +43,7 @@ public class RefundUpdateRequest {
   }
 
   /**
-   * @param refundData Refund data
+   * @param refundData Transaction data
    * @return bean instance
    **/
   public RefundUpdateRequest refundData(RequestUpdatedTransactionData refundData) {

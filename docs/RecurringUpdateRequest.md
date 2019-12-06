@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **request** | [**Request**](Request.md) | Request | 
 **operation** | [**OperationEnum**](#OperationEnum) | &#x60;CHANGE_STATUS&#x60; value | 
-**recurringData** | [**PaymentUpdateTransactionData**](PaymentUpdateTransactionData.md) | Recurring data |  [optional]
+**recurringData** | [**PaymentUpdateTransactionData**](PaymentUpdateTransactionData.md) | Transaction data |  [optional]
 
 
 <a name="OperationEnum"></a>

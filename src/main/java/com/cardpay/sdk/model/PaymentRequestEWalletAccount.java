@@ -21,8 +21,8 @@ import lombok.Data;
 public class PaymentRequestEWalletAccount {
   @SerializedName("bank_code")
   private String bankCode = null;
-  @SerializedName("expiration")
-  private String expiration = null;
+  @SerializedName("expiration_date")
+  private String expirationDate = null;
   @SerializedName("id")
   private String id = null;
   @SerializedName("verification_code")
@@ -42,16 +42,16 @@ public class PaymentRequestEWalletAccount {
   }
 
   
-  public void setExpiration(String expiration) {
-      this.expiration = expiration;
+  public void setExpirationDate(String expirationDate) {
+      this.expirationDate = expirationDate;
   }
 
   /**
-   * @param expiration Card expiration date
+   * @param expirationDate Account expiration date
    * @return bean instance
    **/
-  public PaymentRequestEWalletAccount expiration(String expiration) {
-      this.expiration = expiration;
+  public PaymentRequestEWalletAccount expirationDate(String expirationDate) {
+      this.expirationDate = expirationDate;
       return this;
   }
 
@@ -90,7 +90,7 @@ public class PaymentRequestEWalletAccount {
     sb.append("class PaymentRequestEWalletAccount {\n");
     
     if (bankCode != null) sb.append("    bankCode: ").append(toIndentedString(bankCode)).append("\n");
-    if (expiration != null) sb.append("    expiration: ").append(toIndentedString(expiration)).append("\n");
+    if (expirationDate != null) sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
     if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");
     if (verificationCode != null) sb.append("    verificationCode: ").append(toIndentedString(verificationCode)).append("\n");
     sb.append("}");

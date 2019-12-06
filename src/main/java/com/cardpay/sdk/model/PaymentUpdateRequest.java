@@ -111,7 +111,7 @@ public class PaymentUpdateRequest {
   }
 
   /**
-   * @param paymentData Payment data
+   * @param paymentData Transaction data
    * @return bean instance
    **/
   public PaymentUpdateRequest paymentData(PaymentUpdateTransactionData paymentData) {
