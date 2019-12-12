@@ -28,8 +28,6 @@ public class FilingRecurringData {
   private String currency = null;
   @SerializedName("dynamic_descriptor")
   private String dynamicDescriptor = null;
-  @SerializedName("generate_token")
-  private Boolean generateToken = null;
   @SerializedName("initiator")
   private String initiator = null;
   @SerializedName("note")
@@ -118,20 +116,6 @@ public class FilingRecurringData {
   }
 
   
-  public void setGenerateToken(Boolean generateToken) {
-      this.generateToken = generateToken;
-  }
-
-  /**
-   * @param generateToken This attribute can be received only in first recurring request. If set to &#39;true&#39;, Card token will be generated and returned in GET response for all successful transactions (can&#39;t be generated for declined transactions).
-   * @return bean instance
-   **/
-  public FilingRecurringData generateToken(Boolean generateToken) {
-      this.generateToken = generateToken;
-      return this;
-  }
-
-  
   public void setInitiator(String initiator) {
       this.initiator = initiator;
   }
@@ -181,7 +165,6 @@ public class FilingRecurringData {
     
     if (currency != null) sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     if (dynamicDescriptor != null) sb.append("    dynamicDescriptor: ").append(toIndentedString(dynamicDescriptor)).append("\n");
-    if (generateToken != null) sb.append("    generateToken: ").append(toIndentedString(generateToken)).append("\n");
     if (initiator != null) sb.append("    initiator: ").append(toIndentedString(initiator)).append("\n");
     if (note != null) sb.append("    note: ").append(toIndentedString(note)).append("\n");
     if (transType != null) sb.append("    transType: ").append(toIndentedString(transType)).append("\n");
