@@ -21,6 +21,8 @@ import lombok.Data;
 public class PaymentRequestEWalletAccount {
   @SerializedName("bank_code")
   private String bankCode = null;
+  @SerializedName("creation_date")
+  private String creationDate = null;
   @SerializedName("expiration_date")
   private String expirationDate = null;
   @SerializedName("id")
@@ -38,6 +40,20 @@ public class PaymentRequestEWalletAccount {
    **/
   public PaymentRequestEWalletAccount bankCode(String bankCode) {
       this.bankCode = bankCode;
+      return this;
+  }
+
+  
+  public void setCreationDate(String creationDate) {
+      this.creationDate = creationDate;
+  }
+
+  /**
+   * @param creationDate Card creation date
+   * @return bean instance
+   **/
+  public PaymentRequestEWalletAccount creationDate(String creationDate) {
+      this.creationDate = creationDate;
       return this;
   }
 
@@ -90,6 +106,7 @@ public class PaymentRequestEWalletAccount {
     sb.append("class PaymentRequestEWalletAccount {\n");
     
     if (bankCode != null) sb.append("    bankCode: ").append(toIndentedString(bankCode)).append("\n");
+    if (creationDate != null) sb.append("    creationDate: ").append(toIndentedString(creationDate)).append("\n");
     if (expirationDate != null) sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
     if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");
     if (verificationCode != null) sb.append("    verificationCode: ").append(toIndentedString(verificationCode)).append("\n");
