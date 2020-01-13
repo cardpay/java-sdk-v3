@@ -21,6 +21,10 @@ import lombok.Data;
 public class RefundRequest {
   @SerializedName("request")
   private Request request = null;
+  @SerializedName("customer")
+  private RefundRequestCustomer customer = null;
+  @SerializedName("ewallet_account")
+  private RefundRequestEWalletAccount ewalletAccount = null;
   @SerializedName("merchant_order")
   private RefundRequestMerchantOrder merchantOrder = null;
   @SerializedName("payment_data")
@@ -38,6 +42,34 @@ public class RefundRequest {
    **/
   public RefundRequest request(Request request) {
       this.request = request;
+      return this;
+  }
+
+  
+  public void setCustomer(RefundRequestCustomer customer) {
+      this.customer = customer;
+  }
+
+  /**
+   * @param customer Customer
+   * @return bean instance
+   **/
+  public RefundRequest customer(RefundRequestCustomer customer) {
+      this.customer = customer;
+      return this;
+  }
+
+  
+  public void setEwalletAccount(RefundRequestEWalletAccount ewalletAccount) {
+      this.ewalletAccount = ewalletAccount;
+  }
+
+  /**
+   * @param ewalletAccount EWallet
+   * @return bean instance
+   **/
+  public RefundRequest ewalletAccount(RefundRequestEWalletAccount ewalletAccount) {
+      this.ewalletAccount = ewalletAccount;
       return this;
   }
 
@@ -90,6 +122,8 @@ public class RefundRequest {
     sb.append("class RefundRequest {\n");
     
     if (request != null) sb.append("    request: ").append(toIndentedString(request)).append("\n");
+    if (customer != null) sb.append("    customer: ").append(toIndentedString(customer)).append("\n");
+    if (ewalletAccount != null) sb.append("    ewalletAccount: ").append(toIndentedString(ewalletAccount)).append("\n");
     if (merchantOrder != null) sb.append("    merchantOrder: ").append(toIndentedString(merchantOrder)).append("\n");
     if (paymentData != null) sb.append("    paymentData: ").append(toIndentedString(paymentData)).append("\n");
     if (refundData != null) sb.append("    refundData: ").append(toIndentedString(refundData)).append("\n");

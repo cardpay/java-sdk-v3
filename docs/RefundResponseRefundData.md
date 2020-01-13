@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **amount** | [**BigDecimal**](BigDecimal.md) | Refund transaction amount | 
+**arn** | **String** | ARN (Acquirer Reference Number), supplied by the acquiring financial institution, return only after receiving ARN from bank acquirer *(for BANKCARD payment method only)* |  [optional]
 **authCode** | **String** | Authorization code, provided by bank *(for BANKCARD payment method only)* |  [optional]
 **created** | **String** | Date and time when this refund was created, [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format | 
 **currency** | **String** | Currency of refunded amount, [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code | 

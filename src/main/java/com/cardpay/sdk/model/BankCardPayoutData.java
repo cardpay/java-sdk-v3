@@ -27,6 +27,8 @@ import lombok.Data;
 public class BankCardPayoutData {
   @SerializedName("amount")
   private BigDecimal amount = null;
+  @SerializedName("arn")
+  private String arn = null;
   @SerializedName("created")
   private String created = null;
   @SerializedName("currency")
@@ -119,6 +121,20 @@ public class BankCardPayoutData {
    **/
   public BankCardPayoutData amount(BigDecimal amount) {
       this.amount = amount;
+      return this;
+  }
+
+  
+  public void setArn(String arn) {
+      this.arn = arn;
+  }
+
+  /**
+   * @param arn ARN (Acquirer Reference Number), supplied by the acquiring financial institution, return only after receiving ARN from bank acquirer *(for BANKCARD payment method only)*
+   * @return bean instance
+   **/
+  public BankCardPayoutData arn(String arn) {
+      this.arn = arn;
       return this;
   }
 
@@ -241,6 +257,7 @@ public class BankCardPayoutData {
     sb.append("class BankCardPayoutData {\n");
     
     if (amount != null) sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
+    if (arn != null) sb.append("    arn: ").append(toIndentedString(arn)).append("\n");
     if (created != null) sb.append("    created: ").append(toIndentedString(created)).append("\n");
     if (currency != null) sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     if (declineCode != null) sb.append("    declineCode: ").append(toIndentedString(declineCode)).append("\n");
