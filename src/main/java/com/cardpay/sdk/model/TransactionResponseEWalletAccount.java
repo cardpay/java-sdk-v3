@@ -19,15 +19,31 @@ import lombok.Data;
 @Data
 
 public class TransactionResponseEWalletAccount {
+  @SerializedName("holder")
+  private String holder = null;
   @SerializedName("id")
   private String id = null;
+  
+  public void setHolder(String holder) {
+      this.holder = holder;
+  }
+
+  /**
+   * @param holder Ewallet account holder name For DIRECTBANKINGEU - Account holder name (optional)
+   * @return bean instance
+   **/
+  public TransactionResponseEWalletAccount holder(String holder) {
+      this.holder = holder;
+      return this;
+  }
+
   
   public void setId(String id) {
       this.id = id;
   }
 
   /**
-   * @param id For ALIPAY - 16 digits number For QIWI - Customer phone number (from 1 to 15 digits) For WEBMONEY - Customer account number For NETELLER - Email address of the customer For YANDEXMONEY - Customer wallet number, 11 to 16 digits, begins with 410 For DIRECTBANKINGNGA - Bank account number For AQRCODE - Customer account number For AIRTEL, MPESA, MTN, UGANDAMOBILE, VODAFONE, TIGO - Customer account number For &#39;Latin America&#39; - Customer’s personal identification number
+   * @param id For ALIPAY - 16 digits number For QIWI - Customer phone number (from 1 to 15 digits) For WEBMONEY - Customer account number For NETELLER - Email address of the customer For YANDEXMONEY - Customer wallet number, 11 to 16 digits, begins with 410 For DIRECTBANKINGNGA - Bank account number For AQRCODE - Customer account number For AIRTEL, MPESA, MTN, UGANDAMOBILE, VODAFONE, TIGO - Customer account number For &#39;Latin America&#39; - Customer’s personal identification number For DIRECTBANKINGEU - Sender IBAN (optional)
    * @return bean instance
    **/
   public TransactionResponseEWalletAccount id(String id) {
@@ -41,6 +57,7 @@ public class TransactionResponseEWalletAccount {
     StringBuilder sb = new StringBuilder();
     sb.append("class TransactionResponseEWalletAccount {\n");
     
+    if (holder != null) sb.append("    holder: ").append(toIndentedString(holder)).append("\n");
     if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();

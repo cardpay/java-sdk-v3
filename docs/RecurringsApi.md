@@ -507,7 +507,7 @@ Name | Type | Description  | Notes
 
 <a name="getRecurrings"></a>
 # **getRecurrings**
-> RecurringsList getRecurrings(requestId, currency, endTime, maxCount, merchantOrderId, paymentMethod, sortOrder, startTime, type)
+> RecurringsList getRecurrings(requestId, currency, endTime, maxCount, merchantOrderId, paymentMethod, recurringTypes, sortOrder, startTime, type)
 
 Get recurring list information
 
@@ -535,11 +535,12 @@ OffsetDateTime endTime = new OffsetDateTime(); // OffsetDateTime | Date and time
 Integer maxCount = 10; // Integer | Limit number of returned transactions (must be less than 10000, default is 1000)
 String merchantOrderId = "\"order00017\""; // String | Merchant order number from the merchant system
 String paymentMethod = "\"BANKCARD\""; // String | Used payment method type name from payment methods list
+List<String> recurringTypes = Arrays.asList("recurringTypes_example"); // List<String> | 
 String sortOrder = "\"asc\""; // String | Sort based on order of results. `asc` for ascending order or `desc` for descending order (default value)
 OffsetDateTime startTime = new OffsetDateTime(); // OffsetDateTime | Date and time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period starts (inclusive), UTC time, default is 24 hours before 'end_time' (format: yyyy-MM-dd'T'HH:mm:ss'Z')
 String type = "\"SCHEDULED\""; // String | Filter recurring payments by certain type (applicable to /api/recurrings endpoint only): `SCHEDULED` for scheduled recurring payments `ONECLICK` for one-click payments `INSTALLMENT` for installment payments
 try {
-    RecurringsList result = apiInstance.getRecurrings(requestId, currency, endTime, maxCount, merchantOrderId, paymentMethod, sortOrder, startTime, type);
+    RecurringsList result = apiInstance.getRecurrings(requestId, currency, endTime, maxCount, merchantOrderId, paymentMethod, recurringTypes, sortOrder, startTime, type);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RecurringsApi#getRecurrings");
@@ -557,6 +558,7 @@ Name | Type | Description  | Notes
  **maxCount** | **Integer**| Limit number of returned transactions (must be less than 10000, default is 1000) | [optional]
  **merchantOrderId** | **String**| Merchant order number from the merchant system | [optional]
  **paymentMethod** | **String**| Used payment method type name from payment methods list | [optional]
+ **recurringTypes** | [**List&lt;String&gt;**](String.md)|  | [optional] [enum: ONECLICK, SCHEDULED, INSTALLMENT]
  **sortOrder** | **String**| Sort based on order of results. &#x60;asc&#x60; for ascending order or &#x60;desc&#x60; for descending order (default value) | [optional] [enum: asc, desc]
  **startTime** | **OffsetDateTime**| Date and time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period starts (inclusive), UTC time, default is 24 hours before &#39;end_time&#39; (format: yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;) | [optional]
  **type** | **String**| Filter recurring payments by certain type (applicable to /api/recurrings endpoint only): &#x60;SCHEDULED&#x60; for scheduled recurring payments &#x60;ONECLICK&#x60; for one-click payments &#x60;INSTALLMENT&#x60; for installment payments | [optional] [enum: ONECLICK, SCHEDULED, INSTALLMENT]

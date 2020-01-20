@@ -111,6 +111,7 @@ public class RecurringOneClickChangeStatusPreauthUAT {
                 null,
                 null,
                 null,
+                null,
                 null
         ).execute();
         assertTrue(response.message(), response.isSuccessful());

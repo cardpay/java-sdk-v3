@@ -46,6 +46,7 @@ public class RecurringOneClickGetListInfoUAT {
         Integer maxCount = 20;
         String merchantOrderId = null;
         String paymentMethod = null;
+        List<String> recurringTypes = null;
         String sortOrder = null;
         OffsetDateTime startTime = null;
         String type = null;
@@ -58,10 +59,10 @@ public class RecurringOneClickGetListInfoUAT {
                 maxCount,
                 merchantOrderId,
                 paymentMethod,
+                recurringTypes,
                 sortOrder,
                 startTime,
                 type
-
         ).execute();
         log.info("{}", result);
 

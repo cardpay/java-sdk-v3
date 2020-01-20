@@ -96,6 +96,7 @@ public class RecurringOneClickGetInfoUAT {
                 null,
                 null,
                 null,
+                null,
                 null
         ).execute();
         assertTrue(response.message(), response.isSuccessful());

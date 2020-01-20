@@ -20,6 +20,7 @@ import com.cardpay.sdk.model.SubscriptionList;
 import com.cardpay.sdk.model.SubscriptionUpdateRequest;
 import com.cardpay.sdk.model.SubscriptionUpdateResponse;
 import java.time.OffsetDateTime;
+import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -145,6 +146,7 @@ public interface RecurringsApi {
    * @param maxCount Limit number of returned transactions (must be less than 10000, default is 1000) (optional)
    * @param merchantOrderId Merchant order number from the merchant system (optional)
    * @param paymentMethod Used payment method type name from payment methods list (optional)
+   * @param recurringTypes  (optional)
    * @param sortOrder Sort based on order of results. &#x60;asc&#x60; for ascending order or &#x60;desc&#x60; for descending order (default value) (optional)
    * @param startTime Date and time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period starts (inclusive), UTC time, default is 24 hours before &#39;end_time&#39; (format: yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;) (optional)
    * @param type Filter recurring payments by certain type (applicable to /api/recurrings endpoint only): &#x60;SCHEDULED&#x60; for scheduled recurring payments &#x60;ONECLICK&#x60; for one-click payments &#x60;INSTALLMENT&#x60; for installment payments (optional)
@@ -152,7 +154,7 @@ public interface RecurringsApi {
    */
   @GET("api/recurrings")
   Call<RecurringsList> getRecurrings(
-    @retrofit2.http.Query("request_id") String requestId, @retrofit2.http.Query("currency") String currency, @retrofit2.http.Query("end_time") OffsetDateTime endTime, @retrofit2.http.Query("max_count") Integer maxCount, @retrofit2.http.Query("merchant_order_id") String merchantOrderId, @retrofit2.http.Query("payment_method") String paymentMethod, @retrofit2.http.Query("sort_order") String sortOrder, @retrofit2.http.Query("start_time") OffsetDateTime startTime, @retrofit2.http.Query("type") String type
+    @retrofit2.http.Query("request_id") String requestId, @retrofit2.http.Query("currency") String currency, @retrofit2.http.Query("end_time") OffsetDateTime endTime, @retrofit2.http.Query("max_count") Integer maxCount, @retrofit2.http.Query("merchant_order_id") String merchantOrderId, @retrofit2.http.Query("payment_method") String paymentMethod, @retrofit2.http.Query("recurring_types") List<String> recurringTypes, @retrofit2.http.Query("sort_order") String sortOrder, @retrofit2.http.Query("start_time") OffsetDateTime startTime, @retrofit2.http.Query("type") String type
   );
 
   /**
