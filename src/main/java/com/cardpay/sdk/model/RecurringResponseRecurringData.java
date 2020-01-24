@@ -20,6 +20,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Data;
 
 @Data
@@ -43,6 +45,8 @@ public class RecurringResponseRecurringData {
   private RecurringResponseFiling filing = null;
   @SerializedName("id")
   private String id = null;
+  @SerializedName("invalid_data")
+  private List<String> invalidData = null;
   @SerializedName("is_3d")
   private Boolean is3d = null;
   @SerializedName("note")
@@ -351,6 +355,28 @@ public class RecurringResponseRecurringData {
   }
 
   
+  public void setInvalidData(List<String> invalidData) {
+      this.invalidData = invalidData;
+  }
+
+  /**
+   * @param invalidData Invalid card or billing data
+   * @return bean instance
+   **/
+  public RecurringResponseRecurringData invalidData(List<String> invalidData) {
+      this.invalidData = invalidData;
+      return this;
+  }
+
+  public RecurringResponseRecurringData addInvalidDataItem(String invalidDataItem) {
+    if (this.invalidData == null) {
+      this.invalidData = new ArrayList<>();
+    }
+    this.invalidData.add(invalidDataItem);
+    return this;
+  }
+
+  
   public void setIs3d(Boolean is3d) {
       this.is3d = is3d;
   }
@@ -463,6 +489,7 @@ public class RecurringResponseRecurringData {
     if (declineReason != null) sb.append("    declineReason: ").append(toIndentedString(declineReason)).append("\n");
     if (filing != null) sb.append("    filing: ").append(toIndentedString(filing)).append("\n");
     if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    if (invalidData != null) sb.append("    invalidData: ").append(toIndentedString(invalidData)).append("\n");
     if (is3d != null) sb.append("    is3d: ").append(toIndentedString(is3d)).append("\n");
     if (note != null) sb.append("    note: ").append(toIndentedString(note)).append("\n");
     if (rrn != null) sb.append("    rrn: ").append(toIndentedString(rrn)).append("\n");

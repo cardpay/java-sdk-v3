@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **declineReason** | **String** | Bank&#39;s message about transaction decline reason (only in decline case) |  [optional]
 **filing** | [**RecurringResponseFiling**](RecurringResponseFiling.md) | CardPay&#39;s filing data |  [optional]
 **id** | **String** | CardPay&#39;s recurring id |  [optional]
+**invalidData** | **List&lt;String&gt;** | Invalid card or billing data |  [optional]
 **is3d** | **Boolean** | Was 3-D Secure authentication made or not |  [optional]
 **note** | **String** | Payment note |  [optional]
 **rrn** | **String** | RRN (Retrieval Reference Number), supplied by the acquiring financial institution |  [optional]

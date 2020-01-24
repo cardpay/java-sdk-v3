@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **declineCode** | **String** | Decline code (only in decline case) |  [optional]
 **declineReason** | **String** | Bank&#39;s message about transaction decline reason (only in decline case) |  [optional]
 **id** | **String** | CardPay&#39;s payment id |  [optional]
+**invalidData** | **List&lt;String&gt;** | Invalid card or billing data |  [optional]
 **is3d** | **Boolean** | Was 3-D Secure authentication made or not *(for BANKCARD payment method only)* |  [optional]
 **note** | **String** | Payment note |  [optional]
 **rrn** | **String** | RRN (Retrieval Reference Number), supplied by the acquiring financial institution *(for BANKCARD payment method only)* |  [optional]
