@@ -34,6 +34,8 @@ public class InstallmentData {
   private String dynamicDescriptor = null;
   @SerializedName("generate_token")
   private Boolean generateToken = null;
+  @SerializedName("hold_rest_amount")
+  private Boolean holdRestAmount = null;
   @SerializedName("initiator")
   private String initiator = null;
   @SerializedName("interval")
@@ -213,6 +215,20 @@ public class InstallmentData {
   }
 
   
+  public void setHoldRestAmount(Boolean holdRestAmount) {
+      this.holdRestAmount = holdRestAmount;
+  }
+
+  /**
+   * @param holdRestAmount For SplitPay subscription - \&quot;true\&quot;
+   * @return bean instance
+   **/
+  public InstallmentData holdRestAmount(Boolean holdRestAmount) {
+      this.holdRestAmount = holdRestAmount;
+      return this;
+  }
+
+  
   public void setInitiator(String initiator) {
       this.initiator = initiator;
   }
@@ -261,8 +277,6 @@ public class InstallmentData {
   }
 
   /**
-   * minimum: 2
-   * maximum: 200
    * @param payments Number of total payments to be charged per defined interval, can be 2-200.
    * @return bean instance
    **/
@@ -339,6 +353,7 @@ public class InstallmentData {
     if (currency != null) sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     if (dynamicDescriptor != null) sb.append("    dynamicDescriptor: ").append(toIndentedString(dynamicDescriptor)).append("\n");
     if (generateToken != null) sb.append("    generateToken: ").append(toIndentedString(generateToken)).append("\n");
+    if (holdRestAmount != null) sb.append("    holdRestAmount: ").append(toIndentedString(holdRestAmount)).append("\n");
     if (initiator != null) sb.append("    initiator: ").append(toIndentedString(initiator)).append("\n");
     if (interval != null) sb.append("    interval: ").append(toIndentedString(interval)).append("\n");
     if (note != null) sb.append("    note: ").append(toIndentedString(note)).append("\n");

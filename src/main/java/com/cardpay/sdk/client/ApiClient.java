@@ -34,11 +34,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class ApiClient {
-    public final static String USER_AGENT = "CardpaySdk/1.9.8.4/Java";
+    public final static String USER_AGENT = "CardpaySdk/1.9.9.15/Java";
 
     private String baseUrl;
     private String terminalCode;
     private String password;
+
+    private Duration connectTimeout = Duration.ofMillis(40000);
+    private Duration readTimeout = Duration.ofMillis(60000);
+    private Duration callTimeout = Duration.ofMillis(100000);
 
     private Map<String, Interceptor> apiAuthorizations;
     private OkHttpClient.Builder okBuilder;
@@ -73,13 +77,26 @@ public class ApiClient {
         this.password = password;
     }
 
+    public void setConnectTimeout(Duration connectTimeout) {
+        this.connectTimeout = connectTimeout;
+    }
+
+    public void setReadTimeout(Duration readTimeout) {
+        this.readTimeout = readTimeout;
+    }
+
+    public void setCallTimeout(Duration callTimeout) {
+        this.callTimeout = callTimeout;
+    }
+
     private void createDefaultAdapter() {
       this.json = new JSON();
 
       this.okBuilder = new OkHttpClient.Builder()
               .addInterceptor(new UserAgentInterceptor(USER_AGENT))
-              .connectTimeout(Duration.ofMillis(30000))
-              .readTimeout(Duration.ofMillis(60000));
+              .connectTimeout(this.connectTimeout)
+              .readTimeout(this.readTimeout)
+              .callTimeout(this.callTimeout);
 
       adapterBuilder = new Retrofit
               .Builder()
