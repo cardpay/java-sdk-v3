@@ -1,6 +1,7 @@
 package com.cardpay.sdk.callback;
 
 import static com.cardpay.sdk.Config.CARDPAY_API_URL;
+import static com.cardpay.sdk.Constants.CALLBACK_SECRET;
 import static com.cardpay.sdk.callback.ResourceUtils.readFile;
 import static org.junit.Assert.fail;
 
@@ -29,6 +30,8 @@ public class RecurringCallbackUAT {
 
         // 'Signature' header example
         String signature = readFile("fixtures/recurringCallback.signature");
+
+        client.setCallbackSecret(CALLBACK_SECRET);
 
         if (!client.isValidSignature(json, signature)) {
 

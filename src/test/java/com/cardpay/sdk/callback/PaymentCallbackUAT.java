@@ -1,6 +1,7 @@
 package com.cardpay.sdk.callback;
 
 import static com.cardpay.sdk.Config.CARDPAY_API_URL;
+import static com.cardpay.sdk.Constants.CALLBACK_SECRET;
 import static com.cardpay.sdk.callback.ResourceUtils.readFile;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -21,13 +22,15 @@ public class PaymentCallbackUAT {
 
     @Before
     public void setup() {
-        client = new ApiClient(CARDPAY_API_URL, "", "pzQf529Wa0AV");
+        client = new ApiClient(CARDPAY_API_URL, "", "");
     }
 
     @Test
     public void checkCallbackSignature() {
         String json = readFile("fixtures/paymentCallback.json");
         String signature = readFile("fixtures/paymentCallback.signature");
+
+        client.setCallbackSecret(CALLBACK_SECRET);
 
         assertEquals(client.calcSignature(json), signature);
     }
@@ -47,6 +50,8 @@ public class PaymentCallbackUAT {
 
         // 'Signature' header example
         String signature = readFile("fixtures/paymentCallback.signature");
+
+        client.setCallbackSecret(CALLBACK_SECRET);
 
         if (!client.isValidSignature(json, signature)) {
 

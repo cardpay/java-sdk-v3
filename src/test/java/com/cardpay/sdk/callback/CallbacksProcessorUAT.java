@@ -1,18 +1,20 @@
 package com.cardpay.sdk.callback;
 
-import static com.cardpay.sdk.Config.CARDPAY_API_URL;
-import static com.cardpay.sdk.callback.ResourceUtils.readFile;
-
 import com.cardpay.sdk.client.ApiClient;
 import com.cardpay.sdk.model.PaymentCallback;
 import com.cardpay.sdk.model.PayoutCallback;
 import com.cardpay.sdk.model.RecurringCallback;
 import com.cardpay.sdk.model.RefundCallback;
-import java.util.function.Consumer;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.function.Consumer;
+
+import static com.cardpay.sdk.Config.CARDPAY_API_URL;
+import static com.cardpay.sdk.Constants.CALLBACK_SECRET;
+import static com.cardpay.sdk.callback.ResourceUtils.readFile;
 
 public class CallbacksProcessorUAT {
 
@@ -26,7 +28,7 @@ public class CallbacksProcessorUAT {
         client = new ApiClient(CARDPAY_API_URL, "", "pzQf529Wa0AV");
 
         // create instance of callback processor
-        callbackProcessor = client.createCallbackProcessor()
+        callbackProcessor = client.createCallbackProcessor(CALLBACK_SECRET)
                 // we can register handler implementation as separate class
                 .registerHandler(PaymentCallback.class, new PaymentCallbackHandler())
                 // or we can register handler implementation as inline lambda function

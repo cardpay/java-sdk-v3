@@ -25,8 +25,12 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.UUID;
 import java.util.function.Consumer;
-import okhttp3.*;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
@@ -39,6 +43,7 @@ public class ApiClient {
     private String baseUrl;
     private String terminalCode;
     private String password;
+    private String callbackSecret;
 
     private Duration connectTimeout = Duration.ofMillis(40000);
     private Duration readTimeout = Duration.ofMillis(60000);
@@ -56,10 +61,15 @@ public class ApiClient {
     }
 
     public ApiClient(String baseUrl, String terminalCode, String password) {
+        this(baseUrl, terminalCode, password, null);
+    }
+
+    public ApiClient(String baseUrl, String terminalCode, String password, String callbackSecret) {
         this.baseUrl = !baseUrl.endsWith("/") ? baseUrl + "/" : baseUrl;
 
         this.terminalCode = terminalCode;
         this.password = password;
+        this.callbackSecret = callbackSecret;
 
         apiAuthorizations = new LinkedHashMap<>();
         createDefaultAdapter();
@@ -89,16 +99,20 @@ public class ApiClient {
         this.callTimeout = callTimeout;
     }
 
+    public void setCallbackSecret(String callbackSecret) {
+        this.callbackSecret = callbackSecret;
+    }
+
     private void createDefaultAdapter() {
-      this.json = new JSON();
+        this.json = new JSON();
 
-      this.okBuilder = new OkHttpClient.Builder()
-              .addInterceptor(new UserAgentInterceptor(USER_AGENT))
-              .connectTimeout(this.connectTimeout)
-              .readTimeout(this.readTimeout)
-              .callTimeout(this.callTimeout);
+        this.okBuilder = new OkHttpClient.Builder()
+                .addInterceptor(new UserAgentInterceptor(USER_AGENT))
+                .connectTimeout(this.connectTimeout)
+                .readTimeout(this.readTimeout)
+                .callTimeout(this.callTimeout);
 
-      adapterBuilder = new Retrofit
+        adapterBuilder = new Retrofit
               .Builder()
               .baseUrl(this.baseUrl)
               .addConverterFactory(ScalarsConverterFactory.create())
@@ -119,7 +133,8 @@ public class ApiClient {
                 .create(serviceClass);
     }
 
-    public CallbackProcessor createCallbackProcessor() {
+    public CallbackProcessor createCallbackProcessor(String callbackSecret) {
+        this.callbackSecret = callbackSecret;
         return new CallbackProcessor(this);
     }
 
@@ -157,7 +172,7 @@ public class ApiClient {
     }
 
     public String calcSignature(String json) {
-        String message = json + this.password;
+        String message = json + this.callbackSecret;
 
         try {
             MessageDigest digest = java.security.MessageDigest.getInstance("SHA-512");
@@ -165,12 +180,12 @@ public class ApiClient {
             // when using hexadecimal, you use two digits to represent one byte (from 0x00 to 0xFF) ; so, to store a binary value that can be
             // represented by 128 hexadecimal characters, you need 64 bytes
             int outputStringLength = digest.getDigestLength() * 2;
-            String output = new BigInteger(1, digest.digest()).toString(16);
+            String result = new BigInteger(1, digest.digest()).toString(16);
             // Adding leading zeroes because the signature must have the length exactly 128
-            while (output.length() < outputStringLength) {
-                output = "0".concat(output);
+            while (result.length() < outputStringLength) {
+                result = "0".concat(result);
             }
-            return output;
+            return result;
 
         } catch (NoSuchAlgorithmException ex) {
             // Ignored
