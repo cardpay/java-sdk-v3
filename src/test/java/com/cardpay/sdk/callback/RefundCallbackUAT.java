@@ -16,11 +16,11 @@ public class RefundCallbackUAT {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
-    private ApiClient client;
+    private ApiClient.CallbackProcessor callbackProcessor;
 
     @Before
     public void setup() {
-        client = new ApiClient(CARDPAY_API_URL, "", "pzQf529Wa0AV");
+        callbackProcessor = new ApiClient.CallbackProcessor(CALLBACK_SECRET);
     }
 
     @Test
@@ -31,15 +31,13 @@ public class RefundCallbackUAT {
         // 'Signature' header example
         String signature = readFile("fixtures/refundCallback.signature");
 
-        client.setCallbackSecret(CALLBACK_SECRET);
-
-        if (!client.isValidSignature(json, signature)) {
+        if (!callbackProcessor.isValidSignature(json, signature)) {
 
             fail("Incorrect signature");
 
         } else {
 
-            RefundCallback callback = client.fromJson(json, RefundCallback.class);
+            RefundCallback callback = callbackProcessor.fromJson(json, RefundCallback.class);
 
             log.info("{}", callback);
 

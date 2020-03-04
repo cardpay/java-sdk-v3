@@ -1,12 +1,5 @@
 package com.cardpay.sdk.client;
 
-import static com.cardpay.sdk.Config.CARDPAY_API_URL;
-import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
-import static com.cardpay.sdk.Config.GATEWAY_TERMINAL_CODE;
-import static com.cardpay.sdk.callback.ResourceUtils.readFile;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
 import com.cardpay.sdk.model.PaymentCallback;
 import com.cardpay.sdk.model.PayoutCallback;
 import com.cardpay.sdk.model.RecurringCallback;
@@ -14,13 +7,17 @@ import com.cardpay.sdk.model.RefundCallback;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.cardpay.sdk.callback.ResourceUtils.readFile;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 public class ApiClientTest {
 
-    private ApiClient client;
+    private ApiClient.CallbackProcessor callbackProcessor;
 
     @Before
     public void setup() {
-        client = new ApiClient(CARDPAY_API_URL, GATEWAY_TERMINAL_CODE, GATEWAY_PASSWORD);
+        callbackProcessor = new ApiClient.CallbackProcessor("");
     }
 
     @Test(expected = ApiClient.CallbackException.class)
@@ -29,7 +26,7 @@ public class ApiClientTest {
         String json = null;
 
         // when
-        client.parseCallback(json);
+        callbackProcessor.parseCallback(json);
     }
 
     @Test(expected = ApiClient.CallbackException.class)
@@ -38,7 +35,7 @@ public class ApiClientTest {
         String json = "";
 
         // when
-        client.parseCallback(json);
+        callbackProcessor.parseCallback(json);
     }
 
     @Test(expected = ApiClient.CallbackException.class)
@@ -47,7 +44,7 @@ public class ApiClientTest {
         String json = "123";
 
         // when
-        client.parseCallback(json);
+        callbackProcessor.parseCallback(json);
     }
 
     @Test(expected = ApiClient.CallbackException.class)
@@ -56,7 +53,7 @@ public class ApiClientTest {
         String json = "payment_data";
 
         // when
-        client.parseCallback(json);
+        callbackProcessor.parseCallback(json);
     }
 
     @Test
@@ -65,7 +62,7 @@ public class ApiClientTest {
         String json = readFile("fixtures/paymentCallback.json");
 
         // when
-        Object obj = client.parseCallback(json);
+        Object obj = callbackProcessor.parseCallback(json);
 
         // then
         assertNotNull(obj);
@@ -78,7 +75,7 @@ public class ApiClientTest {
         String json = readFile("fixtures/payoutCallback.json");
 
         // when
-        Object obj = client.parseCallback(json);
+        Object obj = callbackProcessor.parseCallback(json);
 
         // then
         assertNotNull(obj);
@@ -91,7 +88,7 @@ public class ApiClientTest {
         String json = readFile("fixtures/refundCallback.json");
 
         // when
-        Object obj = client.parseCallback(json);
+        Object obj = callbackProcessor.parseCallback(json);
 
         // then
         assertNotNull(obj);
@@ -104,7 +101,7 @@ public class ApiClientTest {
         String json = readFile("fixtures/recurringCallback.json");
 
         // when
-        Object obj = client.parseCallback(json);
+        Object obj = callbackProcessor.parseCallback(json);
 
         // then
         assertNotNull(obj);

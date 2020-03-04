@@ -20,7 +20,9 @@ import java.security.NoSuchAlgorithmException;
 import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.UUID;
@@ -38,12 +40,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class ApiClient {
-    public final static String USER_AGENT = "CardpaySdk/1.9.9.15.1/Java";
+    public final static String USER_AGENT = "CardpaySdk/1.9.9.15.2/Java";
+
+    private static final JSON _json = new JSON();
 
     private String baseUrl;
     private String terminalCode;
     private String password;
-    private String callbackSecret;
 
     private Duration connectTimeout = Duration.ofMillis(40000);
     private Duration readTimeout = Duration.ofMillis(60000);
@@ -52,27 +55,22 @@ public class ApiClient {
     private Map<String, Interceptor> apiAuthorizations;
     private OkHttpClient.Builder okBuilder;
     private Retrofit.Builder adapterBuilder;
-
-    private JSON json;
+    private List<Interceptor> interceptors;
 
     public ApiClient() {
-        apiAuthorizations = new LinkedHashMap<>();
-        createDefaultAdapter();
+        this.interceptors = new ArrayList<>();
+        this.apiAuthorizations = new LinkedHashMap<>();
+    }
+
+    public ApiClient(String baseUrl) {
+        this();
+        this.baseUrl = !baseUrl.endsWith("/") ? baseUrl + "/" : baseUrl;
     }
 
     public ApiClient(String baseUrl, String terminalCode, String password) {
-        this(baseUrl, terminalCode, password, null);
-    }
-
-    public ApiClient(String baseUrl, String terminalCode, String password, String callbackSecret) {
-        this.baseUrl = !baseUrl.endsWith("/") ? baseUrl + "/" : baseUrl;
-
+        this(baseUrl);
         this.terminalCode = terminalCode;
         this.password = password;
-        this.callbackSecret = callbackSecret;
-
-        apiAuthorizations = new LinkedHashMap<>();
-        createDefaultAdapter();
     }
 
     public void setBaseUrl(String baseUrl) {
@@ -99,47 +97,44 @@ public class ApiClient {
         this.callTimeout = callTimeout;
     }
 
-    public void setCallbackSecret(String callbackSecret) {
-        this.callbackSecret = callbackSecret;
-    }
-
     private void createDefaultAdapter() {
-        this.json = new JSON();
-
         this.okBuilder = new OkHttpClient.Builder()
                 .addInterceptor(new UserAgentInterceptor(USER_AGENT))
                 .connectTimeout(this.connectTimeout)
                 .readTimeout(this.readTimeout)
                 .callTimeout(this.callTimeout);
 
+        interceptors.forEach(v -> okBuilder.addInterceptor(v));
+
         adapterBuilder = new Retrofit
               .Builder()
               .baseUrl(this.baseUrl)
               .addConverterFactory(ScalarsConverterFactory.create())
-              .addConverterFactory(GsonCustomConverterFactory.create(this.json.getGson()));
+              .addConverterFactory(GsonCustomConverterFactory.create(_json.getGson()));
 
         addAuthorization("Bearer", new TokenManagerInterceptor(
                 createService(AuthApi.class),
-                this.json,
                 this.terminalCode,
                 this.password
         ));
     }
 
+    private Retrofit.Builder getAdapterBuilder() {
+        if (adapterBuilder == null) {
+            createDefaultAdapter();
+        }
+        return adapterBuilder;
+    }
+
     public <S> S createService(Class<S> serviceClass) {
-        return adapterBuilder
+        return getAdapterBuilder()
                 .client(okBuilder.build())
                 .build()
                 .create(serviceClass);
     }
 
-    public CallbackProcessor createCallbackProcessor(String callbackSecret) {
-        this.callbackSecret = callbackSecret;
-        return new CallbackProcessor(this);
-    }
-
     public ApiClient addLogging(HttpLoggingInterceptor.Level level) {
-        okBuilder.addInterceptor(new HttpLoggingInterceptor().setLevel(level));
+        this.interceptors.add(new HttpLoggingInterceptor().setLevel(level));
         return this;
     }
 
@@ -165,58 +160,27 @@ public class ApiClient {
                 .time(OffsetDateTime.now().atZoneSameInstant(ZoneOffset.UTC).toOffsetDateTime());
     }
 
-    public boolean isValidSignature(String json, String signature) {
-        return signature != null
-                && !signature.isEmpty()
-                && signature.equals(calcSignature(json));
-    }
-
-    public String calcSignature(String json) {
-        String message = json + this.callbackSecret;
-
+    public static <T> T fromJson(String json, Class<T> callbackClass) {
         try {
-            MessageDigest digest = java.security.MessageDigest.getInstance("SHA-512");
-            digest.update(message.getBytes(StandardCharsets.UTF_8));
-            // when using hexadecimal, you use two digits to represent one byte (from 0x00 to 0xFF) ; so, to store a binary value that can be
-            // represented by 128 hexadecimal characters, you need 64 bytes
-            int outputStringLength = digest.getDigestLength() * 2;
-            String result = new BigInteger(1, digest.digest()).toString(16);
-            // Adding leading zeroes because the signature must have the length exactly 128
-            while (result.length() < outputStringLength) {
-                result = "0".concat(result);
-            }
-            return result;
-
-        } catch (NoSuchAlgorithmException ex) {
-            // Ignored
-            return null;
-        }
-    }
-
-    public <T> T fromJson(String json, Class<T> callbackClass) {
-        try {
-            return this.json.getGson().fromJson(json, callbackClass);
+            return _json.getGson().fromJson(json, callbackClass);
         } catch (JsonSyntaxException e) {
             throw new CallbackException("Json parse exception", e);
         }
     }
 
-    public Object parseCallback(String json) {
-        if (json == null || json.isEmpty()) {
-            throw new CallbackException("Could not parse null or empty callback json.");
+    public static class ApiException extends IOException {
+
+        public ApiException() {
         }
 
-        if (json.contains("refund_data")) {
-            return this.fromJson(json, RefundCallback.class);
-        } else if (json.contains("recurring_data")) {
-            return this.fromJson(json, RecurringCallback.class);
-        } else if (json.contains("payout_data")) {
-            return this.fromJson(json, PayoutCallback.class);
-        } else if (json.contains("payment_data")) {
-            return this.fromJson(json, PaymentCallback.class);
-        } else {
-            throw new CallbackException("Could not parse callback json.");
+        public ApiException(String message) {
+            super(message);
         }
+
+        public ApiException(String message, Throwable cause) {
+            super(message, cause);
+        }
+
     }
 
     public static class CallbackException extends RuntimeException {
@@ -251,32 +215,87 @@ public class ApiClient {
 
     public static class CallbackProcessor {
 
-        private ApiClient client;
+        private JSON json;
+        private String callbackSecret;
         private Map<String, Consumer<?>> handlers = new TreeMap<>();
 
-        public CallbackProcessor(ApiClient client) {
-            this.client = client;
+        public CallbackProcessor(String callbackSecret) {
+            this.json = new JSON();
+            this.callbackSecret = callbackSecret;
         }
 
         public <T> CallbackProcessor registerHandler(Class<T> clazz, Consumer<T> handler) {
             handlers.put(clazz.getName(), handler);
             return this;
-
         }
 
         @SuppressWarnings("unchecked")
         public void process(String json, String signature) {
-            if (!client.isValidSignature(json, signature)) {
-                throw new InvalidSignatureException("Invalid callback signature");
+            if (!isValidSignature(json, signature)) {
+                throw new ApiClient.InvalidSignatureException("Invalid callback signature");
             }
 
-            Object obj = client.parseCallback(json);
+            Object obj = parseCallback(json);
             Consumer<Object> handler = (Consumer<Object>) handlers.get(obj.getClass().getName());
             if (handler == null) {
-                throw new CallbackException("Not found handler for callback class " + obj.getClass().getName());
+                throw new ApiClient.CallbackException("Not found handler for callback class " + obj.getClass().getName());
             }
 
             handler.accept(obj);
+        }
+
+        public <T> T fromJson(String json, Class<T> callbackClass) {
+            try {
+                return this.json.getGson().fromJson(json, callbackClass);
+            } catch (JsonSyntaxException e) {
+                throw new ApiClient.CallbackException("Json parse exception", e);
+            }
+        }
+
+        public Object parseCallback(String json) {
+            if (json == null || json.isEmpty()) {
+                throw new ApiClient.CallbackException("Could not parse null or empty callback json.");
+            }
+
+            if (json.contains("refund_data")) {
+                return this.fromJson(json, RefundCallback.class);
+            } else if (json.contains("recurring_data")) {
+                return this.fromJson(json, RecurringCallback.class);
+            } else if (json.contains("payout_data")) {
+                return this.fromJson(json, PayoutCallback.class);
+            } else if (json.contains("payment_data")) {
+                return this.fromJson(json, PaymentCallback.class);
+            } else {
+                throw new ApiClient.CallbackException("Could not parse callback json.");
+            }
+        }
+
+        public boolean isValidSignature(String json, String signature) {
+            return signature != null
+                    && !signature.isEmpty()
+                    && signature.equals(calcSignature(json));
+        }
+
+        public String calcSignature(String json) {
+            String message = json + this.callbackSecret;
+
+            try {
+                MessageDigest digest = java.security.MessageDigest.getInstance("SHA-512");
+                digest.update(message.getBytes(StandardCharsets.UTF_8));
+                // when using hexadecimal, you use two digits to represent one byte (from 0x00 to 0xFF) ; so, to store a binary value that can be
+                // represented by 128 hexadecimal characters, you need 64 bytes
+                int outputStringLength = digest.getDigestLength() * 2;
+                String result = new BigInteger(1, digest.digest()).toString(16);
+                // Adding leading zeroes because the signature must have the length exactly 128
+                while (result.length() < outputStringLength) {
+                    result = "0".concat(result);
+                }
+                return result;
+
+            } catch (NoSuchAlgorithmException ex) {
+                // Ignored
+                return null;
+            }
         }
     }
 }
@@ -357,18 +376,18 @@ class TokenManagerInterceptor implements Interceptor {
 
     private static final long TOKEN_MIN_VALIDITY = 10000;
 
+    private final JSON json = new JSON();
+
     private final AuthApi authApi;
-    private JSON json;
 
     private final String terminalCode;
     private final String password;
 
     private ThreadLocal<ApiTokens> tokens = withInitial(() -> null);
 
-    TokenManagerInterceptor(AuthApi authApi, JSON json, String terminalCode, String password) {
+    TokenManagerInterceptor(AuthApi authApi, String terminalCode, String password) {
         this.terminalCode = terminalCode;
         this.password = password;
-        this.json = json;
         this.authApi = authApi;
     }
 
@@ -463,7 +482,7 @@ class TokenManagerInterceptor implements Interceptor {
             return new IOException("Unknown auth error");
         } else {
             OAuthError error = json.getGson().fromJson(response.errorBody().string(), OAuthError.class);
-            return new IOException(error.getMessage());
+            return new ApiClient.ApiException(error.getMessage());
         }
     }
 
@@ -472,7 +491,7 @@ class TokenManagerInterceptor implements Interceptor {
             return new IOException("Unknown API error");
         } else {
             com.cardpay.sdk.model.ApiError apiError = json.getGson().fromJson(response.body().string(), com.cardpay.sdk.model.ApiError.class);
-            return new IOException(apiError.getMessage());
+            return new ApiClient.ApiException(apiError.getMessage());
         }
     }
 

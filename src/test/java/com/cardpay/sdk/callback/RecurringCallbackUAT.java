@@ -16,11 +16,11 @@ public class RecurringCallbackUAT {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
-    private ApiClient client;
+    private ApiClient.CallbackProcessor callbackProcessor;
 
     @Before
     public void setup() {
-        client = new ApiClient(CARDPAY_API_URL, "", "pzQf529Wa0AV");
+        callbackProcessor = new ApiClient.CallbackProcessor(CALLBACK_SECRET);
     }
 
     @Test
@@ -31,15 +31,13 @@ public class RecurringCallbackUAT {
         // 'Signature' header example
         String signature = readFile("fixtures/recurringCallback.signature");
 
-        client.setCallbackSecret(CALLBACK_SECRET);
-
-        if (!client.isValidSignature(json, signature)) {
+        if (!callbackProcessor.isValidSignature(json, signature)) {
 
             fail("Incorrect signature");
 
         } else {
 
-            RecurringCallback callback = client.fromJson(json, RecurringCallback.class);
+            RecurringCallback callback = callbackProcessor.fromJson(json, RecurringCallback.class);
 
             log.info("{}", callback);
 

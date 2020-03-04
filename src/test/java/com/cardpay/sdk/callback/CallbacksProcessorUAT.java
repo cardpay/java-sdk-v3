@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.function.Consumer;
 
-import static com.cardpay.sdk.Config.CARDPAY_API_URL;
 import static com.cardpay.sdk.Constants.CALLBACK_SECRET;
 import static com.cardpay.sdk.callback.ResourceUtils.readFile;
 
@@ -20,15 +19,13 @@ public class CallbacksProcessorUAT {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
-    private ApiClient client;
+
     private ApiClient.CallbackProcessor callbackProcessor;
 
     @Before
     public void setup() {
-        client = new ApiClient(CARDPAY_API_URL, "", "pzQf529Wa0AV");
-
         // create instance of callback processor
-        callbackProcessor = client.createCallbackProcessor(CALLBACK_SECRET)
+        callbackProcessor = new ApiClient.CallbackProcessor(CALLBACK_SECRET)
                 // we can register handler implementation as separate class
                 .registerHandler(PaymentCallback.class, new PaymentCallbackHandler())
                 // or we can register handler implementation as inline lambda function

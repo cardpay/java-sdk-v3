@@ -16,11 +16,11 @@ public class PayoutCallbackUAT {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
-    private ApiClient client;
+    private ApiClient.CallbackProcessor callbackProcessor;
 
     @Before
     public void setup() {
-        client = new ApiClient(CARDPAY_API_URL, "", "");
+        callbackProcessor = new ApiClient.CallbackProcessor(CALLBACK_SECRET);
     }
 
     @Test
@@ -31,15 +31,13 @@ public class PayoutCallbackUAT {
         // 'Signature' header example
         String signature = readFile("fixtures/payoutCallback.signature");
 
-        client.setCallbackSecret(CALLBACK_SECRET);
-
-        if (!client.isValidSignature(json, signature)) {
+        if (!callbackProcessor.isValidSignature(json, signature)) {
 
             fail("Incorrect signature");
 
         } else {
 
-            PayoutCallback callback = client.fromJson(json, PayoutCallback.class);
+            PayoutCallback callback = callbackProcessor.fromJson(json, PayoutCallback.class);
 
             log.info("{}", callback);
 
