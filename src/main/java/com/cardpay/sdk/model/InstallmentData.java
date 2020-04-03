@@ -305,8 +305,6 @@ public class InstallmentData {
   }
 
   /**
-   * minimum: 1
-   * maximum: 15
    * @param retries Number of daily basis retry attempts in case of payment has not been captured successfully, from 1 to 15 attempts can be specified.
    * @return bean instance
    **/
