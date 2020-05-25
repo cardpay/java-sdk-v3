@@ -134,31 +134,19 @@ public class ShippingAddress {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ShippingAddress {\n");
-    
-    if (addrLine1 != null) sb.append("    addrLine1: ").append(toIndentedString(addrLine1)).append("\n");
-    if (addrLine2 != null) sb.append("    addrLine2: ").append(toIndentedString(addrLine2)).append("\n");
-    if (city != null) sb.append("    city: ").append(toIndentedString(city)).append("\n");
-    if (country != null) sb.append("    country: ").append(toIndentedString(country)).append("\n");
-    if (phone != null) sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
-    if (state != null) sb.append("    state: ").append(toIndentedString(state)).append("\n");
-    if (zip != null) sb.append("    zip: ").append(toIndentedString(zip)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("ShippingAddress( ");
+     
+     if (addrLine1 != null) sb.append("addrLine1=").append(addrLine1.toString()).append("; ");
+     if (addrLine2 != null) sb.append("addrLine2=").append(addrLine2.toString()).append("; ");
+     if (city != null) sb.append("city=").append(city.toString()).append("; ");
+     if (country != null) sb.append("country=").append(country.toString()).append("; ");
+     if (phone != null) sb.append("phone=").append(phone.toString()).append("; ");
+     if (state != null) sb.append("state=").append(state.toString()).append("; ");
+     if (zip != null) sb.append("zip=").append(zip.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

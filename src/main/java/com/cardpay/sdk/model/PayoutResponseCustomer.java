@@ -70,27 +70,15 @@ public class PayoutResponseCustomer {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PayoutResponseCustomer {\n");
-    
-    if (email != null) sb.append("    email: ").append(toIndentedString(email)).append("\n");
-    if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    if (phone != null) sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("PayoutResponseCustomer( ");
+     
+     if (email != null) sb.append("email=").append(email.toString()).append("; ");
+     if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (phone != null) sb.append("phone=").append(phone.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

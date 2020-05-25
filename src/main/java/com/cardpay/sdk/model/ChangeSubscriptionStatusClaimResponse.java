@@ -173,30 +173,18 @@ public class ChangeSubscriptionStatusClaimResponse {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ChangeSubscriptionStatusClaimResponse {\n");
-    
-    if (created != null) sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    if (details != null) sb.append("    details: ").append(toIndentedString(details)).append("\n");
-    if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    if (status != null) sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    if (subscriptionData != null) sb.append("    subscriptionData: ").append(toIndentedString(subscriptionData)).append("\n");
-    if (updated != null) sb.append("    updated: ").append(toIndentedString(updated)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("ChangeSubscriptionStatusClaimResponse( ");
+     
+     if (created != null) sb.append("created=").append(created.toString()).append("; ");
+     if (details != null) sb.append("details=").append(details.toString()).append("; ");
+     if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (status != null) sb.append("status=").append(status.toString()).append("; ");
+     if (subscriptionData != null) sb.append("subscriptionData=").append(subscriptionData.toString()).append("; ");
+     if (updated != null) sb.append("updated=").append(updated.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

@@ -54,26 +54,14 @@ public class AuthenticationError {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class AuthenticationError {\n");
-    
-    if (message != null) sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    if (name != null) sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("AuthenticationError( ");
+     
+     if (message != null) sb.append("message=").append(message.toString()).append("; ");
+     if (name != null) sb.append("name=").append(name.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

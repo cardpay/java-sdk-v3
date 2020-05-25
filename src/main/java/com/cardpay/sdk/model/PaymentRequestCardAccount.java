@@ -70,27 +70,15 @@ public class PaymentRequestCardAccount {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PaymentRequestCardAccount {\n");
-    
-    if (billingAddress != null) sb.append("    billingAddress: ").append(toIndentedString(billingAddress)).append("\n");
-    if (card != null) sb.append("    card: ").append(toIndentedString(card)).append("\n");
-    if (token != null) sb.append("    token: ").append(toIndentedString(token)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("PaymentRequestCardAccount( ");
+     
+     if (billingAddress != null) sb.append("billingAddress=").append(billingAddress.toString()).append("; ");
+     if (card != null) sb.append("card=").append(card.toString()).append("; ");
+     if (token != null) sb.append("token=").append(token.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

@@ -102,29 +102,17 @@ public class PaymentResponse {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PaymentResponse {\n");
-    
-    if (customer != null) sb.append("    customer: ").append(toIndentedString(customer)).append("\n");
-    if (paymentMethod != null) sb.append("    paymentMethod: ").append(toIndentedString(paymentMethod)).append("\n");
-    if (merchantOrder != null) sb.append("    merchantOrder: ").append(toIndentedString(merchantOrder)).append("\n");
-    if (paymentData != null) sb.append("    paymentData: ").append(toIndentedString(paymentData)).append("\n");
-    if (cardAccount != null) sb.append("    cardAccount: ").append(toIndentedString(cardAccount)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("PaymentResponse( ");
+     
+     if (customer != null) sb.append("customer=").append(customer.toString()).append("; ");
+     if (paymentMethod != null) sb.append("paymentMethod=").append(paymentMethod.toString()).append("; ");
+     if (merchantOrder != null) sb.append("merchantOrder=").append(merchantOrder.toString()).append("; ");
+     if (paymentData != null) sb.append("paymentData=").append(paymentData.toString()).append("; ");
+     if (cardAccount != null) sb.append("cardAccount=").append(cardAccount.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

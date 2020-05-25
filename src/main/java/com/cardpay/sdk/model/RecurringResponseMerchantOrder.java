@@ -54,26 +54,14 @@ public class RecurringResponseMerchantOrder {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class RecurringResponseMerchantOrder {\n");
-    
-    if (description != null) sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("RecurringResponseMerchantOrder( ");
+     
+     if (description != null) sb.append("description=").append(description.toString()).append("; ");
+     if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

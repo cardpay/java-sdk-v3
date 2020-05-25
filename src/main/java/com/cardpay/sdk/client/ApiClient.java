@@ -3,6 +3,7 @@ package com.cardpay.sdk.client;
 import static com.cardpay.sdk.model.OAuthError.NameEnum.TOKEN;
 import static java.lang.System.currentTimeMillis;
 import static java.lang.ThreadLocal.withInitial;
+import static java.util.Optional.ofNullable;
 
 import com.cardpay.sdk.api.AuthApi;
 import com.cardpay.sdk.model.*;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.UUID;
 import java.util.function.Consumer;
@@ -40,9 +42,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class ApiClient {
-    public final static String USER_AGENT = "CardpaySdk/1.9.11.2/Java";
+    public static final String USER_AGENT = "CardpaySdk/2.2.7/Java";
 
-    private static final JSON _json = new JSON();
+    private TokenProvider tokenProvider;
 
     private String baseUrl;
     private String terminalCode;
@@ -65,6 +67,11 @@ public class ApiClient {
     public ApiClient(String baseUrl) {
         this();
         this.baseUrl = !baseUrl.endsWith("/") ? baseUrl + "/" : baseUrl;
+    }
+
+    public ApiClient(String baseUrl, TokenProvider tokenProvider) {
+        this(baseUrl);
+        this.tokenProvider = tokenProvider;
     }
 
     public ApiClient(String baseUrl, String terminalCode, String password) {
@@ -107,15 +114,18 @@ public class ApiClient {
         interceptors.forEach(v -> okBuilder.addInterceptor(v));
 
         adapterBuilder = new Retrofit
-              .Builder()
-              .baseUrl(this.baseUrl)
-              .addConverterFactory(ScalarsConverterFactory.create())
-              .addConverterFactory(GsonCustomConverterFactory.create(_json.getGson()));
+                .Builder()
+                .baseUrl(this.baseUrl)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonCustomConverterFactory.create(new JSON().getGson()));
 
         addAuthorization("Bearer", new TokenManagerInterceptor(
-                createService(AuthApi.class),
-                this.terminalCode,
-                this.password
+                ofNullable(this.tokenProvider)
+                        .orElseGet(() -> new DefaultTokenProvider(
+                                createService(AuthApi.class),
+                                this.terminalCode,
+                                this.password)
+                        )
         ));
     }
 
@@ -162,10 +172,32 @@ public class ApiClient {
 
     public static <T> T fromJson(String json, Class<T> callbackClass) {
         try {
-            return _json.getGson().fromJson(json, callbackClass);
+            return new JSON().getGson().fromJson(json, callbackClass);
         } catch (JsonSyntaxException e) {
             throw new CallbackException("Json parse exception", e);
         }
+    }
+
+    public static Response doGet(String url) throws ApiException {
+        Request request = new Request.Builder()
+                .url(url)
+                .addHeader("User-Agent", ApiClient.USER_AGENT)
+                .build();
+
+        OkHttpClient client = new OkHttpClient();
+        try {
+            return client.newCall(request).execute();
+        } catch (IOException e) {
+            throw new ApiException(e.getMessage(), e);
+        }
+    }
+
+    public static String getContent(ResponseBody responseBody) {
+        return ofNullable(responseBody)
+                .map(body -> new Scanner(body.byteStream()).useDelimiter("\\A"))
+                .filter(Scanner::hasNext)
+                .map(Scanner::next)
+                .orElse(null);
     }
 
     public static class ApiException extends IOException {
@@ -298,6 +330,23 @@ public class ApiClient {
             }
         }
     }
+
+    public static IOException parseApiError(Response response) throws IOException {
+        if (response.body() == null) {
+            return new IOException("Unknown API error");
+        } else {
+            com.cardpay.sdk.model.ApiError apiError = new JSON().getGson().fromJson(response.body().string(), com.cardpay.sdk.model.ApiError.class);
+            return new ApiClient.ApiException(apiError.getMessage());
+        }
+    }
+
+    public interface TokenProvider {
+
+        String obtainToken() throws IOException;
+
+        String obtainNewToken() throws IOException;
+
+    }
 }
 
 /**
@@ -372,68 +421,34 @@ class UserAgentInterceptor implements Interceptor {
     }
 }
 
-class TokenManagerInterceptor implements Interceptor {
+class DefaultTokenProvider implements ApiClient.TokenProvider {
 
     private static final long TOKEN_MIN_VALIDITY = 10000;
 
     private final JSON json = new JSON();
 
-    private final AuthApi authApi;
-
     private final String terminalCode;
     private final String password;
+    private final AuthApi authApi;
 
     private ThreadLocal<ApiTokens> tokens = withInitial(() -> null);
 
-    TokenManagerInterceptor(AuthApi authApi, String terminalCode, String password) {
+    public DefaultTokenProvider(AuthApi authApi, String terminalCode, String password) {
+        this.authApi = authApi;
         this.terminalCode = terminalCode;
         this.password = password;
-        this.authApi = authApi;
     }
 
     @Override
-    public Response intercept(Chain chain) throws IOException {
-        Request request = chain.request();
-
-        if (request.url().encodedPath().contains("/api/auth/token")) {
-            return chain.proceed(request);
-        }
-
-        Response response = proceed(chain, request, obtainToken());
-
-        if (!response.isSuccessful() && response.body() != null) {
-            if (isBadRequest(response)) {
-                throw parseApiError(response);
-            }
-
-            OAuthError error = json.getGson().fromJson(response.body().string(), OAuthError.class);
-            if (error.getName() != TOKEN) {
-                throw new IOException(error.getMessage());
-            }
-
-            response = proceed(chain, request, obtainNewToken());
-
-            if (!response.isSuccessful() && response.body() != null) {
-                throw parseApiError(response);
-            }
-        }
-
-        return response;
+    public String obtainToken() throws IOException {
+        ApiTokens token = this.tokens.get();
+        return token == null || isExpired(token.getExpiresIn())
+                ? obtainNewToken()
+                : token.getAccessToken();
     }
 
-    private boolean isBadRequest(Response response) {
-        return response.code() == HttpURLConnection.HTTP_BAD_REQUEST;
-    }
-
-    private Response proceed(Chain chain, Request request, ApiTokens token) throws IOException {
-        return chain.proceed(
-                request.newBuilder()
-                        .addHeader("Authorization", "Bearer " + token.getAccessToken())
-                        .build()
-        );
-    }
-
-    private ApiTokens obtainNewToken() throws IOException {
+    @Override
+    public String obtainNewToken() throws IOException {
         ApiTokens token = tokens.get();
         try {
             if (token == null
@@ -452,7 +467,7 @@ class TokenManagerInterceptor implements Interceptor {
         token.setRefreshExpiresIn(token.getRefreshExpiresIn() * 1000 + currentTimeMillis());
 
         tokens.set(token);
-        return token;
+        return token.getAccessToken();
     }
 
     private ApiTokens obtainByRefreshToken(String refreshToken) throws IOException {
@@ -486,25 +501,61 @@ class TokenManagerInterceptor implements Interceptor {
         }
     }
 
-    private IOException parseApiError(Response response) throws IOException {
-        if (response.body() == null) {
-            return new IOException("Unknown API error");
-        } else {
-            com.cardpay.sdk.model.ApiError apiError = json.getGson().fromJson(response.body().string(), com.cardpay.sdk.model.ApiError.class);
-            return new ApiClient.ApiException(apiError.getMessage());
-        }
-    }
-
-    private ApiTokens obtainToken() throws IOException {
-        ApiTokens token = this.tokens.get();
-        if (token == null || isExpired(token.getExpiresIn())) {
-            token = obtainNewToken();
-        }
-        return token;
-    }
-
     private boolean isExpired(long expiresAt) {
         return expiresAt - currentTimeMillis() < TOKEN_MIN_VALIDITY;
+    }
+}
+
+class TokenManagerInterceptor implements Interceptor {
+
+    private final JSON json = new JSON();
+
+    private final ApiClient.TokenProvider tokenProvider;
+
+    TokenManagerInterceptor(ApiClient.TokenProvider tokenProvider) {
+        this.tokenProvider = tokenProvider;
+    }
+
+    @Override
+    public Response intercept(Chain chain) throws IOException {
+        Request request = chain.request();
+
+        if (request.url().encodedPath().contains("/api/auth/token")) {
+            return chain.proceed(request);
+        }
+
+        Response response = proceed(chain, request, tokenProvider.obtainToken());
+
+        if (!response.isSuccessful() && response.body() != null) {
+            if (isBadRequest(response)) {
+                throw ApiClient.parseApiError(response);
+            }
+
+            OAuthError error = json.getGson().fromJson(response.body().string(), OAuthError.class);
+            if (error.getName() != TOKEN) {
+                throw new IOException(error.getMessage());
+            }
+
+            response = proceed(chain, request, tokenProvider.obtainNewToken());
+
+            if (!response.isSuccessful() && response.body() != null) {
+                throw ApiClient.parseApiError(response);
+            }
+        }
+
+        return response;
+    }
+
+    private boolean isBadRequest(Response response) {
+        return response.code() == HttpURLConnection.HTTP_BAD_REQUEST;
+    }
+
+    private Response proceed(Chain chain, Request request, String accessToken) throws IOException {
+        return chain.proceed(
+                request.newBuilder()
+                        .addHeader("Authorization", "Bearer " + accessToken)
+                        .build()
+        );
     }
 
 }

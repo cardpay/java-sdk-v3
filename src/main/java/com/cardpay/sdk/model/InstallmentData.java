@@ -344,37 +344,25 @@ public class InstallmentData {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class InstallmentData {\n");
-    
-    if (amount != null) sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-    if (currency != null) sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
-    if (dynamicDescriptor != null) sb.append("    dynamicDescriptor: ").append(toIndentedString(dynamicDescriptor)).append("\n");
-    if (generateToken != null) sb.append("    generateToken: ").append(toIndentedString(generateToken)).append("\n");
-    if (holdRestAmount != null) sb.append("    holdRestAmount: ").append(toIndentedString(holdRestAmount)).append("\n");
-    if (initiator != null) sb.append("    initiator: ").append(toIndentedString(initiator)).append("\n");
-    if (interval != null) sb.append("    interval: ").append(toIndentedString(interval)).append("\n");
-    if (note != null) sb.append("    note: ").append(toIndentedString(note)).append("\n");
-    if (payments != null) sb.append("    payments: ").append(toIndentedString(payments)).append("\n");
-    if (period != null) sb.append("    period: ").append(toIndentedString(period)).append("\n");
-    if (retries != null) sb.append("    retries: ").append(toIndentedString(retries)).append("\n");
-    if (subscriptionStart != null) sb.append("    subscriptionStart: ").append(toIndentedString(subscriptionStart)).append("\n");
-    if (transType != null) sb.append("    transType: ").append(toIndentedString(transType)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("InstallmentData( ");
+     
+     if (amount != null) sb.append("amount=").append(amount.toString()).append("; ");
+     if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
+     if (dynamicDescriptor != null) sb.append("dynamicDescriptor=").append(dynamicDescriptor.toString()).append("; ");
+     if (generateToken != null) sb.append("generateToken=").append(generateToken.toString()).append("; ");
+     if (holdRestAmount != null) sb.append("holdRestAmount=").append(holdRestAmount.toString()).append("; ");
+     if (initiator != null) sb.append("initiator=").append(initiator.toString()).append("; ");
+     if (interval != null) sb.append("interval=").append(interval.toString()).append("; ");
+     if (note != null) sb.append("note=").append(note.toString()).append("; ");
+     if (payments != null) sb.append("payments=").append(payments.toString()).append("; ");
+     if (period != null) sb.append("period=").append(period.toString()).append("; ");
+     if (retries != null) sb.append("retries=").append(retries.toString()).append("; ");
+     if (subscriptionStart != null) sb.append("subscriptionStart=").append(subscriptionStart.toString()).append("; ");
+     if (transType != null) sb.append("transType=").append(transType.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

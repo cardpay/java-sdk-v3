@@ -54,26 +54,14 @@ public class PayoutUpdateResponse {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PayoutUpdateResponse {\n");
-    
-    if (merchantOrder != null) sb.append("    merchantOrder: ").append(toIndentedString(merchantOrder)).append("\n");
-    if (payoutData != null) sb.append("    payoutData: ").append(toIndentedString(payoutData)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("PayoutUpdateResponse( ");
+     
+     if (merchantOrder != null) sb.append("merchantOrder=").append(merchantOrder.toString()).append("; ");
+     if (payoutData != null) sb.append("payoutData=").append(payoutData.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

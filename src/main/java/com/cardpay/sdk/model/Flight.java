@@ -134,31 +134,19 @@ public class Flight {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Flight {\n");
-    
-    if (carrierCode != null) sb.append("    carrierCode: ").append(toIndentedString(carrierCode)).append("\n");
-    if (destinationCode != null) sb.append("    destinationCode: ").append(toIndentedString(destinationCode)).append("\n");
-    if (fareBasisCode != null) sb.append("    fareBasisCode: ").append(toIndentedString(fareBasisCode)).append("\n");
-    if (index != null) sb.append("    index: ").append(toIndentedString(index)).append("\n");
-    if (number != null) sb.append("    number: ").append(toIndentedString(number)).append("\n");
-    if (serviceClassCode != null) sb.append("    serviceClassCode: ").append(toIndentedString(serviceClassCode)).append("\n");
-    if (stopOverCode != null) sb.append("    stopOverCode: ").append(toIndentedString(stopOverCode)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("Flight( ");
+     
+     if (carrierCode != null) sb.append("carrierCode=").append(carrierCode.toString()).append("; ");
+     if (destinationCode != null) sb.append("destinationCode=").append(destinationCode.toString()).append("; ");
+     if (fareBasisCode != null) sb.append("fareBasisCode=").append(fareBasisCode.toString()).append("; ");
+     if (index != null) sb.append("index=").append(index.toString()).append("; ");
+     if (number != null) sb.append("number=").append(number.toString()).append("; ");
+     if (serviceClassCode != null) sb.append("serviceClassCode=").append(serviceClassCode.toString()).append("; ");
+     if (stopOverCode != null) sb.append("stopOverCode=").append(stopOverCode.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

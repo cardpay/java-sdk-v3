@@ -307,34 +307,22 @@ public class UpdatedSubscriptionData {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class UpdatedSubscriptionData {\n");
-    
-    if (changeStatusClaimId != null) sb.append("    changeStatusClaimId: ").append(toIndentedString(changeStatusClaimId)).append("\n");
-    if (details != null) sb.append("    details: ").append(toIndentedString(details)).append("\n");
-    if (filing != null) sb.append("    filing: ").append(toIndentedString(filing)).append("\n");
-    if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    if (isExecuted != null) sb.append("    isExecuted: ").append(toIndentedString(isExecuted)).append("\n");
-    if (recurringData != null) sb.append("    recurringData: ").append(toIndentedString(recurringData)).append("\n");
-    if (remainingAmount != null) sb.append("    remainingAmount: ").append(toIndentedString(remainingAmount)).append("\n");
-    if (status != null) sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    if (statusTo != null) sb.append("    statusTo: ").append(toIndentedString(statusTo)).append("\n");
-    if (updated != null) sb.append("    updated: ").append(toIndentedString(updated)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("UpdatedSubscriptionData( ");
+     
+     if (changeStatusClaimId != null) sb.append("changeStatusClaimId=").append(changeStatusClaimId.toString()).append("; ");
+     if (details != null) sb.append("details=").append(details.toString()).append("; ");
+     if (filing != null) sb.append("filing=").append(filing.toString()).append("; ");
+     if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (isExecuted != null) sb.append("isExecuted=").append(isExecuted.toString()).append("; ");
+     if (recurringData != null) sb.append("recurringData=").append(recurringData.toString()).append("; ");
+     if (remainingAmount != null) sb.append("remainingAmount=").append(remainingAmount.toString()).append("; ");
+     if (status != null) sb.append("status=").append(status.toString()).append("; ");
+     if (statusTo != null) sb.append("statusTo=").append(statusTo.toString()).append("; ");
+     if (updated != null) sb.append("updated=").append(updated.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

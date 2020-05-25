@@ -54,26 +54,14 @@ public class TransactionUpdateRequest {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class TransactionUpdateRequest {\n");
-    
-    if (request != null) sb.append("    request: ").append(toIndentedString(request)).append("\n");
-    if (transactionData != null) sb.append("    transactionData: ").append(toIndentedString(transactionData)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("TransactionUpdateRequest( ");
+     
+     if (request != null) sb.append("request=").append(request.toString()).append("; ");
+     if (transactionData != null) sb.append("transactionData=").append(transactionData.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

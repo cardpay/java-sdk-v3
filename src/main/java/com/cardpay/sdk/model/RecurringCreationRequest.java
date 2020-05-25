@@ -134,31 +134,19 @@ public class RecurringCreationRequest {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class RecurringCreationRequest {\n");
-    
-    if (request != null) sb.append("    request: ").append(toIndentedString(request)).append("\n");
-    if (cardAccount != null) sb.append("    cardAccount: ").append(toIndentedString(cardAccount)).append("\n");
-    if (customer != null) sb.append("    customer: ").append(toIndentedString(customer)).append("\n");
-    if (merchantOrder != null) sb.append("    merchantOrder: ").append(toIndentedString(merchantOrder)).append("\n");
-    if (paymentMethod != null) sb.append("    paymentMethod: ").append(toIndentedString(paymentMethod)).append("\n");
-    if (recurringData != null) sb.append("    recurringData: ").append(toIndentedString(recurringData)).append("\n");
-    if (returnUrls != null) sb.append("    returnUrls: ").append(toIndentedString(returnUrls)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("RecurringCreationRequest( ");
+     
+     if (request != null) sb.append("request=").append(request.toString()).append("; ");
+     if (cardAccount != null) sb.append("cardAccount=").append(cardAccount.toString()).append("; ");
+     if (customer != null) sb.append("customer=").append(customer.toString()).append("; ");
+     if (merchantOrder != null) sb.append("merchantOrder=").append(merchantOrder.toString()).append("; ");
+     if (paymentMethod != null) sb.append("paymentMethod=").append(paymentMethod.toString()).append("; ");
+     if (recurringData != null) sb.append("recurringData=").append(recurringData.toString()).append("; ");
+     if (returnUrls != null) sb.append("returnUrls=").append(returnUrls.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

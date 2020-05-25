@@ -204,32 +204,20 @@ public class FilterParameters {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class FilterParameters {\n");
-    
-    if (requestId != null) sb.append("    requestId: ").append(toIndentedString(requestId)).append("\n");
-    if (merchantOrderId != null) sb.append("    merchantOrderId: ").append(toIndentedString(merchantOrderId)).append("\n");
-    if (paymentMethod != null) sb.append("    paymentMethod: ").append(toIndentedString(paymentMethod)).append("\n");
-    if (startTime != null) sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
-    if (endTime != null) sb.append("    endTime: ").append(toIndentedString(endTime)).append("\n");
-    if (maxCount != null) sb.append("    maxCount: ").append(toIndentedString(maxCount)).append("\n");
-    if (sortOrder != null) sb.append("    sortOrder: ").append(toIndentedString(sortOrder)).append("\n");
-    if (currency != null) sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("FilterParameters( ");
+     
+     if (requestId != null) sb.append("requestId=").append(requestId.toString()).append("; ");
+     if (merchantOrderId != null) sb.append("merchantOrderId=").append(merchantOrderId.toString()).append("; ");
+     if (paymentMethod != null) sb.append("paymentMethod=").append(paymentMethod.toString()).append("; ");
+     if (startTime != null) sb.append("startTime=").append(startTime.toString()).append("; ");
+     if (endTime != null) sb.append("endTime=").append(endTime.toString()).append("; ");
+     if (maxCount != null) sb.append("maxCount=").append(maxCount.toString()).append("; ");
+     if (sortOrder != null) sb.append("sortOrder=").append(sortOrder.toString()).append("; ");
+     if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

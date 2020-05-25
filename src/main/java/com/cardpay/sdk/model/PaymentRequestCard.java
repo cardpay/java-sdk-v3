@@ -156,29 +156,17 @@ public class PaymentRequestCard {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PaymentRequestCard {\n");
-    
-    if (acctType != null) sb.append("    acctType: ").append(toIndentedString(acctType)).append("\n");
-    if (expiration != null) sb.append("    expiration: ").append(toIndentedString(expiration)).append("\n");
-    if (holder != null) sb.append("    holder: ").append(toIndentedString(holder)).append("\n");
-    if (pan != null) sb.append("    pan: ").append(toIndentedString(pan)).append("\n");
-    if (securityCode != null) sb.append("    securityCode: ").append(toIndentedString(securityCode)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("PaymentRequestCard( ");
+     
+     if (acctType != null) sb.append("acctType=").append(acctType.toString()).append("; ");
+     if (expiration != null) sb.append("expiration=").append(expiration.toString()).append("; ");
+     if (holder != null) sb.append("holder=").append(holder.toString()).append("; ");
+     if (pan != null) sb.append("pan=").append(pan.toString()).append("; ");
+     if (securityCode != null) sb.append("securityCode=").append(securityCode.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

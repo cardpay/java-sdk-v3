@@ -55,26 +55,14 @@ public class Request {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Request {\n");
-    
-    if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    if (time != null) sb.append("    time: ").append(toIndentedString(time)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("Request( ");
+     
+     if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (time != null) sb.append("time=").append(time.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

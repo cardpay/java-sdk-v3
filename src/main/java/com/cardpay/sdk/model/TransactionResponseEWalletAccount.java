@@ -54,26 +54,14 @@ public class TransactionResponseEWalletAccount {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class TransactionResponseEWalletAccount {\n");
-    
-    if (holder != null) sb.append("    holder: ").append(toIndentedString(holder)).append("\n");
-    if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("TransactionResponseEWalletAccount( ");
+     
+     if (holder != null) sb.append("holder=").append(holder.toString()).append("; ");
+     if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

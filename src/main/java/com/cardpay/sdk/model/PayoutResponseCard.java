@@ -13,16 +13,118 @@
 
 package com.cardpay.sdk.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import lombok.Data;
 
 @Data
 
 public class PayoutResponseCard {
+  /**
+   * Gets or Sets acctType
+   */
+  @JsonAdapter(AcctTypeEnum.Adapter.class)
+  public enum AcctTypeEnum {
+    _01("01"),
+    
+    _02("02"),
+    
+    _03("03");
+
+    private String value;
+
+    AcctTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static AcctTypeEnum fromValue(String text) {
+      for (AcctTypeEnum b : AcctTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<AcctTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final AcctTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public AcctTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return AcctTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName("acct_type")
+  private AcctTypeEnum acctType = null;
+  @SerializedName("expiration")
+  private String expiration = null;
+  @SerializedName("holder")
+  private String holder = null;
   @SerializedName("issuing_country_code")
   private String issuingCountryCode = null;
   @SerializedName("masked_pan")
   private String maskedPan = null;
+  
+  public void setAcctType(AcctTypeEnum acctType) {
+      this.acctType = acctType;
+  }
+
+  /**
+   * @param acctType acctType
+   * @return bean instance
+   **/
+  public PayoutResponseCard acctType(AcctTypeEnum acctType) {
+      this.acctType = acctType;
+      return this;
+  }
+
+  
+  public void setExpiration(String expiration) {
+      this.expiration = expiration;
+  }
+
+  /**
+   * @param expiration Customer’s card expiration date. Format: &#x60;mm/yyyy&#x60;
+   * @return bean instance
+   **/
+  public PayoutResponseCard expiration(String expiration) {
+      this.expiration = expiration;
+      return this;
+  }
+
+  
+  public void setHolder(String holder) {
+      this.holder = holder;
+  }
+
+  /**
+   * @param holder Customer&#39;s cardholder name. Any valid cardholder name. Not present by default, ask CardPay manager to enable it if needed.
+   * @return bean instance
+   **/
+  public PayoutResponseCard holder(String holder) {
+      this.holder = holder;
+      return this;
+  }
+
   
   public void setIssuingCountryCode(String issuingCountryCode) {
       this.issuingCountryCode = issuingCountryCode;
@@ -54,26 +156,17 @@ public class PayoutResponseCard {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PayoutResponseCard {\n");
-    
-    if (issuingCountryCode != null) sb.append("    issuingCountryCode: ").append(toIndentedString(issuingCountryCode)).append("\n");
-    if (maskedPan != null) sb.append("    maskedPan: ").append(toIndentedString(maskedPan)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("PayoutResponseCard( ");
+     
+     if (acctType != null) sb.append("acctType=").append(acctType.toString()).append("; ");
+     if (expiration != null) sb.append("expiration=").append(expiration.toString()).append("; ");
+     if (holder != null) sb.append("holder=").append(holder.toString()).append("; ");
+     if (issuingCountryCode != null) sb.append("issuingCountryCode=").append(issuingCountryCode.toString()).append("; ");
+     if (maskedPan != null) sb.append("maskedPan=").append(maskedPan.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

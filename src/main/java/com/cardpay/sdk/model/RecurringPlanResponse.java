@@ -38,25 +38,13 @@ public class RecurringPlanResponse {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class RecurringPlanResponse {\n");
-    
-    if (planData != null) sb.append("    planData: ").append(toIndentedString(planData)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("RecurringPlanResponse( ");
+     
+     if (planData != null) sb.append("planData=").append(planData.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

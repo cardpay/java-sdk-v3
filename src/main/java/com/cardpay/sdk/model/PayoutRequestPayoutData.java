@@ -26,6 +26,8 @@ public class PayoutRequestPayoutData {
   private String currency = null;
   @SerializedName("dynamic_descriptor")
   private String dynamicDescriptor = null;
+  @SerializedName("generate_token")
+  private Boolean generateToken = null;
   @SerializedName("note")
   private String note = null;
   
@@ -71,6 +73,20 @@ public class PayoutRequestPayoutData {
   }
 
   
+  public void setGenerateToken(Boolean generateToken) {
+      this.generateToken = generateToken;
+  }
+
+  /**
+   * @param generateToken If set to &#x60;true&#x60;, token will be generated and returned in the response (callback). Token can be generated only for successful transactions (not for declined transactions) *(for BANKCARD payment method only)*
+   * @return bean instance
+   **/
+  public PayoutRequestPayoutData generateToken(Boolean generateToken) {
+      this.generateToken = generateToken;
+      return this;
+  }
+
+  
   public void setNote(String note) {
       this.note = note;
   }
@@ -87,28 +103,17 @@ public class PayoutRequestPayoutData {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PayoutRequestPayoutData {\n");
-    
-    if (amount != null) sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-    if (currency != null) sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
-    if (dynamicDescriptor != null) sb.append("    dynamicDescriptor: ").append(toIndentedString(dynamicDescriptor)).append("\n");
-    if (note != null) sb.append("    note: ").append(toIndentedString(note)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("PayoutRequestPayoutData( ");
+     
+     if (amount != null) sb.append("amount=").append(amount.toString()).append("; ");
+     if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
+     if (dynamicDescriptor != null) sb.append("dynamicDescriptor=").append(dynamicDescriptor.toString()).append("; ");
+     if (generateToken != null) sb.append("generateToken=").append(generateToken.toString()).append("; ");
+     if (note != null) sb.append("note=").append(note.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

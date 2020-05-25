@@ -311,38 +311,26 @@ public class RecurringRequestRecurringData {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class RecurringRequestRecurringData {\n");
-    
-    if (amount != null) sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-    if (currency != null) sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
-    if (dynamicDescriptor != null) sb.append("    dynamicDescriptor: ").append(toIndentedString(dynamicDescriptor)).append("\n");
-    if (filing != null) sb.append("    filing: ").append(toIndentedString(filing)).append("\n");
-    if (generateToken != null) sb.append("    generateToken: ").append(toIndentedString(generateToken)).append("\n");
-    if (initiator != null) sb.append("    initiator: ").append(toIndentedString(initiator)).append("\n");
-    if (interval != null) sb.append("    interval: ").append(toIndentedString(interval)).append("\n");
-    if (note != null) sb.append("    note: ").append(toIndentedString(note)).append("\n");
-    if (payments != null) sb.append("    payments: ").append(toIndentedString(payments)).append("\n");
-    if (period != null) sb.append("    period: ").append(toIndentedString(period)).append("\n");
-    if (plan != null) sb.append("    plan: ").append(toIndentedString(plan)).append("\n");
-    if (preauth != null) sb.append("    preauth: ").append(toIndentedString(preauth)).append("\n");
-    if (retries != null) sb.append("    retries: ").append(toIndentedString(retries)).append("\n");
-    if (subscriptionStart != null) sb.append("    subscriptionStart: ").append(toIndentedString(subscriptionStart)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("RecurringRequestRecurringData( ");
+     
+     if (amount != null) sb.append("amount=").append(amount.toString()).append("; ");
+     if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
+     if (dynamicDescriptor != null) sb.append("dynamicDescriptor=").append(dynamicDescriptor.toString()).append("; ");
+     if (filing != null) sb.append("filing=").append(filing.toString()).append("; ");
+     if (generateToken != null) sb.append("generateToken=").append(generateToken.toString()).append("; ");
+     if (initiator != null) sb.append("initiator=").append(initiator.toString()).append("; ");
+     if (interval != null) sb.append("interval=").append(interval.toString()).append("; ");
+     if (note != null) sb.append("note=").append(note.toString()).append("; ");
+     if (payments != null) sb.append("payments=").append(payments.toString()).append("; ");
+     if (period != null) sb.append("period=").append(period.toString()).append("; ");
+     if (plan != null) sb.append("plan=").append(plan.toString()).append("; ");
+     if (preauth != null) sb.append("preauth=").append(preauth.toString()).append("; ");
+     if (retries != null) sb.append("retries=").append(retries.toString()).append("; ");
+     if (subscriptionStart != null) sb.append("subscriptionStart=").append(subscriptionStart.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

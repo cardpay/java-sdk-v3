@@ -225,33 +225,21 @@ public class PaymentRequestPaymentData {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PaymentRequestPaymentData {\n");
-    
-    if (amount != null) sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-    if (authenticationRequest != null) sb.append("    authenticationRequest: ").append(toIndentedString(authenticationRequest)).append("\n");
-    if (currency != null) sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
-    if (dynamicDescriptor != null) sb.append("    dynamicDescriptor: ").append(toIndentedString(dynamicDescriptor)).append("\n");
-    if (encryptedData != null) sb.append("    encryptedData: ").append(toIndentedString(encryptedData)).append("\n");
-    if (generateToken != null) sb.append("    generateToken: ").append(toIndentedString(generateToken)).append("\n");
-    if (note != null) sb.append("    note: ").append(toIndentedString(note)).append("\n");
-    if (preauth != null) sb.append("    preauth: ").append(toIndentedString(preauth)).append("\n");
-    if (transType != null) sb.append("    transType: ").append(toIndentedString(transType)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("PaymentRequestPaymentData( ");
+     
+     if (amount != null) sb.append("amount=").append(amount.toString()).append("; ");
+     if (authenticationRequest != null) sb.append("authenticationRequest=").append(authenticationRequest.toString()).append("; ");
+     if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
+     if (dynamicDescriptor != null) sb.append("dynamicDescriptor=").append(dynamicDescriptor.toString()).append("; ");
+     if (encryptedData != null) sb.append("encryptedData=").append(encryptedData.toString()).append("; ");
+     if (generateToken != null) sb.append("generateToken=").append(generateToken.toString()).append("; ");
+     if (note != null) sb.append("note=").append(note.toString()).append("; ");
+     if (preauth != null) sb.append("preauth=").append(preauth.toString()).append("; ");
+     if (transType != null) sb.append("transType=").append(transType.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

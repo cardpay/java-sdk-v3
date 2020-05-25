@@ -70,27 +70,15 @@ public class ApiError {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ApiError {\n");
-    
-    if (message != null) sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    if (name != null) sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    if (requestId != null) sb.append("    requestId: ").append(toIndentedString(requestId)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("ApiError( ");
+     
+     if (message != null) sb.append("message=").append(message.toString()).append("; ");
+     if (name != null) sb.append("name=").append(name.toString()).append("; ");
+     if (requestId != null) sb.append("requestId=").append(requestId.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

@@ -21,6 +21,8 @@ import lombok.Data;
 public class PayoutResponseCardAccount {
   @SerializedName("card")
   private PayoutResponseCard card = null;
+  @SerializedName("token")
+  private String token = null;
   
   public void setCard(PayoutResponseCard card) {
       this.card = card;
@@ -35,28 +37,31 @@ public class PayoutResponseCardAccount {
       return this;
   }
 
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PayoutResponseCardAccount {\n");
-    
-    if (card != null) sb.append("    card: ").append(toIndentedString(card)).append("\n");
-    sb.append("}");
-    return sb.toString();
+  
+  public void setToken(String token) {
+      this.token = token;
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+   * @param token Generated card token value. Token can be returned only for successful transactions (not for declined transactions). 
+   * @return bean instance
+   **/
+  public PayoutResponseCardAccount token(String token) {
+      this.token = token;
+      return this;
   }
 
+
+  @Override
+  public String toString() {
+     StringBuilder sb = new StringBuilder();
+     sb.append("PayoutResponseCardAccount( ");
+     
+     if (card != null) sb.append("card=").append(card.toString()).append("; ");
+     if (token != null) sb.append("token=").append(token.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
+  }
 
 }
 

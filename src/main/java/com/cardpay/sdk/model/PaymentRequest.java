@@ -192,34 +192,22 @@ public class PaymentRequest {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PaymentRequest {\n");
-    
-    if (request != null) sb.append("    request: ").append(toIndentedString(request)).append("\n");
-    if (cardAccount != null) sb.append("    cardAccount: ").append(toIndentedString(cardAccount)).append("\n");
-    if (cryptocurrencyAccount != null) sb.append("    cryptocurrencyAccount: ").append(toIndentedString(cryptocurrencyAccount)).append("\n");
-    if (customer != null) sb.append("    customer: ").append(toIndentedString(customer)).append("\n");
-    if (ewalletAccount != null) sb.append("    ewalletAccount: ").append(toIndentedString(ewalletAccount)).append("\n");
-    if (merchantOrder != null) sb.append("    merchantOrder: ").append(toIndentedString(merchantOrder)).append("\n");
-    if (paymentData != null) sb.append("    paymentData: ").append(toIndentedString(paymentData)).append("\n");
-    if (paymentMethod != null) sb.append("    paymentMethod: ").append(toIndentedString(paymentMethod)).append("\n");
-    if (paymentMethods != null) sb.append("    paymentMethods: ").append(toIndentedString(paymentMethods)).append("\n");
-    if (returnUrls != null) sb.append("    returnUrls: ").append(toIndentedString(returnUrls)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("PaymentRequest( ");
+     
+     if (request != null) sb.append("request=").append(request.toString()).append("; ");
+     if (cardAccount != null) sb.append("cardAccount=").append(cardAccount.toString()).append("; ");
+     if (cryptocurrencyAccount != null) sb.append("cryptocurrencyAccount=").append(cryptocurrencyAccount.toString()).append("; ");
+     if (customer != null) sb.append("customer=").append(customer.toString()).append("; ");
+     if (ewalletAccount != null) sb.append("ewalletAccount=").append(ewalletAccount.toString()).append("; ");
+     if (merchantOrder != null) sb.append("merchantOrder=").append(merchantOrder.toString()).append("; ");
+     if (paymentData != null) sb.append("paymentData=").append(paymentData.toString()).append("; ");
+     if (paymentMethod != null) sb.append("paymentMethod=").append(paymentMethod.toString()).append("; ");
+     if (paymentMethods != null) sb.append("paymentMethods=").append(paymentMethods.toString()).append("; ");
+     if (returnUrls != null) sb.append("returnUrls=").append(returnUrls.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

@@ -122,27 +122,15 @@ public class RecurringUpdateRequest {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class RecurringUpdateRequest {\n");
-    
-    if (request != null) sb.append("    request: ").append(toIndentedString(request)).append("\n");
-    if (operation != null) sb.append("    operation: ").append(toIndentedString(operation)).append("\n");
-    if (recurringData != null) sb.append("    recurringData: ").append(toIndentedString(recurringData)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("RecurringUpdateRequest( ");
+     
+     if (request != null) sb.append("request=").append(request.toString()).append("; ");
+     if (operation != null) sb.append("operation=").append(operation.toString()).append("; ");
+     if (recurringData != null) sb.append("recurringData=").append(recurringData.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

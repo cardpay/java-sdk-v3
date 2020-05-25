@@ -86,28 +86,16 @@ public class RefundRequestEWalletAccount {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class RefundRequestEWalletAccount {\n");
-    
-    if (bankBranch != null) sb.append("    bankBranch: ").append(toIndentedString(bankBranch)).append("\n");
-    if (bankCode != null) sb.append("    bankCode: ").append(toIndentedString(bankCode)).append("\n");
-    if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    if (type != null) sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("RefundRequestEWalletAccount( ");
+     
+     if (bankBranch != null) sb.append("bankBranch=").append(bankBranch.toString()).append("; ");
+     if (bankCode != null) sb.append("bankCode=").append(bankCode.toString()).append("; ");
+     if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (type != null) sb.append("type=").append(type.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

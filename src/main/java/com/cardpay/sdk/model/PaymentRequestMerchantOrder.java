@@ -128,30 +128,18 @@ public class PaymentRequestMerchantOrder {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PaymentRequestMerchantOrder {\n");
-    
-    if (cryptocurrencyIndicator != null) sb.append("    cryptocurrencyIndicator: ").append(toIndentedString(cryptocurrencyIndicator)).append("\n");
-    if (description != null) sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    if (flights != null) sb.append("    flights: ").append(toIndentedString(flights)).append("\n");
-    if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    if (items != null) sb.append("    items: ").append(toIndentedString(items)).append("\n");
-    if (shippingAddress != null) sb.append("    shippingAddress: ").append(toIndentedString(shippingAddress)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("PaymentRequestMerchantOrder( ");
+     
+     if (cryptocurrencyIndicator != null) sb.append("cryptocurrencyIndicator=").append(cryptocurrencyIndicator.toString()).append("; ");
+     if (description != null) sb.append("description=").append(description.toString()).append("; ");
+     if (flights != null) sb.append("flights=").append(flights.toString()).append("; ");
+     if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (items != null) sb.append("items=").append(items.toString()).append("; ");
+     if (shippingAddress != null) sb.append("shippingAddress=").append(shippingAddress.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

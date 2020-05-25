@@ -23,6 +23,8 @@ public class PayoutRequestCardAccount {
   private BillingAddress billingAddress = null;
   @SerializedName("card")
   private PayoutRequestCard card = null;
+  @SerializedName("empty")
+  private Boolean empty = null;
   @SerializedName("recipient_info")
   private String recipientInfo = null;
   @SerializedName("token")
@@ -52,6 +54,20 @@ public class PayoutRequestCardAccount {
    **/
   public PayoutRequestCardAccount card(PayoutRequestCard card) {
       this.card = card;
+      return this;
+  }
+
+  
+  public void setEmpty(Boolean empty) {
+      this.empty = empty;
+  }
+
+  /**
+   * @param empty empty
+   * @return bean instance
+   **/
+  public PayoutRequestCardAccount empty(Boolean empty) {
+      this.empty = empty;
       return this;
   }
 
@@ -86,28 +102,17 @@ public class PayoutRequestCardAccount {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PayoutRequestCardAccount {\n");
-    
-    if (billingAddress != null) sb.append("    billingAddress: ").append(toIndentedString(billingAddress)).append("\n");
-    if (card != null) sb.append("    card: ").append(toIndentedString(card)).append("\n");
-    if (recipientInfo != null) sb.append("    recipientInfo: ").append(toIndentedString(recipientInfo)).append("\n");
-    if (token != null) sb.append("    token: ").append(toIndentedString(token)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("PayoutRequestCardAccount( ");
+     
+     if (billingAddress != null) sb.append("billingAddress=").append(billingAddress.toString()).append("; ");
+     if (card != null) sb.append("card=").append(card.toString()).append("; ");
+     if (empty != null) sb.append("empty=").append(empty.toString()).append("; ");
+     if (recipientInfo != null) sb.append("recipientInfo=").append(recipientInfo.toString()).append("; ");
+     if (token != null) sb.append("token=").append(token.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

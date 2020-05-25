@@ -87,28 +87,16 @@ public class PayoutResponseCryptocurrencyAccount {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PayoutResponseCryptocurrencyAccount {\n");
-    
-    if (cryptoAddress != null) sb.append("    cryptoAddress: ").append(toIndentedString(cryptoAddress)).append("\n");
-    if (cryptoTransactionId != null) sb.append("    cryptoTransactionId: ").append(toIndentedString(cryptoTransactionId)).append("\n");
-    if (prcAmount != null) sb.append("    prcAmount: ").append(toIndentedString(prcAmount)).append("\n");
-    if (prcCurrency != null) sb.append("    prcCurrency: ").append(toIndentedString(prcCurrency)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("PayoutResponseCryptocurrencyAccount( ");
+     
+     if (cryptoAddress != null) sb.append("cryptoAddress=").append(cryptoAddress.toString()).append("; ");
+     if (cryptoTransactionId != null) sb.append("cryptoTransactionId=").append(cryptoTransactionId.toString()).append("; ");
+     if (prcAmount != null) sb.append("prcAmount=").append(prcAmount.toString()).append("; ");
+     if (prcCurrency != null) sb.append("prcCurrency=").append(prcCurrency.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

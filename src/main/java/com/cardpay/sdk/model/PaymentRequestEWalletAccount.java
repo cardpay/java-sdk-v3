@@ -102,29 +102,17 @@ public class PaymentRequestEWalletAccount {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PaymentRequestEWalletAccount {\n");
-    
-    if (bankCode != null) sb.append("    bankCode: ").append(toIndentedString(bankCode)).append("\n");
-    if (creationDate != null) sb.append("    creationDate: ").append(toIndentedString(creationDate)).append("\n");
-    if (expirationDate != null) sb.append("    expirationDate: ").append(toIndentedString(expirationDate)).append("\n");
-    if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    if (verificationCode != null) sb.append("    verificationCode: ").append(toIndentedString(verificationCode)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("PaymentRequestEWalletAccount( ");
+     
+     if (bankCode != null) sb.append("bankCode=").append(bankCode.toString()).append("; ");
+     if (creationDate != null) sb.append("creationDate=").append(creationDate.toString()).append("; ");
+     if (expirationDate != null) sb.append("expirationDate=").append(expirationDate.toString()).append("; ");
+     if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (verificationCode != null) sb.append("verificationCode=").append(verificationCode.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

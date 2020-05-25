@@ -462,41 +462,29 @@ public class SubscriptionGetResponse {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class SubscriptionGetResponse {\n");
-    
-    if (amountDue != null) sb.append("    amountDue: ").append(toIndentedString(amountDue)).append("\n");
-    if (amountTotal != null) sb.append("    amountTotal: ").append(toIndentedString(amountTotal)).append("\n");
-    if (created != null) sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    if (currency != null) sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
-    if (customer != null) sb.append("    customer: ").append(toIndentedString(customer)).append("\n");
-    if (description != null) sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    if (interval != null) sb.append("    interval: ").append(toIndentedString(interval)).append("\n");
-    if (nextPayment != null) sb.append("    nextPayment: ").append(toIndentedString(nextPayment)).append("\n");
-    if (paymentsDue != null) sb.append("    paymentsDue: ").append(toIndentedString(paymentsDue)).append("\n");
-    if (period != null) sb.append("    period: ").append(toIndentedString(period)).append("\n");
-    if (plan != null) sb.append("    plan: ").append(toIndentedString(plan)).append("\n");
-    if (retries != null) sb.append("    retries: ").append(toIndentedString(retries)).append("\n");
-    if (status != null) sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    if (statusReason != null) sb.append("    statusReason: ").append(toIndentedString(statusReason)).append("\n");
-    if (subscriptionStart != null) sb.append("    subscriptionStart: ").append(toIndentedString(subscriptionStart)).append("\n");
-    if (type != null) sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("SubscriptionGetResponse( ");
+     
+     if (amountDue != null) sb.append("amountDue=").append(amountDue.toString()).append("; ");
+     if (amountTotal != null) sb.append("amountTotal=").append(amountTotal.toString()).append("; ");
+     if (created != null) sb.append("created=").append(created.toString()).append("; ");
+     if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
+     if (customer != null) sb.append("customer=").append(customer.toString()).append("; ");
+     if (description != null) sb.append("description=").append(description.toString()).append("; ");
+     if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (interval != null) sb.append("interval=").append(interval.toString()).append("; ");
+     if (nextPayment != null) sb.append("nextPayment=").append(nextPayment.toString()).append("; ");
+     if (paymentsDue != null) sb.append("paymentsDue=").append(paymentsDue.toString()).append("; ");
+     if (period != null) sb.append("period=").append(period.toString()).append("; ");
+     if (plan != null) sb.append("plan=").append(plan.toString()).append("; ");
+     if (retries != null) sb.append("retries=").append(retries.toString()).append("; ");
+     if (status != null) sb.append("status=").append(status.toString()).append("; ");
+     if (statusReason != null) sb.append("statusReason=").append(statusReason.toString()).append("; ");
+     if (subscriptionStart != null) sb.append("subscriptionStart=").append(subscriptionStart.toString()).append("; ");
+     if (type != null) sb.append("type=").append(type.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

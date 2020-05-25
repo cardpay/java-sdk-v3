@@ -140,7 +140,7 @@ public class PaymentGatewayNon3dsModeUAT {
         assertNotNull(creationResponse);
 
         // Emulate customer behaviour performing GET request to redirect url
-        HttpUtils.doGetSilent(creationResponse.getRedirectUrl());
+        log.info("{}", ApiClient.doGet(creationResponse.getRedirectUrl()));
 
         // explore response result
         PaymentResponsePaymentData paymentData = fetchPaymentByMerchantOrderId(merchantOrderId);

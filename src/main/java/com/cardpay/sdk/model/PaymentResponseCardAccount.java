@@ -172,30 +172,18 @@ public class PaymentResponseCardAccount {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PaymentResponseCardAccount {\n");
-    
-    if (acctType != null) sb.append("    acctType: ").append(toIndentedString(acctType)).append("\n");
-    if (expiration != null) sb.append("    expiration: ").append(toIndentedString(expiration)).append("\n");
-    if (holder != null) sb.append("    holder: ").append(toIndentedString(holder)).append("\n");
-    if (issuingCountryCode != null) sb.append("    issuingCountryCode: ").append(toIndentedString(issuingCountryCode)).append("\n");
-    if (maskedPan != null) sb.append("    maskedPan: ").append(toIndentedString(maskedPan)).append("\n");
-    if (token != null) sb.append("    token: ").append(toIndentedString(token)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("PaymentResponseCardAccount( ");
+     
+     if (acctType != null) sb.append("acctType=").append(acctType.toString()).append("; ");
+     if (expiration != null) sb.append("expiration=").append(expiration.toString()).append("; ");
+     if (holder != null) sb.append("holder=").append(holder.toString()).append("; ");
+     if (issuingCountryCode != null) sb.append("issuingCountryCode=").append(issuingCountryCode.toString()).append("; ");
+     if (maskedPan != null) sb.append("maskedPan=").append(maskedPan.toString()).append("; ");
+     if (token != null) sb.append("token=").append(token.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

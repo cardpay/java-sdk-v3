@@ -477,41 +477,29 @@ public class RecurringResponseRecurringData {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class RecurringResponseRecurringData {\n");
-    
-    if (amount != null) sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-    if (arn != null) sb.append("    arn: ").append(toIndentedString(arn)).append("\n");
-    if (authCode != null) sb.append("    authCode: ").append(toIndentedString(authCode)).append("\n");
-    if (created != null) sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    if (currency != null) sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
-    if (declineCode != null) sb.append("    declineCode: ").append(toIndentedString(declineCode)).append("\n");
-    if (declineReason != null) sb.append("    declineReason: ").append(toIndentedString(declineReason)).append("\n");
-    if (filing != null) sb.append("    filing: ").append(toIndentedString(filing)).append("\n");
-    if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    if (invalidData != null) sb.append("    invalidData: ").append(toIndentedString(invalidData)).append("\n");
-    if (is3d != null) sb.append("    is3d: ").append(toIndentedString(is3d)).append("\n");
-    if (note != null) sb.append("    note: ").append(toIndentedString(note)).append("\n");
-    if (rrn != null) sb.append("    rrn: ").append(toIndentedString(rrn)).append("\n");
-    if (status != null) sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    if (subscription != null) sb.append("    subscription: ").append(toIndentedString(subscription)).append("\n");
-    if (transType != null) sb.append("    transType: ").append(toIndentedString(transType)).append("\n");
-    if (type != null) sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("RecurringResponseRecurringData( ");
+     
+     if (amount != null) sb.append("amount=").append(amount.toString()).append("; ");
+     if (arn != null) sb.append("arn=").append(arn.toString()).append("; ");
+     if (authCode != null) sb.append("authCode=").append(authCode.toString()).append("; ");
+     if (created != null) sb.append("created=").append(created.toString()).append("; ");
+     if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
+     if (declineCode != null) sb.append("declineCode=").append(declineCode.toString()).append("; ");
+     if (declineReason != null) sb.append("declineReason=").append(declineReason.toString()).append("; ");
+     if (filing != null) sb.append("filing=").append(filing.toString()).append("; ");
+     if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (invalidData != null) sb.append("invalidData=").append(invalidData.toString()).append("; ");
+     if (is3d != null) sb.append("is3d=").append(is3d.toString()).append("; ");
+     if (note != null) sb.append("note=").append(note.toString()).append("; ");
+     if (rrn != null) sb.append("rrn=").append(rrn.toString()).append("; ");
+     if (status != null) sb.append("status=").append(status.toString()).append("; ");
+     if (subscription != null) sb.append("subscription=").append(subscription.toString()).append("; ");
+     if (transType != null) sb.append("transType=").append(transType.toString()).append("; ");
+     if (type != null) sb.append("type=").append(type.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

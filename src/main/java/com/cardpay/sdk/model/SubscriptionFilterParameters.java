@@ -316,35 +316,23 @@ public class SubscriptionFilterParameters {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class SubscriptionFilterParameters {\n");
-    
-    if (requestId != null) sb.append("    requestId: ").append(toIndentedString(requestId)).append("\n");
-    if (maxCount != null) sb.append("    maxCount: ").append(toIndentedString(maxCount)).append("\n");
-    if (offset != null) sb.append("    offset: ").append(toIndentedString(offset)).append("\n");
-    if (sortOrder != null) sb.append("    sortOrder: ").append(toIndentedString(sortOrder)).append("\n");
-    if (customerId != null) sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
-    if (planId != null) sb.append("    planId: ").append(toIndentedString(planId)).append("\n");
-    if (startTime != null) sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
-    if (endTime != null) sb.append("    endTime: ").append(toIndentedString(endTime)).append("\n");
-    if (currency != null) sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
-    if (status != null) sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    if (type != null) sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("SubscriptionFilterParameters( ");
+     
+     if (requestId != null) sb.append("requestId=").append(requestId.toString()).append("; ");
+     if (maxCount != null) sb.append("maxCount=").append(maxCount.toString()).append("; ");
+     if (offset != null) sb.append("offset=").append(offset.toString()).append("; ");
+     if (sortOrder != null) sb.append("sortOrder=").append(sortOrder.toString()).append("; ");
+     if (customerId != null) sb.append("customerId=").append(customerId.toString()).append("; ");
+     if (planId != null) sb.append("planId=").append(planId.toString()).append("; ");
+     if (startTime != null) sb.append("startTime=").append(startTime.toString()).append("; ");
+     if (endTime != null) sb.append("endTime=").append(endTime.toString()).append("; ");
+     if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
+     if (status != null) sb.append("status=").append(status.toString()).append("; ");
+     if (type != null) sb.append("type=").append(type.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

@@ -138,28 +138,16 @@ public class RecurringConfirm3dsRequest {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class RecurringConfirm3dsRequest {\n");
-    
-    if (request != null) sb.append("    request: ").append(toIndentedString(request)).append("\n");
-    if (operation != null) sb.append("    operation: ").append(toIndentedString(operation)).append("\n");
-    if (recurringData != null) sb.append("    recurringData: ").append(toIndentedString(recurringData)).append("\n");
-    if (paRes != null) sb.append("    paRes: ").append(toIndentedString(paRes)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("RecurringConfirm3dsRequest( ");
+     
+     if (request != null) sb.append("request=").append(request.toString()).append("; ");
+     if (operation != null) sb.append("operation=").append(operation.toString()).append("; ");
+     if (recurringData != null) sb.append("recurringData=").append(recurringData.toString()).append("; ");
+     if (paRes != null) sb.append("paRes=").append(paRes.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

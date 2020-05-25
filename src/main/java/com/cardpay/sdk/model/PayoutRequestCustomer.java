@@ -31,6 +31,8 @@ public class PayoutRequestCustomer {
   private String fullName = null;
   @SerializedName("id")
   private String id = null;
+  @SerializedName("identity")
+  private String identity = null;
   @SerializedName("last_name")
   private String lastName = null;
   @SerializedName("living_address")
@@ -122,6 +124,20 @@ public class PayoutRequestCustomer {
   }
 
   
+  public void setIdentity(String identity) {
+      this.identity = identity;
+  }
+
+  /**
+   * @param identity Customer identity  - Customer’s personal identification number: &#39;CPF&#39; or &#39;CNPJ&#39; for Brazil, &#39;DNI&#39; for Argentina and ID for other countries.  For SPEI - Customer CPF or CURP
+   * @return bean instance
+   **/
+  public PayoutRequestCustomer identity(String identity) {
+      this.identity = identity;
+      return this;
+  }
+
+  
   public void setLastName(String lastName) {
       this.lastName = lastName;
   }
@@ -166,33 +182,22 @@ public class PayoutRequestCustomer {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PayoutRequestCustomer {\n");
-    
-    if (documentNumber != null) sb.append("    documentNumber: ").append(toIndentedString(documentNumber)).append("\n");
-    if (documentType != null) sb.append("    documentType: ").append(toIndentedString(documentType)).append("\n");
-    if (email != null) sb.append("    email: ").append(toIndentedString(email)).append("\n");
-    if (firstName != null) sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
-    if (fullName != null) sb.append("    fullName: ").append(toIndentedString(fullName)).append("\n");
-    if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    if (lastName != null) sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
-    if (livingAddress != null) sb.append("    livingAddress: ").append(toIndentedString(livingAddress)).append("\n");
-    if (phone != null) sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("PayoutRequestCustomer( ");
+     
+     if (documentNumber != null) sb.append("documentNumber=").append(documentNumber.toString()).append("; ");
+     if (documentType != null) sb.append("documentType=").append(documentType.toString()).append("; ");
+     if (email != null) sb.append("email=").append(email.toString()).append("; ");
+     if (firstName != null) sb.append("firstName=").append(firstName.toString()).append("; ");
+     if (fullName != null) sb.append("fullName=").append(fullName.toString()).append("; ");
+     if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (identity != null) sb.append("identity=").append(identity.toString()).append("; ");
+     if (lastName != null) sb.append("lastName=").append(lastName.toString()).append("; ");
+     if (livingAddress != null) sb.append("livingAddress=").append(livingAddress.toString()).append("; ");
+     if (phone != null) sb.append("phone=").append(phone.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

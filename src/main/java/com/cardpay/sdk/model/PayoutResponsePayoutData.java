@@ -253,34 +253,22 @@ public class PayoutResponsePayoutData {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PayoutResponsePayoutData {\n");
-    
-    if (amount != null) sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-    if (arn != null) sb.append("    arn: ").append(toIndentedString(arn)).append("\n");
-    if (created != null) sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    if (currency != null) sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
-    if (declineCode != null) sb.append("    declineCode: ").append(toIndentedString(declineCode)).append("\n");
-    if (declineReason != null) sb.append("    declineReason: ").append(toIndentedString(declineReason)).append("\n");
-    if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    if (note != null) sb.append("    note: ").append(toIndentedString(note)).append("\n");
-    if (rrn != null) sb.append("    rrn: ").append(toIndentedString(rrn)).append("\n");
-    if (status != null) sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("PayoutResponsePayoutData( ");
+     
+     if (amount != null) sb.append("amount=").append(amount.toString()).append("; ");
+     if (arn != null) sb.append("arn=").append(arn.toString()).append("; ");
+     if (created != null) sb.append("created=").append(created.toString()).append("; ");
+     if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
+     if (declineCode != null) sb.append("declineCode=").append(declineCode.toString()).append("; ");
+     if (declineReason != null) sb.append("declineReason=").append(declineReason.toString()).append("; ");
+     if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (note != null) sb.append("note=").append(note.toString()).append("; ");
+     if (rrn != null) sb.append("rrn=").append(rrn.toString()).append("; ");
+     if (status != null) sb.append("status=").append(status.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

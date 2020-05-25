@@ -54,26 +54,14 @@ public class PayoutRequestCard {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PayoutRequestCard {\n");
-    
-    if (expiration != null) sb.append("    expiration: ").append(toIndentedString(expiration)).append("\n");
-    if (pan != null) sb.append("    pan: ").append(toIndentedString(pan)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("PayoutRequestCard( ");
+     
+     if (expiration != null) sb.append("expiration=").append(expiration.toString()).append("; ");
+     if (pan != null) sb.append("pan=").append(pan.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

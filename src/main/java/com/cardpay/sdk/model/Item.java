@@ -87,28 +87,16 @@ public class Item {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Item {\n");
-    
-    if (count != null) sb.append("    count: ").append(toIndentedString(count)).append("\n");
-    if (description != null) sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    if (name != null) sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    if (price != null) sb.append("    price: ").append(toIndentedString(price)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("Item( ");
+     
+     if (count != null) sb.append("count=").append(count.toString()).append("; ");
+     if (description != null) sb.append("description=").append(description.toString()).append("; ");
+     if (name != null) sb.append("name=").append(name.toString()).append("; ");
+     if (price != null) sb.append("price=").append(price.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

@@ -150,32 +150,20 @@ public class PaymentCallback {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PaymentCallback {\n");
-    
-    if (callbackTime != null) sb.append("    callbackTime: ").append(toIndentedString(callbackTime)).append("\n");
-    if (cardAccount != null) sb.append("    cardAccount: ").append(toIndentedString(cardAccount)).append("\n");
-    if (cryptocurrencyAccount != null) sb.append("    cryptocurrencyAccount: ").append(toIndentedString(cryptocurrencyAccount)).append("\n");
-    if (customer != null) sb.append("    customer: ").append(toIndentedString(customer)).append("\n");
-    if (ewalletAccount != null) sb.append("    ewalletAccount: ").append(toIndentedString(ewalletAccount)).append("\n");
-    if (merchantOrder != null) sb.append("    merchantOrder: ").append(toIndentedString(merchantOrder)).append("\n");
-    if (paymentData != null) sb.append("    paymentData: ").append(toIndentedString(paymentData)).append("\n");
-    if (paymentMethod != null) sb.append("    paymentMethod: ").append(toIndentedString(paymentMethod)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("PaymentCallback( ");
+     
+     if (callbackTime != null) sb.append("callbackTime=").append(callbackTime.toString()).append("; ");
+     if (cardAccount != null) sb.append("cardAccount=").append(cardAccount.toString()).append("; ");
+     if (cryptocurrencyAccount != null) sb.append("cryptocurrencyAccount=").append(cryptocurrencyAccount.toString()).append("; ");
+     if (customer != null) sb.append("customer=").append(customer.toString()).append("; ");
+     if (ewalletAccount != null) sb.append("ewalletAccount=").append(ewalletAccount.toString()).append("; ");
+     if (merchantOrder != null) sb.append("merchantOrder=").append(merchantOrder.toString()).append("; ");
+     if (paymentData != null) sb.append("paymentData=").append(paymentData.toString()).append("; ");
+     if (paymentMethod != null) sb.append("paymentMethod=").append(paymentMethod.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

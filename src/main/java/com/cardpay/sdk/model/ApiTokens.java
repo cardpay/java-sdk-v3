@@ -102,29 +102,17 @@ public class ApiTokens {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ApiTokens {\n");
-    
-    if (accessToken != null) sb.append("    accessToken: ").append(toIndentedString(accessToken)).append("\n");
-    if (expiresIn != null) sb.append("    expiresIn: ").append(toIndentedString(expiresIn)).append("\n");
-    if (refreshExpiresIn != null) sb.append("    refreshExpiresIn: ").append(toIndentedString(refreshExpiresIn)).append("\n");
-    if (refreshToken != null) sb.append("    refreshToken: ").append(toIndentedString(refreshToken)).append("\n");
-    if (tokenType != null) sb.append("    tokenType: ").append(toIndentedString(tokenType)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("ApiTokens( ");
+     
+     if (accessToken != null) sb.append("accessToken=").append(accessToken.toString()).append("; ");
+     if (expiresIn != null) sb.append("expiresIn=").append(expiresIn.toString()).append("; ");
+     if (refreshExpiresIn != null) sb.append("refreshExpiresIn=").append(refreshExpiresIn.toString()).append("; ");
+     if (refreshToken != null) sb.append("refreshToken=").append(refreshToken.toString()).append("; ");
+     if (tokenType != null) sb.append("tokenType=").append(tokenType.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

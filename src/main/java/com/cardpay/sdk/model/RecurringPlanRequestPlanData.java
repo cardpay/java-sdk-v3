@@ -180,30 +180,18 @@ public class RecurringPlanRequestPlanData {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class RecurringPlanRequestPlanData {\n");
-    
-    if (amount != null) sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-    if (currency != null) sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
-    if (interval != null) sb.append("    interval: ").append(toIndentedString(interval)).append("\n");
-    if (name != null) sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    if (period != null) sb.append("    period: ").append(toIndentedString(period)).append("\n");
-    if (retries != null) sb.append("    retries: ").append(toIndentedString(retries)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("RecurringPlanRequestPlanData( ");
+     
+     if (amount != null) sb.append("amount=").append(amount.toString()).append("; ");
+     if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
+     if (interval != null) sb.append("interval=").append(interval.toString()).append("; ");
+     if (name != null) sb.append("name=").append(name.toString()).append("; ");
+     if (period != null) sb.append("period=").append(period.toString()).append("; ");
+     if (retries != null) sb.append("retries=").append(retries.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

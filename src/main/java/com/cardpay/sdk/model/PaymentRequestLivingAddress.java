@@ -102,29 +102,17 @@ public class PaymentRequestLivingAddress {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PaymentRequestLivingAddress {\n");
-    
-    if (address != null) sb.append("    address: ").append(toIndentedString(address)).append("\n");
-    if (city != null) sb.append("    city: ").append(toIndentedString(city)).append("\n");
-    if (country != null) sb.append("    country: ").append(toIndentedString(country)).append("\n");
-    if (state != null) sb.append("    state: ").append(toIndentedString(state)).append("\n");
-    if (zip != null) sb.append("    zip: ").append(toIndentedString(zip)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("PaymentRequestLivingAddress( ");
+     
+     if (address != null) sb.append("address=").append(address.toString()).append("; ");
+     if (city != null) sb.append("city=").append(city.toString()).append("; ");
+     if (country != null) sb.append("country=").append(country.toString()).append("; ");
+     if (state != null) sb.append("state=").append(state.toString()).append("; ");
+     if (zip != null) sb.append("zip=").append(zip.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

@@ -118,30 +118,18 @@ public class PaymentResponseCustomer {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PaymentResponseCustomer {\n");
-    
-    if (email != null) sb.append("    email: ").append(toIndentedString(email)).append("\n");
-    if (fullName != null) sb.append("    fullName: ").append(toIndentedString(fullName)).append("\n");
-    if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    if (ip != null) sb.append("    ip: ").append(toIndentedString(ip)).append("\n");
-    if (locale != null) sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
-    if (phone != null) sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("PaymentResponseCustomer( ");
+     
+     if (email != null) sb.append("email=").append(email.toString()).append("; ");
+     if (fullName != null) sb.append("fullName=").append(fullName.toString()).append("; ");
+     if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (ip != null) sb.append("ip=").append(ip.toString()).append("; ");
+     if (locale != null) sb.append("locale=").append(locale.toString()).append("; ");
+     if (phone != null) sb.append("phone=").append(phone.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

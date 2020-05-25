@@ -190,31 +190,19 @@ public class RecurringCustomer {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class RecurringCustomer {\n");
-    
-    if (email != null) sb.append("    email: ").append(toIndentedString(email)).append("\n");
-    if (homePhone != null) sb.append("    homePhone: ").append(toIndentedString(homePhone)).append("\n");
-    if (id != null) sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    if (ip != null) sb.append("    ip: ").append(toIndentedString(ip)).append("\n");
-    if (locale != null) sb.append("    locale: ").append(toIndentedString(locale)).append("\n");
-    if (phone != null) sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
-    if (workPhone != null) sb.append("    workPhone: ").append(toIndentedString(workPhone)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("RecurringCustomer( ");
+     
+     if (email != null) sb.append("email=").append(email.toString()).append("; ");
+     if (homePhone != null) sb.append("homePhone=").append(homePhone.toString()).append("; ");
+     if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (ip != null) sb.append("ip=").append(ip.toString()).append("; ");
+     if (locale != null) sb.append("locale=").append(locale.toString()).append("; ");
+     if (phone != null) sb.append("phone=").append(phone.toString()).append("; ");
+     if (workPhone != null) sb.append("workPhone=").append(workPhone.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

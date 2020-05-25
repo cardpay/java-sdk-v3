@@ -118,30 +118,18 @@ public class RefundRequest {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class RefundRequest {\n");
-    
-    if (request != null) sb.append("    request: ").append(toIndentedString(request)).append("\n");
-    if (customer != null) sb.append("    customer: ").append(toIndentedString(customer)).append("\n");
-    if (ewalletAccount != null) sb.append("    ewalletAccount: ").append(toIndentedString(ewalletAccount)).append("\n");
-    if (merchantOrder != null) sb.append("    merchantOrder: ").append(toIndentedString(merchantOrder)).append("\n");
-    if (paymentData != null) sb.append("    paymentData: ").append(toIndentedString(paymentData)).append("\n");
-    if (refundData != null) sb.append("    refundData: ").append(toIndentedString(refundData)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("RefundRequest( ");
+     
+     if (request != null) sb.append("request=").append(request.toString()).append("; ");
+     if (customer != null) sb.append("customer=").append(customer.toString()).append("; ");
+     if (ewalletAccount != null) sb.append("ewalletAccount=").append(ewalletAccount.toString()).append("; ");
+     if (merchantOrder != null) sb.append("merchantOrder=").append(merchantOrder.toString()).append("; ");
+     if (paymentData != null) sb.append("paymentData=").append(paymentData.toString()).append("; ");
+     if (refundData != null) sb.append("refundData=").append(refundData.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

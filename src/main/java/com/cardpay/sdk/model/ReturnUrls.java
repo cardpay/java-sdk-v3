@@ -102,29 +102,17 @@ public class ReturnUrls {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ReturnUrls {\n");
-    
-    if (cancelUrl != null) sb.append("    cancelUrl: ").append(toIndentedString(cancelUrl)).append("\n");
-    if (declineUrl != null) sb.append("    declineUrl: ").append(toIndentedString(declineUrl)).append("\n");
-    if (inprocessUrl != null) sb.append("    inprocessUrl: ").append(toIndentedString(inprocessUrl)).append("\n");
-    if (returnUrl != null) sb.append("    returnUrl: ").append(toIndentedString(returnUrl)).append("\n");
-    if (successUrl != null) sb.append("    successUrl: ").append(toIndentedString(successUrl)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("ReturnUrls( ");
+     
+     if (cancelUrl != null) sb.append("cancelUrl=").append(cancelUrl.toString()).append("; ");
+     if (declineUrl != null) sb.append("declineUrl=").append(declineUrl.toString()).append("; ");
+     if (inprocessUrl != null) sb.append("inprocessUrl=").append(inprocessUrl.toString()).append("; ");
+     if (returnUrl != null) sb.append("returnUrl=").append(returnUrl.toString()).append("; ");
+     if (successUrl != null) sb.append("successUrl=").append(successUrl.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 

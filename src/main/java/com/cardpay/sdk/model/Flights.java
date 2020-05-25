@@ -208,35 +208,23 @@ public class Flights {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Flights {\n");
-    
-    if (computerizedResSystem != null) sb.append("    computerizedResSystem: ").append(toIndentedString(computerizedResSystem)).append("\n");
-    if (creditReasonIndicator != null) sb.append("    creditReasonIndicator: ").append(toIndentedString(creditReasonIndicator)).append("\n");
-    if (departureDate != null) sb.append("    departureDate: ").append(toIndentedString(departureDate)).append("\n");
-    if (flight != null) sb.append("    flight: ").append(toIndentedString(flight)).append("\n");
-    if (isRestricted != null) sb.append("    isRestricted: ").append(toIndentedString(isRestricted)).append("\n");
-    if (originationCode != null) sb.append("    originationCode: ").append(toIndentedString(originationCode)).append("\n");
-    if (passengerName != null) sb.append("    passengerName: ").append(toIndentedString(passengerName)).append("\n");
-    if (ticketChangeIndicator != null) sb.append("    ticketChangeIndicator: ").append(toIndentedString(ticketChangeIndicator)).append("\n");
-    if (ticketNumber != null) sb.append("    ticketNumber: ").append(toIndentedString(ticketNumber)).append("\n");
-    if (travelAgencyCode != null) sb.append("    travelAgencyCode: ").append(toIndentedString(travelAgencyCode)).append("\n");
-    if (travelAgencyName != null) sb.append("    travelAgencyName: ").append(toIndentedString(travelAgencyName)).append("\n");
-    sb.append("}");
-    return sb.toString();
+     StringBuilder sb = new StringBuilder();
+     sb.append("Flights( ");
+     
+     if (computerizedResSystem != null) sb.append("computerizedResSystem=").append(computerizedResSystem.toString()).append("; ");
+     if (creditReasonIndicator != null) sb.append("creditReasonIndicator=").append(creditReasonIndicator.toString()).append("; ");
+     if (departureDate != null) sb.append("departureDate=").append(departureDate.toString()).append("; ");
+     if (flight != null) sb.append("flight=").append(flight.toString()).append("; ");
+     if (isRestricted != null) sb.append("isRestricted=").append(isRestricted.toString()).append("; ");
+     if (originationCode != null) sb.append("originationCode=").append(originationCode.toString()).append("; ");
+     if (passengerName != null) sb.append("passengerName=").append(passengerName.toString()).append("; ");
+     if (ticketChangeIndicator != null) sb.append("ticketChangeIndicator=").append(ticketChangeIndicator.toString()).append("; ");
+     if (ticketNumber != null) sb.append("ticketNumber=").append(ticketNumber.toString()).append("; ");
+     if (travelAgencyCode != null) sb.append("travelAgencyCode=").append(travelAgencyCode.toString()).append("; ");
+     if (travelAgencyName != null) sb.append("travelAgencyName=").append(travelAgencyName.toString()).append("; ");
+     sb.append(")");
+     return sb.toString();
   }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 
 }
 
