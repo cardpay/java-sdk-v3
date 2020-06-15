@@ -35,7 +35,7 @@ public class SubscriptionGetResponse {
   @SerializedName("currency")
   private String currency = null;
   @SerializedName("customer")
-  private PayoutResponseCustomer customer = null;
+  private RecurringResponseCustomer customer = null;
   @SerializedName("description")
   private String description = null;
   @SerializedName("id")
@@ -278,7 +278,7 @@ public class SubscriptionGetResponse {
   }
 
   
-  public void setCustomer(PayoutResponseCustomer customer) {
+  public void setCustomer(RecurringResponseCustomer customer) {
       this.customer = customer;
   }
 
@@ -286,7 +286,7 @@ public class SubscriptionGetResponse {
    * @param customer Customer data
    * @return bean instance
    **/
-  public SubscriptionGetResponse customer(PayoutResponseCustomer customer) {
+  public SubscriptionGetResponse customer(RecurringResponseCustomer customer) {
       this.customer = customer;
       return this;
   }

@@ -19,8 +19,6 @@ import lombok.Data;
 @Data
 
 public class PayoutRequestCustomer {
-  @SerializedName("document_number")
-  private String documentNumber = null;
   @SerializedName("document_type")
   private String documentType = null;
   @SerializedName("email")
@@ -39,20 +37,6 @@ public class PayoutRequestCustomer {
   private PayoutRequestLivingAddress livingAddress = null;
   @SerializedName("phone")
   private String phone = null;
-  
-  public void setDocumentNumber(String documentNumber) {
-      this.documentNumber = documentNumber;
-  }
-
-  /**
-   * @param documentNumber Customer document number *(mandatory for &#39;Latin America&#39; methods only)* For &#39;Latin America&#39; is required for methods where country &#x3D; AR, BR, CL, CO, PE, UY
-   * @return bean instance
-   **/
-  public PayoutRequestCustomer documentNumber(String documentNumber) {
-      this.documentNumber = documentNumber;
-      return this;
-  }
-
   
   public void setDocumentType(String documentType) {
       this.documentType = documentType;
@@ -185,7 +169,6 @@ public class PayoutRequestCustomer {
      StringBuilder sb = new StringBuilder();
      sb.append("PayoutRequestCustomer( ");
      
-     if (documentNumber != null) sb.append("documentNumber=").append(documentNumber.toString()).append("; ");
      if (documentType != null) sb.append("documentType=").append(documentType.toString()).append("; ");
      if (email != null) sb.append("email=").append(email.toString()).append("; ");
      if (firstName != null) sb.append("firstName=").append(firstName.toString()).append("; ");

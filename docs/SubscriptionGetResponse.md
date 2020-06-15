@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **amountTotal** | [**BigDecimal**](BigDecimal.md) | Total amount of subscription to be paid before completion |  [optional]
 **created** | [**OffsetDateTime**](OffsetDateTime.md) | Creation time [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format |  [optional]
 **currency** | **String** | [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code |  [optional]
-**customer** | [**PayoutResponseCustomer**](PayoutResponseCustomer.md) | Customer data |  [optional]
+**customer** | [**RecurringResponseCustomer**](RecurringResponseCustomer.md) | Customer data |  [optional]
 **description** | **String** | Description of subscription |  [optional]
 **id** | **String** | ID of subscription |  [optional]
 **interval** | **Integer** | Interval of subscription |  [optional]
