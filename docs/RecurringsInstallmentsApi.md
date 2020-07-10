@@ -4,11 +4,69 @@ All URIs are relative to *https://sandbox.cardpay.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**calculateSchedule**](RecurringsInstallmentsApi.md#calculateSchedule) | **GET** api/installments/options_calculator | Get calculation of installment payment options
 [**createInstallment**](RecurringsInstallmentsApi.md#createInstallment) | **POST** api/installments | Create installment
 [**getInstallmentPayment**](RecurringsInstallmentsApi.md#getInstallmentPayment) | **GET** api/installments/{recurringId} | Get installment payment
 [**getInstallmentPayments**](RecurringsInstallmentsApi.md#getInstallmentPayments) | **GET** api/installments | Get installment payments
 [**updateInstallmentPayment**](RecurringsInstallmentsApi.md#updateInstallmentPayment) | **PATCH** api/installments/{recurringId} | Update installment payment
 
+
+<a name="calculateSchedule"></a>
+# **calculateSchedule**
+> ScheduleOptionsResponse calculateSchedule(currency, requestId, totalAmount)
+
+Get calculation of installment payment options
+
+### Example
+```java
+// Import classes:
+//import com.cardpay.sdk.client.ApiClient;
+//import com.cardpay.sdk.client.ApiException;
+//import com.cardpay.sdk.client.Configuration;
+//import com.cardpay.sdk.client.auth.*;
+//import com.cardpay.sdk.api.RecurringsInstallmentsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: Bearer
+ApiKeyAuth Bearer = (ApiKeyAuth) defaultClient.getAuthentication("Bearer");
+Bearer.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//Bearer.setApiKeyPrefix("Token");
+
+RecurringsInstallmentsApi apiInstance = new RecurringsInstallmentsApi();
+String currency = "\"USD\""; // String | [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code
+String requestId = "\"2253145\""; // String | Request ID
+BigDecimal totalAmount = new BigDecimal(); // BigDecimal | Total amount of subscription to be calculated to options; can have dot as a decimal separator.
+try {
+    ScheduleOptionsResponse result = apiInstance.calculateSchedule(currency, requestId, totalAmount);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling RecurringsInstallmentsApi#calculateSchedule");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **String**| [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code |
+ **requestId** | **String**| Request ID |
+ **totalAmount** | **BigDecimal**| Total amount of subscription to be calculated to options; can have dot as a decimal separator. | [optional]
+
+### Return type
+
+[**ScheduleOptionsResponse**](ScheduleOptionsResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 <a name="createInstallment"></a>
 # **createInstallment**

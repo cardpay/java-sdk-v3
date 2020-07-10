@@ -18,25 +18,25 @@ import lombok.Data;
 
 @Data
 
-public class PayoutResponseCard {
+public class CardBindingCard {
   @SerializedName("expiration")
   private String expiration = null;
   @SerializedName("holder")
   private String holder = null;
-  @SerializedName("issuing_country_code")
-  private String issuingCountryCode = null;
-  @SerializedName("masked_pan")
-  private String maskedPan = null;
+  @SerializedName("pan")
+  private String pan = null;
+  @SerializedName("security_code")
+  private String securityCode = null;
   
   public void setExpiration(String expiration) {
       this.expiration = expiration;
   }
 
   /**
-   * @param expiration Customer’s card expiration date. Format: &#x60;mm/yyyy&#x60;
+   * @param expiration Customer&#39;s card expiration date. Format: &#x60;mm/yyyy&#x60;
    * @return bean instance
    **/
-  public PayoutResponseCard expiration(String expiration) {
+  public CardBindingCard expiration(String expiration) {
       this.expiration = expiration;
       return this;
   }
@@ -47,39 +47,39 @@ public class PayoutResponseCard {
   }
 
   /**
-   * @param holder Customer&#39;s cardholder name. Any valid cardholder name. Not present by default, ask CardPay manager to enable it if needed.
+   * @param holder Customer&#39;s cardholder name. Any valid cardholder name
    * @return bean instance
    **/
-  public PayoutResponseCard holder(String holder) {
+  public CardBindingCard holder(String holder) {
       this.holder = holder;
       return this;
   }
 
   
-  public void setIssuingCountryCode(String issuingCountryCode) {
-      this.issuingCountryCode = issuingCountryCode;
+  public void setPan(String pan) {
+      this.pan = pan;
   }
 
   /**
-   * @param issuingCountryCode Country code of issuing card country
+   * @param pan Customer&#39;s card number (PAN). Any valid card number, may contain spaces
    * @return bean instance
    **/
-  public PayoutResponseCard issuingCountryCode(String issuingCountryCode) {
-      this.issuingCountryCode = issuingCountryCode;
+  public CardBindingCard pan(String pan) {
+      this.pan = pan;
       return this;
   }
 
   
-  public void setMaskedPan(String maskedPan) {
-      this.maskedPan = maskedPan;
+  public void setSecurityCode(String securityCode) {
+      this.securityCode = securityCode;
   }
 
   /**
-   * @param maskedPan Masked PAN (shows first 6 digits and 4 last digits of the PAN)
+   * @param securityCode Customer&#39;s CVV2 / CVC2 / CAV2
    * @return bean instance
    **/
-  public PayoutResponseCard maskedPan(String maskedPan) {
-      this.maskedPan = maskedPan;
+  public CardBindingCard securityCode(String securityCode) {
+      this.securityCode = securityCode;
       return this;
   }
 
@@ -87,12 +87,12 @@ public class PayoutResponseCard {
   @Override
   public String toString() {
      StringBuilder sb = new StringBuilder();
-     sb.append("PayoutResponseCard( ");
+     sb.append("CardBindingCard( ");
      
      if (expiration != null) sb.append("expiration=").append(expiration.toString()).append("; ");
      if (holder != null) sb.append("holder=").append(holder.toString()).append("; ");
-     if (issuingCountryCode != null) sb.append("issuingCountryCode=").append(issuingCountryCode.toString()).append("; ");
-     if (maskedPan != null) sb.append("maskedPan=").append(maskedPan.toString()).append("; ");
+     if (pan != null) sb.append("pan=").append(pan.toString()).append("; ");
+     if (securityCode != null) sb.append("securityCode=").append(securityCode.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

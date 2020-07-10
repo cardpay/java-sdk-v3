@@ -123,6 +123,57 @@ public class RecurringResponseRecurringData {
   @SerializedName("subscription")
   private Subscription subscription = null;
   /**
+   * Recurring payment type name; can be ONECLICK, SCHEDULED, INSTALLMENT
+   */
+  @JsonAdapter(TypeEnum.Adapter.class)
+  public enum TypeEnum {
+    ONECLICK("ONECLICK"),
+    
+    SCHEDULED("SCHEDULED"),
+    
+    INSTALLMENT("INSTALLMENT");
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TypeEnum fromValue(String text) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return TypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName("type")
+  private TypeEnum type = null;
+  /**
    * Gets or Sets transType
    */
   @JsonAdapter(TransTypeEnum.Adapter.class)
@@ -177,57 +228,6 @@ public class RecurringResponseRecurringData {
 
   @SerializedName("trans_type")
   private TransTypeEnum transType = null;
-  /**
-   * Recurring payment type name; can be ONECLICK, SCHEDULED, INSTALLMENT
-   */
-  @JsonAdapter(TypeEnum.Adapter.class)
-  public enum TypeEnum {
-    ONECLICK("ONECLICK"),
-    
-    SCHEDULED("SCHEDULED"),
-    
-    INSTALLMENT("INSTALLMENT");
-
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static TypeEnum fromValue(String text) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-
-    public static class Adapter extends TypeAdapter<TypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final TypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return TypeEnum.fromValue(String.valueOf(value));
-      }
-    }
-  }
-
-  @SerializedName("type")
-  private TypeEnum type = null;
   
   public void setAmount(BigDecimal amount) {
       this.amount = amount;
@@ -447,20 +447,6 @@ public class RecurringResponseRecurringData {
   }
 
   
-  public void setTransType(TransTypeEnum transType) {
-      this.transType = transType;
-  }
-
-  /**
-   * @param transType transType
-   * @return bean instance
-   **/
-  public RecurringResponseRecurringData transType(TransTypeEnum transType) {
-      this.transType = transType;
-      return this;
-  }
-
-  
   public void setType(TypeEnum type) {
       this.type = type;
   }
@@ -471,6 +457,20 @@ public class RecurringResponseRecurringData {
    **/
   public RecurringResponseRecurringData type(TypeEnum type) {
       this.type = type;
+      return this;
+  }
+
+  
+  public void setTransType(TransTypeEnum transType) {
+      this.transType = transType;
+  }
+
+  /**
+   * @param transType transType
+   * @return bean instance
+   **/
+  public RecurringResponseRecurringData transType(TransTypeEnum transType) {
+      this.transType = transType;
       return this;
   }
 
@@ -495,8 +495,8 @@ public class RecurringResponseRecurringData {
      if (rrn != null) sb.append("rrn=").append(rrn.toString()).append("; ");
      if (status != null) sb.append("status=").append(status.toString()).append("; ");
      if (subscription != null) sb.append("subscription=").append(subscription.toString()).append("; ");
-     if (transType != null) sb.append("transType=").append(transType.toString()).append("; ");
      if (type != null) sb.append("type=").append(type.toString()).append("; ");
+     if (transType != null) sb.append("transType=").append(transType.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

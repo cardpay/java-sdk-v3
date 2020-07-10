@@ -18,23 +18,21 @@ import lombok.Data;
 
 @Data
 
-public class InstallmentSubscriptionRequest {
+public class CardBindingRequest {
   @SerializedName("request")
   private Request request = null;
   @SerializedName("card_account")
-  private PaymentRequestCardAccount cardAccount = null;
+  private CardBindingCardAccount cardAccount = null;
   @SerializedName("customer")
   private RecurringCustomer customer = null;
   @SerializedName("merchant_order")
-  private RecurringRequestMerchantOrder merchantOrder = null;
-  @SerializedName("payment_method")
-  private String paymentMethod = null;
+  private CardBindingMerchantOrder merchantOrder = null;
+  @SerializedName("mobile_token")
+  private String mobileToken = null;
   @SerializedName("recurring_data")
-  private InstallmentData recurringData = null;
+  private CardBindingData recurringData = null;
   @SerializedName("return_urls")
   private ReturnUrls returnUrls = null;
-  @SerializedName("three_d_secure")
-  private ThreeDSecureData threeDSecure = null;
   
   public void setRequest(Request request) {
       this.request = request;
@@ -44,21 +42,21 @@ public class InstallmentSubscriptionRequest {
    * @param request Request
    * @return bean instance
    **/
-  public InstallmentSubscriptionRequest request(Request request) {
+  public CardBindingRequest request(Request request) {
       this.request = request;
       return this;
   }
 
   
-  public void setCardAccount(PaymentRequestCardAccount cardAccount) {
+  public void setCardAccount(CardBindingCardAccount cardAccount) {
       this.cardAccount = cardAccount;
   }
 
   /**
-   * @param cardAccount cardAccount
+   * @param cardAccount Information about card
    * @return bean instance
    **/
-  public InstallmentSubscriptionRequest cardAccount(PaymentRequestCardAccount cardAccount) {
+  public CardBindingRequest cardAccount(CardBindingCardAccount cardAccount) {
       this.cardAccount = cardAccount;
       return this;
   }
@@ -69,52 +67,52 @@ public class InstallmentSubscriptionRequest {
   }
 
   /**
-   * @param customer customer
+   * @param customer Customer data
    * @return bean instance
    **/
-  public InstallmentSubscriptionRequest customer(RecurringCustomer customer) {
+  public CardBindingRequest customer(RecurringCustomer customer) {
       this.customer = customer;
       return this;
   }
 
   
-  public void setMerchantOrder(RecurringRequestMerchantOrder merchantOrder) {
+  public void setMerchantOrder(CardBindingMerchantOrder merchantOrder) {
       this.merchantOrder = merchantOrder;
   }
 
   /**
-   * @param merchantOrder merchantOrder
+   * @param merchantOrder Merchant order data
    * @return bean instance
    **/
-  public InstallmentSubscriptionRequest merchantOrder(RecurringRequestMerchantOrder merchantOrder) {
+  public CardBindingRequest merchantOrder(CardBindingMerchantOrder merchantOrder) {
       this.merchantOrder = merchantOrder;
       return this;
   }
 
   
-  public void setPaymentMethod(String paymentMethod) {
-      this.paymentMethod = paymentMethod;
+  public void setMobileToken(String mobileToken) {
+      this.mobileToken = mobileToken;
   }
 
   /**
-   * @param paymentMethod paymentMethod
+   * @param mobileToken Mobile token
    * @return bean instance
    **/
-  public InstallmentSubscriptionRequest paymentMethod(String paymentMethod) {
-      this.paymentMethod = paymentMethod;
+  public CardBindingRequest mobileToken(String mobileToken) {
+      this.mobileToken = mobileToken;
       return this;
   }
 
   
-  public void setRecurringData(InstallmentData recurringData) {
+  public void setRecurringData(CardBindingData recurringData) {
       this.recurringData = recurringData;
   }
 
   /**
-   * @param recurringData recurringData
+   * @param recurringData Data of recurring payment
    * @return bean instance
    **/
-  public InstallmentSubscriptionRequest recurringData(InstallmentData recurringData) {
+  public CardBindingRequest recurringData(CardBindingData recurringData) {
       this.recurringData = recurringData;
       return this;
   }
@@ -125,25 +123,11 @@ public class InstallmentSubscriptionRequest {
   }
 
   /**
-   * @param returnUrls returnUrls
+   * @param returnUrls Merchant Return URLs
    * @return bean instance
    **/
-  public InstallmentSubscriptionRequest returnUrls(ReturnUrls returnUrls) {
+  public CardBindingRequest returnUrls(ReturnUrls returnUrls) {
       this.returnUrls = returnUrls;
-      return this;
-  }
-
-  
-  public void setThreeDSecure(ThreeDSecureData threeDSecure) {
-      this.threeDSecure = threeDSecure;
-  }
-
-  /**
-   * @param threeDSecure threeDSecure
-   * @return bean instance
-   **/
-  public InstallmentSubscriptionRequest threeDSecure(ThreeDSecureData threeDSecure) {
-      this.threeDSecure = threeDSecure;
       return this;
   }
 
@@ -151,16 +135,15 @@ public class InstallmentSubscriptionRequest {
   @Override
   public String toString() {
      StringBuilder sb = new StringBuilder();
-     sb.append("InstallmentSubscriptionRequest( ");
+     sb.append("CardBindingRequest( ");
      
      if (request != null) sb.append("request=").append(request.toString()).append("; ");
      if (cardAccount != null) sb.append("cardAccount=").append(cardAccount.toString()).append("; ");
      if (customer != null) sb.append("customer=").append(customer.toString()).append("; ");
      if (merchantOrder != null) sb.append("merchantOrder=").append(merchantOrder.toString()).append("; ");
-     if (paymentMethod != null) sb.append("paymentMethod=").append(paymentMethod.toString()).append("; ");
+     if (mobileToken != null) sb.append("mobileToken=").append(mobileToken.toString()).append("; ");
      if (recurringData != null) sb.append("recurringData=").append(recurringData.toString()).append("; ");
      if (returnUrls != null) sb.append("returnUrls=").append(returnUrls.toString()).append("; ");
-     if (threeDSecure != null) sb.append("threeDSecure=").append(threeDSecure.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

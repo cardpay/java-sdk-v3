@@ -35,6 +35,8 @@ public class FilingRequest {
   private ReturnUrls returnUrls = null;
   @SerializedName("subscription_data")
   private FilingRequestSubscriptionData subscriptionData = null;
+  @SerializedName("three_d_secure")
+  private ThreeDSecureData threeDSecure = null;
   
   public void setRequest(Request request) {
       this.request = request;
@@ -147,6 +149,20 @@ public class FilingRequest {
       return this;
   }
 
+  
+  public void setThreeDSecure(ThreeDSecureData threeDSecure) {
+      this.threeDSecure = threeDSecure;
+  }
+
+  /**
+   * @param threeDSecure threeDSecure
+   * @return bean instance
+   **/
+  public FilingRequest threeDSecure(ThreeDSecureData threeDSecure) {
+      this.threeDSecure = threeDSecure;
+      return this;
+  }
+
 
   @Override
   public String toString() {
@@ -161,6 +177,7 @@ public class FilingRequest {
      if (recurringData != null) sb.append("recurringData=").append(recurringData.toString()).append("; ");
      if (returnUrls != null) sb.append("returnUrls=").append(returnUrls.toString()).append("; ");
      if (subscriptionData != null) sb.append("subscriptionData=").append(subscriptionData.toString()).append("; ");
+     if (threeDSecure != null) sb.append("threeDSecure=").append(threeDSecure.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

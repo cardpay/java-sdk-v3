@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **paymentMethod** | **String** |  | 
 **recurringData** | [**InstallmentData**](InstallmentData.md) |  |  [optional]
 **returnUrls** | [**ReturnUrls**](ReturnUrls.md) |  |  [optional]
+**threeDSecure** | [**ThreeDSecureData**](ThreeDSecureData.md) |  |  [optional]
 
 
 

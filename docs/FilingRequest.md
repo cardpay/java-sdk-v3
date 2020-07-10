@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **recurringData** | [**FilingRecurringData**](FilingRecurringData.md) | Recurring data |  [optional]
 **returnUrls** | [**ReturnUrls**](ReturnUrls.md) | Return URLs |  [optional]
 **subscriptionData** | [**FilingRequestSubscriptionData**](FilingRequestSubscriptionData.md) | Subscription data |  [optional]
+**threeDSecure** | [**ThreeDSecureData**](ThreeDSecureData.md) |  |  [optional]
 
 
 

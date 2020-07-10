@@ -6,12 +6,27 @@ import com.cardpay.sdk.model.PaymentCreationResponse;
 import com.cardpay.sdk.model.RecurringPatchRequest;
 import com.cardpay.sdk.model.RecurringResponse;
 import com.cardpay.sdk.model.RecurringsList;
+import com.cardpay.sdk.model.ScheduleOptionsResponse;
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.*;
 
 public interface RecurringsInstallmentsApi {
+  /**
+   * Get calculation of installment payment options
+   * 
+   * @param currency [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code (required)
+   * @param requestId Request ID (required)
+   * @param totalAmount Total amount of subscription to be calculated to options; can have dot as a decimal separator. (optional)
+   * @return Call&lt;ScheduleOptionsResponse&gt;
+   */
+  @GET("api/installments/options_calculator")
+  Call<ScheduleOptionsResponse> calculateSchedule(
+    @retrofit2.http.Query("currency") String currency, @retrofit2.http.Query("request_id") String requestId, @retrofit2.http.Query("totalAmount") BigDecimal totalAmount
+  );
+
   /**
    * Create installment
    * 
