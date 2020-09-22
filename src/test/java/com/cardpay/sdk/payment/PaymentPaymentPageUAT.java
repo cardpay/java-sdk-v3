@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 
 import com.cardpay.sdk.api.PaymentsApi;
 import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.PaymentCreationResponse;
+import com.cardpay.sdk.model.PaymentGatewayCreationResponse;
 import com.cardpay.sdk.model.PaymentRequest;
 import com.cardpay.sdk.model.PaymentRequestCustomer;
 import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
@@ -93,7 +93,7 @@ public class PaymentPaymentPageUAT{
         log.info("{}", paymentRequest);
 
         // perform create payment
-        Response<PaymentCreationResponse> response = payments
+        Response<PaymentGatewayCreationResponse> response = payments
                 .createPayment(paymentRequest)
                 .execute();
 
@@ -101,7 +101,7 @@ public class PaymentPaymentPageUAT{
         assertTrue(response.message(), response.isSuccessful());
 
         // explore response result
-        PaymentCreationResponse data = response.body();
+        PaymentGatewayCreationResponse data = response.body();
         assertNotNull(data);
         log.info("{}", data);
 

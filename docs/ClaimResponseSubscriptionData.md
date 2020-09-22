@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** | ID of subscription | 
-**statusTo** | [**StatusToEnum**](#StatusToEnum) | Requested status of subscription | 
+**id** | **String** | ID of subscription |  [optional]
+**statusTo** | [**StatusToEnum**](#StatusToEnum) | Requested status of subscription |  [optional]
 
 
 <a name="StatusToEnum"></a>

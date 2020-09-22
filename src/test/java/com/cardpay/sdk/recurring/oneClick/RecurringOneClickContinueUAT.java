@@ -20,7 +20,7 @@ import com.cardpay.sdk.api.RecurringsApi;
 import com.cardpay.sdk.client.ApiClient;
 import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
 import com.cardpay.sdk.model.RecurringCreationRequest;
-import com.cardpay.sdk.model.RecurringCreationResponse;
+import com.cardpay.sdk.model.RecurringGatewayCreationResponse;
 import com.cardpay.sdk.model.RecurringCustomer;
 import com.cardpay.sdk.model.RecurringRequestFiling;
 import com.cardpay.sdk.model.RecurringRequestRecurringData;
@@ -111,17 +111,16 @@ public class RecurringOneClickContinueUAT {
         log.info("{}", continueRecurringRequest);
 
         // perform create continue one-click recurring operation
-        Response<RecurringCreationResponse> continueResponse = recurrings
+        Response<RecurringGatewayCreationResponse> continueResponse = recurrings
                 .createRecurring(continueRecurringRequest)
                 .execute();
         log.info("{}", continueResponse);
 
         // explore response result
-        RecurringCreationResponse continueCreationResponse = continueResponse.body();
+        RecurringGatewayCreationResponse continueCreationResponse = continueResponse.body();
         log.info("{}", continueCreationResponse);
 
         assertNotNull(continueCreationResponse);
-        assertEquals(COMPLETED, continueCreationResponse.getRecurringData().getStatus());
     }
 
     private RecurringResponse fetchRecurring(String merchantOrderId) throws IOException {
@@ -153,7 +152,7 @@ public class RecurringOneClickContinueUAT {
 
         log.info("{}", recurringRequest);
 
-        RecurringCreationResponse creationResponse = createRecurring(recurringRequest);
+        RecurringGatewayCreationResponse creationResponse = createRecurring(recurringRequest);
         assertNotNull(creationResponse);
 
         log.info("{}", creationResponse);
@@ -192,9 +191,9 @@ public class RecurringOneClickContinueUAT {
                 .returnUrls(returnUrls());
     }
 
-    private RecurringCreationResponse createRecurring(RecurringCreationRequest recurringRequest) throws IOException {
+    private RecurringGatewayCreationResponse createRecurring(RecurringCreationRequest recurringRequest) throws IOException {
         try {
-            Response<RecurringCreationResponse> response = recurrings.createRecurring(recurringRequest).execute();
+            Response<RecurringGatewayCreationResponse> response = recurrings.createRecurring(recurringRequest).execute();
 
             log.info("{}", response);
 

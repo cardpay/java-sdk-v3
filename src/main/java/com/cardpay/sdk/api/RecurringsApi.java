@@ -3,12 +3,11 @@ package com.cardpay.sdk.api;
 import com.cardpay.sdk.client.CollectionFormats.*;
 import com.cardpay.sdk.model.ChangeSubscriptionStatusClaimResponse;
 import com.cardpay.sdk.model.FilingRequest;
-import com.cardpay.sdk.model.PaymentCreationResponse;
 import com.cardpay.sdk.model.PlanDataList;
 import com.cardpay.sdk.model.PlanUpdateRequest;
 import com.cardpay.sdk.model.PlanUpdateResponse;
 import com.cardpay.sdk.model.RecurringCreationRequest;
-import com.cardpay.sdk.model.RecurringCreationResponse;
+import com.cardpay.sdk.model.RecurringGatewayCreationResponse;
 import com.cardpay.sdk.model.RecurringPatchRequest;
 import com.cardpay.sdk.model.RecurringPlanRequest;
 import com.cardpay.sdk.model.RecurringPlanResponse;
@@ -29,13 +28,13 @@ public interface RecurringsApi {
    * Create filing
    * 
    * @param filingRequest Filing request parameters (optional)
-   * @return Call&lt;PaymentCreationResponse&gt;
+   * @return Call&lt;RecurringGatewayCreationResponse&gt;
    */
   @Headers({
     "Content-Type:application/json"
   })
   @POST("api/recurring_filings")
-  Call<PaymentCreationResponse> createFiling(
+  Call<RecurringGatewayCreationResponse> createFiling(
     @retrofit2.http.Body FilingRequest filingRequest
   );
 
@@ -57,13 +56,13 @@ public interface RecurringsApi {
    * Create recurring
    * 
    * @param recurringRequest Recurring Request (required)
-   * @return Call&lt;RecurringCreationResponse&gt;
+   * @return Call&lt;RecurringGatewayCreationResponse&gt;
    */
   @Headers({
     "Content-Type:application/json"
   })
   @POST("api/recurrings")
-  Call<RecurringCreationResponse> createRecurring(
+  Call<RecurringGatewayCreationResponse> createRecurring(
     @retrofit2.http.Body RecurringCreationRequest recurringRequest
   );
 

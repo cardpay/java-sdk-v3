@@ -23,6 +23,8 @@ import lombok.Data;
 public class PaymentRequest {
   @SerializedName("request")
   private Request request = null;
+  @SerializedName("authentication_data")
+  private AuthenticationData authenticationData = null;
   @SerializedName("card_account")
   private PaymentRequestCardAccount cardAccount = null;
   @SerializedName("cryptocurrency_account")
@@ -33,6 +35,8 @@ public class PaymentRequest {
   private PaymentRequestEWalletAccount ewalletAccount = null;
   @SerializedName("merchant_order")
   private PaymentRequestMerchantOrder merchantOrder = null;
+  @SerializedName("payment_by_authentication")
+  private Boolean paymentByAuthentication = null;
   @SerializedName("payment_data")
   private PaymentRequestPaymentData paymentData = null;
   @SerializedName("payment_method")
@@ -52,6 +56,20 @@ public class PaymentRequest {
    **/
   public PaymentRequest request(Request request) {
       this.request = request;
+      return this;
+  }
+
+  
+  public void setAuthenticationData(AuthenticationData authenticationData) {
+      this.authenticationData = authenticationData;
+  }
+
+  /**
+   * @param authenticationData Authentication data
+   * @return bean instance
+   **/
+  public PaymentRequest authenticationData(AuthenticationData authenticationData) {
+      this.authenticationData = authenticationData;
       return this;
   }
 
@@ -126,6 +144,20 @@ public class PaymentRequest {
   }
 
   
+  public void setPaymentByAuthentication(Boolean paymentByAuthentication) {
+      this.paymentByAuthentication = paymentByAuthentication;
+  }
+
+  /**
+   * @param paymentByAuthentication paymentByAuthentication
+   * @return bean instance
+   **/
+  public PaymentRequest paymentByAuthentication(Boolean paymentByAuthentication) {
+      this.paymentByAuthentication = paymentByAuthentication;
+      return this;
+  }
+
+  
   public void setPaymentData(PaymentRequestPaymentData paymentData) {
       this.paymentData = paymentData;
   }
@@ -196,11 +228,13 @@ public class PaymentRequest {
      sb.append("PaymentRequest( ");
      
      if (request != null) sb.append("request=").append(request.toString()).append("; ");
+     if (authenticationData != null) sb.append("authenticationData=").append(authenticationData.toString()).append("; ");
      if (cardAccount != null) sb.append("cardAccount=").append(cardAccount.toString()).append("; ");
      if (cryptocurrencyAccount != null) sb.append("cryptocurrencyAccount=").append(cryptocurrencyAccount.toString()).append("; ");
      if (customer != null) sb.append("customer=").append(customer.toString()).append("; ");
      if (ewalletAccount != null) sb.append("ewalletAccount=").append(ewalletAccount.toString()).append("; ");
      if (merchantOrder != null) sb.append("merchantOrder=").append(merchantOrder.toString()).append("; ");
+     if (paymentByAuthentication != null) sb.append("paymentByAuthentication=").append(paymentByAuthentication.toString()).append("; ");
      if (paymentData != null) sb.append("paymentData=").append(paymentData.toString()).append("; ");
      if (paymentMethod != null) sb.append("paymentMethod=").append(paymentMethod.toString()).append("; ");
      if (paymentMethods != null) sb.append("paymentMethods=").append(paymentMethods.toString()).append("; ");

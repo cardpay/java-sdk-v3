@@ -24,7 +24,7 @@ import com.cardpay.sdk.client.ApiClient;
 import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
 import com.cardpay.sdk.model.Plan;
 import com.cardpay.sdk.model.RecurringCreationRequest;
-import com.cardpay.sdk.model.RecurringCreationResponse;
+import com.cardpay.sdk.model.RecurringGatewayCreationResponse;
 import com.cardpay.sdk.model.RecurringCustomer;
 import com.cardpay.sdk.model.RecurringPlanRequest;
 import com.cardpay.sdk.model.RecurringPlanRequestPlanData;
@@ -131,9 +131,9 @@ public class RecurringCreateScheduledSubscriptionUAT {
         log.info("{}", recurringRequest);
 
         // perform create recurring operation
-        Response<RecurringCreationResponse> response = recurrings.createRecurring(recurringRequest).execute();
+        Response<RecurringGatewayCreationResponse> response = recurrings.createRecurring(recurringRequest).execute();
 
-        RecurringCreationResponse data = response.body();
+        RecurringGatewayCreationResponse data = response.body();
         assertNotNull(data);
         log.info("{}", data);
 

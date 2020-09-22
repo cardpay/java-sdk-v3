@@ -18,9 +18,11 @@ import lombok.Data;
 
 @Data
 
-public class PaymentCreationResponse {
+public class MobilePaymentResponse {
   @SerializedName("redirect_url")
   private String redirectUrl = null;
+  @SerializedName("transaction_id")
+  private String transactionId = null;
   
   public void setRedirectUrl(String redirectUrl) {
       this.redirectUrl = redirectUrl;
@@ -30,8 +32,22 @@ public class PaymentCreationResponse {
    * @param redirectUrl URL Customer should be redirected to
    * @return bean instance
    **/
-  public PaymentCreationResponse redirectUrl(String redirectUrl) {
+  public MobilePaymentResponse redirectUrl(String redirectUrl) {
       this.redirectUrl = redirectUrl;
+      return this;
+  }
+
+  
+  public void setTransactionId(String transactionId) {
+      this.transactionId = transactionId;
+  }
+
+  /**
+   * @param transactionId Cardpay&#39;s payment id
+   * @return bean instance
+   **/
+  public MobilePaymentResponse transactionId(String transactionId) {
+      this.transactionId = transactionId;
       return this;
   }
 
@@ -39,9 +55,10 @@ public class PaymentCreationResponse {
   @Override
   public String toString() {
      StringBuilder sb = new StringBuilder();
-     sb.append("PaymentCreationResponse( ");
+     sb.append("MobilePaymentResponse( ");
      
      if (redirectUrl != null) sb.append("redirectUrl=").append(redirectUrl.toString()).append("; ");
+     if (transactionId != null) sb.append("transactionId=").append(transactionId.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

@@ -70,7 +70,7 @@ Name | Type | Description  | Notes
 
 <a name="createInstallment"></a>
 # **createInstallment**
-> PaymentCreationResponse createInstallment(subscriptionRequest)
+> RecurringGatewayCreationResponse createInstallment(subscriptionRequest)
 
 Create installment
 
@@ -94,7 +94,7 @@ Bearer.setApiKey("YOUR API KEY");
 RecurringsInstallmentsApi apiInstance = new RecurringsInstallmentsApi();
 InstallmentSubscriptionRequest subscriptionRequest = new InstallmentSubscriptionRequest(); // InstallmentSubscriptionRequest | subscriptionRequest
 try {
-    PaymentCreationResponse result = apiInstance.createInstallment(subscriptionRequest);
+    RecurringGatewayCreationResponse result = apiInstance.createInstallment(subscriptionRequest);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RecurringsInstallmentsApi#createInstallment");
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaymentCreationResponse**](PaymentCreationResponse.md)
+[**RecurringGatewayCreationResponse**](RecurringGatewayCreationResponse.md)
 
 ### Authorization
 

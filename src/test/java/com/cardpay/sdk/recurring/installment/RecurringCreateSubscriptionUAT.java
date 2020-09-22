@@ -17,8 +17,8 @@ import com.cardpay.sdk.api.RecurringsApi;
 import com.cardpay.sdk.client.ApiClient;
 import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
 import com.cardpay.sdk.model.RecurringCreationRequest;
-import com.cardpay.sdk.model.RecurringCreationResponse;
 import com.cardpay.sdk.model.RecurringCustomer;
+import com.cardpay.sdk.model.RecurringGatewayCreationResponse;
 import com.cardpay.sdk.model.RecurringRequestRecurringData;
 import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.BaseProducer;
@@ -81,12 +81,12 @@ public class RecurringCreateSubscriptionUAT {
 
         log.info("{}", recurringRequest);
 
-        Response<RecurringCreationResponse> response = recurrings
+        Response<RecurringGatewayCreationResponse> response = recurrings
                 .createRecurring(recurringRequest)
                 .execute();
         log.info("{}", response);
 
-        RecurringCreationResponse creationResponse = response.body();
+        RecurringGatewayCreationResponse creationResponse = response.body();
         assertNotNull(creationResponse);
 
         log.info("{}", creationResponse);

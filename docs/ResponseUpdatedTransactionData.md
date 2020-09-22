@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **details** | **String** | The reason why request was unsuccessful |  [optional]
-**id** | **String** | Represents the ID of the modified transaction | 
-**isExecuted** | **Boolean** | Indicates was the request successful or not | 
-**status** | [**StatusEnum**](#StatusEnum) | Status of modified or created transaction | 
-**statusTo** | [**StatusToEnum**](#StatusToEnum) | Requested action (status to be set).  Payment: &#x60;COMPLETE&#x60; or &#x60;REVERSE&#x60;.  Refund, payout: &#x60;REVERSE&#x60;. | 
+**id** | **String** | Represents the ID of the modified transaction |  [optional]
+**isExecuted** | **Boolean** | Indicates was the request successful or not |  [optional]
+**status** | [**StatusEnum**](#StatusEnum) | Status of modified or created transaction |  [optional]
+**statusTo** | [**StatusToEnum**](#StatusToEnum) | Requested action (status to be set).  Payment: &#x60;COMPLETE&#x60; or &#x60;REVERSE&#x60;.  Refund, payout: &#x60;REVERSE&#x60;. |  [optional]
 **updated** | [**OffsetDateTime**](OffsetDateTime.md) | Transaction update date and time in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format. Returned only for successful update operations. |  [optional]
 
 

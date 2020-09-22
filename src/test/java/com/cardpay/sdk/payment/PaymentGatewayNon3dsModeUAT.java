@@ -21,7 +21,7 @@ import static org.junit.Assert.assertTrue;
 import com.cardpay.sdk.api.PaymentsApi;
 import com.cardpay.sdk.client.ApiClient;
 import com.cardpay.sdk.model.BillingAddress;
-import com.cardpay.sdk.model.PaymentCreationResponse;
+import com.cardpay.sdk.model.PaymentGatewayCreationResponse;
 import com.cardpay.sdk.model.PaymentRequest;
 import com.cardpay.sdk.model.PaymentRequestCard;
 import com.cardpay.sdk.model.PaymentRequestCardAccount;
@@ -129,14 +129,14 @@ public class PaymentGatewayNon3dsModeUAT {
         log.info("{}", paymentRequest);
 
         // perform api call
-        Response<PaymentCreationResponse> response = payments
+        Response<PaymentGatewayCreationResponse> response = payments
                 .createPayment(paymentRequest)
                 .execute();
 
         log.info("{}", response);
         assertTrue(response.message(), response.isSuccessful());
 
-        PaymentCreationResponse creationResponse = response.body();
+        PaymentGatewayCreationResponse creationResponse = response.body();
         assertNotNull(creationResponse);
 
         // Emulate customer behaviour performing GET request to redirect url

@@ -25,11 +25,10 @@ import com.cardpay.sdk.model.FilingRecurringData;
 import com.cardpay.sdk.model.FilingRequest;
 import com.cardpay.sdk.model.FilingRequestMerchantOrder;
 import com.cardpay.sdk.model.FilingRequestSubscriptionData;
-import com.cardpay.sdk.model.PaymentCreationResponse;
 import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
 import com.cardpay.sdk.model.Plan;
 import com.cardpay.sdk.model.RecurringCreationRequest;
-import com.cardpay.sdk.model.RecurringCreationResponse;
+import com.cardpay.sdk.model.RecurringGatewayCreationResponse;
 import com.cardpay.sdk.model.RecurringCustomer;
 import com.cardpay.sdk.model.RecurringPlanRequest;
 import com.cardpay.sdk.model.RecurringPlanRequestPlanData;
@@ -103,10 +102,10 @@ public class RecurringLinkACardToAnExistingSubscriptionUAT {
         log.info("{}", recurringRequest);
 
         // perform create scheduled subscription
-        Response<RecurringCreationResponse> recurringCreationResponse = recurrings.createRecurring(recurringRequest).execute();
-        log.info("{}", recurringCreationResponse);
+        Response<RecurringGatewayCreationResponse> RecurringGatewayCreationResponse = recurrings.createRecurring(recurringRequest).execute();
+        log.info("{}", RecurringGatewayCreationResponse);
 
-        RecurringCreationResponse creationResponse = recurringCreationResponse.body();
+        RecurringGatewayCreationResponse creationResponse = RecurringGatewayCreationResponse.body();
         log.info("{}", creationResponse);
 
         assertNotNull(creationResponse);
@@ -157,12 +156,12 @@ public class RecurringLinkACardToAnExistingSubscriptionUAT {
                 .returnUrls(returnUrls());
 
         // perform create link a card to an existing subscription
-        Response<PaymentCreationResponse> response = recurrings
+        Response<RecurringGatewayCreationResponse> response = recurrings
                 .createFiling(filingRequest)
                 .execute();
         log.info("{}", response);
 
-        PaymentCreationResponse data = response.body();
+        RecurringGatewayCreationResponse data = response.body();
         assertNotNull(data);
         log.info("{}", data);
 

@@ -7,12 +7,13 @@ Method | HTTP request | Description
 [**createPayment**](PaymentsApi.md#createPayment) | **POST** api/payments | Create payment
 [**getPayment**](PaymentsApi.md#getPayment) | **GET** api/payments/{paymentId} | Get payment information
 [**getPayments**](PaymentsApi.md#getPayments) | **GET** api/payments | Get payments information
+[**process3dsVerification**](PaymentsApi.md#process3dsVerification) | **POST** api/authentications/threedsecure | Process 3ds verification
 [**updatePayment**](PaymentsApi.md#updatePayment) | **PATCH** api/payments/{paymentId} | Update payment
 
 
 <a name="createPayment"></a>
 # **createPayment**
-> PaymentCreationResponse createPayment(paymentRequest)
+> PaymentGatewayCreationResponse createPayment(paymentRequest)
 
 Create payment
 
@@ -38,7 +39,7 @@ Bearer.setApiKey("YOUR API KEY");
 PaymentsApi apiInstance = new PaymentsApi();
 PaymentRequest paymentRequest = new PaymentRequest(); // PaymentRequest | paymentRequest
 try {
-    PaymentCreationResponse result = apiInstance.createPayment(paymentRequest);
+    PaymentGatewayCreationResponse result = apiInstance.createPayment(paymentRequest);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling PaymentsApi#createPayment");
@@ -54,7 +55,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaymentCreationResponse**](PaymentCreationResponse.md)
+[**PaymentGatewayCreationResponse**](PaymentGatewayCreationResponse.md)
 
 ### Authorization
 
@@ -183,6 +184,61 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="process3dsVerification"></a>
+# **process3dsVerification**
+> AuthenticationResponse process3dsVerification(request)
+
+Process 3ds verification
+
+Endpoint for process 3ds verification.
+
+### Example
+```java
+// Import classes:
+//import com.cardpay.sdk.client.ApiClient;
+//import com.cardpay.sdk.client.ApiException;
+//import com.cardpay.sdk.client.Configuration;
+//import com.cardpay.sdk.client.auth.*;
+//import com.cardpay.sdk.api.PaymentsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: Bearer
+ApiKeyAuth Bearer = (ApiKeyAuth) defaultClient.getAuthentication("Bearer");
+Bearer.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//Bearer.setApiKeyPrefix("Token");
+
+PaymentsApi apiInstance = new PaymentsApi();
+AuthenticationRequest request = new AuthenticationRequest(); // AuthenticationRequest | request
+try {
+    AuthenticationResponse result = apiInstance.process3dsVerification(request);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling PaymentsApi#process3dsVerification");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | [**AuthenticationRequest**](AuthenticationRequest.md)| request |
+
+### Return type
+
+[**AuthenticationResponse**](AuthenticationResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 <a name="updatePayment"></a>

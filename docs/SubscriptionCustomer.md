@@ -1,5 +1,5 @@
 
-# RecurringResponseCustomer
+# SubscriptionCustomer
 
 ## Properties
 Name | Type | Description | Notes

@@ -2,7 +2,7 @@ package com.cardpay.sdk.api;
 
 import com.cardpay.sdk.client.CollectionFormats.*;
 import com.cardpay.sdk.model.InstallmentSubscriptionRequest;
-import com.cardpay.sdk.model.PaymentCreationResponse;
+import com.cardpay.sdk.model.RecurringGatewayCreationResponse;
 import com.cardpay.sdk.model.RecurringPatchRequest;
 import com.cardpay.sdk.model.RecurringResponse;
 import com.cardpay.sdk.model.RecurringsList;
@@ -31,13 +31,13 @@ public interface RecurringsInstallmentsApi {
    * Create installment
    * 
    * @param subscriptionRequest subscriptionRequest (required)
-   * @return Call&lt;PaymentCreationResponse&gt;
+   * @return Call&lt;RecurringGatewayCreationResponse&gt;
    */
   @Headers({
     "Content-Type:application/json"
   })
   @POST("api/installments")
-  Call<PaymentCreationResponse> createInstallment(
+  Call<RecurringGatewayCreationResponse> createInstallment(
     @retrofit2.http.Body InstallmentSubscriptionRequest subscriptionRequest
   );
 

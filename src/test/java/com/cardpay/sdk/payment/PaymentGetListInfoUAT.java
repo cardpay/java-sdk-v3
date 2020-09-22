@@ -18,7 +18,7 @@ import static org.junit.Assert.assertTrue;
 
 import com.cardpay.sdk.api.PaymentsApi;
 import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.PaymentCreationResponse;
+import com.cardpay.sdk.model.PaymentGatewayCreationResponse;
 import com.cardpay.sdk.model.PaymentRequest;
 import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
 import com.cardpay.sdk.model.PaymentResponse;
@@ -119,7 +119,7 @@ public class PaymentGetListInfoUAT {
         try {
             PaymentRequest paymentRequest = createPaymentRequest(CARD_NON3DS_CONFIRMED);
 
-            PaymentCreationResponse creationResponse = createPayment(paymentRequest);
+            PaymentGatewayCreationResponse creationResponse = createPayment(paymentRequest);
             assertNotNull(creationResponse);
 
             // Emulate customer behaviour performing GET request to redirect url
@@ -150,9 +150,9 @@ public class PaymentGetListInfoUAT {
                 .returnUrls(returnUrls());
     }
 
-    private PaymentCreationResponse createPayment(PaymentRequest payment) throws IOException {
+    private PaymentGatewayCreationResponse createPayment(PaymentRequest payment) throws IOException {
         try {
-            Response<PaymentCreationResponse> response = payments.createPayment(payment).execute();
+            Response<PaymentGatewayCreationResponse> response = payments.createPayment(payment).execute();
 
             log.info("{}", response);
 

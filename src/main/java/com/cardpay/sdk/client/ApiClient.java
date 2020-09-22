@@ -42,7 +42,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class ApiClient {
-    public static final String USER_AGENT = "CardpaySdk/2.7.9/Java";
+    public static final String USER_AGENT = "CardpaySdk/2.13.10/Java";
 
     private TokenProvider tokenProvider;
 

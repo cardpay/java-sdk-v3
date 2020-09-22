@@ -18,35 +18,19 @@ import lombok.Data;
 
 @Data
 
-public class RecurringResponseCustomer {
-  @SerializedName("email")
-  private String email = null;
+public class SubscriptionGetResponsePlan {
   @SerializedName("id")
   private String id = null;
-  
-  public void setEmail(String email) {
-      this.email = email;
-  }
-
-  /**
-   * @param email Customer&#39;s email address
-   * @return bean instance
-   **/
-  public RecurringResponseCustomer email(String email) {
-      this.email = email;
-      return this;
-  }
-
   
   public void setId(String id) {
       this.id = id;
   }
 
   /**
-   * @param id Customer&#39;s ID in the merchant&#39;s system
+   * @param id Plan ID
    * @return bean instance
    **/
-  public RecurringResponseCustomer id(String id) {
+  public SubscriptionGetResponsePlan id(String id) {
       this.id = id;
       return this;
   }
@@ -55,9 +39,8 @@ public class RecurringResponseCustomer {
   @Override
   public String toString() {
      StringBuilder sb = new StringBuilder();
-     sb.append("RecurringResponseCustomer( ");
+     sb.append("SubscriptionGetResponsePlan( ");
      
-     if (email != null) sb.append("email=").append(email.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
      sb.append(")");
      return sb.toString();

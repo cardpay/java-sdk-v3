@@ -23,7 +23,7 @@ Method | HTTP request | Description
 
 <a name="createFiling"></a>
 # **createFiling**
-> PaymentCreationResponse createFiling(filingRequest)
+> RecurringGatewayCreationResponse createFiling(filingRequest)
 
 Create filing
 
@@ -47,7 +47,7 @@ Bearer.setApiKey("YOUR API KEY");
 RecurringsApi apiInstance = new RecurringsApi();
 FilingRequest filingRequest = new FilingRequest(); // FilingRequest | Filing request parameters
 try {
-    PaymentCreationResponse result = apiInstance.createFiling(filingRequest);
+    RecurringGatewayCreationResponse result = apiInstance.createFiling(filingRequest);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RecurringsApi#createFiling");
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaymentCreationResponse**](PaymentCreationResponse.md)
+[**RecurringGatewayCreationResponse**](RecurringGatewayCreationResponse.md)
 
 ### Authorization
 
@@ -129,7 +129,7 @@ Name | Type | Description  | Notes
 
 <a name="createRecurring"></a>
 # **createRecurring**
-> RecurringCreationResponse createRecurring(recurringRequest)
+> RecurringGatewayCreationResponse createRecurring(recurringRequest)
 
 Create recurring
 
@@ -153,7 +153,7 @@ Bearer.setApiKey("YOUR API KEY");
 RecurringsApi apiInstance = new RecurringsApi();
 RecurringCreationRequest recurringRequest = new RecurringCreationRequest(); // RecurringCreationRequest | Recurring Request
 try {
-    RecurringCreationResponse result = apiInstance.createRecurring(recurringRequest);
+    RecurringGatewayCreationResponse result = apiInstance.createRecurring(recurringRequest);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RecurringsApi#createRecurring");
@@ -169,7 +169,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RecurringCreationResponse**](RecurringCreationResponse.md)
+[**RecurringGatewayCreationResponse**](RecurringGatewayCreationResponse.md)
 
 ### Authorization
 

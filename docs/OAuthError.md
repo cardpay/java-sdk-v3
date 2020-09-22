@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | [**NameEnum**](#NameEnum) | Error code | 
-**message** | **String** | Error description | 
+**name** | [**NameEnum**](#NameEnum) | Error code |  [optional]
+**message** | **String** | Error description |  [optional]
 
 
 <a name="NameEnum"></a>

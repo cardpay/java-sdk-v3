@@ -23,6 +23,8 @@ public class PaymentResponseCustomer {
   private String email = null;
   @SerializedName("full_name")
   private String fullName = null;
+  @SerializedName("home_phone")
+  private String homePhone = null;
   @SerializedName("id")
   private String id = null;
   @SerializedName("ip")
@@ -31,6 +33,8 @@ public class PaymentResponseCustomer {
   private String locale = null;
   @SerializedName("phone")
   private String phone = null;
+  @SerializedName("work_phone")
+  private String workPhone = null;
   
   public void setEmail(String email) {
       this.email = email;
@@ -60,6 +64,20 @@ public class PaymentResponseCustomer {
   }
 
   
+  public void setHomePhone(String homePhone) {
+      this.homePhone = homePhone;
+  }
+
+  /**
+   * @param homePhone The home phone number provided by the Cardholder. Required (if available), unless market or regional mandate restricts sending this information. Characters Format: string (10-18 symbols) country code + Subscriber number. Refer to ITU-E.164 for additional information on format and length.
+   * @return bean instance
+   **/
+  public PaymentResponseCustomer homePhone(String homePhone) {
+      this.homePhone = homePhone;
+      return this;
+  }
+
+  
   public void setId(String id) {
       this.id = id;
   }
@@ -79,7 +97,7 @@ public class PaymentResponseCustomer {
   }
 
   /**
-   * @param ip IP address of Customer
+   * @param ip IP address of customer
    * @return bean instance
    **/
   public PaymentResponseCustomer ip(String ip) {
@@ -115,6 +133,20 @@ public class PaymentResponseCustomer {
       return this;
   }
 
+  
+  public void setWorkPhone(String workPhone) {
+      this.workPhone = workPhone;
+  }
+
+  /**
+   * @param workPhone The work phone number provided by the Cardholder. Required (if available) unless market or regional mandate restricts sending this information. Characters Format: string (10-18 symbols) country code + Subscriber number. Refer to ITU-E.164 for additional information on format and length.
+   * @return bean instance
+   **/
+  public PaymentResponseCustomer workPhone(String workPhone) {
+      this.workPhone = workPhone;
+      return this;
+  }
+
 
   @Override
   public String toString() {
@@ -123,10 +155,12 @@ public class PaymentResponseCustomer {
      
      if (email != null) sb.append("email=").append(email.toString()).append("; ");
      if (fullName != null) sb.append("fullName=").append(fullName.toString()).append("; ");
+     if (homePhone != null) sb.append("homePhone=").append(homePhone.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
      if (ip != null) sb.append("ip=").append(ip.toString()).append("; ");
      if (locale != null) sb.append("locale=").append(locale.toString()).append("; ");
      if (phone != null) sb.append("phone=").append(phone.toString()).append("; ");
+     if (workPhone != null) sb.append("workPhone=").append(workPhone.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

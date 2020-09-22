@@ -22,7 +22,7 @@ import static org.junit.Assert.assertTrue;
 import com.cardpay.sdk.api.PaymentsApi;
 import com.cardpay.sdk.api.RefundsApi;
 import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.PaymentCreationResponse;
+import com.cardpay.sdk.model.PaymentGatewayCreationResponse;
 import com.cardpay.sdk.model.PaymentRequest;
 import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
 import com.cardpay.sdk.model.PaymentResponse;
@@ -137,10 +137,10 @@ public class RefundListInfoUAT {
         // prepare payment request
         PaymentRequest paymentRequest = createPaymentRequest(CARD_NON3DS_CONFIRMED);
 
-        Response<PaymentCreationResponse> response = payments.createPayment(paymentRequest).execute();
+        Response<PaymentGatewayCreationResponse> response = payments.createPayment(paymentRequest).execute();
         assertSuccessResponse(response);
 
-        PaymentCreationResponse creationResponse = response.body();
+        PaymentGatewayCreationResponse creationResponse = response.body();
         assertNotNull(creationResponse);
 
         // Emulate customer behaviour performing GET request to redirect url

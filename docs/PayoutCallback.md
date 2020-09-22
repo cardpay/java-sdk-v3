@@ -9,10 +9,10 @@ Name | Type | Description | Notes
 **cryptocurrencyAccount** | [**PayoutResponseCryptocurrencyAccount**](PayoutResponseCryptocurrencyAccount.md) | Cryptocurrency account data *(for BITCOIN method only)* |  [optional]
 **customer** | [**PayoutResponseCustomer**](PayoutResponseCustomer.md) | Customer data |  [optional]
 **ewalletAccount** | [**PayoutResponseEWalletAccount**](PayoutResponseEWalletAccount.md) | eWallet account data *(for payout methods only)* |  [optional]
-**merchantOrder** | [**TransactionResponseMerchantOrder**](TransactionResponseMerchantOrder.md) | Merchant order data | 
+**merchantOrder** | [**TransactionResponseMerchantOrder**](TransactionResponseMerchantOrder.md) | Merchant order data |  [optional]
 **paymentData** | [**PayoutPaymentData**](PayoutPaymentData.md) | Payment data |  [optional]
-**paymentMethod** | **String** | Used payment method type name from payment methods list | 
-**payoutData** | [**PayoutResponsePayoutData**](PayoutResponsePayoutData.md) | Payout data | 
+**paymentMethod** | **String** | Used payment method type name from payment methods list |  [optional]
+**payoutData** | [**PayoutResponsePayoutData**](PayoutResponsePayoutData.md) | Payout data |  [optional]
 
 
 

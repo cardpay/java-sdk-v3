@@ -21,8 +21,8 @@ import com.cardpay.sdk.client.ApiClient;
 import com.cardpay.sdk.model.FilingRecurringData;
 import com.cardpay.sdk.model.FilingRequest;
 import com.cardpay.sdk.model.FilingRequestMerchantOrder;
-import com.cardpay.sdk.model.PaymentCreationResponse;
 import com.cardpay.sdk.model.RecurringCustomer;
+import com.cardpay.sdk.model.RecurringGatewayCreationResponse;
 import com.cardpay.sdk.utils.DataUtils;
 import com.cardpay.sdk.utils.HttpUtils;
 import io.codearte.jfairy.Fairy;
@@ -100,12 +100,12 @@ public class RecurringLinkACardWithoutAnExistingSubscriptionUAT {
         log.info("{}", filingRequest);
 
         // perform create link a card without an existing subscription
-        Response<PaymentCreationResponse> response = recurrings
+        Response<RecurringGatewayCreationResponse> response = recurrings
                 .createFiling(filingRequest)
                 .execute();
         log.info("{}", response);
 
-        PaymentCreationResponse data = response.body();
+        RecurringGatewayCreationResponse data = response.body();
         assertNotNull(data);
         log.info("{}", data);
 

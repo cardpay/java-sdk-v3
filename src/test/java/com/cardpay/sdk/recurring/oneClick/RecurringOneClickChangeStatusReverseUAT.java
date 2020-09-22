@@ -22,8 +22,8 @@ import com.cardpay.sdk.client.ApiClient;
 import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
 import com.cardpay.sdk.model.PaymentUpdateTransactionData;
 import com.cardpay.sdk.model.RecurringCreationRequest;
-import com.cardpay.sdk.model.RecurringCreationResponse;
 import com.cardpay.sdk.model.RecurringCustomer;
+import com.cardpay.sdk.model.RecurringGatewayCreationResponse;
 import com.cardpay.sdk.model.RecurringPatchRequest;
 import com.cardpay.sdk.model.RecurringRequestRecurringData;
 import com.cardpay.sdk.model.RecurringResponse;
@@ -130,7 +130,7 @@ public class RecurringOneClickChangeStatusReverseUAT {
 
         log.info("{}", recurringRequest);
 
-        RecurringCreationResponse creationResponse = createRecurring(recurringRequest);
+        RecurringGatewayCreationResponse creationResponse = createRecurring(recurringRequest);
         assertNotNull(creationResponse);
 
         log.info("{}", creationResponse);
@@ -170,9 +170,9 @@ public class RecurringOneClickChangeStatusReverseUAT {
                 .returnUrls(returnUrls());
     }
 
-    private RecurringCreationResponse createRecurring(RecurringCreationRequest recurringRequest) throws IOException {
+    private RecurringGatewayCreationResponse createRecurring(RecurringCreationRequest recurringRequest) throws IOException {
         try {
-            Response<RecurringCreationResponse> response = recurrings.createRecurring(recurringRequest).execute();
+            Response<RecurringGatewayCreationResponse> response = recurrings.createRecurring(recurringRequest).execute();
 
             log.info("{}", response);
 

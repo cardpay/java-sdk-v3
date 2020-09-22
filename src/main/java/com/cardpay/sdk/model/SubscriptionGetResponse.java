@@ -35,7 +35,7 @@ public class SubscriptionGetResponse {
   @SerializedName("currency")
   private String currency = null;
   @SerializedName("customer")
-  private RecurringResponseCustomer customer = null;
+  private SubscriptionCustomer customer = null;
   @SerializedName("description")
   private String description = null;
   @SerializedName("id")
@@ -102,7 +102,7 @@ public class SubscriptionGetResponse {
   @SerializedName("period")
   private PeriodEnum period = null;
   @SerializedName("plan")
-  private Plan plan = null;
+  private SubscriptionGetResponsePlan plan = null;
   @SerializedName("retries")
   private Integer retries = null;
   /**
@@ -278,7 +278,7 @@ public class SubscriptionGetResponse {
   }
 
   
-  public void setCustomer(RecurringResponseCustomer customer) {
+  public void setCustomer(SubscriptionCustomer customer) {
       this.customer = customer;
   }
 
@@ -286,7 +286,7 @@ public class SubscriptionGetResponse {
    * @param customer Customer data
    * @return bean instance
    **/
-  public SubscriptionGetResponse customer(RecurringResponseCustomer customer) {
+  public SubscriptionGetResponse customer(SubscriptionCustomer customer) {
       this.customer = customer;
       return this;
   }
@@ -376,7 +376,7 @@ public class SubscriptionGetResponse {
   }
 
   
-  public void setPlan(Plan plan) {
+  public void setPlan(SubscriptionGetResponsePlan plan) {
       this.plan = plan;
   }
 
@@ -384,7 +384,7 @@ public class SubscriptionGetResponse {
    * @param plan Plan data
    * @return bean instance
    **/
-  public SubscriptionGetResponse plan(Plan plan) {
+  public SubscriptionGetResponse plan(SubscriptionGetResponsePlan plan) {
       this.plan = plan;
       return this;
   }

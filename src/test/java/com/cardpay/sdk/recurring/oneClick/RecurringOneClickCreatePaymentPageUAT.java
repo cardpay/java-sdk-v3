@@ -17,7 +17,7 @@ import com.cardpay.sdk.api.RecurringsApi;
 import com.cardpay.sdk.client.ApiClient;
 import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
 import com.cardpay.sdk.model.RecurringCreationRequest;
-import com.cardpay.sdk.model.RecurringCreationResponse;
+import com.cardpay.sdk.model.RecurringGatewayCreationResponse;
 import com.cardpay.sdk.model.RecurringCustomer;
 import com.cardpay.sdk.model.RecurringRequestRecurringData;
 import io.codearte.jfairy.Fairy;
@@ -81,7 +81,7 @@ public class RecurringOneClickCreatePaymentPageUAT {
         log.info("{}", request);
 
         // preform create recurring
-        Response<RecurringCreationResponse> response = recurrings.createRecurring(request).execute();
+        Response<RecurringGatewayCreationResponse> response = recurrings.createRecurring(request).execute();
         log.info("{}", response);
         assertTrue(response.message(), response.isSuccessful());
 
