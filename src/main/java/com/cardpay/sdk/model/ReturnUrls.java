@@ -77,7 +77,7 @@ public class ReturnUrls {
   }
 
   /**
-   * @param returnUrl Overrides default success URL and cancel URL. return_url can be used separately or together with other URL parameters
+   * @param returnUrl Overrides default success URL, decline URL, cancel URL (only in Payment page mode), in process URL. return_url can be used separately or together with other URL parameters.
    * @return bean instance
    **/
   public ReturnUrls returnUrl(String returnUrl) {

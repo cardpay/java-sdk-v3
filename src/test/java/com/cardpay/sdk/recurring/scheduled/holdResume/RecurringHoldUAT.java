@@ -127,7 +127,7 @@ public class RecurringHoldUAT {
         // Phase 3: Change status of Scheduled subscription to INACTIVE
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-        parkNanos(MILLISECONDS.toNanos(1000));
+        parkNanos(MILLISECONDS.toNanos(10000));
 
         subscriptionId = recurringResponse.getRecurringData().getSubscription().getId();
 

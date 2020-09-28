@@ -35,8 +35,8 @@ Bearer.setApiKey("YOUR API KEY");
 //Bearer.setApiKeyPrefix("Token");
 
 RecurringsInstallmentsApi apiInstance = new RecurringsInstallmentsApi();
-String currency = "\"USD\""; // String | [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code
-String requestId = "\"2253145\""; // String | Request ID
+String currency = "USD"; // String | [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code
+String requestId = "2253145"; // String | Request ID
 BigDecimal totalAmount = new BigDecimal(); // BigDecimal | Total amount of subscription to be calculated to options; can have dot as a decimal separator.
 try {
     ScheduleOptionsResponse result = apiInstance.calculateSchedule(currency, requestId, totalAmount);
@@ -198,16 +198,16 @@ Bearer.setApiKey("YOUR API KEY");
 //Bearer.setApiKeyPrefix("Token");
 
 RecurringsInstallmentsApi apiInstance = new RecurringsInstallmentsApi();
-String requestId = "\"2253145\""; // String | Request ID
-String currency = "\"USD\""; // String | [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of transactions currency
-OffsetDateTime endTime = new OffsetDateTime(); // OffsetDateTime | Date and time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period ends (not inclusive), UTC time, must be less than 7 days after 'start_time', default is current time (format: yyyy-MM-dd'T'HH:mm:ss'Z')
+String requestId = "2253145"; // String | Request ID
+String currency = "USD"; // String | [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of transactions currency
+OffsetDateTime endTime = OffsetDateTime.now(); // OffsetDateTime | Date and time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period ends (not inclusive), UTC time, must be less than 7 days after 'start_time', default is current time (format: yyyy-MM-dd'T'HH:mm:ss'Z')
 Integer maxCount = 10; // Integer | Limit number of returned transactions (must be less than 10000, default is 1000)
-String merchantOrderId = "\"order00017\""; // String | Merchant order number from the merchant system
-String paymentMethod = "\"BANKCARD\""; // String | Used payment method type name from payment methods list
+String merchantOrderId = "order00017"; // String | Merchant order number from the merchant system
+String paymentMethod = "BANKCARD"; // String | Used payment method type name from payment methods list
 List<String> recurringTypes = Arrays.asList("recurringTypes_example"); // List<String> | 
-String sortOrder = "\"asc\""; // String | Sort based on order of results. `asc` for ascending order or `desc` for descending order (default value)
-OffsetDateTime startTime = new OffsetDateTime(); // OffsetDateTime | Date and time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period starts (inclusive), UTC time, default is 24 hours before 'end_time' (format: yyyy-MM-dd'T'HH:mm:ss'Z')
-String type = "\"SCHEDULED\""; // String | Filter recurring payments by certain type (applicable to /api/recurrings endpoint only): `SCHEDULED` for scheduled recurring payments `ONECLICK` for one-click payments `INSTALLMENT` for installment payments
+String sortOrder = "asc"; // String | Sort based on order of results. `asc` for ascending order or `desc` for descending order (default value)
+OffsetDateTime startTime = OffsetDateTime.now(); // OffsetDateTime | Date and time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period starts (inclusive), UTC time, default is 24 hours before 'end_time' (format: yyyy-MM-dd'T'HH:mm:ss'Z')
+String type = "SCHEDULED"; // String | Filter recurring payments by certain type (applicable to /api/recurrings endpoint only): `SCHEDULED` for scheduled recurring payments `ONECLICK` for one-click payments `INSTALLMENT` for installment payments
 try {
     RecurringsList result = apiInstance.getInstallmentPayments(requestId, currency, endTime, maxCount, merchantOrderId, paymentMethod, recurringTypes, sortOrder, startTime, type);
     System.out.println(result);

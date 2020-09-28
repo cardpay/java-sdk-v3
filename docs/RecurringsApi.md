@@ -417,10 +417,10 @@ Bearer.setApiKey("YOUR API KEY");
 //Bearer.setApiKeyPrefix("Token");
 
 RecurringsApi apiInstance = new RecurringsApi();
-String requestId = "\"2253145\""; // String | Request ID
+String requestId = "2253145"; // String | Request ID
 Integer maxCount = 10; // Integer | Limit number of returned plans (must be less than 10000, default is 1000)
 Integer offset = 10; // Integer | Offset (must be less than 10000)
-String sortOrder = "\"asc\""; // String | Sort based on order of results. 'asc' for ascending order or 'desc' for descending order (default value)
+String sortOrder = "asc"; // String | Sort based on order of results. 'asc' for ascending order or 'desc' for descending order (default value)
 try {
     PlanDataList result = apiInstance.getPlans(requestId, maxCount, offset, sortOrder);
     System.out.println(result);
@@ -529,16 +529,16 @@ Bearer.setApiKey("YOUR API KEY");
 //Bearer.setApiKeyPrefix("Token");
 
 RecurringsApi apiInstance = new RecurringsApi();
-String requestId = "\"2253145\""; // String | Request ID
-String currency = "\"USD\""; // String | [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of transactions currency
-OffsetDateTime endTime = new OffsetDateTime(); // OffsetDateTime | Date and time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period ends (not inclusive), UTC time, must be less than 7 days after 'start_time', default is current time (format: yyyy-MM-dd'T'HH:mm:ss'Z')
+String requestId = "2253145"; // String | Request ID
+String currency = "USD"; // String | [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of transactions currency
+OffsetDateTime endTime = OffsetDateTime.now(); // OffsetDateTime | Date and time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period ends (not inclusive), UTC time, must be less than 7 days after 'start_time', default is current time (format: yyyy-MM-dd'T'HH:mm:ss'Z')
 Integer maxCount = 10; // Integer | Limit number of returned transactions (must be less than 10000, default is 1000)
-String merchantOrderId = "\"order00017\""; // String | Merchant order number from the merchant system
-String paymentMethod = "\"BANKCARD\""; // String | Used payment method type name from payment methods list
+String merchantOrderId = "order00017"; // String | Merchant order number from the merchant system
+String paymentMethod = "BANKCARD"; // String | Used payment method type name from payment methods list
 List<String> recurringTypes = Arrays.asList("recurringTypes_example"); // List<String> | 
-String sortOrder = "\"asc\""; // String | Sort based on order of results. `asc` for ascending order or `desc` for descending order (default value)
-OffsetDateTime startTime = new OffsetDateTime(); // OffsetDateTime | Date and time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period starts (inclusive), UTC time, default is 24 hours before 'end_time' (format: yyyy-MM-dd'T'HH:mm:ss'Z')
-String type = "\"SCHEDULED\""; // String | Filter recurring payments by certain type (applicable to /api/recurrings endpoint only): `SCHEDULED` for scheduled recurring payments `ONECLICK` for one-click payments `INSTALLMENT` for installment payments
+String sortOrder = "asc"; // String | Sort based on order of results. `asc` for ascending order or `desc` for descending order (default value)
+OffsetDateTime startTime = OffsetDateTime.now(); // OffsetDateTime | Date and time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period starts (inclusive), UTC time, default is 24 hours before 'end_time' (format: yyyy-MM-dd'T'HH:mm:ss'Z')
+String type = "SCHEDULED"; // String | Filter recurring payments by certain type (applicable to /api/recurrings endpoint only): `SCHEDULED` for scheduled recurring payments `ONECLICK` for one-click payments `INSTALLMENT` for installment payments
 try {
     RecurringsList result = apiInstance.getRecurrings(requestId, currency, endTime, maxCount, merchantOrderId, paymentMethod, recurringTypes, sortOrder, startTime, type);
     System.out.println(result);
@@ -653,17 +653,17 @@ Bearer.setApiKey("YOUR API KEY");
 //Bearer.setApiKeyPrefix("Token");
 
 RecurringsApi apiInstance = new RecurringsApi();
-String requestId = "\"2253145\""; // String | Request ID
-String accountId = "\"1234\""; // String | Merchant identifier of customer account
-String currency = "\"USD\""; // String | [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of transactions currency
-OffsetDateTime endTime = new OffsetDateTime(); // OffsetDateTime | Date and time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period ends (not inclusive), UTC time, must be less than 7 days after 'start_time', default is current time (format: yyyy-MM-dd'T'HH:mm:ss'Z')
+String requestId = "2253145"; // String | Request ID
+String accountId = "1234"; // String | Merchant identifier of customer account
+String currency = "USD"; // String | [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of transactions currency
+OffsetDateTime endTime = OffsetDateTime.now(); // OffsetDateTime | Date and time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period ends (not inclusive), UTC time, must be less than 7 days after 'start_time', default is current time (format: yyyy-MM-dd'T'HH:mm:ss'Z')
 Integer maxCount = 10; // Integer | Limit number of returned subscriptions (must be less than 10000, default is 1000)
 Integer offset = 10; // Integer | Offset (must be less than 10000)
-String planId = "\"Xb12aF1\""; // String | Id of plan. Use for searching scheduled subscriptions by plan
-String sortOrder = "\"asc\""; // String | Sort based on order of results. 'asc' for ascending order or 'desc' for descending order (default value)
-OffsetDateTime startTime = new OffsetDateTime(); // OffsetDateTime | Date and time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period starts (inclusive), UTC time, default is 24 hours before 'end_time' (format: yyyy-MM-dd'T'HH:mm:ss'Z')
-String status = "\"CANCELLED\""; // String | Status of subscription
-String type = "\"SCHEDULED\""; // String | Type of subscription. 'ONECLICK' type will be ignored.
+String planId = "Xb12aF1"; // String | Id of plan. Use for searching scheduled subscriptions by plan
+String sortOrder = "asc"; // String | Sort based on order of results. 'asc' for ascending order or 'desc' for descending order (default value)
+OffsetDateTime startTime = OffsetDateTime.now(); // OffsetDateTime | Date and time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period starts (inclusive), UTC time, default is 24 hours before 'end_time' (format: yyyy-MM-dd'T'HH:mm:ss'Z')
+String status = "CANCELLED"; // String | Status of subscription
+String type = "SCHEDULED"; // String | Type of subscription. 'ONECLICK' type will be ignored.
 try {
     SubscriptionList result = apiInstance.getSubscriptions(requestId, accountId, currency, endTime, maxCount, offset, planId, sortOrder, startTime, status, type);
     System.out.println(result);

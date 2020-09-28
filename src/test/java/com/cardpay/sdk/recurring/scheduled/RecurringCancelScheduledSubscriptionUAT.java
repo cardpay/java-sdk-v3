@@ -128,7 +128,7 @@ public class RecurringCancelScheduledSubscriptionUAT {
         // Phase 3:  cancel scheduled subscription
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-        LockSupport.parkNanos(MILLISECONDS.toNanos(1000));
+        LockSupport.parkNanos(MILLISECONDS.toNanos(10000));
 
         // get subscription id
         String subscriptionId = recurringResponse.getRecurringData().getSubscription().getId();

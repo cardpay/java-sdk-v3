@@ -21,14 +21,20 @@ import lombok.Data;
 public class PaymentRequestCustomer {
   @SerializedName("birth_date")
   private String birthDate = null;
+  @SerializedName("document_type")
+  private String documentType = null;
   @SerializedName("email")
   private String email = null;
+  @SerializedName("first_name")
+  private String firstName = null;
   @SerializedName("full_name")
   private String fullName = null;
   @SerializedName("home_phone")
   private String homePhone = null;
   @SerializedName("id")
   private String id = null;
+  @SerializedName("last_name")
+  private String lastName = null;
   @SerializedName("living_address")
   private PaymentRequestLivingAddress livingAddress = null;
   @SerializedName("locale")
@@ -54,6 +60,20 @@ public class PaymentRequestCustomer {
   }
 
   
+  public void setDocumentType(String documentType) {
+      this.documentType = documentType;
+  }
+
+  /**
+   * @param documentType Customer document type *(mandatory for &#39;PAGOEFECTIVO&#39; methods only)*
+   * @return bean instance
+   **/
+  public PaymentRequestCustomer documentType(String documentType) {
+      this.documentType = documentType;
+      return this;
+  }
+
+  
   public void setEmail(String email) {
       this.email = email;
   }
@@ -64,6 +84,20 @@ public class PaymentRequestCustomer {
    **/
   public PaymentRequestCustomer email(String email) {
       this.email = email;
+      return this;
+  }
+
+  
+  public void setFirstName(String firstName) {
+      this.firstName = firstName;
+  }
+
+  /**
+   * @param firstName Customer first name *(mandatory for &#39;PAGOEFECTIVO&#39; payment methods only)*
+   * @return bean instance
+   **/
+  public PaymentRequestCustomer firstName(String firstName) {
+      this.firstName = firstName;
       return this;
   }
 
@@ -106,6 +140,20 @@ public class PaymentRequestCustomer {
    **/
   public PaymentRequestCustomer id(String id) {
       this.id = id;
+      return this;
+  }
+
+  
+  public void setLastName(String lastName) {
+      this.lastName = lastName;
+  }
+
+  /**
+   * @param lastName Customer last name *(mandatory for &#39;PAGOEFECTIVO&#39; payment methods only)*
+   * @return bean instance
+   **/
+  public PaymentRequestCustomer lastName(String lastName) {
+      this.lastName = lastName;
       return this;
   }
 
@@ -186,10 +234,13 @@ public class PaymentRequestCustomer {
      sb.append("PaymentRequestCustomer( ");
      
      if (birthDate != null) sb.append("birthDate=").append(birthDate.toString()).append("; ");
+     if (documentType != null) sb.append("documentType=").append(documentType.toString()).append("; ");
      if (email != null) sb.append("email=").append(email.toString()).append("; ");
+     if (firstName != null) sb.append("firstName=").append(firstName.toString()).append("; ");
      if (fullName != null) sb.append("fullName=").append(fullName.toString()).append("; ");
      if (homePhone != null) sb.append("homePhone=").append(homePhone.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (lastName != null) sb.append("lastName=").append(lastName.toString()).append("; ");
      if (livingAddress != null) sb.append("livingAddress=").append(livingAddress.toString()).append("; ");
      if (locale != null) sb.append("locale=").append(locale.toString()).append("; ");
      if (phone != null) sb.append("phone=").append(phone.toString()).append("; ");
