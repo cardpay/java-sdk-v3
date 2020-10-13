@@ -63,7 +63,7 @@
         <retrofit-version>2.6.0</retrofit-version>
         <okhttp3-version>3.12.3</okhttp3-version>
 
-        <junit-version>4.12</junit-version>
+        <junit-version>4.13.1</junit-version>
 
         <lombok.version>1.18.4</lombok.version>
     </properties>
