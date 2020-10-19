@@ -27,8 +27,6 @@ public class CardBindingRequest {
   private RecurringCustomer customer = null;
   @SerializedName("merchant_order")
   private CardBindingMerchantOrder merchantOrder = null;
-  @SerializedName("mobile_token")
-  private String mobileToken = null;
   @SerializedName("recurring_data")
   private CardBindingData recurringData = null;
   @SerializedName("return_urls")
@@ -90,20 +88,6 @@ public class CardBindingRequest {
   }
 
   
-  public void setMobileToken(String mobileToken) {
-      this.mobileToken = mobileToken;
-  }
-
-  /**
-   * @param mobileToken Mobile token
-   * @return bean instance
-   **/
-  public CardBindingRequest mobileToken(String mobileToken) {
-      this.mobileToken = mobileToken;
-      return this;
-  }
-
-  
   public void setRecurringData(CardBindingData recurringData) {
       this.recurringData = recurringData;
   }
@@ -141,7 +125,6 @@ public class CardBindingRequest {
      if (cardAccount != null) sb.append("cardAccount=").append(cardAccount.toString()).append("; ");
      if (customer != null) sb.append("customer=").append(customer.toString()).append("; ");
      if (merchantOrder != null) sb.append("merchantOrder=").append(merchantOrder.toString()).append("; ");
-     if (mobileToken != null) sb.append("mobileToken=").append(mobileToken.toString()).append("; ");
      if (recurringData != null) sb.append("recurringData=").append(recurringData.toString()).append("; ");
      if (returnUrls != null) sb.append("returnUrls=").append(returnUrls.toString()).append("; ");
      sb.append(")");

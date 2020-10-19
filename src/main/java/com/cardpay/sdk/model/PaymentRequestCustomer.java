@@ -33,6 +33,8 @@ public class PaymentRequestCustomer {
   private String homePhone = null;
   @SerializedName("id")
   private String id = null;
+  @SerializedName("identity")
+  private String identity = null;
   @SerializedName("last_name")
   private String lastName = null;
   @SerializedName("living_address")
@@ -144,6 +146,20 @@ public class PaymentRequestCustomer {
   }
 
   
+  public void setIdentity(String identity) {
+      this.identity = identity;
+  }
+
+  /**
+   * @param identity Customer identity string value
+   * @return bean instance
+   **/
+  public PaymentRequestCustomer identity(String identity) {
+      this.identity = identity;
+      return this;
+  }
+
+  
   public void setLastName(String lastName) {
       this.lastName = lastName;
   }
@@ -240,6 +256,7 @@ public class PaymentRequestCustomer {
      if (fullName != null) sb.append("fullName=").append(fullName.toString()).append("; ");
      if (homePhone != null) sb.append("homePhone=").append(homePhone.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (identity != null) sb.append("identity=").append(identity.toString()).append("; ");
      if (lastName != null) sb.append("lastName=").append(lastName.toString()).append("; ");
      if (livingAddress != null) sb.append("livingAddress=").append(livingAddress.toString()).append("; ");
      if (locale != null) sb.append("locale=").append(locale.toString()).append("; ");

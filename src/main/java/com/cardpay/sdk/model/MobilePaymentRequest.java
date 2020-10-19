@@ -27,8 +27,6 @@ public class MobilePaymentRequest {
   private PaymentRequestCustomer customer = null;
   @SerializedName("merchant_order")
   private MobilePaymentMerchantOrder merchantOrder = null;
-  @SerializedName("mobile_token")
-  private String mobileToken = null;
   @SerializedName("payment_data")
   private PaymentRequestPaymentData paymentData = null;
   @SerializedName("payment_method")
@@ -92,20 +90,6 @@ public class MobilePaymentRequest {
   }
 
   
-  public void setMobileToken(String mobileToken) {
-      this.mobileToken = mobileToken;
-  }
-
-  /**
-   * @param mobileToken Unique identifier, max 128 symbols
-   * @return bean instance
-   **/
-  public MobilePaymentRequest mobileToken(String mobileToken) {
-      this.mobileToken = mobileToken;
-      return this;
-  }
-
-  
   public void setPaymentData(PaymentRequestPaymentData paymentData) {
       this.paymentData = paymentData;
   }
@@ -157,7 +141,6 @@ public class MobilePaymentRequest {
      if (cardAccount != null) sb.append("cardAccount=").append(cardAccount.toString()).append("; ");
      if (customer != null) sb.append("customer=").append(customer.toString()).append("; ");
      if (merchantOrder != null) sb.append("merchantOrder=").append(merchantOrder.toString()).append("; ");
-     if (mobileToken != null) sb.append("mobileToken=").append(mobileToken.toString()).append("; ");
      if (paymentData != null) sb.append("paymentData=").append(paymentData.toString()).append("; ");
      if (paymentMethod != null) sb.append("paymentMethod=").append(paymentMethod.toString()).append("; ");
      if (returnUrls != null) sb.append("returnUrls=").append(returnUrls.toString()).append("; ");

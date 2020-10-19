@@ -14,51 +14,44 @@
 package com.cardpay.sdk.model;
 
 import com.google.gson.annotations.SerializedName;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Data;
 
 @Data
 
-public class MobilePaymentResponse {
-  @SerializedName("payment_data")
-  private MobilePaymentData paymentData = null;
-  @SerializedName("redirect_url")
-  private String redirectUrl = null;
+public class MobilePaymentMethodListResponse {
+  @SerializedName("payment_methods")
+  private List<MobilePaymentMethodDataResponse> paymentMethods = null;
   
-  public void setPaymentData(MobilePaymentData paymentData) {
-      this.paymentData = paymentData;
+  public void setPaymentMethods(List<MobilePaymentMethodDataResponse> paymentMethods) {
+      this.paymentMethods = paymentMethods;
   }
 
   /**
-   * @param paymentData Mobile payment data
+   * @param paymentMethods Mobile payment data
    * @return bean instance
    **/
-  public MobilePaymentResponse paymentData(MobilePaymentData paymentData) {
-      this.paymentData = paymentData;
+  public MobilePaymentMethodListResponse paymentMethods(List<MobilePaymentMethodDataResponse> paymentMethods) {
+      this.paymentMethods = paymentMethods;
       return this;
   }
 
-  
-  public void setRedirectUrl(String redirectUrl) {
-      this.redirectUrl = redirectUrl;
-  }
-
-  /**
-   * @param redirectUrl URL Customer should be redirected to
-   * @return bean instance
-   **/
-  public MobilePaymentResponse redirectUrl(String redirectUrl) {
-      this.redirectUrl = redirectUrl;
-      return this;
+  public MobilePaymentMethodListResponse addPaymentMethodsItem(MobilePaymentMethodDataResponse paymentMethodsItem) {
+    if (this.paymentMethods == null) {
+      this.paymentMethods = new ArrayList<>();
+    }
+    this.paymentMethods.add(paymentMethodsItem);
+    return this;
   }
 
 
   @Override
   public String toString() {
      StringBuilder sb = new StringBuilder();
-     sb.append("MobilePaymentResponse( ");
+     sb.append("MobilePaymentMethodListResponse( ");
      
-     if (paymentData != null) sb.append("paymentData=").append(paymentData.toString()).append("; ");
-     if (redirectUrl != null) sb.append("redirectUrl=").append(redirectUrl.toString()).append("; ");
+     if (paymentMethods != null) sb.append("paymentMethods=").append(paymentMethods.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

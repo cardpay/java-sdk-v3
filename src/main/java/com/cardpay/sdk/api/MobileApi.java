@@ -14,6 +14,7 @@ public interface MobileApi {
   /**
    * Create mobile payment 
    * 
+   * @param authorization Authorization (required)
    * @param request request (required)
    * @return Call&lt;MobilePaymentResponse&gt;
    */
@@ -22,12 +23,13 @@ public interface MobileApi {
   })
   @POST("api/mobile/payment")
   Call<MobilePaymentResponse> createMobilePayment(
-    @retrofit2.http.Body MobilePaymentRequest request
+    @retrofit2.http.Header("Authorization") String authorization, @retrofit2.http.Body MobilePaymentRequest request
   );
 
   /**
    * Execute card binding process
    * 
+   * @param authorization Authorization (required)
    * @param request request (required)
    * @return Call&lt;CardBindingResponse&gt;
    */
@@ -36,7 +38,7 @@ public interface MobileApi {
   })
   @POST("api/mobile/cardbinding")
   Call<CardBindingResponse> executeCardBinding(
-    @retrofit2.http.Body CardBindingRequest request
+    @retrofit2.http.Header("Authorization") String authorization, @retrofit2.http.Body CardBindingRequest request
   );
 
   /**
@@ -51,6 +53,17 @@ public interface MobileApi {
   @POST("api/mobile/token")
   Call<MobileTokenResponse> generateMobileToken(
     @retrofit2.http.Body MobileTokenRequest request
+  );
+
+  /**
+   * get mobile payment methods
+   * 
+   * @param authorization Authorization (required)
+   * @return Call&lt;MobilePaymentResponse&gt;
+   */
+  @GET("api/mobile/payment_methods")
+  Call<MobilePaymentResponse> getMobilePaymentMethods(
+    @retrofit2.http.Header("Authorization") String authorization
   );
 
 }

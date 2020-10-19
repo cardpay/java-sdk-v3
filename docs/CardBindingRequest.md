@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **cardAccount** | [**CardBindingCardAccount**](CardBindingCardAccount.md) | Information about card | 
 **customer** | [**RecurringCustomer**](RecurringCustomer.md) | Customer data |  [optional]
 **merchantOrder** | [**CardBindingMerchantOrder**](CardBindingMerchantOrder.md) | Merchant order data |  [optional]
-**mobileToken** | **String** | Mobile token |  [optional]
 **recurringData** | [**CardBindingData**](CardBindingData.md) | Data of recurring payment |  [optional]
 **returnUrls** | [**ReturnUrls**](ReturnUrls.md) | Merchant Return URLs |  [optional]
 

@@ -18,36 +18,36 @@ import lombok.Data;
 
 @Data
 
-public class MobilePaymentResponse {
-  @SerializedName("payment_data")
-  private MobilePaymentData paymentData = null;
-  @SerializedName("redirect_url")
-  private String redirectUrl = null;
+public class MobilePaymentData {
+  @SerializedName("id")
+  private String id = null;
+  @SerializedName("status")
+  private String status = null;
   
-  public void setPaymentData(MobilePaymentData paymentData) {
-      this.paymentData = paymentData;
+  public void setId(String id) {
+      this.id = id;
   }
 
   /**
-   * @param paymentData Mobile payment data
+   * @param id Cardpay&#39;s payment id
    * @return bean instance
    **/
-  public MobilePaymentResponse paymentData(MobilePaymentData paymentData) {
-      this.paymentData = paymentData;
+  public MobilePaymentData id(String id) {
+      this.id = id;
       return this;
   }
 
   
-  public void setRedirectUrl(String redirectUrl) {
-      this.redirectUrl = redirectUrl;
+  public void setStatus(String status) {
+      this.status = status;
   }
 
   /**
-   * @param redirectUrl URL Customer should be redirected to
+   * @param status Current payment status
    * @return bean instance
    **/
-  public MobilePaymentResponse redirectUrl(String redirectUrl) {
-      this.redirectUrl = redirectUrl;
+  public MobilePaymentData status(String status) {
+      this.status = status;
       return this;
   }
 
@@ -55,10 +55,10 @@ public class MobilePaymentResponse {
   @Override
   public String toString() {
      StringBuilder sb = new StringBuilder();
-     sb.append("MobilePaymentResponse( ");
+     sb.append("MobilePaymentData( ");
      
-     if (paymentData != null) sb.append("paymentData=").append(paymentData.toString()).append("; ");
-     if (redirectUrl != null) sb.append("redirectUrl=").append(redirectUrl.toString()).append("; ");
+     if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (status != null) sb.append("status=").append(status.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

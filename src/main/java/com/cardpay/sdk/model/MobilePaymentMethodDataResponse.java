@@ -18,36 +18,36 @@ import lombok.Data;
 
 @Data
 
-public class MobilePaymentResponse {
-  @SerializedName("payment_data")
-  private MobilePaymentData paymentData = null;
-  @SerializedName("redirect_url")
-  private String redirectUrl = null;
+public class MobilePaymentMethodDataResponse {
+  @SerializedName("category")
+  private String category = null;
+  @SerializedName("name")
+  private String name = null;
   
-  public void setPaymentData(MobilePaymentData paymentData) {
-      this.paymentData = paymentData;
+  public void setCategory(String category) {
+      this.category = category;
   }
 
   /**
-   * @param paymentData Mobile payment data
+   * @param category Mobile payment method category
    * @return bean instance
    **/
-  public MobilePaymentResponse paymentData(MobilePaymentData paymentData) {
-      this.paymentData = paymentData;
+  public MobilePaymentMethodDataResponse category(String category) {
+      this.category = category;
       return this;
   }
 
   
-  public void setRedirectUrl(String redirectUrl) {
-      this.redirectUrl = redirectUrl;
+  public void setName(String name) {
+      this.name = name;
   }
 
   /**
-   * @param redirectUrl URL Customer should be redirected to
+   * @param name Mobile payment method name
    * @return bean instance
    **/
-  public MobilePaymentResponse redirectUrl(String redirectUrl) {
-      this.redirectUrl = redirectUrl;
+  public MobilePaymentMethodDataResponse name(String name) {
+      this.name = name;
       return this;
   }
 
@@ -55,10 +55,10 @@ public class MobilePaymentResponse {
   @Override
   public String toString() {
      StringBuilder sb = new StringBuilder();
-     sb.append("MobilePaymentResponse( ");
+     sb.append("MobilePaymentMethodDataResponse( ");
      
-     if (paymentData != null) sb.append("paymentData=").append(paymentData.toString()).append("; ");
-     if (redirectUrl != null) sb.append("redirectUrl=").append(redirectUrl.toString()).append("; ");
+     if (category != null) sb.append("category=").append(category.toString()).append("; ");
+     if (name != null) sb.append("name=").append(name.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }
