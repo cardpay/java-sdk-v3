@@ -56,6 +56,18 @@ public interface MobileApi {
   );
 
   /**
+   * get mobile payment
+   * 
+   * @param authorization Authorization (required)
+   * @param paymentId paymentId (required)
+   * @return Call&lt;MobilePaymentResponse&gt;
+   */
+  @GET("api/mobile/payments/{paymentId}")
+  Call<MobilePaymentResponse> getMobilePayment(
+    @retrofit2.http.Header("Authorization") String authorization, @retrofit2.http.Path("paymentId") String paymentId
+  );
+
+  /**
    * get mobile payment methods
    * 
    * @param authorization Authorization (required)
