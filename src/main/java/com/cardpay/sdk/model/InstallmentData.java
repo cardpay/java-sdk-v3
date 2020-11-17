@@ -38,6 +38,8 @@ public class InstallmentData {
   private Boolean holdRestAmount = null;
   @SerializedName("initiator")
   private String initiator = null;
+  @SerializedName("installment_type")
+  private String installmentType = null;
   @SerializedName("interval")
   private Integer interval = null;
   @SerializedName("note")
@@ -243,6 +245,20 @@ public class InstallmentData {
   }
 
   
+  public void setInstallmentType(String installmentType) {
+      this.installmentType = installmentType;
+  }
+
+  /**
+   * @param installmentType Installment type, 2 possible values: IF - issuer financed MF - merchant financed For Mexican installments should be only &#39;IF&#39; installment_type
+   * @return bean instance
+   **/
+  public InstallmentData installmentType(String installmentType) {
+      this.installmentType = installmentType;
+      return this;
+  }
+
+  
   public void setInterval(Integer interval) {
       this.interval = interval;
   }
@@ -277,7 +293,7 @@ public class InstallmentData {
   }
 
   /**
-   * @param payments Number of total payments to be charged per defined interval, can be 2-200.
+   * @param payments Number of total payments to be charged per defined interval, can be 2-200. For Mexican installment subscription (installment_type &#x3D; &#x60;IF&#x60;) should be 1-99.
    * @return bean instance
    **/
   public InstallmentData payments(Integer payments) {
@@ -353,6 +369,7 @@ public class InstallmentData {
      if (generateToken != null) sb.append("generateToken=").append(generateToken.toString()).append("; ");
      if (holdRestAmount != null) sb.append("holdRestAmount=").append(holdRestAmount.toString()).append("; ");
      if (initiator != null) sb.append("initiator=").append(initiator.toString()).append("; ");
+     if (installmentType != null) sb.append("installmentType=").append(installmentType.toString()).append("; ");
      if (interval != null) sb.append("interval=").append(interval.toString()).append("; ");
      if (note != null) sb.append("note=").append(note.toString()).append("; ");
      if (payments != null) sb.append("payments=").append(payments.toString()).append("; ");

@@ -9,7 +9,7 @@ import static com.cardpay.sdk.Constants.CARD_3DS_CONFIRMED;
 import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
 import static com.cardpay.sdk.client.StringUtil.formatBirthDate;
 import static com.cardpay.sdk.client.StringUtil.formatExpirationDate;
-import static com.cardpay.sdk.model.PaymentResponsePaymentData.StatusEnum.IN_PROGRESS;
+import static com.cardpay.sdk.model.PaymentResponsePaymentData.StatusEnum.COMPLETED;
 import static com.cardpay.sdk.utils.DataUtils.generateCardExpiration;
 import static com.cardpay.sdk.utils.DataUtils.generateEmail;
 import static com.cardpay.sdk.utils.DataUtils.generateMerchantOrderId;
@@ -145,7 +145,7 @@ public class PaymentGateway3dsModeUAT {
         PaymentResponsePaymentData paymentData = fetchPaymentByMerchantOrderId(merchantOrderId);
         assertNotNull(paymentData);
 
-        assertEquals(IN_PROGRESS, paymentData.getStatus());
+        assertEquals(COMPLETED, paymentData.getStatus());
     }
 
     private PaymentResponsePaymentData fetchPaymentByMerchantOrderId(String merchantOrderId) throws IOException {

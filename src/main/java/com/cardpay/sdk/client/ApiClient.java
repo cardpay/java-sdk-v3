@@ -42,7 +42,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class ApiClient {
-    public static final String USER_AGENT = "CardpaySdk/2.18.5/Java";
+    public static final String USER_AGENT = "CardpaySdk/2.20.0/Java";
 
     private TokenProvider tokenProvider;
 
@@ -102,6 +102,10 @@ public class ApiClient {
 
     public void setCallTimeout(Duration callTimeout) {
         this.callTimeout = callTimeout;
+    }
+
+    public void setInterceptor(Interceptor interceptor) {
+        interceptors.add(interceptor);
     }
 
     private void createDefaultAdapter() {

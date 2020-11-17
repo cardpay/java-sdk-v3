@@ -21,8 +21,12 @@ import lombok.Data;
 public class PayoutRequestEWalletAccount {
   @SerializedName("bank_branch")
   private String bankBranch = null;
+  @SerializedName("bank_city")
+  private String bankCity = null;
   @SerializedName("bank_code")
   private String bankCode = null;
+  @SerializedName("bank_name")
+  private String bankName = null;
   @SerializedName("id")
   private String id = null;
   @SerializedName("name")
@@ -44,6 +48,20 @@ public class PayoutRequestEWalletAccount {
   }
 
   
+  public void setBankCity(String bankCity) {
+      this.bankCity = bankCity;
+  }
+
+  /**
+   * @param bankCity Customer bank city Customer bank city (string)
+   * @return bean instance
+   **/
+  public PayoutRequestEWalletAccount bankCity(String bankCity) {
+      this.bankCity = bankCity;
+      return this;
+  }
+
+  
   public void setBankCode(String bankCode) {
       this.bankCode = bankCode;
   }
@@ -54,6 +72,20 @@ public class PayoutRequestEWalletAccount {
    **/
   public PayoutRequestEWalletAccount bankCode(String bankCode) {
       this.bankCode = bankCode;
+      return this;
+  }
+
+  
+  public void setBankName(String bankName) {
+      this.bankName = bankName;
+  }
+
+  /**
+   * @param bankName Customer bank name Customer bank name (string)
+   * @return bean instance
+   **/
+  public PayoutRequestEWalletAccount bankName(String bankName) {
+      this.bankName = bankName;
       return this;
   }
 
@@ -106,7 +138,9 @@ public class PayoutRequestEWalletAccount {
      sb.append("PayoutRequestEWalletAccount( ");
      
      if (bankBranch != null) sb.append("bankBranch=").append(bankBranch.toString()).append("; ");
+     if (bankCity != null) sb.append("bankCity=").append(bankCity.toString()).append("; ");
      if (bankCode != null) sb.append("bankCode=").append(bankCode.toString()).append("; ");
+     if (bankName != null) sb.append("bankName=").append(bankName.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
      if (name != null) sb.append("name=").append(name.toString()).append("; ");
      if (type != null) sb.append("type=").append(type.toString()).append("; ");

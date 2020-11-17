@@ -45,12 +45,16 @@ public class RecurringResponseRecurringData {
   private RecurringResponseFiling filing = null;
   @SerializedName("id")
   private String id = null;
+  @SerializedName("installment_type")
+  private String installmentType = null;
   @SerializedName("invalid_data")
   private List<String> invalidData = null;
   @SerializedName("is_3d")
   private Boolean is3d = null;
   @SerializedName("note")
   private String note = null;
+  @SerializedName("payments")
+  private String payments = null;
   @SerializedName("rrn")
   private String rrn = null;
   /**
@@ -355,6 +359,20 @@ public class RecurringResponseRecurringData {
   }
 
   
+  public void setInstallmentType(String installmentType) {
+      this.installmentType = installmentType;
+  }
+
+  /**
+   * @param installmentType Selected installment type
+   * @return bean instance
+   **/
+  public RecurringResponseRecurringData installmentType(String installmentType) {
+      this.installmentType = installmentType;
+      return this;
+  }
+
+  
   public void setInvalidData(List<String> invalidData) {
       this.invalidData = invalidData;
   }
@@ -401,6 +419,20 @@ public class RecurringResponseRecurringData {
    **/
   public RecurringResponseRecurringData note(String note) {
       this.note = note;
+      return this;
+  }
+
+  
+  public void setPayments(String payments) {
+      this.payments = payments;
+  }
+
+  /**
+   * @param payments Number of total payments, to be charged
+   * @return bean instance
+   **/
+  public RecurringResponseRecurringData payments(String payments) {
+      this.payments = payments;
       return this;
   }
 
@@ -489,9 +521,11 @@ public class RecurringResponseRecurringData {
      if (declineReason != null) sb.append("declineReason=").append(declineReason.toString()).append("; ");
      if (filing != null) sb.append("filing=").append(filing.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (installmentType != null) sb.append("installmentType=").append(installmentType.toString()).append("; ");
      if (invalidData != null) sb.append("invalidData=").append(invalidData.toString()).append("; ");
      if (is3d != null) sb.append("is3d=").append(is3d.toString()).append("; ");
      if (note != null) sb.append("note=").append(note.toString()).append("; ");
+     if (payments != null) sb.append("payments=").append(payments.toString()).append("; ");
      if (rrn != null) sb.append("rrn=").append(rrn.toString()).append("; ");
      if (status != null) sb.append("status=").append(status.toString()).append("; ");
      if (subscription != null) sb.append("subscription=").append(subscription.toString()).append("; ");
