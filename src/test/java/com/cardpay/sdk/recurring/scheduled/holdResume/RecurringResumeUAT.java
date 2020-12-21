@@ -1,5 +1,35 @@
 package com.cardpay.sdk.recurring.scheduled.holdResume;
 
+import com.cardpay.sdk.api.RecurringsApi;
+import com.cardpay.sdk.client.ApiClient;
+import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
+import com.cardpay.sdk.model.Plan;
+import com.cardpay.sdk.model.RecurringCreationRequest;
+import com.cardpay.sdk.model.RecurringCustomer;
+import com.cardpay.sdk.model.RecurringGatewayCreationResponse;
+import com.cardpay.sdk.model.RecurringPlanRequest;
+import com.cardpay.sdk.model.RecurringPlanRequestPlanData;
+import com.cardpay.sdk.model.RecurringPlanResponse;
+import com.cardpay.sdk.model.RecurringRequestRecurringData;
+import com.cardpay.sdk.model.RecurringResponse;
+import com.cardpay.sdk.model.SubscriptionUpdateRequest;
+import com.cardpay.sdk.model.SubscriptionUpdateRequestSubscriptionData;
+import com.cardpay.sdk.model.SubscriptionUpdateResponse;
+import com.cardpay.sdk.utils.HttpUtils;
+import io.codearte.jfairy.Fairy;
+import io.codearte.jfairy.producer.BaseProducer;
+import io.codearte.jfairy.producer.person.Person;
+import io.codearte.jfairy.producer.text.TextProducer;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import retrofit2.Response;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+
 import static com.cardpay.sdk.Config.CARDPAY_API_URL;
 import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
 import static com.cardpay.sdk.Config.GATEWAY_TERMINAL_CODE;
@@ -20,35 +50,6 @@ import static java.util.concurrent.locks.LockSupport.parkNanos;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-
-import com.cardpay.sdk.api.RecurringsApi;
-import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
-import com.cardpay.sdk.model.Plan;
-import com.cardpay.sdk.model.RecurringCreationRequest;
-import com.cardpay.sdk.model.RecurringGatewayCreationResponse;
-import com.cardpay.sdk.model.RecurringCustomer;
-import com.cardpay.sdk.model.RecurringPlanRequest;
-import com.cardpay.sdk.model.RecurringPlanRequestPlanData;
-import com.cardpay.sdk.model.RecurringPlanResponse;
-import com.cardpay.sdk.model.RecurringRequestRecurringData;
-import com.cardpay.sdk.model.RecurringResponse;
-import com.cardpay.sdk.model.SubscriptionUpdateRequest;
-import com.cardpay.sdk.model.SubscriptionUpdateRequestSubscriptionData;
-import com.cardpay.sdk.model.SubscriptionUpdateResponse;
-import com.cardpay.sdk.utils.HttpUtils;
-import io.codearte.jfairy.Fairy;
-import io.codearte.jfairy.producer.BaseProducer;
-import io.codearte.jfairy.producer.person.Person;
-import io.codearte.jfairy.producer.text.TextProducer;
-import java.io.IOException;
-import java.math.BigDecimal;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import retrofit2.Response;
 
 public class RecurringResumeUAT {
 
@@ -102,12 +103,12 @@ public class RecurringResumeUAT {
         log.info("{}", recurringRequest);
 
         // perform create scheduled subscription
-        Response<RecurringGatewayCreationResponse> RecurringGatewayCreationResponse = recurrings
+        Response<RecurringGatewayCreationResponse> recurringGatewayCreationResponse = recurrings
                 .createRecurring(recurringRequest)
                 .execute();
-        log.info("{}", RecurringGatewayCreationResponse);
+        log.info("{}", recurringGatewayCreationResponse);
 
-        RecurringGatewayCreationResponse creationResponse = RecurringGatewayCreationResponse.body();
+        RecurringGatewayCreationResponse creationResponse = recurringGatewayCreationResponse.body();
         assertNotNull(creationResponse);
         log.info("{}", creationResponse);
 
@@ -146,18 +147,18 @@ public class RecurringResumeUAT {
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
         // prepare subscription update request data
-        subscriptionUpdateRequest = new SubscriptionUpdateRequest()
+        SubscriptionUpdateRequest changeStatusRequest = new SubscriptionUpdateRequest()
                 .request(ApiClient.uuidRequest())
                 .operation(CHANGE_STATUS)
                 .subscriptionData(new SubscriptionUpdateRequestSubscriptionData()
                         .statusTo(SubscriptionUpdateRequestSubscriptionData.StatusToEnum.ACTIVE)
                 );
 
-        log.info("{}", subscriptionUpdateRequest);
+        log.info("{}", changeStatusRequest);
 
         // preform change status of Scheduled subscription to ACTIVE
         Response<SubscriptionUpdateResponse> result = recurrings
-                .updateSubscription(subscriptionId, subscriptionUpdateRequest)
+                .updateSubscription(subscriptionId, changeStatusRequest)
                 .execute();
 
         log.info("{}", result.body());

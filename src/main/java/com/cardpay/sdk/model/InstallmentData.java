@@ -250,7 +250,7 @@ public class InstallmentData {
   }
 
   /**
-   * @param installmentType Installment type, 2 possible values: IF - issuer financed MF - merchant financed For Mexican installments should be only &#39;IF&#39; installment_type
+   * @param installmentType Installment type, 2 possible values: &#x60;IF&#x60; - issuer financed &#x60;MF&#x60; - merchant financed For installments by merchant should be only &#x60;MF&#x60; installment_type
    * @return bean instance
    **/
   public InstallmentData installmentType(String installmentType) {

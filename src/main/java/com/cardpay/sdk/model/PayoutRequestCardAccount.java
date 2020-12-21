@@ -23,8 +23,6 @@ public class PayoutRequestCardAccount {
   private BillingAddress billingAddress = null;
   @SerializedName("card")
   private PayoutRequestCard card = null;
-  @SerializedName("empty")
-  private Boolean empty = null;
   @SerializedName("recipient_info")
   private String recipientInfo = null;
   @SerializedName("token")
@@ -54,20 +52,6 @@ public class PayoutRequestCardAccount {
    **/
   public PayoutRequestCardAccount card(PayoutRequestCard card) {
       this.card = card;
-      return this;
-  }
-
-  
-  public void setEmpty(Boolean empty) {
-      this.empty = empty;
-  }
-
-  /**
-   * @param empty empty
-   * @return bean instance
-   **/
-  public PayoutRequestCardAccount empty(Boolean empty) {
-      this.empty = empty;
       return this;
   }
 
@@ -107,7 +91,6 @@ public class PayoutRequestCardAccount {
      
      if (billingAddress != null) sb.append("billingAddress=").append(billingAddress.toString()).append("; ");
      if (card != null) sb.append("card=").append(card.toString()).append("; ");
-     if (empty != null) sb.append("empty=").append(empty.toString()).append("; ");
      if (recipientInfo != null) sb.append("recipientInfo=").append(recipientInfo.toString()).append("; ");
      if (token != null) sb.append("token=").append(token.toString()).append("; ");
      sb.append(")");
