@@ -1,6 +1,6 @@
-# Cardpay APIv3 Java SDK
+# Unlimint APIv3 Java SDK
 
-You can sign up for a Cardpay account at https://www.cardpay.com.
+You can sign up for a Unlimint account at https://www.unlimint.com
 
 ## Getting Started
 
