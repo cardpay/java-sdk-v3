@@ -45,6 +45,8 @@ public class RecurringResponseRecurringData {
   private RecurringResponseFiling filing = null;
   @SerializedName("id")
   private String id = null;
+  @SerializedName("installment_amount")
+  private BigDecimal installmentAmount = null;
   @SerializedName("installment_type")
   private String installmentType = null;
   @SerializedName("invalid_data")
@@ -79,6 +81,8 @@ public class RecurringResponseRecurringData {
     PARTIALLY_REFUNDED("PARTIALLY_REFUNDED"),
     
     VOIDED("VOIDED"),
+    
+    TERMINATED("TERMINATED"),
     
     CHARGED_BACK("CHARGED_BACK"),
     
@@ -359,6 +363,20 @@ public class RecurringResponseRecurringData {
   }
 
   
+  public void setInstallmentAmount(BigDecimal installmentAmount) {
+      this.installmentAmount = installmentAmount;
+  }
+
+  /**
+   * @param installmentAmount Amount of 1 installment payment, will be returned if presented in request (for payment page mode only)
+   * @return bean instance
+   **/
+  public RecurringResponseRecurringData installmentAmount(BigDecimal installmentAmount) {
+      this.installmentAmount = installmentAmount;
+      return this;
+  }
+
+  
   public void setInstallmentType(String installmentType) {
       this.installmentType = installmentType;
   }
@@ -521,6 +539,7 @@ public class RecurringResponseRecurringData {
      if (declineReason != null) sb.append("declineReason=").append(declineReason.toString()).append("; ");
      if (filing != null) sb.append("filing=").append(filing.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (installmentAmount != null) sb.append("installmentAmount=").append(installmentAmount.toString()).append("; ");
      if (installmentType != null) sb.append("installmentType=").append(installmentType.toString()).append("; ");
      if (invalidData != null) sb.append("invalidData=").append(invalidData.toString()).append("; ");
      if (is3d != null) sb.append("is3d=").append(is3d.toString()).append("; ");

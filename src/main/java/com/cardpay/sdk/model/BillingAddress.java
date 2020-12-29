@@ -27,8 +27,6 @@ public class BillingAddress {
   private String city = null;
   @SerializedName("country")
   private String country = null;
-  @SerializedName("phone")
-  private String phone = null;
   @SerializedName("state")
   private String state = null;
   @SerializedName("zip")
@@ -39,7 +37,7 @@ public class BillingAddress {
   }
 
   /**
-   * @param addrLine1 Street address. May include whitespaces, hyphens, apostrophes, commas, quotes, dots, slashes and semicolons
+   * @param addrLine1 First line of the street address or equivalent local portion of the Cardholder billing address associated with the card used for this purchase. Should include street and house number. May include whitespaces, hyphens, apostrophes, commas, quotes, dots, slashes and semicolons. Required (if available) unless market or regional mandate restricts sending this information. For recurring: field will be ignored if &#39;filing.id&#39; is presented in request (continue one-click scenario) *Length: 0 - 50*
    * @return bean instance
    **/
   public BillingAddress addrLine1(String addrLine1) {
@@ -53,7 +51,7 @@ public class BillingAddress {
   }
 
   /**
-   * @param addrLine2 Second line of the street address or equivalent local portion of the Cardholder billing address associated with the card used for this purchase.
+   * @param addrLine2 Second line of the street address or equivalent local portion of the Cardholder billing address associated with the card used for this purchase. Required (if available) unless market or regional mandate restricts sending this information. For recurring: field will be ignored if &#39;filing.id&#39; is presented in request (continue one-click scenario) *Length: 0 - 50*
    * @return bean instance
    **/
   public BillingAddress addrLine2(String addrLine2) {
@@ -67,7 +65,7 @@ public class BillingAddress {
   }
 
   /**
-   * @param city Delivery city. May include whitespaces, hyphens, apostrophes, commas and dots
+   * @param city Billing city. May include whitespaces, hyphens, apostrophes, commas and dots
    * @return bean instance
    **/
   public BillingAddress city(String city) {
@@ -81,25 +79,11 @@ public class BillingAddress {
   }
 
   /**
-   * @param country [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) code of country: 2 or 3 latin letters or numeric code. Mandatory if &#39;shipping_address&#39; is presented.
+   * @param country [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) code of billing country: 2 or 3 latin letters or numeric code 
    * @return bean instance
    **/
   public BillingAddress country(String country) {
       this.country = country;
-      return this;
-  }
-
-  
-  public void setPhone(String phone) {
-      this.phone = phone;
-  }
-
-  /**
-   * @param phone Valid customer phone number
-   * @return bean instance
-   **/
-  public BillingAddress phone(String phone) {
-      this.phone = phone;
       return this;
   }
 
@@ -109,7 +93,7 @@ public class BillingAddress {
   }
 
   /**
-   * @param state Delivery state or province. May include whitespaces, hyphens, apostrophes, commas and dots
+   * @param state The state or province of the billing address associated with the card being used for this purchase. It&#39;s recommended to send in following format: the country subdivision code defined in [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2). May include whitespaces, hyphens, apostrophes, commas and dots
    * @return bean instance
    **/
   public BillingAddress state(String state) {
@@ -123,7 +107,7 @@ public class BillingAddress {
   }
 
   /**
-   * @param zip Delivery postal code
+   * @param zip Billing postal code
    * @return bean instance
    **/
   public BillingAddress zip(String zip) {
@@ -141,7 +125,6 @@ public class BillingAddress {
      if (addrLine2 != null) sb.append("addrLine2=").append(addrLine2.toString()).append("; ");
      if (city != null) sb.append("city=").append(city.toString()).append("; ");
      if (country != null) sb.append("country=").append(country.toString()).append("; ");
-     if (phone != null) sb.append("phone=").append(phone.toString()).append("; ");
      if (state != null) sb.append("state=").append(state.toString()).append("; ");
      if (zip != null) sb.append("zip=").append(zip.toString()).append("; ");
      sb.append(")");

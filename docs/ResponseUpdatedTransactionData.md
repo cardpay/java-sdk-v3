@@ -25,6 +25,7 @@ CANCELLED | &quot;CANCELLED&quot;
 REFUNDED | &quot;REFUNDED&quot;
 PARTIALLY_REFUNDED | &quot;PARTIALLY_REFUNDED&quot;
 VOIDED | &quot;VOIDED&quot;
+TERMINATED | &quot;TERMINATED&quot;
 CHARGED_BACK | &quot;CHARGED_BACK&quot;
 CHARGEBACK_RESOLVED | &quot;CHARGEBACK_RESOLVED&quot;
 
@@ -35,6 +36,7 @@ Name | Value
 ---- | -----
 REVERSE | &quot;REVERSE&quot;
 COMPLETE | &quot;COMPLETE&quot;
+TERMINATE | &quot;TERMINATE&quot;
 
 
 

@@ -16,6 +16,7 @@ Name | Value
 ---- | -----
 CHANGE_STATUS | &quot;CHANGE_STATUS&quot;
 CONFIRM_3DS | &quot;CONFIRM_3DS&quot;
+EXECUTE | &quot;EXECUTE&quot;
 
 
 

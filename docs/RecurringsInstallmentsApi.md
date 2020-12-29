@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**calculateSchedule**](RecurringsInstallmentsApi.md#calculateSchedule) | **GET** api/installments/options_calculator | Get calculation of installment payment options
 [**createInstallment**](RecurringsInstallmentsApi.md#createInstallment) | **POST** api/installments | Create installment
+[**getAuthenticationData**](RecurringsInstallmentsApi.md#getAuthenticationData) | **GET** api/installments/{recurringId}/threedsecure | Get installment payment 3DS result information
 [**getInstallmentPayment**](RecurringsInstallmentsApi.md#getInstallmentPayment) | **GET** api/installments/{recurringId} | Get installment payment
 [**getInstallmentPayments**](RecurringsInstallmentsApi.md#getInstallmentPayments) | **GET** api/installments | Get installment payments
 [**updateInstallmentPayment**](RecurringsInstallmentsApi.md#updateInstallmentPayment) | **PATCH** api/installments/{recurringId} | Update installment payment
@@ -119,6 +120,59 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="getAuthenticationData"></a>
+# **getAuthenticationData**
+> AuthenticationDataResponse getAuthenticationData(recurringId)
+
+Get installment payment 3DS result information
+
+### Example
+```java
+// Import classes:
+//import com.cardpay.sdk.client.ApiClient;
+//import com.cardpay.sdk.client.ApiException;
+//import com.cardpay.sdk.client.Configuration;
+//import com.cardpay.sdk.client.auth.*;
+//import com.cardpay.sdk.api.RecurringsInstallmentsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: Bearer
+ApiKeyAuth Bearer = (ApiKeyAuth) defaultClient.getAuthentication("Bearer");
+Bearer.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//Bearer.setApiKeyPrefix("Token");
+
+RecurringsInstallmentsApi apiInstance = new RecurringsInstallmentsApi();
+String recurringId = "recurringId_example"; // String | Recurring ID
+try {
+    AuthenticationDataResponse result = apiInstance.getAuthenticationData(recurringId);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling RecurringsInstallmentsApi#getAuthenticationData");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **recurringId** | **String**| Recurring ID |
+
+### Return type
+
+[**AuthenticationDataResponse**](AuthenticationDataResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 <a name="getInstallmentPayment"></a>

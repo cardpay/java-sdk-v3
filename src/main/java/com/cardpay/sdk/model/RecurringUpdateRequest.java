@@ -33,7 +33,9 @@ public class RecurringUpdateRequest {
   public enum OperationEnum {
     CHANGE_STATUS("CHANGE_STATUS"),
     
-    CONFIRM_3DS("CONFIRM_3DS");
+    CONFIRM_3DS("CONFIRM_3DS"),
+    
+    EXECUTE("EXECUTE");
 
     private String value;
 

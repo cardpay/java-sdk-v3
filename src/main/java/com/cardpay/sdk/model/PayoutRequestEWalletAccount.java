@@ -21,8 +21,6 @@ import lombok.Data;
 public class PayoutRequestEWalletAccount {
   @SerializedName("bank_branch")
   private String bankBranch = null;
-  @SerializedName("bank_city")
-  private String bankCity = null;
   @SerializedName("bank_code")
   private String bankCode = null;
   @SerializedName("bank_name")
@@ -44,20 +42,6 @@ public class PayoutRequestEWalletAccount {
    **/
   public PayoutRequestEWalletAccount bankBranch(String bankBranch) {
       this.bankBranch = bankBranch;
-      return this;
-  }
-
-  
-  public void setBankCity(String bankCity) {
-      this.bankCity = bankCity;
-  }
-
-  /**
-   * @param bankCity Customer bank city Customer bank city (string)
-   * @return bean instance
-   **/
-  public PayoutRequestEWalletAccount bankCity(String bankCity) {
-      this.bankCity = bankCity;
       return this;
   }
 
@@ -138,7 +122,6 @@ public class PayoutRequestEWalletAccount {
      sb.append("PayoutRequestEWalletAccount( ");
      
      if (bankBranch != null) sb.append("bankBranch=").append(bankBranch.toString()).append("; ");
-     if (bankCity != null) sb.append("bankCity=").append(bankCity.toString()).append("; ");
      if (bankCode != null) sb.append("bankCode=").append(bankCode.toString()).append("; ");
      if (bankName != null) sb.append("bankName=").append(bankName.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");

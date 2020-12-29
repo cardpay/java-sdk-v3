@@ -23,11 +23,11 @@ import lombok.Data;
 
 @Data
 
-public class PaymentUpdateRequest {
+public class RecurringExecuteRequest {
   @SerializedName("request")
   private Request request = null;
   /**
-   * &#x60;CHANGE_STATUS&#x60; value
+   * &#x60;EXECUTE&#x60; value
    */
   @JsonAdapter(OperationEnum.Adapter.class)
   public enum OperationEnum {
@@ -77,8 +77,8 @@ public class PaymentUpdateRequest {
 
   @SerializedName("operation")
   private OperationEnum operation = null;
-  @SerializedName("payment_data")
-  private PaymentUpdateTransactionData paymentData = null;
+  @SerializedName("recurring_data")
+  private PaymentUpdateTransactionData recurringData = null;
   
   public void setRequest(Request request) {
       this.request = request;
@@ -88,7 +88,7 @@ public class PaymentUpdateRequest {
    * @param request Request
    * @return bean instance
    **/
-  public PaymentUpdateRequest request(Request request) {
+  public RecurringExecuteRequest request(Request request) {
       this.request = request;
       return this;
   }
@@ -99,25 +99,25 @@ public class PaymentUpdateRequest {
   }
 
   /**
-   * @param operation &#x60;CHANGE_STATUS&#x60; value
+   * @param operation &#x60;EXECUTE&#x60; value
    * @return bean instance
    **/
-  public PaymentUpdateRequest operation(OperationEnum operation) {
+  public RecurringExecuteRequest operation(OperationEnum operation) {
       this.operation = operation;
       return this;
   }
 
   
-  public void setPaymentData(PaymentUpdateTransactionData paymentData) {
-      this.paymentData = paymentData;
+  public void setRecurringData(PaymentUpdateTransactionData recurringData) {
+      this.recurringData = recurringData;
   }
 
   /**
-   * @param paymentData Transaction data
+   * @param recurringData Recurring data
    * @return bean instance
    **/
-  public PaymentUpdateRequest paymentData(PaymentUpdateTransactionData paymentData) {
-      this.paymentData = paymentData;
+  public RecurringExecuteRequest recurringData(PaymentUpdateTransactionData recurringData) {
+      this.recurringData = recurringData;
       return this;
   }
 
@@ -125,11 +125,11 @@ public class PaymentUpdateRequest {
   @Override
   public String toString() {
      StringBuilder sb = new StringBuilder();
-     sb.append("PaymentUpdateRequest( ");
+     sb.append("RecurringExecuteRequest( ");
      
      if (request != null) sb.append("request=").append(request.toString()).append("; ");
      if (operation != null) sb.append("operation=").append(operation.toString()).append("; ");
-     if (paymentData != null) sb.append("paymentData=").append(paymentData.toString()).append("; ");
+     if (recurringData != null) sb.append("recurringData=").append(recurringData.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

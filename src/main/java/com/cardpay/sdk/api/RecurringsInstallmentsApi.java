@@ -1,6 +1,7 @@
 package com.cardpay.sdk.api;
 
 import com.cardpay.sdk.client.CollectionFormats.*;
+import com.cardpay.sdk.model.AuthenticationDataResponse;
 import com.cardpay.sdk.model.InstallmentSubscriptionRequest;
 import com.cardpay.sdk.model.RecurringGatewayCreationResponse;
 import com.cardpay.sdk.model.RecurringPatchRequest;
@@ -39,6 +40,17 @@ public interface RecurringsInstallmentsApi {
   @POST("api/installments")
   Call<RecurringGatewayCreationResponse> createInstallment(
     @retrofit2.http.Body InstallmentSubscriptionRequest subscriptionRequest
+  );
+
+  /**
+   * Get installment payment 3DS result information
+   * 
+   * @param recurringId Recurring ID (required)
+   * @return Call&lt;AuthenticationDataResponse&gt;
+   */
+  @GET("api/installments/{recurringId}/threedsecure")
+  Call<AuthenticationDataResponse> getAuthenticationData(
+    @retrofit2.http.Path("recurringId") String recurringId
   );
 
   /**

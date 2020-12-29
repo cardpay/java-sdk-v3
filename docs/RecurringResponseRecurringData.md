@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **declineReason** | **String** | Bank&#39;s message about transaction decline reason (only in decline case) |  [optional]
 **filing** | [**RecurringResponseFiling**](RecurringResponseFiling.md) | CardPay&#39;s filing data |  [optional]
 **id** | **String** | CardPay&#39;s recurring id |  [optional]
+**installmentAmount** | [**BigDecimal**](BigDecimal.md) | Amount of 1 installment payment, will be returned if presented in request (for payment page mode only) |  [optional]
 **installmentType** | **String** | Selected installment type |  [optional]
 **invalidData** | **List&lt;String&gt;** | Invalid card or billing data |  [optional]
 **is3d** | **Boolean** | Was 3-D Secure authentication made or not |  [optional]
@@ -38,6 +39,7 @@ CANCELLED | &quot;CANCELLED&quot;
 REFUNDED | &quot;REFUNDED&quot;
 PARTIALLY_REFUNDED | &quot;PARTIALLY_REFUNDED&quot;
 VOIDED | &quot;VOIDED&quot;
+TERMINATED | &quot;TERMINATED&quot;
 CHARGED_BACK | &quot;CHARGED_BACK&quot;
 CHARGEBACK_RESOLVED | &quot;CHARGEBACK_RESOLVED&quot;
 

@@ -23,11 +23,11 @@ import lombok.Data;
 
 @Data
 
-public class PaymentUpdateRequest {
+public class PaymentExecuteRequest {
   @SerializedName("request")
   private Request request = null;
   /**
-   * &#x60;CHANGE_STATUS&#x60; value
+   * &#x60;EXECUTE&#x60; value
    */
   @JsonAdapter(OperationEnum.Adapter.class)
   public enum OperationEnum {
@@ -88,7 +88,7 @@ public class PaymentUpdateRequest {
    * @param request Request
    * @return bean instance
    **/
-  public PaymentUpdateRequest request(Request request) {
+  public PaymentExecuteRequest request(Request request) {
       this.request = request;
       return this;
   }
@@ -99,10 +99,10 @@ public class PaymentUpdateRequest {
   }
 
   /**
-   * @param operation &#x60;CHANGE_STATUS&#x60; value
+   * @param operation &#x60;EXECUTE&#x60; value
    * @return bean instance
    **/
-  public PaymentUpdateRequest operation(OperationEnum operation) {
+  public PaymentExecuteRequest operation(OperationEnum operation) {
       this.operation = operation;
       return this;
   }
@@ -113,10 +113,10 @@ public class PaymentUpdateRequest {
   }
 
   /**
-   * @param paymentData Transaction data
+   * @param paymentData Payment data
    * @return bean instance
    **/
-  public PaymentUpdateRequest paymentData(PaymentUpdateTransactionData paymentData) {
+  public PaymentExecuteRequest paymentData(PaymentUpdateTransactionData paymentData) {
       this.paymentData = paymentData;
       return this;
   }
@@ -125,7 +125,7 @@ public class PaymentUpdateRequest {
   @Override
   public String toString() {
      StringBuilder sb = new StringBuilder();
-     sb.append("PaymentUpdateRequest( ");
+     sb.append("PaymentExecuteRequest( ");
      
      if (request != null) sb.append("request=").append(request.toString()).append("; ");
      if (operation != null) sb.append("operation=").append(operation.toString()).append("; ");

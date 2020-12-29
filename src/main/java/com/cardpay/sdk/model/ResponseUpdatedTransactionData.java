@@ -54,6 +54,8 @@ public class ResponseUpdatedTransactionData {
     
     VOIDED("VOIDED"),
     
+    TERMINATED("TERMINATED"),
+    
     CHARGED_BACK("CHARGED_BACK"),
     
     CHARGEBACK_RESOLVED("CHARGEBACK_RESOLVED");
@@ -105,7 +107,9 @@ public class ResponseUpdatedTransactionData {
   public enum StatusToEnum {
     REVERSE("REVERSE"),
     
-    COMPLETE("COMPLETE");
+    COMPLETE("COMPLETE"),
+    
+    TERMINATE("TERMINATE");
 
     private String value;
 

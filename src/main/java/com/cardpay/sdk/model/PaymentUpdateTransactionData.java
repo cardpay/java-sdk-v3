@@ -34,7 +34,9 @@ public class PaymentUpdateTransactionData {
   public enum StatusToEnum {
     REVERSE("REVERSE"),
     
-    COMPLETE("COMPLETE");
+    COMPLETE("COMPLETE"),
+    
+    TERMINATE("TERMINATE");
 
     private String value;
 

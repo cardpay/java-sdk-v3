@@ -1,14 +1,5 @@
 package com.cardpay.sdk.utils;
 
-import static com.cardpay.sdk.Config.CANCEL_URL;
-import static com.cardpay.sdk.Config.DECLINE_URL;
-import static com.cardpay.sdk.Config.EMAILS_DOMAIN;
-import static com.cardpay.sdk.Config.INPROCESS_URL;
-import static com.cardpay.sdk.Config.SUCCESS_URL;
-import static com.cardpay.sdk.client.StringUtil.formatBirthDate;
-import static com.cardpay.sdk.client.StringUtil.formatExpirationDate;
-import static java.time.OffsetDateTime.now;
-
 import com.cardpay.sdk.Config;
 import com.cardpay.sdk.model.BillingAddress;
 import com.cardpay.sdk.model.PaymentRequestCard;
@@ -20,9 +11,19 @@ import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.BaseProducer;
 import io.codearte.jfairy.producer.person.Person;
 import io.codearte.jfairy.producer.text.TextProducer;
+
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import static com.cardpay.sdk.Config.CANCEL_URL;
+import static com.cardpay.sdk.Config.DECLINE_URL;
+import static com.cardpay.sdk.Config.EMAILS_DOMAIN;
+import static com.cardpay.sdk.Config.INPROCESS_URL;
+import static com.cardpay.sdk.Config.SUCCESS_URL;
+import static com.cardpay.sdk.client.StringUtil.formatBirthDate;
+import static com.cardpay.sdk.client.StringUtil.formatExpirationDate;
+import static java.time.OffsetDateTime.now;
 
 public class DataUtils {
 
@@ -82,7 +83,6 @@ public class DataUtils {
                 .state("NY")
                 .zip("10001")
                 .city("New York")
-                .phone(producer.numerify("+###########"))
                 .addrLine1(person.getAddress().getAddressLine1())
                 .addrLine2(person.getAddress().getAddressLine2());
     }

@@ -1,6 +1,7 @@
 package com.cardpay.sdk.api;
 
 import com.cardpay.sdk.client.CollectionFormats.*;
+import com.cardpay.sdk.model.AuthenticationDataResponse;
 import com.cardpay.sdk.model.ChangeSubscriptionStatusClaimResponse;
 import com.cardpay.sdk.model.FilingRequest;
 import com.cardpay.sdk.model.PlanDataList;
@@ -75,6 +76,17 @@ public interface RecurringsApi {
   @DELETE("api/recurring_plans/{plan_id}")
   Call<Void> deletePlan(
     @retrofit2.http.Path("plan_id") String planId
+  );
+
+  /**
+   * Get recurring payment 3DS result information
+   * 
+   * @param recurringId Recurring ID (required)
+   * @return Call&lt;AuthenticationDataResponse&gt;
+   */
+  @GET("api/recurrings/{recurringId}/threedsecure")
+  Call<AuthenticationDataResponse> getAuthenticationData2(
+    @retrofit2.http.Path("recurringId") String recurringId
   );
 
   /**

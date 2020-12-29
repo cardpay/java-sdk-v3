@@ -1,8 +1,7 @@
 package com.cardpay.sdk.api;
 
 import com.cardpay.sdk.client.CollectionFormats.*;
-import com.cardpay.sdk.model.AuthenticationRequest;
-import com.cardpay.sdk.model.AuthenticationResponse;
+import com.cardpay.sdk.model.AuthenticationDataResponse;
 import com.cardpay.sdk.model.PaymentGatewayCreationResponse;
 import com.cardpay.sdk.model.PaymentPatchRequest;
 import com.cardpay.sdk.model.PaymentRequest;
@@ -26,6 +25,17 @@ public interface PaymentsApi {
   @POST("api/payments")
   Call<PaymentGatewayCreationResponse> createPayment(
     @retrofit2.http.Body PaymentRequest paymentRequest
+  );
+
+  /**
+   * Get payment 3DS result information
+   * 
+   * @param paymentId Payment ID (required)
+   * @return Call&lt;AuthenticationDataResponse&gt;
+   */
+  @GET("api/payments/{paymentId}/threedsecure")
+  Call<AuthenticationDataResponse> getAuthenticationData1(
+    @retrofit2.http.Path("paymentId") String paymentId
   );
 
   /**
@@ -55,20 +65,6 @@ public interface PaymentsApi {
   @GET("api/payments")
   Call<PaymentsList> getPayments(
     @retrofit2.http.Query("request_id") String requestId, @retrofit2.http.Query("currency") String currency, @retrofit2.http.Query("end_time") OffsetDateTime endTime, @retrofit2.http.Query("max_count") Integer maxCount, @retrofit2.http.Query("merchant_order_id") String merchantOrderId, @retrofit2.http.Query("payment_method") String paymentMethod, @retrofit2.http.Query("sort_order") String sortOrder, @retrofit2.http.Query("start_time") OffsetDateTime startTime
-  );
-
-  /**
-   * Process 3ds verification
-   * Endpoint for process 3ds verification.
-   * @param request request (required)
-   * @return Call&lt;AuthenticationResponse&gt;
-   */
-  @Headers({
-    "Content-Type:application/json"
-  })
-  @POST("api/authentications/threedsecure")
-  Call<AuthenticationResponse> process3dsVerification(
-    @retrofit2.http.Body AuthenticationRequest request
   );
 
   /**

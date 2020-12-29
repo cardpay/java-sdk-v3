@@ -14,6 +14,7 @@ Name | Value
 ---- | -----
 REVERSE | &quot;REVERSE&quot;
 COMPLETE | &quot;COMPLETE&quot;
+TERMINATE | &quot;TERMINATE&quot;
 
 
 

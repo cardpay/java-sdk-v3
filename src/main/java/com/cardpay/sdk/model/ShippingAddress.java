@@ -39,7 +39,7 @@ public class ShippingAddress {
   }
 
   /**
-   * @param addrLine1 Street address. May include whitespaces, hyphens, apostrophes, commas, quotes, dots, slashes and semicolons
+   * @param addrLine1 First line of the street address or equivalent local portion of the Cardholder shipping address associated with the card used for this purchase. Can include street and house number. *Length: 0 - 50*
    * @return bean instance
    **/
   public ShippingAddress addrLine1(String addrLine1) {
@@ -53,7 +53,7 @@ public class ShippingAddress {
   }
 
   /**
-   * @param addrLine2 Second line of the street address or equivalent local portion of the Cardholder billing address associated with the card used for this purchase.
+   * @param addrLine2 Second line of the street address or equivalent local portion of the Cardholder shipping address associated with the card used for this purchase. *Length: 0 - 50*
    * @return bean instance
    **/
   public ShippingAddress addrLine2(String addrLine2) {
@@ -81,7 +81,7 @@ public class ShippingAddress {
   }
 
   /**
-   * @param country [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) code of country: 2 or 3 latin letters or numeric code. Mandatory if &#39;shipping_address&#39; is presented.
+   * @param country [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) code of delivery country: 2 or 3 latin letters or numeric code. Required for BANKCARD payment method if &#39;shipping_address&#39; is presented.
    * @return bean instance
    **/
   public ShippingAddress country(String country) {
@@ -109,7 +109,7 @@ public class ShippingAddress {
   }
 
   /**
-   * @param state Delivery state or province. May include whitespaces, hyphens, apostrophes, commas and dots
+   * @param state The state or province of the shipping address associated with the card being used for this purchase. It&#39;s recommended to send in following format: the country subdivision code defined in [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2). May include whitespaces, hyphens, apostrophes, commas and dots.
    * @return bean instance
    **/
   public ShippingAddress state(String state) {
@@ -123,7 +123,7 @@ public class ShippingAddress {
   }
 
   /**
-   * @param zip Delivery postal code
+   * @param zip Delivery postal code. For BANKCARD payment method max length: 12 Mandatory for BOLETO and LOTERICA payment methods only.
    * @return bean instance
    **/
   public ShippingAddress zip(String zip) {

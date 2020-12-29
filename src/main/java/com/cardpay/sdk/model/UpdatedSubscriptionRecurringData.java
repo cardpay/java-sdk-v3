@@ -21,6 +21,8 @@ import lombok.Data;
 public class UpdatedSubscriptionRecurringData {
   @SerializedName("id")
   private String id = null;
+  @SerializedName("separate_auth")
+  private Boolean separateAuth = null;
   
   public void setId(String id) {
       this.id = id;
@@ -35,6 +37,20 @@ public class UpdatedSubscriptionRecurringData {
       return this;
   }
 
+  
+  public void setSeparateAuth(Boolean separateAuth) {
+      this.separateAuth = separateAuth;
+  }
+
+  /**
+   * @param separateAuth Means that authentication can be carried separately from the payment. Possible values: true -  authentication can be carried separately, false -  authentication can not be carried separately
+   * @return bean instance
+   **/
+  public UpdatedSubscriptionRecurringData separateAuth(Boolean separateAuth) {
+      this.separateAuth = separateAuth;
+      return this;
+  }
+
 
   @Override
   public String toString() {
@@ -42,6 +58,7 @@ public class UpdatedSubscriptionRecurringData {
      sb.append("UpdatedSubscriptionRecurringData( ");
      
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (separateAuth != null) sb.append("separateAuth=").append(separateAuth.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

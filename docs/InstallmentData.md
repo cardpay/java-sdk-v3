@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **generateToken** | **Boolean** | This attribute can be received only in first recurring request. In all requests with recurring_id card.token can&#39;t be generated. If set to &#39;true&#39;, Card token will be generated and returned in GET response. Will be generated only for successful transactions (not for declined). |  [optional]
 **holdRestAmount** | **Boolean** | For SplitPay subscription - \&quot;true\&quot; |  [optional]
 **initiator** | **String** | Use &#x60;cit&#x60; for initiator attribute (cardholder initiated transaction). | 
+**installmentAmount** | [**BigDecimal**](BigDecimal.md) | Amount of 1 installment payment, should be less or equal to total amount of subscription, can have dot as a decimal separator. Mandatory for Payment Page Mode only. |  [optional]
 **installmentType** | **String** | Installment type, 2 possible values: &#x60;IF&#x60; - issuer financed &#x60;MF&#x60; - merchant financed For installments by merchant should be only &#x60;MF&#x60; installment_type |  [optional]
 **interval** | **Integer** | Frequency interval of period, can be 1-365 depending on selected period value. Minimum value of period + interval can be 7 days / 1 week. Maximum value of period + interval plan can be 365 days / 52 weeks / 12 months / 1 year. 1-60 minutes - for **sandbox environment** and testing purpose only. |  [optional]
 **note** | **String** | Note about the recurring that will not be displayed to customer. |  [optional]

@@ -1,27 +1,15 @@
 package com.cardpay.sdk.client;
 
+import static com.cardpay.sdk.model.OAuthError.NameEnum.TOKEN;
+import static java.lang.System.currentTimeMillis;
+import static java.lang.ThreadLocal.withInitial;
+import static java.util.Optional.ofNullable;
+
 import com.cardpay.sdk.api.AuthApi;
-import com.cardpay.sdk.model.ApiTokens;
-import com.cardpay.sdk.model.OAuthError;
-import com.cardpay.sdk.model.PaymentCallback;
-import com.cardpay.sdk.model.PayoutCallback;
-import com.cardpay.sdk.model.RecurringCallback;
-import com.cardpay.sdk.model.RefundCallback;
+import com.cardpay.sdk.model.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Converter;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
-
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
@@ -41,14 +29,20 @@ import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.UUID;
 import java.util.function.Consumer;
-
-import static com.cardpay.sdk.model.OAuthError.NameEnum.TOKEN;
-import static java.lang.System.currentTimeMillis;
-import static java.lang.ThreadLocal.withInitial;
-import static java.util.Optional.ofNullable;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Converter;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class ApiClient {
-    public static final String USER_AGENT = "CardpaySdk/2.23.1/Java";
+    public static final String USER_AGENT = "CardpaySdk/2.26.1/Java";
 
     private TokenProvider tokenProvider;
 

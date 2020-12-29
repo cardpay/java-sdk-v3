@@ -68,6 +68,8 @@ public class RefundResponseRefundData {
     
     VOIDED("VOIDED"),
     
+    TERMINATED("TERMINATED"),
+    
     CHARGED_BACK("CHARGED_BACK"),
     
     CHARGEBACK_RESOLVED("CHARGEBACK_RESOLVED");

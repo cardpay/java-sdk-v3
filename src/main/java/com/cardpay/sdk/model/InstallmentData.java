@@ -38,6 +38,8 @@ public class InstallmentData {
   private Boolean holdRestAmount = null;
   @SerializedName("initiator")
   private String initiator = null;
+  @SerializedName("installment_amount")
+  private BigDecimal installmentAmount = null;
   @SerializedName("installment_type")
   private String installmentType = null;
   @SerializedName("interval")
@@ -245,6 +247,20 @@ public class InstallmentData {
   }
 
   
+  public void setInstallmentAmount(BigDecimal installmentAmount) {
+      this.installmentAmount = installmentAmount;
+  }
+
+  /**
+   * @param installmentAmount Amount of 1 installment payment, should be less or equal to total amount of subscription, can have dot as a decimal separator. Mandatory for Payment Page Mode only.
+   * @return bean instance
+   **/
+  public InstallmentData installmentAmount(BigDecimal installmentAmount) {
+      this.installmentAmount = installmentAmount;
+      return this;
+  }
+
+  
   public void setInstallmentType(String installmentType) {
       this.installmentType = installmentType;
   }
@@ -369,6 +385,7 @@ public class InstallmentData {
      if (generateToken != null) sb.append("generateToken=").append(generateToken.toString()).append("; ");
      if (holdRestAmount != null) sb.append("holdRestAmount=").append(holdRestAmount.toString()).append("; ");
      if (initiator != null) sb.append("initiator=").append(initiator.toString()).append("; ");
+     if (installmentAmount != null) sb.append("installmentAmount=").append(installmentAmount.toString()).append("; ");
      if (installmentType != null) sb.append("installmentType=").append(installmentType.toString()).append("; ");
      if (interval != null) sb.append("interval=").append(interval.toString()).append("; ");
      if (note != null) sb.append("note=").append(note.toString()).append("; ");

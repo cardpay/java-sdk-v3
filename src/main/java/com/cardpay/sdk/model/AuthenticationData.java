@@ -13,25 +13,295 @@
 
 package com.cardpay.sdk.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.math.BigDecimal;
 import lombok.Data;
 
 @Data
 
 public class AuthenticationData {
+  @SerializedName("amount")
+  private BigDecimal amount = null;
+  @SerializedName("created")
+  private String created = null;
+  @SerializedName("currency")
+  private String currency = null;
+  @SerializedName("decline_code")
+  private String declineCode = null;
+  @SerializedName("decline_reason")
+  private String declineReason = null;
   @SerializedName("id")
   private String id = null;
+  /**
+   * Current payment status
+   */
+  @JsonAdapter(StatusEnum.Adapter.class)
+  public enum StatusEnum {
+    NEW("NEW"),
+    
+    IN_PROGRESS("IN_PROGRESS"),
+    
+    DECLINED("DECLINED"),
+    
+    AUTHORIZED("AUTHORIZED"),
+    
+    COMPLETED("COMPLETED"),
+    
+    CANCELLED("CANCELLED"),
+    
+    REFUNDED("REFUNDED"),
+    
+    PARTIALLY_REFUNDED("PARTIALLY_REFUNDED"),
+    
+    VOIDED("VOIDED"),
+    
+    TERMINATED("TERMINATED"),
+    
+    CHARGED_BACK("CHARGED_BACK"),
+    
+    CHARGEBACK_RESOLVED("CHARGEBACK_RESOLVED");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StatusEnum fromValue(String text) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<StatusEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StatusEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return StatusEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName("status")
+  private StatusEnum status = null;
+  @SerializedName("three_d_secure")
+  private ThreeDSecureResponse threeDSecure = null;
+  /**
+   * Gets or Sets transType
+   */
+  @JsonAdapter(TransTypeEnum.Adapter.class)
+  public enum TransTypeEnum {
+    _01("01"),
+    
+    _03("03"),
+    
+    _10("10"),
+    
+    _11("11"),
+    
+    _28("28");
+
+    private String value;
+
+    TransTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TransTypeEnum fromValue(String text) {
+      for (TransTypeEnum b : TransTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TransTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TransTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TransTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return TransTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName("trans_type")
+  private TransTypeEnum transType = null;
+  @SerializedName("type")
+  private String type = null;
+  
+  public void setAmount(BigDecimal amount) {
+      this.amount = amount;
+  }
+
+  /**
+   * @param amount Payment amount
+   * @return bean instance
+   **/
+  public AuthenticationData amount(BigDecimal amount) {
+      this.amount = amount;
+      return this;
+  }
+
+  
+  public void setCreated(String created) {
+      this.created = created;
+  }
+
+  /**
+   * @param created Time when this payment started in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format (yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;)
+   * @return bean instance
+   **/
+  public AuthenticationData created(String created) {
+      this.created = created;
+      return this;
+  }
+
+  
+  public void setCurrency(String currency) {
+      this.currency = currency;
+  }
+
+  /**
+   * @param currency Payment currency code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code)
+   * @return bean instance
+   **/
+  public AuthenticationData currency(String currency) {
+      this.currency = currency;
+      return this;
+  }
+
+  
+  public void setDeclineCode(String declineCode) {
+      this.declineCode = declineCode;
+  }
+
+  /**
+   * @param declineCode Decline code (only in decline case)
+   * @return bean instance
+   **/
+  public AuthenticationData declineCode(String declineCode) {
+      this.declineCode = declineCode;
+      return this;
+  }
+
+  
+  public void setDeclineReason(String declineReason) {
+      this.declineReason = declineReason;
+  }
+
+  /**
+   * @param declineReason Bank&#39;s message about transaction decline reason (only in decline case)
+   * @return bean instance
+   **/
+  public AuthenticationData declineReason(String declineReason) {
+      this.declineReason = declineReason;
+      return this;
+  }
+
   
   public void setId(String id) {
       this.id = id;
   }
 
   /**
-   * @param id 3-D Secure verification transaction id
+   * @param id Unlimint&#39;s payment id
    * @return bean instance
    **/
   public AuthenticationData id(String id) {
       this.id = id;
+      return this;
+  }
+
+  
+  public void setStatus(StatusEnum status) {
+      this.status = status;
+  }
+
+  /**
+   * @param status Current payment status
+   * @return bean instance
+   **/
+  public AuthenticationData status(StatusEnum status) {
+      this.status = status;
+      return this;
+  }
+
+  
+  public void setThreeDSecure(ThreeDSecureResponse threeDSecure) {
+      this.threeDSecure = threeDSecure;
+  }
+
+  /**
+   * @param threeDSecure 3D Secure results data
+   * @return bean instance
+   **/
+  public AuthenticationData threeDSecure(ThreeDSecureResponse threeDSecure) {
+      this.threeDSecure = threeDSecure;
+      return this;
+  }
+
+  
+  public void setTransType(TransTypeEnum transType) {
+      this.transType = transType;
+  }
+
+  /**
+   * @param transType transType
+   * @return bean instance
+   **/
+  public AuthenticationData transType(TransTypeEnum transType) {
+      this.transType = transType;
+      return this;
+  }
+
+  
+  public void setType(String type) {
+      this.type = type;
+  }
+
+  /**
+   * @param type type
+   * @return bean instance
+   **/
+  public AuthenticationData type(String type) {
+      this.type = type;
       return this;
   }
 
@@ -41,7 +311,16 @@ public class AuthenticationData {
      StringBuilder sb = new StringBuilder();
      sb.append("AuthenticationData( ");
      
+     if (amount != null) sb.append("amount=").append(amount.toString()).append("; ");
+     if (created != null) sb.append("created=").append(created.toString()).append("; ");
+     if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
+     if (declineCode != null) sb.append("declineCode=").append(declineCode.toString()).append("; ");
+     if (declineReason != null) sb.append("declineReason=").append(declineReason.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (status != null) sb.append("status=").append(status.toString()).append("; ");
+     if (threeDSecure != null) sb.append("threeDSecure=").append(threeDSecure.toString()).append("; ");
+     if (transType != null) sb.append("transType=").append(transType.toString()).append("; ");
+     if (type != null) sb.append("type=").append(type.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

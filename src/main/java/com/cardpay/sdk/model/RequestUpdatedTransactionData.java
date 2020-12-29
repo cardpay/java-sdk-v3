@@ -31,7 +31,9 @@ public class RequestUpdatedTransactionData {
   public enum StatusToEnum {
     REVERSE("REVERSE"),
     
-    COMPLETE("COMPLETE");
+    COMPLETE("COMPLETE"),
+    
+    TERMINATE("TERMINATE");
 
     private String value;
 
