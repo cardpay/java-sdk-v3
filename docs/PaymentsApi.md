@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**createPayment**](PaymentsApi.md#createPayment) | **POST** api/payments | Create payment
 [**getAuthenticationData1**](PaymentsApi.md#getAuthenticationData1) | **GET** api/payments/{paymentId}/threedsecure | Get payment 3DS result information
 [**getPayment**](PaymentsApi.md#getPayment) | **GET** api/payments/{paymentId} | Get payment information
+[**getPaymentMethods**](PaymentsApi.md#getPaymentMethods) | **GET** api/payment_methods | Get payment methods
 [**getPayments**](PaymentsApi.md#getPayments) | **GET** api/payments | Get payments information
 [**updatePayment**](PaymentsApi.md#updatePayment) | **PATCH** api/payments/{paymentId} | Update payment
 
@@ -162,6 +163,57 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PaymentResponse**](PaymentResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getPaymentMethods"></a>
+# **getPaymentMethods**
+> PaymentMethodsList getPaymentMethods()
+
+Get payment methods
+
+Endpoint for get payment methods by current terminal code
+
+### Example
+```java
+// Import classes:
+//import com.cardpay.sdk.client.ApiClient;
+//import com.cardpay.sdk.client.ApiException;
+//import com.cardpay.sdk.client.Configuration;
+//import com.cardpay.sdk.client.auth.*;
+//import com.cardpay.sdk.api.PaymentsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: Bearer
+ApiKeyAuth Bearer = (ApiKeyAuth) defaultClient.getAuthentication("Bearer");
+Bearer.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//Bearer.setApiKeyPrefix("Token");
+
+PaymentsApi apiInstance = new PaymentsApi();
+try {
+    PaymentMethodsList result = apiInstance.getPaymentMethods();
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling PaymentsApi#getPaymentMethods");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**PaymentMethodsList**](PaymentMethodsList.md)
 
 ### Authorization
 

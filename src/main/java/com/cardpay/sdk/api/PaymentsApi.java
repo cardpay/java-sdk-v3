@@ -3,6 +3,7 @@ package com.cardpay.sdk.api;
 import com.cardpay.sdk.client.CollectionFormats.*;
 import com.cardpay.sdk.model.AuthenticationDataResponse;
 import com.cardpay.sdk.model.PaymentGatewayCreationResponse;
+import com.cardpay.sdk.model.PaymentMethodsList;
 import com.cardpay.sdk.model.PaymentPatchRequest;
 import com.cardpay.sdk.model.PaymentRequest;
 import com.cardpay.sdk.model.PaymentResponse;
@@ -48,6 +49,15 @@ public interface PaymentsApi {
   Call<PaymentResponse> getPayment(
     @retrofit2.http.Path("paymentId") String paymentId
   );
+
+  /**
+   * Get payment methods
+   * Endpoint for get payment methods by current terminal code
+   * @return Call&lt;PaymentMethodsList&gt;
+   */
+  @GET("api/payment_methods")
+  Call<PaymentMethodsList> getPaymentMethods();
+    
 
   /**
    * Get payments information
