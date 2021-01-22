@@ -34,6 +34,7 @@ public class Item {
   }
 
   /**
+   * minimum: 1
    * @param count The count of product / service, provided to Customer. Any positive number
    * @return bean instance
    **/
