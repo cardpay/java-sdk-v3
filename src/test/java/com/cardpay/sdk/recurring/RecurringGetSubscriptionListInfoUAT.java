@@ -1,5 +1,20 @@
 package com.cardpay.sdk.recurring;
 
+import com.cardpay.sdk.api.RecurringsApi;
+import com.cardpay.sdk.client.ApiClient;
+import com.cardpay.sdk.model.SubscriptionGetResponse;
+import com.cardpay.sdk.model.SubscriptionList;
+import org.junit.Before;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import retrofit2.Response;
+
+import java.io.IOException;
+import java.time.ZoneOffset;
+import java.util.List;
+import java.util.UUID;
+
 import static com.cardpay.sdk.Config.CARDPAY_API_URL;
 import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
 import static com.cardpay.sdk.Config.GATEWAY_TERMINAL_CODE;
@@ -7,20 +22,6 @@ import static com.cardpay.sdk.Config.LOGGING_LEVEL;
 import static java.time.OffsetDateTime.now;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-
-import com.cardpay.sdk.api.RecurringsApi;
-import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.SubscriptionGetResponse;
-import com.cardpay.sdk.model.SubscriptionList;
-import java.io.IOException;
-import java.time.ZoneOffset;
-import java.util.List;
-import java.util.UUID;
-import org.junit.Before;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import retrofit2.Response;
 
 public class RecurringGetSubscriptionListInfoUAT {
 

@@ -1,10 +1,5 @@
 package com.cardpay.sdk.recurring.installment;
 
-import static com.cardpay.sdk.Config.CARDPAY_API_URL;
-import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
-import static com.cardpay.sdk.Config.GATEWAY_TERMINAL_CODE;
-import static com.cardpay.sdk.Config.LOGGING_LEVEL;
-
 import com.cardpay.sdk.api.RecurringsApi;
 import com.cardpay.sdk.client.ApiClient;
 import org.junit.Before;
@@ -12,6 +7,11 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static com.cardpay.sdk.Config.CARDPAY_API_URL;
+import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
+import static com.cardpay.sdk.Config.GATEWAY_TERMINAL_CODE;
+import static com.cardpay.sdk.Config.LOGGING_LEVEL;
 
 public class RecurringInstallmentSubscriptionUAT {
 

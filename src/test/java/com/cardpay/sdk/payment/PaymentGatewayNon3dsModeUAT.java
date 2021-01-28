@@ -114,7 +114,7 @@ public class PaymentGatewayNon3dsModeUAT {
                                 .addrLine1(person.getAddress().getAddressLine1())
                                 .addrLine2(person.getAddress().getAddressLine2()))
                 )
-               .customer(new PaymentRequestCustomer()
+                .customer(new PaymentRequestCustomer()
                         .id(customerId)
                         .fullName(customerFullname)
                         .birthDate(customerBirthdate)

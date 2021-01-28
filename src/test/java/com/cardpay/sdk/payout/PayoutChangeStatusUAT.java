@@ -1,20 +1,5 @@
 package com.cardpay.sdk.payout;
 
-import static com.cardpay.sdk.Config.CARDPAY_API_URL;
-import static com.cardpay.sdk.Config.GATEWAY_POSTPONED_PASSWORD;
-import static com.cardpay.sdk.Config.GATEWAY_POSTPONED_TERMINAL_CODE;
-import static com.cardpay.sdk.Config.LOGGING_LEVEL;
-import static com.cardpay.sdk.Config.TERMINAL_CURRENCY;
-import static com.cardpay.sdk.Constants.CARD_NON3DS_CONFIRMED;
-import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
-import static com.cardpay.sdk.client.StringUtil.formatExpirationDate;
-import static com.cardpay.sdk.model.RequestUpdatedTransactionData.StatusToEnum.REVERSE;
-import static com.cardpay.sdk.utils.DataUtils.generateCardExpiration;
-import static com.cardpay.sdk.utils.DataUtils.generateMerchantOrderId;
-import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
 import com.cardpay.sdk.api.PayoutsApi;
 import com.cardpay.sdk.client.ApiClient;
 import com.cardpay.sdk.model.PayoutRequest;
@@ -31,13 +16,29 @@ import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.BaseProducer;
 import io.codearte.jfairy.producer.person.Person;
 import io.codearte.jfairy.producer.text.TextProducer;
-import java.io.IOException;
-import java.math.BigDecimal;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import retrofit2.Response;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+
+import static com.cardpay.sdk.Config.CARDPAY_API_URL;
+import static com.cardpay.sdk.Config.GATEWAY_POSTPONED_PASSWORD;
+import static com.cardpay.sdk.Config.GATEWAY_POSTPONED_TERMINAL_CODE;
+import static com.cardpay.sdk.Config.LOGGING_LEVEL;
+import static com.cardpay.sdk.Config.TERMINAL_CURRENCY;
+import static com.cardpay.sdk.Constants.CARD_NON3DS_CONFIRMED;
+import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
+import static com.cardpay.sdk.client.StringUtil.formatExpirationDate;
+import static com.cardpay.sdk.model.RequestUpdatedTransactionData.StatusToEnum.REVERSE;
+import static com.cardpay.sdk.utils.DataUtils.generateCardExpiration;
+import static com.cardpay.sdk.utils.DataUtils.generateMerchantOrderId;
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class PayoutChangeStatusUAT {
 
@@ -71,7 +72,7 @@ public class PayoutChangeStatusUAT {
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
         // prepare update request data
-        final PayoutUpdateRequest payoutUpdateRequest =  new PayoutUpdateRequest()
+        final PayoutUpdateRequest payoutUpdateRequest = new PayoutUpdateRequest()
                 .request(ApiClient.uuidRequest())
                 .payoutData(new RequestUpdatedTransactionData().statusTo(REVERSE));
 

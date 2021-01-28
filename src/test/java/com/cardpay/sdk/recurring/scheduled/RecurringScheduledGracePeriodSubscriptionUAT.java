@@ -1,5 +1,32 @@
 package com.cardpay.sdk.recurring.scheduled;
 
+import com.cardpay.sdk.api.RecurringsApi;
+import com.cardpay.sdk.client.ApiClient;
+import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
+import com.cardpay.sdk.model.Plan;
+import com.cardpay.sdk.model.RecurringCreationRequest;
+import com.cardpay.sdk.model.RecurringCustomer;
+import com.cardpay.sdk.model.RecurringGatewayCreationResponse;
+import com.cardpay.sdk.model.RecurringPlanRequest;
+import com.cardpay.sdk.model.RecurringPlanRequestPlanData;
+import com.cardpay.sdk.model.RecurringPlanResponse;
+import com.cardpay.sdk.model.RecurringRequestRecurringData;
+import com.cardpay.sdk.utils.HttpUtils;
+import io.codearte.jfairy.Fairy;
+import io.codearte.jfairy.producer.BaseProducer;
+import io.codearte.jfairy.producer.person.Person;
+import io.codearte.jfairy.producer.text.TextProducer;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import retrofit2.Response;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.time.ZoneOffset;
+
 import static com.cardpay.sdk.Config.CARDPAY_API_URL;
 import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
 import static com.cardpay.sdk.Config.GATEWAY_TERMINAL_CODE;
@@ -18,32 +45,6 @@ import static com.cardpay.sdk.utils.RecurringUtils.doCancelSubscription;
 import static java.time.OffsetDateTime.now;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-
-import com.cardpay.sdk.api.RecurringsApi;
-import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
-import com.cardpay.sdk.model.Plan;
-import com.cardpay.sdk.model.RecurringCreationRequest;
-import com.cardpay.sdk.model.RecurringGatewayCreationResponse;
-import com.cardpay.sdk.model.RecurringCustomer;
-import com.cardpay.sdk.model.RecurringPlanRequest;
-import com.cardpay.sdk.model.RecurringPlanRequestPlanData;
-import com.cardpay.sdk.model.RecurringPlanResponse;
-import com.cardpay.sdk.model.RecurringRequestRecurringData;
-import com.cardpay.sdk.utils.HttpUtils;
-import io.codearte.jfairy.Fairy;
-import io.codearte.jfairy.producer.BaseProducer;
-import io.codearte.jfairy.producer.person.Person;
-import io.codearte.jfairy.producer.text.TextProducer;
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.time.ZoneOffset;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import retrofit2.Response;
 
 public class RecurringScheduledGracePeriodSubscriptionUAT {
 

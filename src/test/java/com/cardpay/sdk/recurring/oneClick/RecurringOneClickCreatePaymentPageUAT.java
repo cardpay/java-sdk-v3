@@ -1,5 +1,24 @@
 package com.cardpay.sdk.recurring.oneClick;
 
+import com.cardpay.sdk.api.RecurringsApi;
+import com.cardpay.sdk.client.ApiClient;
+import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
+import com.cardpay.sdk.model.RecurringCreationRequest;
+import com.cardpay.sdk.model.RecurringCustomer;
+import com.cardpay.sdk.model.RecurringGatewayCreationResponse;
+import com.cardpay.sdk.model.RecurringRequestRecurringData;
+import io.codearte.jfairy.Fairy;
+import io.codearte.jfairy.producer.BaseProducer;
+import io.codearte.jfairy.producer.text.TextProducer;
+import org.junit.Before;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import retrofit2.Response;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+
 import static com.cardpay.sdk.Config.CARDPAY_API_URL;
 import static com.cardpay.sdk.Config.LOGGING_LEVEL;
 import static com.cardpay.sdk.Config.PAYMENTPAGE_PASSWORD;
@@ -12,24 +31,6 @@ import static com.cardpay.sdk.utils.DataUtils.returnUrls;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-
-import com.cardpay.sdk.api.RecurringsApi;
-import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
-import com.cardpay.sdk.model.RecurringCreationRequest;
-import com.cardpay.sdk.model.RecurringGatewayCreationResponse;
-import com.cardpay.sdk.model.RecurringCustomer;
-import com.cardpay.sdk.model.RecurringRequestRecurringData;
-import io.codearte.jfairy.Fairy;
-import io.codearte.jfairy.producer.BaseProducer;
-import io.codearte.jfairy.producer.text.TextProducer;
-import java.io.IOException;
-import java.math.BigDecimal;
-import org.junit.Before;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import retrofit2.Response;
 
 public class RecurringOneClickCreatePaymentPageUAT {
 

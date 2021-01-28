@@ -1,5 +1,23 @@
 package com.cardpay.sdk.recurring.scheduled.plan;
 
+import com.cardpay.sdk.api.RecurringsApi;
+import com.cardpay.sdk.client.ApiClient;
+import com.cardpay.sdk.model.RecurringPlanRequest;
+import com.cardpay.sdk.model.RecurringPlanRequestPlanData;
+import com.cardpay.sdk.model.RecurringPlanResponse;
+import io.codearte.jfairy.Fairy;
+import io.codearte.jfairy.producer.BaseProducer;
+import io.codearte.jfairy.producer.text.TextProducer;
+import org.apache.commons.lang3.StringUtils;
+import org.junit.Before;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import retrofit2.Response;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+
 import static com.cardpay.sdk.Config.CARDPAY_API_URL;
 import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
 import static com.cardpay.sdk.Config.GATEWAY_TERMINAL_CODE;
@@ -10,23 +28,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-
-import com.cardpay.sdk.api.RecurringsApi;
-import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.RecurringPlanRequest;
-import com.cardpay.sdk.model.RecurringPlanRequestPlanData;
-import com.cardpay.sdk.model.RecurringPlanResponse;
-import io.codearte.jfairy.Fairy;
-import io.codearte.jfairy.producer.BaseProducer;
-import io.codearte.jfairy.producer.text.TextProducer;
-import java.io.IOException;
-import java.math.BigDecimal;
-import org.apache.commons.lang3.StringUtils;
-import org.junit.Before;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import retrofit2.Response;
 
 public class RecurringDeletePlanUAT {
 

@@ -1,5 +1,33 @@
 package com.cardpay.sdk.payment;
 
+import com.cardpay.sdk.api.PaymentsApi;
+import com.cardpay.sdk.client.ApiClient;
+import com.cardpay.sdk.model.PaymentGatewayCreationResponse;
+import com.cardpay.sdk.model.PaymentRequest;
+import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
+import com.cardpay.sdk.model.PaymentResponse;
+import com.cardpay.sdk.model.PaymentResponsePaymentData;
+import com.cardpay.sdk.model.PaymentsList;
+import com.cardpay.sdk.utils.HttpUtils;
+import io.codearte.jfairy.Fairy;
+import io.codearte.jfairy.producer.BaseProducer;
+import io.codearte.jfairy.producer.person.Person;
+import io.codearte.jfairy.producer.text.TextProducer;
+import org.apache.commons.lang3.StringUtils;
+import org.junit.Before;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import retrofit2.Call;
+import retrofit2.Response;
+
+import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
+import java.util.stream.IntStream;
+
 import static com.cardpay.sdk.Config.CARDPAY_API_URL;
 import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
 import static com.cardpay.sdk.Config.GATEWAY_TERMINAL_CODE;
@@ -15,33 +43,6 @@ import static com.cardpay.sdk.utils.DataUtils.returnUrls;
 import static java.util.stream.Collectors.toSet;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-
-import com.cardpay.sdk.api.PaymentsApi;
-import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.PaymentGatewayCreationResponse;
-import com.cardpay.sdk.model.PaymentRequest;
-import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
-import com.cardpay.sdk.model.PaymentResponse;
-import com.cardpay.sdk.model.PaymentResponsePaymentData;
-import com.cardpay.sdk.model.PaymentsList;
-import com.cardpay.sdk.utils.HttpUtils;
-import io.codearte.jfairy.Fairy;
-import io.codearte.jfairy.producer.BaseProducer;
-import io.codearte.jfairy.producer.person.Person;
-import io.codearte.jfairy.producer.text.TextProducer;
-import java.io.IOException;
-import java.time.OffsetDateTime;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
-import java.util.stream.IntStream;
-import org.apache.commons.lang3.StringUtils;
-import org.junit.Before;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import retrofit2.Call;
-import retrofit2.Response;
 
 public class PaymentGetListInfoUAT {
 

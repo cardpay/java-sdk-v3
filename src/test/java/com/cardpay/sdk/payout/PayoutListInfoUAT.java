@@ -1,19 +1,5 @@
 package com.cardpay.sdk.payout;
 
-import static com.cardpay.sdk.Config.CARDPAY_API_URL;
-import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
-import static com.cardpay.sdk.Config.GATEWAY_TERMINAL_CODE;
-import static com.cardpay.sdk.Config.LOGGING_LEVEL;
-import static com.cardpay.sdk.Config.TERMINAL_CURRENCY;
-import static com.cardpay.sdk.Constants.CARD_NON3DS_CONFIRMED;
-import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
-import static com.cardpay.sdk.client.StringUtil.formatExpirationDate;
-import static com.cardpay.sdk.utils.DataUtils.generateCardExpiration;
-import static com.cardpay.sdk.utils.DataUtils.generateMerchantOrderId;
-import static java.util.stream.Collectors.toSet;
-import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertNotNull;
-
 import com.cardpay.sdk.api.PayoutsApi;
 import com.cardpay.sdk.client.ApiClient;
 import com.cardpay.sdk.model.PayoutRequest;
@@ -28,13 +14,6 @@ import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.BaseProducer;
 import io.codearte.jfairy.producer.person.Person;
 import io.codearte.jfairy.producer.text.TextProducer;
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.time.OffsetDateTime;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
-import java.util.stream.IntStream;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Before;
@@ -42,6 +21,28 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import retrofit2.Response;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
+import java.util.stream.IntStream;
+
+import static com.cardpay.sdk.Config.CARDPAY_API_URL;
+import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
+import static com.cardpay.sdk.Config.GATEWAY_TERMINAL_CODE;
+import static com.cardpay.sdk.Config.LOGGING_LEVEL;
+import static com.cardpay.sdk.Config.TERMINAL_CURRENCY;
+import static com.cardpay.sdk.Constants.CARD_NON3DS_CONFIRMED;
+import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
+import static com.cardpay.sdk.client.StringUtil.formatExpirationDate;
+import static com.cardpay.sdk.utils.DataUtils.generateCardExpiration;
+import static com.cardpay.sdk.utils.DataUtils.generateMerchantOrderId;
+import static java.util.stream.Collectors.toSet;
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertNotNull;
 
 public class PayoutListInfoUAT {
 
