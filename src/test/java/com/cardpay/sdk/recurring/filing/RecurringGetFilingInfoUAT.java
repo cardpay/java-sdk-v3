@@ -55,7 +55,7 @@ public class RecurringGetFilingInfoUAT {
         String recurringId = createFiling();
 
         Response<RecurringResponse> response = recurrings
-                .getRecurring(recurringId)
+                .getFiling(recurringId)
                 .execute();
 
         assertTrue(response.message(), response.isSuccessful());
