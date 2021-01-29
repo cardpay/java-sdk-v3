@@ -125,6 +125,7 @@ public class RecurringPlanRequestPlanData {
 
   /**
    * minimum: 1
+   * maximum: 365
    * @param interval The frequency interval of period, can be 1-365 depending on selected period value. Maximum value of period + interval can be 365 days / 52 weeks / 12 months / 1 year. From 1 to 60 minutes - for **sandbox** environment and testing purpose only
    * @return bean instance
    **/
