@@ -1,17 +1,17 @@
 
-# ScheduledData
+# ScheduledByMerchantData
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**amount** | [**BigDecimal**](BigDecimal.md) | The amount of scheduled payment to be charged | 
+**currency** | **String** | [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code | 
 **dynamicDescriptor** | **String** | Short description of the service or product, must be enabled by CardPay manager to be used. |  [optional]
+**filing** | [**RecurringResponseFiling**](RecurringResponseFiling.md) | Card filing data |  [optional]
 **generateToken** | **Boolean** | This attribute can be received only in first recurring request. In all requests with recurring_id card.token can&#39;t be generated. If set to &#39;true&#39;, Card token will be generated and returned in GET response. Will be generated only for successful transactions (not for declined). |  [optional]
-**initialAmount** | [**BigDecimal**](BigDecimal.md) | The amount of subscription initiated transaction in selected currency with dot as a decimal separator, must be less than 100 millions |  [optional]
-**initiator** | **String** | Use &#x60;cit&#x60; for initiator attribute (cardholder initiated transaction). | 
+**initiator** | **String** | Use &#x60;cit&#x60; for initiator attribute for cardholder initiated transactions (first scheduled payment by merchant transactions) Use &#x60;mit&#x60; for initiator attribute for merchant initiated transactions (continue scheduled payment by merchant transactions) | 
 **note** | **String** | Note about the recurring that will not be displayed to customer. |  [optional]
-**plan** | [**Plan**](Plan.md) | Plan data |  [optional]
-**scheduledType** | **String** | Scheduled payment type attribute. For typical scheduled payments should be absent or &#x60;SA&#x60; - scheduled by acquirer |  [optional]
-**subscriptionStart** | [**OffsetDateTime**](OffsetDateTime.md) | The time in &#39;yyyy-MM-dd&#39; format when subscription will actually become activated (grace period).Leave it empty to activate subscription at once without any grace period applied. |  [optional]
+**scheduledType** | **String** | Scheduled payment type attribute. For scheduled payments by merchant value should be &#x60;SM&#x60; - scheduled by merchant | 
 **transType** | [**TransTypeEnum**](#TransTypeEnum) |  |  [optional]
 
 

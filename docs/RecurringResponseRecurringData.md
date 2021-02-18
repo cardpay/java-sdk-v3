@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **declineReason** | **String** | Bank&#39;s message about transaction decline reason (only in decline case) |  [optional]
 **filing** | [**RecurringResponseFiling**](RecurringResponseFiling.md) | CardPay&#39;s filing data |  [optional]
 **id** | **String** | CardPay&#39;s recurring id |  [optional]
+**initiator** | **String** | Initiator of scheduled transaction (applicable only for scheduled by merchant payments) |  [optional]
 **installmentAmount** | [**BigDecimal**](BigDecimal.md) | Amount of 1 installment payment, will be returned if presented in request (for payment page mode only) |  [optional]
 **installmentType** | **String** | Selected installment type |  [optional]
 **invalidData** | **List&lt;String&gt;** | Invalid card or billing data |  [optional]
@@ -20,10 +21,19 @@ Name | Type | Description | Notes
 **note** | **String** | Payment note |  [optional]
 **payments** | **String** | Number of total payments, to be charged |  [optional]
 **rrn** | **String** | RRN (Retrieval Reference Number), supplied by the acquiring financial institution |  [optional]
+**scheduledType** | [**ScheduledTypeEnum**](#ScheduledTypeEnum) | Scheduled payment type attribute. &#x60;SM&#x60; - value for scheduled by merchant case &#x60;SA&#x60; - value for scheduled by acquirer case |  [optional]
 **status** | [**StatusEnum**](#StatusEnum) | Current recurring payment status |  [optional]
 **subscription** | [**Subscription**](Subscription.md) | Subscription data. Mandatory if scheduled payment is requested. |  [optional]
 **type** | [**TypeEnum**](#TypeEnum) | Recurring payment type name; can be ONECLICK, SCHEDULED, INSTALLMENT |  [optional]
 **transType** | [**TransTypeEnum**](#TransTypeEnum) |  |  [optional]
+
+
+<a name="ScheduledTypeEnum"></a>
+## Enum: ScheduledTypeEnum
+Name | Value
+---- | -----
+ACQUIRER | &quot;SCHEDULED_BY_ACQUIRER&quot;
+MERCHANT | &quot;SCHEDULED_BY_MERCHANT&quot;
 
 
 <a name="StatusEnum"></a>

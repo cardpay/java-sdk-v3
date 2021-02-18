@@ -45,6 +45,8 @@ public class RecurringResponseRecurringData {
   private RecurringResponseFiling filing = null;
   @SerializedName("id")
   private String id = null;
+  @SerializedName("initiator")
+  private String initiator = null;
   @SerializedName("installment_amount")
   private BigDecimal installmentAmount = null;
   @SerializedName("installment_type")
@@ -59,6 +61,55 @@ public class RecurringResponseRecurringData {
   private String payments = null;
   @SerializedName("rrn")
   private String rrn = null;
+  /**
+   * Scheduled payment type attribute. &#x60;SM&#x60; - value for scheduled by merchant case &#x60;SA&#x60; - value for scheduled by acquirer case
+   */
+  @JsonAdapter(ScheduledTypeEnum.Adapter.class)
+  public enum ScheduledTypeEnum {
+    ACQUIRER("SCHEDULED_BY_ACQUIRER"),
+    
+    MERCHANT("SCHEDULED_BY_MERCHANT");
+
+    private String value;
+
+    ScheduledTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ScheduledTypeEnum fromValue(String text) {
+      for (ScheduledTypeEnum b : ScheduledTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<ScheduledTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ScheduledTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ScheduledTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return ScheduledTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName("scheduled_type")
+  private ScheduledTypeEnum scheduledType = null;
   /**
    * Current recurring payment status
    */
@@ -363,6 +414,20 @@ public class RecurringResponseRecurringData {
   }
 
   
+  public void setInitiator(String initiator) {
+      this.initiator = initiator;
+  }
+
+  /**
+   * @param initiator Initiator of scheduled transaction (applicable only for scheduled by merchant payments)
+   * @return bean instance
+   **/
+  public RecurringResponseRecurringData initiator(String initiator) {
+      this.initiator = initiator;
+      return this;
+  }
+
+  
   public void setInstallmentAmount(BigDecimal installmentAmount) {
       this.installmentAmount = installmentAmount;
   }
@@ -469,6 +534,20 @@ public class RecurringResponseRecurringData {
   }
 
   
+  public void setScheduledType(ScheduledTypeEnum scheduledType) {
+      this.scheduledType = scheduledType;
+  }
+
+  /**
+   * @param scheduledType Scheduled payment type attribute. &#x60;SM&#x60; - value for scheduled by merchant case &#x60;SA&#x60; - value for scheduled by acquirer case
+   * @return bean instance
+   **/
+  public RecurringResponseRecurringData scheduledType(ScheduledTypeEnum scheduledType) {
+      this.scheduledType = scheduledType;
+      return this;
+  }
+
+  
   public void setStatus(StatusEnum status) {
       this.status = status;
   }
@@ -539,6 +618,7 @@ public class RecurringResponseRecurringData {
      if (declineReason != null) sb.append("declineReason=").append(declineReason.toString()).append("; ");
      if (filing != null) sb.append("filing=").append(filing.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (initiator != null) sb.append("initiator=").append(initiator.toString()).append("; ");
      if (installmentAmount != null) sb.append("installmentAmount=").append(installmentAmount.toString()).append("; ");
      if (installmentType != null) sb.append("installmentType=").append(installmentType.toString()).append("; ");
      if (invalidData != null) sb.append("invalidData=").append(invalidData.toString()).append("; ");
@@ -546,6 +626,7 @@ public class RecurringResponseRecurringData {
      if (note != null) sb.append("note=").append(note.toString()).append("; ");
      if (payments != null) sb.append("payments=").append(payments.toString()).append("; ");
      if (rrn != null) sb.append("rrn=").append(rrn.toString()).append("; ");
+     if (scheduledType != null) sb.append("scheduledType=").append(scheduledType.toString()).append("; ");
      if (status != null) sb.append("status=").append(status.toString()).append("; ");
      if (subscription != null) sb.append("subscription=").append(subscription.toString()).append("; ");
      if (type != null) sb.append("type=").append(type.toString()).append("; ");

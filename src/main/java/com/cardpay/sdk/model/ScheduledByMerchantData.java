@@ -20,28 +20,27 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
 import lombok.Data;
 
 @Data
 
-public class ScheduledData {
+public class ScheduledByMerchantData {
+  @SerializedName("amount")
+  private BigDecimal amount = null;
+  @SerializedName("currency")
+  private String currency = null;
   @SerializedName("dynamic_descriptor")
   private String dynamicDescriptor = null;
+  @SerializedName("filing")
+  private RecurringResponseFiling filing = null;
   @SerializedName("generate_token")
   private Boolean generateToken = null;
-  @SerializedName("initial_amount")
-  private BigDecimal initialAmount = null;
   @SerializedName("initiator")
   private String initiator = null;
   @SerializedName("note")
   private String note = null;
-  @SerializedName("plan")
-  private Plan plan = null;
   @SerializedName("scheduled_type")
   private String scheduledType = null;
-  @SerializedName("subscription_start")
-  private OffsetDateTime subscriptionStart = null;
   /**
    * Gets or Sets transType
    */
@@ -98,6 +97,34 @@ public class ScheduledData {
   @SerializedName("trans_type")
   private TransTypeEnum transType = null;
   
+  public void setAmount(BigDecimal amount) {
+      this.amount = amount;
+  }
+
+  /**
+   * @param amount The amount of scheduled payment to be charged
+   * @return bean instance
+   **/
+  public ScheduledByMerchantData amount(BigDecimal amount) {
+      this.amount = amount;
+      return this;
+  }
+
+  
+  public void setCurrency(String currency) {
+      this.currency = currency;
+  }
+
+  /**
+   * @param currency [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code
+   * @return bean instance
+   **/
+  public ScheduledByMerchantData currency(String currency) {
+      this.currency = currency;
+      return this;
+  }
+
+  
   public void setDynamicDescriptor(String dynamicDescriptor) {
       this.dynamicDescriptor = dynamicDescriptor;
   }
@@ -106,8 +133,22 @@ public class ScheduledData {
    * @param dynamicDescriptor Short description of the service or product, must be enabled by CardPay manager to be used.
    * @return bean instance
    **/
-  public ScheduledData dynamicDescriptor(String dynamicDescriptor) {
+  public ScheduledByMerchantData dynamicDescriptor(String dynamicDescriptor) {
       this.dynamicDescriptor = dynamicDescriptor;
+      return this;
+  }
+
+  
+  public void setFiling(RecurringResponseFiling filing) {
+      this.filing = filing;
+  }
+
+  /**
+   * @param filing Card filing data
+   * @return bean instance
+   **/
+  public ScheduledByMerchantData filing(RecurringResponseFiling filing) {
+      this.filing = filing;
       return this;
   }
 
@@ -120,22 +161,8 @@ public class ScheduledData {
    * @param generateToken This attribute can be received only in first recurring request. In all requests with recurring_id card.token can&#39;t be generated. If set to &#39;true&#39;, Card token will be generated and returned in GET response. Will be generated only for successful transactions (not for declined).
    * @return bean instance
    **/
-  public ScheduledData generateToken(Boolean generateToken) {
+  public ScheduledByMerchantData generateToken(Boolean generateToken) {
       this.generateToken = generateToken;
-      return this;
-  }
-
-  
-  public void setInitialAmount(BigDecimal initialAmount) {
-      this.initialAmount = initialAmount;
-  }
-
-  /**
-   * @param initialAmount The amount of subscription initiated transaction in selected currency with dot as a decimal separator, must be less than 100 millions
-   * @return bean instance
-   **/
-  public ScheduledData initialAmount(BigDecimal initialAmount) {
-      this.initialAmount = initialAmount;
       return this;
   }
 
@@ -145,10 +172,10 @@ public class ScheduledData {
   }
 
   /**
-   * @param initiator Use &#x60;cit&#x60; for initiator attribute (cardholder initiated transaction).
+   * @param initiator Use &#x60;cit&#x60; for initiator attribute for cardholder initiated transactions (first scheduled payment by merchant transactions) Use &#x60;mit&#x60; for initiator attribute for merchant initiated transactions (continue scheduled payment by merchant transactions)
    * @return bean instance
    **/
-  public ScheduledData initiator(String initiator) {
+  public ScheduledByMerchantData initiator(String initiator) {
       this.initiator = initiator;
       return this;
   }
@@ -162,22 +189,8 @@ public class ScheduledData {
    * @param note Note about the recurring that will not be displayed to customer.
    * @return bean instance
    **/
-  public ScheduledData note(String note) {
+  public ScheduledByMerchantData note(String note) {
       this.note = note;
-      return this;
-  }
-
-  
-  public void setPlan(Plan plan) {
-      this.plan = plan;
-  }
-
-  /**
-   * @param plan Plan data
-   * @return bean instance
-   **/
-  public ScheduledData plan(Plan plan) {
-      this.plan = plan;
       return this;
   }
 
@@ -187,25 +200,11 @@ public class ScheduledData {
   }
 
   /**
-   * @param scheduledType Scheduled payment type attribute. For typical scheduled payments should be absent or &#x60;SA&#x60; - scheduled by acquirer
+   * @param scheduledType Scheduled payment type attribute. For scheduled payments by merchant value should be &#x60;SM&#x60; - scheduled by merchant
    * @return bean instance
    **/
-  public ScheduledData scheduledType(String scheduledType) {
+  public ScheduledByMerchantData scheduledType(String scheduledType) {
       this.scheduledType = scheduledType;
-      return this;
-  }
-
-  
-  public void setSubscriptionStart(OffsetDateTime subscriptionStart) {
-      this.subscriptionStart = subscriptionStart;
-  }
-
-  /**
-   * @param subscriptionStart The time in &#39;yyyy-MM-dd&#39; format when subscription will actually become activated (grace period).Leave it empty to activate subscription at once without any grace period applied.
-   * @return bean instance
-   **/
-  public ScheduledData subscriptionStart(OffsetDateTime subscriptionStart) {
-      this.subscriptionStart = subscriptionStart;
       return this;
   }
 
@@ -218,7 +217,7 @@ public class ScheduledData {
    * @param transType transType
    * @return bean instance
    **/
-  public ScheduledData transType(TransTypeEnum transType) {
+  public ScheduledByMerchantData transType(TransTypeEnum transType) {
       this.transType = transType;
       return this;
   }
@@ -227,16 +226,16 @@ public class ScheduledData {
   @Override
   public String toString() {
      StringBuilder sb = new StringBuilder();
-     sb.append("ScheduledData( ");
+     sb.append("ScheduledByMerchantData( ");
      
+     if (amount != null) sb.append("amount=").append(amount.toString()).append("; ");
+     if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
      if (dynamicDescriptor != null) sb.append("dynamicDescriptor=").append(dynamicDescriptor.toString()).append("; ");
+     if (filing != null) sb.append("filing=").append(filing.toString()).append("; ");
      if (generateToken != null) sb.append("generateToken=").append(generateToken.toString()).append("; ");
-     if (initialAmount != null) sb.append("initialAmount=").append(initialAmount.toString()).append("; ");
      if (initiator != null) sb.append("initiator=").append(initiator.toString()).append("; ");
      if (note != null) sb.append("note=").append(note.toString()).append("; ");
-     if (plan != null) sb.append("plan=").append(plan.toString()).append("; ");
      if (scheduledType != null) sb.append("scheduledType=").append(scheduledType.toString()).append("; ");
-     if (subscriptionStart != null) sb.append("subscriptionStart=").append(subscriptionStart.toString()).append("; ");
      if (transType != null) sb.append("transType=").append(transType.toString()).append("; ");
      sb.append(")");
      return sb.toString();
