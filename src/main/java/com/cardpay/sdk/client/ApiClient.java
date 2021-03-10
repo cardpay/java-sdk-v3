@@ -1,8 +1,11 @@
 package com.cardpay.sdk.client;
 
 import static com.cardpay.sdk.model.OAuthError.NameEnum.TOKEN;
+import static java.lang.Integer.parseInt;
 import static java.lang.System.currentTimeMillis;
 import static java.lang.ThreadLocal.withInitial;
+import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static java.util.Optional.ofNullable;
 
 import com.cardpay.sdk.api.AuthApi;
@@ -15,6 +18,11 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.math.BigInteger;
 import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
+import java.net.ProxySelector;
+import java.net.SocketAddress;
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -25,6 +33,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.UUID;
@@ -43,6 +52,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class ApiClient {
     public static final String USER_AGENT = "CardpaySdk/2.30.10/Java";
+    public static final Optional<ProxySelector> ENV_VAR_PROXY_SELECTOR = createEnvVarProxySelector();
 
     private TokenProvider tokenProvider;
 
@@ -110,6 +120,8 @@ public class ApiClient {
                 .connectTimeout(this.connectTimeout)
                 .readTimeout(this.readTimeout)
                 .callTimeout(this.callTimeout);
+
+        ENV_VAR_PROXY_SELECTOR.ifPresent(okBuilder::proxySelector);
 
         interceptors.forEach(v -> okBuilder.addInterceptor(v));
 
@@ -189,7 +201,10 @@ public class ApiClient {
                 .addHeader("User-Agent", ApiClient.USER_AGENT)
                 .build();
 
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient.Builder okClientBuilder = new OkHttpClient.Builder();
+        ENV_VAR_PROXY_SELECTOR.ifPresent(okClientBuilder::proxySelector);
+        OkHttpClient client = okClientBuilder.build();
+
         try {
             return client.newCall(request).execute();
         } catch (IOException e) {
@@ -203,6 +218,49 @@ public class ApiClient {
                 .filter(Scanner::hasNext)
                 .map(Scanner::next)
                 .orElse(null);
+    }
+
+    private static Optional<ProxySelector> createEnvVarProxySelector() {
+        String proxyUrl = getEnvVar("HTTPS_PROXY").orElse(getEnvVar("HTTP_PROXY").orElse(null));
+
+        if (proxyUrl == null) {
+            return Optional.empty();
+        }
+
+        Optional<List<String>> noProxy = getEnvVar("NO_PROXY")
+                .map(v -> v.replace("*", ""))
+                .map(v -> asList(v.split(",")));
+
+        return Optional.of(new ProxySelector() {
+            private final Proxy envVarProxy = createEnvVarProxy();
+
+            @Override
+            public List<Proxy> select(URI uri) {
+                if (noProxy.isPresent() && noProxy.get().stream().anyMatch(v -> uri.getHost().endsWith(v))) {
+                    return singletonList(Proxy.NO_PROXY);
+                } else {
+                    return singletonList(envVarProxy);
+                }
+            }
+
+            @Override
+            public void connectFailed(URI uri, SocketAddress sa, IOException ioe) {
+
+            }
+
+            private Proxy createEnvVarProxy() {
+                String proxyPath = proxyUrl.replace("http://", "").replace("https://", "");
+                String[] proxyPathSplit = proxyPath.split(":");
+                String proxyHostname = proxyPathSplit[0];
+                int proxyPort = proxyPathSplit.length > 1 ? parseInt(proxyPathSplit[1]) : 3128;
+
+                return new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHostname, proxyPort));
+            }
+        });
+    }
+
+    private static Optional<String> getEnvVar(String name) {
+        return ofNullable(System.getenv("HTTPS_PROXY")).filter(v -> !v.isEmpty());
     }
 
     public static class ApiException extends IOException {

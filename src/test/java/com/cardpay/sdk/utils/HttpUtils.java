@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
+import static com.cardpay.sdk.client.ApiClient.ENV_VAR_PROXY_SELECTOR;
+
 public class HttpUtils {
 
     private final static Logger log = LoggerFactory.getLogger(HttpUtils.class);
@@ -27,7 +29,10 @@ public class HttpUtils {
                 .addHeader("User-Agent", ApiClient.USER_AGENT)
                 .build();
 
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient.Builder okClientBuilder = new OkHttpClient.Builder();
+        ENV_VAR_PROXY_SELECTOR.ifPresent(okClientBuilder::proxySelector);
+        OkHttpClient client = okClientBuilder.build();
+
         try {
             Response response = client.newCall(request).execute();
             if (verbose) {
@@ -42,5 +47,4 @@ public class HttpUtils {
             log.error(e.getMessage(), e);
         }
     }
-
 }

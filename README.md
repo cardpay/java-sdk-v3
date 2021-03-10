@@ -33,3 +33,10 @@ Add this dependency to your project's build file:
 ```groovy
 compile "com.cardpay:java-sdk:2.30.10"
 ```
+
+## Proxy usage
+
+The SDK will automatically use a proxy if the `HTTPS_PROXY` or `HTTP_PROXY` environment variable is set.
+
+If the `NO_PROXY` env variable is set, the SDK won't use the proxy for hosts from this variable. The format of
+`NO_PROXY`: comma separated domain names (e.g. "cardpay.com,.example.com").
