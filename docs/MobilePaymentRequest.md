@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **request** | [**Request**](Request.md) | Request | 
-**cardAccount** | [**PaymentRequestCardAccount**](PaymentRequestCardAccount.md) | Information about card *(for BANKCARD payment method only)* | 
+**cardAccount** | [**PaymentRequestCardAccount**](PaymentRequestCardAccount.md) | Information about card *(for BANKCARD payment method only)* |  [optional]
 **customer** | [**PaymentRequestCustomer**](PaymentRequestCustomer.md) | Customer data | 
 **merchantOrder** | [**MobilePaymentMerchantOrder**](MobilePaymentMerchantOrder.md) | Merchant order data | 
 **paymentData** | [**PaymentRequestPaymentData**](PaymentRequestPaymentData.md) | Payment data | 

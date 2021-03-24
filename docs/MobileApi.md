@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**generateMobileToken**](MobileApi.md#generateMobileToken) | **POST** api/mobile/token | Generate mobile token 
 [**getMobilePayment**](MobileApi.md#getMobilePayment) | **GET** api/mobile/payments/{paymentId} | get mobile payment
 [**getMobilePaymentMethods**](MobileApi.md#getMobilePaymentMethods) | **GET** api/mobile/payment_methods | get mobile payment methods
+[**verify**](MobileApi.md#verify) | **POST** api/mobile/verify | Verify Attestation Statement
 
 
 <a name="createMobilePayment"></a>
@@ -280,5 +281,60 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="verify"></a>
+# **verify**
+> MobileVerificationResponse verify(authorization, request)
+
+Verify Attestation Statement
+
+### Example
+```java
+// Import classes:
+//import com.cardpay.sdk.client.ApiClient;
+//import com.cardpay.sdk.client.ApiException;
+//import com.cardpay.sdk.client.Configuration;
+//import com.cardpay.sdk.client.auth.*;
+//import com.cardpay.sdk.api.MobileApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: Bearer
+ApiKeyAuth Bearer = (ApiKeyAuth) defaultClient.getAuthentication("Bearer");
+Bearer.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//Bearer.setApiKeyPrefix("Token");
+
+MobileApi apiInstance = new MobileApi();
+String authorization = "authorization_example"; // String | Authorization
+MobileVerificationRequest request = new MobileVerificationRequest(); // MobileVerificationRequest | request
+try {
+    MobileVerificationResponse result = apiInstance.verify(authorization, request);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling MobileApi#verify");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **String**| Authorization |
+ **request** | [**MobileVerificationRequest**](MobileVerificationRequest.md)| request |
+
+### Return type
+
+[**MobileVerificationResponse**](MobileVerificationResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 

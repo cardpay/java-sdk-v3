@@ -7,6 +7,8 @@ import com.cardpay.sdk.model.MobilePaymentRequest;
 import com.cardpay.sdk.model.MobilePaymentResponse;
 import com.cardpay.sdk.model.MobileTokenRequest;
 import com.cardpay.sdk.model.MobileTokenResponse;
+import com.cardpay.sdk.model.MobileVerificationRequest;
+import com.cardpay.sdk.model.MobileVerificationResponse;
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -76,6 +78,21 @@ public interface MobileApi {
   @GET("api/mobile/payment_methods")
   Call<MobilePaymentResponse> getMobilePaymentMethods(
     @retrofit2.http.Header("Authorization") String authorization
+  );
+
+  /**
+   * Verify Attestation Statement
+   * 
+   * @param authorization Authorization (required)
+   * @param request request (required)
+   * @return Call&lt;MobileVerificationResponse&gt;
+   */
+  @Headers({
+    "Content-Type:application/json"
+  })
+  @POST("api/mobile/verify")
+  Call<MobileVerificationResponse> verify(
+    @retrofit2.http.Header("Authorization") String authorization, @retrofit2.http.Body MobileVerificationRequest request
   );
 
 }
