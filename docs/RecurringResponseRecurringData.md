@@ -32,8 +32,8 @@ Name | Type | Description | Notes
 ## Enum: ScheduledTypeEnum
 Name | Value
 ---- | -----
-ACQUIRER | &quot;SCHEDULED_BY_ACQUIRER&quot;
-MERCHANT | &quot;SCHEDULED_BY_MERCHANT&quot;
+SA | &quot;SA&quot;
+SM | &quot;SM&quot;
 
 
 <a name="StatusEnum"></a>

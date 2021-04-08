@@ -66,9 +66,9 @@ public class RecurringResponseRecurringData {
    */
   @JsonAdapter(ScheduledTypeEnum.Adapter.class)
   public enum ScheduledTypeEnum {
-    ACQUIRER("SCHEDULED_BY_ACQUIRER"),
+    SA("SA"),
     
-    MERCHANT("SCHEDULED_BY_MERCHANT");
+    SM("SM");
 
     private String value;
 

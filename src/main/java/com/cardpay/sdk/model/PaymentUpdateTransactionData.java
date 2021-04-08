@@ -84,7 +84,7 @@ public class PaymentUpdateTransactionData {
   }
 
   /**
-   * @param amount The total transaction amount in selected currency with dot as a decimal separator, must be less than 100 millions
+   * @param amount The total transaction amount in selected currency with dot as a decimal separator, must be less than 10 billion
    * @return bean instance
    **/
   public PaymentUpdateTransactionData amount(BigDecimal amount) {

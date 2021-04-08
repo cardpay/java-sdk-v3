@@ -102,7 +102,7 @@ public class PaymentRequestPaymentData {
   }
 
   /**
-   * @param amount The total transaction amount in selected currency with dot as a decimal separator, must be less than 100 millions If &#39;payment_method&#39; &#x3D; &#x60;BITCOIN&#x60; then minimum order amount is approximately 0.003 bitcoins or its equivalent. The exact value should be provided by the account manager.
+   * @param amount The total transaction amount in selected currency with dot as a decimal separator, must be less than 10 billion If &#39;payment_method&#39; &#x3D; &#x60;BITCOIN&#x60; then minimum order amount is approximately 0.003 bitcoins or its equivalent. The exact value should be provided by the account manager.
    * @return bean instance
    **/
   public PaymentRequestPaymentData amount(BigDecimal amount) {

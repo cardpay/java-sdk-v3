@@ -36,7 +36,7 @@ public class PayoutRequestPayoutData {
   }
 
   /**
-   * @param amount Represents the amount to be transferred to Customer&#39;s card, must be less than 100 millions.
+   * @param amount Represents the amount to be transferred to Customer&#39;s card, must be less than 10 billion.
    * @return bean instance
    **/
   public PayoutRequestPayoutData amount(BigDecimal amount) {

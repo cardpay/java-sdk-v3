@@ -34,8 +34,6 @@ public class InstallmentData {
   private String dynamicDescriptor = null;
   @SerializedName("generate_token")
   private Boolean generateToken = null;
-  @SerializedName("hold_rest_amount")
-  private Boolean holdRestAmount = null;
   @SerializedName("initiator")
   private String initiator = null;
   @SerializedName("installment_amount")
@@ -219,20 +217,6 @@ public class InstallmentData {
   }
 
   
-  public void setHoldRestAmount(Boolean holdRestAmount) {
-      this.holdRestAmount = holdRestAmount;
-  }
-
-  /**
-   * @param holdRestAmount For SplitPay subscription - \&quot;true\&quot;
-   * @return bean instance
-   **/
-  public InstallmentData holdRestAmount(Boolean holdRestAmount) {
-      this.holdRestAmount = holdRestAmount;
-      return this;
-  }
-
-  
   public void setInitiator(String initiator) {
       this.initiator = initiator;
   }
@@ -266,7 +250,7 @@ public class InstallmentData {
   }
 
   /**
-   * @param installmentType Installment type, 2 possible values: &#x60;IF&#x60; - issuer financed &#x60;MF&#x60; - merchant financed For installments by merchant should be only &#x60;MF&#x60; installment_type
+   * @param installmentType Installment type, 4 possible values: &#x60;IF&#x60; - issuer financed &#x60;MF_HOLD&#39; - merchant financed hold &#x60;MF_HOLD_SPLIT&#39; - merchant financed split &#x60;MF_WITHOUT_HOLD&#39; - merchant financed without hold 
    * @return bean instance
    **/
   public InstallmentData installmentType(String installmentType) {
@@ -383,7 +367,6 @@ public class InstallmentData {
      if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
      if (dynamicDescriptor != null) sb.append("dynamicDescriptor=").append(dynamicDescriptor.toString()).append("; ");
      if (generateToken != null) sb.append("generateToken=").append(generateToken.toString()).append("; ");
-     if (holdRestAmount != null) sb.append("holdRestAmount=").append(holdRestAmount.toString()).append("; ");
      if (initiator != null) sb.append("initiator=").append(initiator.toString()).append("; ");
      if (installmentAmount != null) sb.append("installmentAmount=").append(installmentAmount.toString()).append("; ");
      if (installmentType != null) sb.append("installmentType=").append(installmentType.toString()).append("; ");
