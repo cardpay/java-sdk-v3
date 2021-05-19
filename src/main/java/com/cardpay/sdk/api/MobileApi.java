@@ -81,7 +81,7 @@ public interface MobileApi {
   );
 
   /**
-   * Verify Attestation Statement
+   * Verify attestation statement
    * 
    * @param authorization Authorization (required)
    * @param request request (required)

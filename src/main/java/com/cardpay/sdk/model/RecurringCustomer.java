@@ -30,6 +30,8 @@ public class RecurringCustomer {
   private String homePhone = null;
   @SerializedName("id")
   private String id = null;
+  @SerializedName("identity")
+  private String identity = null;
   @SerializedName("ip")
   private String ip = null;
   /**
@@ -132,6 +134,20 @@ public class RecurringCustomer {
   }
 
   
+  public void setIdentity(String identity) {
+      this.identity = identity;
+  }
+
+  /**
+   * @param identity Customer&#39;s identity in Merchant&#39;s system required for Brazil Installments
+   * @return bean instance
+   **/
+  public RecurringCustomer identity(String identity) {
+      this.identity = identity;
+      return this;
+  }
+
+  
   public void setIp(String ip) {
       this.ip = ip;
   }
@@ -196,6 +212,7 @@ public class RecurringCustomer {
      if (email != null) sb.append("email=").append(email.toString()).append("; ");
      if (homePhone != null) sb.append("homePhone=").append(homePhone.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (identity != null) sb.append("identity=").append(identity.toString()).append("; ");
      if (ip != null) sb.append("ip=").append(ip.toString()).append("; ");
      if (locale != null) sb.append("locale=").append(locale.toString()).append("; ");
      if (phone != null) sb.append("phone=").append(phone.toString()).append("; ");

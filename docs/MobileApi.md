@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**generateMobileToken**](MobileApi.md#generateMobileToken) | **POST** api/mobile/token | Generate mobile token 
 [**getMobilePayment**](MobileApi.md#getMobilePayment) | **GET** api/mobile/payments/{paymentId} | get mobile payment
 [**getMobilePaymentMethods**](MobileApi.md#getMobilePaymentMethods) | **GET** api/mobile/payment_methods | get mobile payment methods
-[**verify**](MobileApi.md#verify) | **POST** api/mobile/verify | Verify Attestation Statement
+[**verify**](MobileApi.md#verify) | **POST** api/mobile/verify | Verify attestation statement
 
 
 <a name="createMobilePayment"></a>
@@ -287,7 +287,7 @@ Name | Type | Description  | Notes
 # **verify**
 > MobileVerificationResponse verify(authorization, request)
 
-Verify Attestation Statement
+Verify attestation statement
 
 ### Example
 ```java
