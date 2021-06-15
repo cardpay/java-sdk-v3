@@ -14,15 +14,41 @@
 package com.cardpay.sdk.model;
 
 import com.google.gson.annotations.SerializedName;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Data;
 
 @Data
 
 public class PaymentMethodsResponse {
+  @SerializedName("brands")
+  private List<String> brands = null;
   @SerializedName("category")
   private String category = null;
   @SerializedName("name")
   private String name = null;
+  
+  public void setBrands(List<String> brands) {
+      this.brands = brands;
+  }
+
+  /**
+   * @param brands Available Card Brands, is presented only for \&quot;bankcard\&quot; payment method
+   * @return bean instance
+   **/
+  public PaymentMethodsResponse brands(List<String> brands) {
+      this.brands = brands;
+      return this;
+  }
+
+  public PaymentMethodsResponse addBrandsItem(String brandsItem) {
+    if (this.brands == null) {
+      this.brands = new ArrayList<>();
+    }
+    this.brands.add(brandsItem);
+    return this;
+  }
+
   
   public void setCategory(String category) {
       this.category = category;
@@ -57,6 +83,7 @@ public class PaymentMethodsResponse {
      StringBuilder sb = new StringBuilder();
      sb.append("PaymentMethodsResponse( ");
      
+     if (brands != null) sb.append("brands=").append(brands.toString()).append("; ");
      if (category != null) sb.append("category=").append(category.toString()).append("; ");
      if (name != null) sb.append("name=").append(name.toString()).append("; ");
      sb.append(")");

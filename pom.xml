@@ -5,7 +5,7 @@
 
     <groupId>com.cardpay</groupId>
     <artifactId>java-sdk</artifactId>
-    <version>2.34.7</version>
+    <version>3.1.6</version>
 
     <packaging>jar</packaging>
 

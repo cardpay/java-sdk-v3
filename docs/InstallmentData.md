@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **note** | **String** | Note about the recurring that will not be displayed to customer. |  [optional]
 **payments** | **Integer** | Number of total payments to be charged per defined interval, can be 2-200. For Mexican installment subscription (installment_type &#x3D; &#x60;IF&#x60;) should be 1-99. |  [optional]
 **period** | [**PeriodEnum**](#PeriodEnum) | Initial period of recurring, can be &#x60;day&#x60;, &#x60;week&#x60;, &#x60;month&#x60;, &#x60;year&#x60; |  [optional]
+**preauth** | **Boolean** | If set to &#x60;true&#x60;, the amount will not be captured but only blocked. Installment with &#x60;preauth&#x60; attribute will be voided automatically in 5 days from the time of creating the preauth transaction. |  [optional]
 **retries** | **Integer** | Number of daily basis retry attempts in case of payment has not been captured successfully, from 1 to 15 attempts can be specified. |  [optional]
 **subscriptionStart** | [**OffsetDateTime**](OffsetDateTime.md) | The date in yyyy-MM-dd format when subscription will actually become activated (grace period). Auth request will be created but Customer will be charged only when subscription start date comes. Leave it empty or specify the current date to activate subscription at once without any grace period applied. |  [optional]
 **transType** | [**TransTypeEnum**](#TransTypeEnum) |  |  [optional]

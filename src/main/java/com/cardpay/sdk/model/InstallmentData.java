@@ -101,6 +101,8 @@ public class InstallmentData {
 
   @SerializedName("period")
   private PeriodEnum period = null;
+  @SerializedName("preauth")
+  private Boolean preauth = null;
   @SerializedName("retries")
   private Integer retries = null;
   @SerializedName("subscription_start")
@@ -316,6 +318,20 @@ public class InstallmentData {
   }
 
   
+  public void setPreauth(Boolean preauth) {
+      this.preauth = preauth;
+  }
+
+  /**
+   * @param preauth If set to &#x60;true&#x60;, the amount will not be captured but only blocked. Installment with &#x60;preauth&#x60; attribute will be voided automatically in 5 days from the time of creating the preauth transaction.
+   * @return bean instance
+   **/
+  public InstallmentData preauth(Boolean preauth) {
+      this.preauth = preauth;
+      return this;
+  }
+
+  
   public void setRetries(Integer retries) {
       this.retries = retries;
   }
@@ -374,6 +390,7 @@ public class InstallmentData {
      if (note != null) sb.append("note=").append(note.toString()).append("; ");
      if (payments != null) sb.append("payments=").append(payments.toString()).append("; ");
      if (period != null) sb.append("period=").append(period.toString()).append("; ");
+     if (preauth != null) sb.append("preauth=").append(preauth.toString()).append("; ");
      if (retries != null) sb.append("retries=").append(retries.toString()).append("; ");
      if (subscriptionStart != null) sb.append("subscriptionStart=").append(subscriptionStart.toString()).append("; ");
      if (transType != null) sb.append("transType=").append(transType.toString()).append("; ");
