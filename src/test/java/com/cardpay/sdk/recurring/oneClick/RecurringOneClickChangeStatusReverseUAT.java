@@ -31,8 +31,8 @@ import java.util.List;
 import java.util.UUID;
 
 import static com.cardpay.sdk.Config.CARDPAY_API_URL;
-import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
-import static com.cardpay.sdk.Config.GATEWAY_TERMINAL_CODE;
+import static com.cardpay.sdk.Config.GATEWAY_POSTPONED_PASSWORD;
+import static com.cardpay.sdk.Config.GATEWAY_POSTPONED_TERMINAL_CODE;
 import static com.cardpay.sdk.Config.LOGGING_LEVEL;
 import static com.cardpay.sdk.Config.TERMINAL_CURRENCY;
 import static com.cardpay.sdk.Constants.CARD_NON3DS_CONFIRMED;
@@ -60,7 +60,7 @@ public class RecurringOneClickChangeStatusReverseUAT {
 
     @Before
     public void setUp() {
-        recurrings = new ApiClient(CARDPAY_API_URL, GATEWAY_TERMINAL_CODE, GATEWAY_PASSWORD)
+        recurrings = new ApiClient(CARDPAY_API_URL, GATEWAY_POSTPONED_TERMINAL_CODE, GATEWAY_POSTPONED_PASSWORD)
                 .addLogging(LOGGING_LEVEL)
                 .createService(RecurringsApi.class);
     }
