@@ -6,6 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createPayment**](PaymentsApi.md#createPayment) | **POST** api/payments | Create payment
 [**getAuthenticationData1**](PaymentsApi.md#getAuthenticationData1) | **GET** api/payments/{paymentId}/threedsecure | Get payment 3DS result information
+[**getDispute**](PaymentsApi.md#getDispute) | **GET** api/disputes/{paymentId} | Get a list of disputes by payment id
+[**getDisputes**](PaymentsApi.md#getDisputes) | **GET** api/disputes | Get a list of disputes
 [**getPayment**](PaymentsApi.md#getPayment) | **GET** api/payments/{paymentId} | Get payment information
 [**getPaymentMethods**](PaymentsApi.md#getPaymentMethods) | **GET** api/payment_methods | Get payment methods
 [**getPayments**](PaymentsApi.md#getPayments) | **GET** api/payments | Get payments information
@@ -110,6 +112,124 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AuthenticationDataResponse**](AuthenticationDataResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getDispute"></a>
+# **getDispute**
+> DisputeList getDispute(paymentId)
+
+Get a list of disputes by payment id
+
+### Example
+```java
+// Import classes:
+//import com.cardpay.sdk.client.ApiClient;
+//import com.cardpay.sdk.client.ApiException;
+//import com.cardpay.sdk.client.Configuration;
+//import com.cardpay.sdk.client.auth.*;
+//import com.cardpay.sdk.api.PaymentsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: Bearer
+ApiKeyAuth Bearer = (ApiKeyAuth) defaultClient.getAuthentication("Bearer");
+Bearer.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//Bearer.setApiKeyPrefix("Token");
+
+PaymentsApi apiInstance = new PaymentsApi();
+String paymentId = "paymentId_example"; // String | Payment ID (or refund ID, or recurring ID)
+try {
+    DisputeList result = apiInstance.getDispute(paymentId);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling PaymentsApi#getDispute");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **paymentId** | **String**| Payment ID (or refund ID, or recurring ID) |
+
+### Return type
+
+[**DisputeList**](DisputeList.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getDisputes"></a>
+# **getDisputes**
+> DisputeList getDisputes(requestId, type, maxCount, offset, regEndTime, regStartTime, sortOrder)
+
+Get a list of disputes
+
+### Example
+```java
+// Import classes:
+//import com.cardpay.sdk.client.ApiClient;
+//import com.cardpay.sdk.client.ApiException;
+//import com.cardpay.sdk.client.Configuration;
+//import com.cardpay.sdk.client.auth.*;
+//import com.cardpay.sdk.api.PaymentsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: Bearer
+ApiKeyAuth Bearer = (ApiKeyAuth) defaultClient.getAuthentication("Bearer");
+Bearer.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//Bearer.setApiKeyPrefix("Token");
+
+PaymentsApi apiInstance = new PaymentsApi();
+String requestId = "5467653"; // String | Request ID
+String type = "CB"; // String | Defines dispute entity type: `CB` - for chargebacks `RR` - for retrieval requests `FR` - for fraud reports
+Integer maxCount = 10; // Integer | Limit number of returned dispute entities Must be less or equal to 1000, default is 100, minimal value is 1
+Integer offset = 10; // Integer | Starting position (offset) in the list of dispute entities. Must be less or equal to 10000, default is 0, minimal value is 0
+OffsetDateTime regEndTime = OffsetDateTime.now(); // OffsetDateTime | Dispute registration date & time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period ends (inclusive); the default is current time UTC (format - yyyy-MM-dd'T'HH:mm:ss.SSS'Z') Must be less than 10 days after reg_start_time
+OffsetDateTime regStartTime = OffsetDateTime.now(); // OffsetDateTime | Dispute registration date & time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period starts (inclusive); the default is 24 hours before reg_end_time UTC (format - yyyy-MM-dd'T'HH:mm:ss.SSS'Z') (in UTC format)
+String sortOrder = "asc"; // String | Sort based on order of results. `asc` for ascending order or `desc` for descending order (default value) by dispute registration date
+try {
+    DisputeList result = apiInstance.getDisputes(requestId, type, maxCount, offset, regEndTime, regStartTime, sortOrder);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling PaymentsApi#getDisputes");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **requestId** | **String**| Request ID |
+ **type** | **String**| Defines dispute entity type: &#x60;CB&#x60; - for chargebacks &#x60;RR&#x60; - for retrieval requests &#x60;FR&#x60; - for fraud reports |
+ **maxCount** | **Integer**| Limit number of returned dispute entities Must be less or equal to 1000, default is 100, minimal value is 1 | [optional]
+ **offset** | **Integer**| Starting position (offset) in the list of dispute entities. Must be less or equal to 10000, default is 0, minimal value is 0 | [optional]
+ **regEndTime** | **OffsetDateTime**| Dispute registration date &amp; time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period ends (inclusive); the default is current time UTC (format - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;) Must be less than 10 days after reg_start_time | [optional]
+ **regStartTime** | **OffsetDateTime**| Dispute registration date &amp; time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period starts (inclusive); the default is 24 hours before reg_end_time UTC (format - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;) (in UTC format) | [optional]
+ **sortOrder** | **String**| Sort based on order of results. &#x60;asc&#x60; for ascending order or &#x60;desc&#x60; for descending order (default value) by dispute registration date | [optional] [enum: asc, desc]
+
+### Return type
+
+[**DisputeList**](DisputeList.md)
 
 ### Authorization
 

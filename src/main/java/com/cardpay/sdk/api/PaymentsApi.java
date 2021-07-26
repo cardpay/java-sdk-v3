@@ -2,6 +2,7 @@ package com.cardpay.sdk.api;
 
 import com.cardpay.sdk.client.CollectionFormats.*;
 import com.cardpay.sdk.model.AuthenticationDataResponse;
+import com.cardpay.sdk.model.DisputeList;
 import com.cardpay.sdk.model.PaymentGatewayCreationResponse;
 import com.cardpay.sdk.model.PaymentMethodsList;
 import com.cardpay.sdk.model.PaymentPatchRequest;
@@ -37,6 +38,34 @@ public interface PaymentsApi {
   @GET("api/payments/{paymentId}/threedsecure")
   Call<AuthenticationDataResponse> getAuthenticationData1(
     @retrofit2.http.Path("paymentId") String paymentId
+  );
+
+  /**
+   * Get a list of disputes by payment id
+   * 
+   * @param paymentId Payment ID (or refund ID, or recurring ID) (required)
+   * @return Call&lt;DisputeList&gt;
+   */
+  @GET("api/disputes/{paymentId}")
+  Call<DisputeList> getDispute(
+    @retrofit2.http.Path("paymentId") String paymentId
+  );
+
+  /**
+   * Get a list of disputes
+   * 
+   * @param requestId Request ID (required)
+   * @param type Defines dispute entity type: &#x60;CB&#x60; - for chargebacks &#x60;RR&#x60; - for retrieval requests &#x60;FR&#x60; - for fraud reports (required)
+   * @param maxCount Limit number of returned dispute entities Must be less or equal to 1000, default is 100, minimal value is 1 (optional)
+   * @param offset Starting position (offset) in the list of dispute entities. Must be less or equal to 10000, default is 0, minimal value is 0 (optional)
+   * @param regEndTime Dispute registration date &amp; time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period ends (inclusive); the default is current time UTC (format - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;) Must be less than 10 days after reg_start_time (optional)
+   * @param regStartTime Dispute registration date &amp; time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period starts (inclusive); the default is 24 hours before reg_end_time UTC (format - yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;) (in UTC format) (optional)
+   * @param sortOrder Sort based on order of results. &#x60;asc&#x60; for ascending order or &#x60;desc&#x60; for descending order (default value) by dispute registration date (optional)
+   * @return Call&lt;DisputeList&gt;
+   */
+  @GET("api/disputes")
+  Call<DisputeList> getDisputes(
+    @retrofit2.http.Query("request_id") String requestId, @retrofit2.http.Query("type") String type, @retrofit2.http.Query("max_count") Integer maxCount, @retrofit2.http.Query("offset") Integer offset, @retrofit2.http.Query("reg_end_time") OffsetDateTime regEndTime, @retrofit2.http.Query("reg_start_time") OffsetDateTime regStartTime, @retrofit2.http.Query("sort_order") String sortOrder
   );
 
   /**
