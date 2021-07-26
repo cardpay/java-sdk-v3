@@ -17,6 +17,12 @@ public class Config {
     public static final String GATEWAY_POSTPONED_TERMINAL_CODE = System.getProperty("GATEWAY_POSTPONED_TERMINAL_CODE", "18399");
     public static final String GATEWAY_POSTPONED_PASSWORD = System.getProperty("GATEWAY_POSTPONED_PASSWORD", "jehE149L7bHU");
 
+    public static final String AVS_PAYMENTPAGE_TERMINAL_CODE = System.getProperty("AVS_PAYMENTPAGE_TERMINAL_CODE", "23029");
+    public static final String AVS_PAYMENTPAGE_PASSWORD = System.getProperty("AVS_PAYMENTPAGE_PASSWORD", "0UT41J9avFch");
+
+    public static final String AVS_GATEWAY_TERMINAL_CODE = System.getProperty("AVS_GATEWAY_TERMINAL_CODE", "36069");
+    public static final String AVS_GATEWAY_PASSWORD = System.getProperty("AVS_GATEWAY_PASSWORD", "fV5tHs689Ej309");
+
     // NONE, BASIC, HEADERS, BODY
     public static final HttpLoggingInterceptor.Level LOGGING_LEVEL = HttpLoggingInterceptor.Level.valueOf(System.getProperty("LOGGING_LEVEL", HttpLoggingInterceptor.Level.NONE.name()));
 
