@@ -25,7 +25,7 @@ public interface RecurringsInstallmentsApi {
    */
   @GET("api/installments/options_calculator")
   Call<ScheduleOptionsResponse> calculateSchedule(
-    @retrofit2.http.Query("currency") String currency, @retrofit2.http.Query("request_id") String requestId, @retrofit2.http.Query("totalAmount") BigDecimal totalAmount
+    @retrofit2.http.Query("currency") String currency, @retrofit2.http.Query("request_id") String requestId, @retrofit2.http.Query("total_amount") BigDecimal totalAmount
   );
 
   /**
