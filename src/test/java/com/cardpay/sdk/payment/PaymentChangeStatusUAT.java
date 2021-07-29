@@ -2,15 +2,7 @@ package com.cardpay.sdk.payment;
 
 import com.cardpay.sdk.api.PaymentsApi;
 import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.PaymentGatewayCreationResponse;
-import com.cardpay.sdk.model.PaymentPatchRequest;
-import com.cardpay.sdk.model.PaymentRequest;
-import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
-import com.cardpay.sdk.model.PaymentResponse;
-import com.cardpay.sdk.model.PaymentUpdateResponse;
-import com.cardpay.sdk.model.PaymentUpdateTransactionData;
-import com.cardpay.sdk.model.PaymentsList;
-import com.cardpay.sdk.model.ResponseUpdatedTransactionData;
+import com.cardpay.sdk.model.*;
 import com.cardpay.sdk.utils.HttpUtils;
 import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.BaseProducer;
@@ -20,27 +12,17 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import retrofit2.Call;
 import retrofit2.Response;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.UUID;
 
-import static com.cardpay.sdk.Config.CARDPAY_API_URL;
-import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
-import static com.cardpay.sdk.Config.GATEWAY_TERMINAL_CODE;
-import static com.cardpay.sdk.Config.LOGGING_LEVEL;
+import static com.cardpay.sdk.Config.*;
 import static com.cardpay.sdk.Constants.CARD_NON3DS_CONFIRMED;
 import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
 import static com.cardpay.sdk.model.PaymentPatchRequest.OperationEnum.CHANGE_STATUS;
 import static com.cardpay.sdk.model.PaymentUpdateTransactionData.StatusToEnum.COMPLETE;
 import static com.cardpay.sdk.utils.AssertUtils.assertSuccessResponse;
-import static com.cardpay.sdk.utils.DataUtils.generateMerchantOrderId;
-import static com.cardpay.sdk.utils.DataUtils.paymentRequestCardAccount;
-import static com.cardpay.sdk.utils.DataUtils.paymentRequestCustomer;
-import static com.cardpay.sdk.utils.DataUtils.paymentRequestPaymentData;
-import static com.cardpay.sdk.utils.DataUtils.returnUrls;
+import static com.cardpay.sdk.utils.DataUtils.*;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -98,29 +80,6 @@ public class PaymentChangeStatusUAT {
         log.info("{} {} {}", data.getUpdated(), data.getId(), data.getStatus());
     }
 
-    private PaymentResponse fetchPaymentByMerchantOrderId(String merchantOrderId) throws IOException {
-        Call<PaymentsList> call = payments.getPayments(
-                UUID.randomUUID().toString(),
-                null,
-                null,
-                50,
-                merchantOrderId,
-                null,
-                null,
-                null
-        );
-        Response<PaymentsList> response = call.execute();
-        assertTrue(response.message(), response.isSuccessful());
-
-        PaymentsList body = response.body();
-        assertNotNull(body);
-
-        log.info("{}", body);
-
-        List<PaymentResponse> data = body.getData();
-        return data.size() > 0 ? data.get(0) : null;
-    }
-
     private String doPayment(String cardPan) throws IOException {
         // prepare payment request data
         PaymentRequest paymentRequest = createPaymentRequest(cardPan);
@@ -133,12 +92,7 @@ public class PaymentChangeStatusUAT {
         // Emulate customer behaviour performing GET request to redirect url
         HttpUtils.doGet(creationResponse.getRedirectUrl());
 
-        String merchantOrderId = paymentRequest.getMerchantOrder().getId();
-
-        PaymentResponse paymentResponse = fetchPaymentByMerchantOrderId(merchantOrderId);
-        assertNotNull(paymentResponse);
-
-        return paymentResponse.getPaymentData().getId();
+        return creationResponse.getPaymentData().getId();
     }
 
     private PaymentRequest createPaymentRequest(String cardPan) {

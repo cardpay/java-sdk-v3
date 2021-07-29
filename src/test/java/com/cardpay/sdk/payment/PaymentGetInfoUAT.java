@@ -35,8 +35,7 @@ import static com.cardpay.sdk.utils.DataUtils.paymentRequestCardAccount;
 import static com.cardpay.sdk.utils.DataUtils.paymentRequestCustomer;
 import static com.cardpay.sdk.utils.DataUtils.paymentRequestPaymentData;
 import static com.cardpay.sdk.utils.DataUtils.returnUrls;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class PaymentGetInfoUAT {
 
@@ -80,29 +79,6 @@ public class PaymentGetInfoUAT {
         );
     }
 
-    private PaymentResponse fetchPaymentByMerchantOrderId(String merchantOrderId) throws IOException {
-        Call<PaymentsList> call = payments.getPayments(
-                UUID.randomUUID().toString(),
-                null,
-                null,
-                50,
-                merchantOrderId,
-                null,
-                null,
-                null
-        );
-        Response<PaymentsList> response = call.execute();
-        assertTrue(response.message(), response.isSuccessful());
-
-        PaymentsList body = response.body();
-        assertNotNull(body);
-
-        log.info("{}", body);
-
-        List<PaymentResponse> data = body.getData();
-        return data.size() > 0 ? data.get(0) : null;
-    }
-
     private String doPayment(String cardPan) throws IOException {
         PaymentRequest paymentRequest = createPaymentRequest(cardPan);
         log.info("{}", paymentRequest);
@@ -113,15 +89,7 @@ public class PaymentGetInfoUAT {
         // Emulate customer behaviour performing GET request to redirect url
         HttpUtils.doGet(creationResponse.getRedirectUrl());
 
-        String merchantOrderId = paymentRequest.getMerchantOrder().getId();
-
-        PaymentResponse paymentResponse = fetchPaymentByMerchantOrderId(merchantOrderId);
-        assertNotNull(paymentResponse);
-
-        PaymentResponsePaymentData paymentData = paymentResponse.getPaymentData();
-        assertNotNull(paymentData);
-
-        return paymentResponse.getPaymentData().getId();
+        return creationResponse.getPaymentData().getId();
     }
 
     private PaymentRequest createPaymentRequest(String cardPan) {

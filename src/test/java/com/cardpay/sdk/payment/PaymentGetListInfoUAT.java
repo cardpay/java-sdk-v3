@@ -112,7 +112,7 @@ public class PaymentGetListInfoUAT {
             );
         }
 
-        Set<String> fetchedIds = payments.stream().map(p -> p.getMerchantOrder().getId()).collect(toSet());
+        Set<String> fetchedIds = payments.stream().map(p -> p.getPaymentData().getId()).collect(toSet());
         assertTrue(fetchedIds.containsAll(ids));
     }
 
@@ -126,7 +126,7 @@ public class PaymentGetListInfoUAT {
             // Emulate customer behaviour performing GET request to redirect url
             HttpUtils.doGetSilent(creationResponse.getRedirectUrl());
 
-            return paymentRequest.getMerchantOrder().getId();
+            return creationResponse.getPaymentData().getId();
         } catch (IOException e) {
             log.error(e.getMessage(), e);
             return "";
@@ -162,26 +162,5 @@ public class PaymentGetListInfoUAT {
             log.error(e.getMessage(), e);
             throw e;
         }
-    }
-
-    private PaymentResponse fetchPaymentByMerchantOrderId(String merchantOrderId) throws IOException {
-        Call<PaymentsList> call = payments.getPayments(
-                UUID.randomUUID().toString(),
-                null,
-                null,
-                50,
-                merchantOrderId,
-                null,
-                null,
-                null
-        );
-        Response<PaymentsList> response = call.execute();
-        assertTrue(response.message(), response.isSuccessful());
-
-        PaymentsList body = response.body();
-        assertNotNull(body);
-
-        List<PaymentResponse> data = body.getData();
-        return data.size() > 0 ? data.get(0) : null;
     }
 }

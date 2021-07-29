@@ -142,38 +142,25 @@ public class PaymentGateway3dsModeUAT {
         HttpUtils.doGetSilent(creationResponse.getRedirectUrl());
 
         // explore response result
-        PaymentResponsePaymentData paymentData = fetchPaymentByMerchantOrderId(merchantOrderId);
+        PaymentResponsePaymentData paymentData = getPaymentByPaymentId(creationResponse.getPaymentData().getId());
         assertNotNull(paymentData);
 
         assertEquals(COMPLETED, paymentData.getStatus());
     }
 
-    private PaymentResponsePaymentData fetchPaymentByMerchantOrderId(String merchantOrderId) throws IOException {
-        Response<PaymentsList> response = payments.getPayments(
-                UUID.randomUUID().toString(),
-                null,
-                null,
-                null,
-                merchantOrderId,
-                null,
-                null,
-                null
-        ).execute();
+    private PaymentResponsePaymentData getPaymentByPaymentId(String paymentId) throws IOException {
+        Response<PaymentResponse> response = payments.getPayment(paymentId).execute();
         log.info("{}", response);
         assertTrue(response.message(), response.isSuccessful());
 
-        PaymentsList body = response.body();
+        PaymentResponse body = response.body();
         assertNotNull(body);
 
         log.info("{}", body);
 
-        List<PaymentResponse> data = body.getData();
-        assertEquals(1, data.size());
+        assertEquals(paymentId, body.getPaymentData().getId());
 
-        PaymentResponse result = data.get(0);
-        assertEquals(merchantOrderId, result.getMerchantOrder().getId());
-
-        return result.getPaymentData();
+        return body.getPaymentData();
     }
 
 }
