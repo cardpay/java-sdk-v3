@@ -80,13 +80,16 @@ public interface PaymentsApi {
   );
 
   /**
-   * Get payment methods
-   * Endpoint for get payment methods by current terminal code
+   * Get payment and payout methods
+   * Endpoint to get payment methods by current terminal code
+   * @param requestId Request ID, not unique ID of request (required)
+   * @param payoutMethodsOnly If &#x60;true&#x60; was received - **only** available payout methods section will be returned in response (without &#39;payment_methods&#39; section).  If &#x60;false&#x60; or absent - available payment and payout methods (both the sections) will be returned in response. (optional)
    * @return Call&lt;PaymentMethodsList&gt;
    */
   @GET("api/payment_methods")
-  Call<PaymentMethodsList> getPaymentMethods();
-    
+  Call<PaymentMethodsList> getPaymentMethods(
+    @retrofit2.http.Query("request_id") String requestId, @retrofit2.http.Query("payout_methods_only") Boolean payoutMethodsOnly
+  );
 
   /**
    * Get payments information
@@ -94,7 +97,7 @@ public interface PaymentsApi {
    * @param requestId Request ID (required)
    * @param currency [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of transactions currency (optional)
    * @param endTime Date and time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period ends (not inclusive), UTC time, must be less than 7 days after &#39;start_time&#39;, default is current time (format: yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;) (optional)
-   * @param maxCount Limit number of returned transactions (must be less than 10000, default is 1000) (optional)
+   * @param maxCount Limit number of returned transactions (must be less than 10000, default is 1000, minimal value is 1) (optional)
    * @param merchantOrderId Merchant order number from the merchant system (optional)
    * @param paymentMethod Used payment method type name from payment methods list (optional)
    * @param sortOrder Sort based on order of results. &#x60;asc&#x60; for ascending order or &#x60;desc&#x60; for descending order (default value) (optional)

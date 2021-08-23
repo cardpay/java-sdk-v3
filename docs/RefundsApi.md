@@ -143,7 +143,7 @@ RefundsApi apiInstance = new RefundsApi();
 String requestId = "2253145"; // String | Request ID
 String currency = "USD"; // String | [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of transactions currency
 OffsetDateTime endTime = OffsetDateTime.now(); // OffsetDateTime | Date and time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period ends (not inclusive), UTC time, must be less than 7 days after 'start_time', default is current time (format: yyyy-MM-dd'T'HH:mm:ss'Z')
-Integer maxCount = 10; // Integer | Limit number of returned transactions (must be less than 10000, default is 1000)
+Integer maxCount = 10; // Integer | Limit number of returned transactions (must be less than 10000, default is 1000, minimal value is 1)
 String merchantOrderId = "order00017"; // String | Merchant order number from the merchant system
 String paymentMethod = "BANKCARD"; // String | Used payment method type name from payment methods list
 String sortOrder = "asc"; // String | Sort based on order of results. `asc` for ascending order or `desc` for descending order (default value)
@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
  **requestId** | **String**| Request ID |
  **currency** | **String**| [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of transactions currency | [optional]
  **endTime** | **OffsetDateTime**| Date and time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period ends (not inclusive), UTC time, must be less than 7 days after &#39;start_time&#39;, default is current time (format: yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;) | [optional]
- **maxCount** | **Integer**| Limit number of returned transactions (must be less than 10000, default is 1000) | [optional]
+ **maxCount** | **Integer**| Limit number of returned transactions (must be less than 10000, default is 1000, minimal value is 1) | [optional]
  **merchantOrderId** | **String**| Merchant order number from the merchant system | [optional]
  **paymentMethod** | **String**| Used payment method type name from payment methods list | [optional]
  **sortOrder** | **String**| Sort based on order of results. &#x60;asc&#x60; for ascending order or &#x60;desc&#x60; for descending order (default value) | [optional] [enum: asc, desc]

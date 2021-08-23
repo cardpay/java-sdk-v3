@@ -70,8 +70,6 @@ public class PaymentResponsePaymentData {
     
     REFUNDED("REFUNDED"),
     
-    PARTIALLY_REFUNDED("PARTIALLY_REFUNDED"),
-    
     VOIDED("VOIDED"),
     
     TERMINATED("TERMINATED"),

@@ -56,8 +56,6 @@ public class AuthenticationData {
     
     REFUNDED("REFUNDED"),
     
-    PARTIALLY_REFUNDED("PARTIALLY_REFUNDED"),
-    
     VOIDED("VOIDED"),
     
     TERMINATED("TERMINATED"),

@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**getDispute**](PaymentsApi.md#getDispute) | **GET** api/disputes/{paymentId} | Get a list of disputes by payment id
 [**getDisputes**](PaymentsApi.md#getDisputes) | **GET** api/disputes | Get a list of disputes
 [**getPayment**](PaymentsApi.md#getPayment) | **GET** api/payments/{paymentId} | Get payment information
-[**getPaymentMethods**](PaymentsApi.md#getPaymentMethods) | **GET** api/payment_methods | Get payment methods
+[**getPaymentMethods**](PaymentsApi.md#getPaymentMethods) | **GET** api/payment_methods | Get payment and payout methods
 [**getPayments**](PaymentsApi.md#getPayments) | **GET** api/payments | Get payments information
 [**updatePayment**](PaymentsApi.md#updatePayment) | **PATCH** api/payments/{paymentId} | Update payment
 
@@ -295,11 +295,11 @@ Name | Type | Description  | Notes
 
 <a name="getPaymentMethods"></a>
 # **getPaymentMethods**
-> PaymentMethodsList getPaymentMethods()
+> PaymentMethodsList getPaymentMethods(requestId, payoutMethodsOnly)
 
-Get payment methods
+Get payment and payout methods
 
-Endpoint for get payment methods by current terminal code
+Endpoint to get payment methods by current terminal code
 
 ### Example
 ```java
@@ -319,8 +319,10 @@ Bearer.setApiKey("YOUR API KEY");
 //Bearer.setApiKeyPrefix("Token");
 
 PaymentsApi apiInstance = new PaymentsApi();
+String requestId = "2253145"; // String | Request ID, not unique ID of request
+Boolean payoutMethodsOnly = true; // Boolean | If `true` was received - **only** available payout methods section will be returned in response (without 'payment_methods' section).  If `false` or absent - available payment and payout methods (both the sections) will be returned in response.
 try {
-    PaymentMethodsList result = apiInstance.getPaymentMethods();
+    PaymentMethodsList result = apiInstance.getPaymentMethods(requestId, payoutMethodsOnly);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling PaymentsApi#getPaymentMethods");
@@ -329,7 +331,11 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **requestId** | **String**| Request ID, not unique ID of request |
+ **payoutMethodsOnly** | **Boolean**| If &#x60;true&#x60; was received - **only** available payout methods section will be returned in response (without &#39;payment_methods&#39; section).  If &#x60;false&#x60; or absent - available payment and payout methods (both the sections) will be returned in response. | [optional]
 
 ### Return type
 
@@ -371,7 +377,7 @@ PaymentsApi apiInstance = new PaymentsApi();
 String requestId = "2253145"; // String | Request ID
 String currency = "USD"; // String | [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of transactions currency
 OffsetDateTime endTime = OffsetDateTime.now(); // OffsetDateTime | Date and time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period ends (not inclusive), UTC time, must be less than 7 days after 'start_time', default is current time (format: yyyy-MM-dd'T'HH:mm:ss'Z')
-Integer maxCount = 10; // Integer | Limit number of returned transactions (must be less than 10000, default is 1000)
+Integer maxCount = 10; // Integer | Limit number of returned transactions (must be less than 10000, default is 1000, minimal value is 1)
 String merchantOrderId = "order00017"; // String | Merchant order number from the merchant system
 String paymentMethod = "BANKCARD"; // String | Used payment method type name from payment methods list
 String sortOrder = "asc"; // String | Sort based on order of results. `asc` for ascending order or `desc` for descending order (default value)
@@ -392,7 +398,7 @@ Name | Type | Description  | Notes
  **requestId** | **String**| Request ID |
  **currency** | **String**| [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of transactions currency | [optional]
  **endTime** | **OffsetDateTime**| Date and time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period ends (not inclusive), UTC time, must be less than 7 days after &#39;start_time&#39;, default is current time (format: yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;) | [optional]
- **maxCount** | **Integer**| Limit number of returned transactions (must be less than 10000, default is 1000) | [optional]
+ **maxCount** | **Integer**| Limit number of returned transactions (must be less than 10000, default is 1000, minimal value is 1) | [optional]
  **merchantOrderId** | **String**| Merchant order number from the merchant system | [optional]
  **paymentMethod** | **String**| Used payment method type name from payment methods list | [optional]
  **sortOrder** | **String**| Sort based on order of results. &#x60;asc&#x60; for ascending order or &#x60;desc&#x60; for descending order (default value) | [optional] [enum: asc, desc]

@@ -42,7 +42,7 @@ public interface PayoutsApi {
    * @param requestId Request ID (required)
    * @param currency [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of transactions currency (optional)
    * @param endTime Date and time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period ends (not inclusive), UTC time, must be less than 7 days after &#39;start_time&#39;, default is current time (format: yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;) (optional)
-   * @param maxCount Limit number of returned transactions (must be less than 10000, default is 1000) (optional)
+   * @param maxCount Limit number of returned transactions (must be less than 10000, default is 1000, minimal value is 1) (optional)
    * @param merchantOrderId Merchant order number from the merchant system (optional)
    * @param paymentMethod Used payment method type name from payment methods list (optional)
    * @param sortOrder Sort based on order of results. &#x60;asc&#x60; for ascending order or &#x60;desc&#x60; for descending order (default value) (optional)

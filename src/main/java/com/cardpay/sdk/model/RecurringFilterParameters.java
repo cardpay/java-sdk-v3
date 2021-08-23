@@ -215,8 +215,9 @@ public class RecurringFilterParameters {
   }
 
   /**
+   * minimum: 1
    * maximum: 10000
-   * @param maxCount Limit number of returned transactions (must be less than 10000, default is 1000)
+   * @param maxCount Limit number of returned transactions (must be less than 10000, default is 1000, minimal value is 1)
    * @return bean instance
    **/
   public RecurringFilterParameters maxCount(Integer maxCount) {

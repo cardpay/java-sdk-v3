@@ -62,8 +62,6 @@ public class BankCardPayoutData {
     
     REFUNDED("REFUNDED"),
     
-    PARTIALLY_REFUNDED("PARTIALLY_REFUNDED"),
-    
     VOIDED("VOIDED"),
     
     TERMINATED("TERMINATED"),
