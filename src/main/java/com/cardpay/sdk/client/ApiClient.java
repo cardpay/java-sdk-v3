@@ -1,18 +1,27 @@
 package com.cardpay.sdk.client;
 
-import static com.cardpay.sdk.model.OAuthError.NameEnum.TOKEN;
-import static java.lang.Integer.parseInt;
-import static java.lang.System.currentTimeMillis;
-import static java.lang.ThreadLocal.withInitial;
-import static java.util.Arrays.asList;
-import static java.util.Collections.singletonList;
-import static java.util.Optional.ofNullable;
-
 import com.cardpay.sdk.api.AuthApi;
-import com.cardpay.sdk.model.*;
+import com.cardpay.sdk.model.ApiTokens;
+import com.cardpay.sdk.model.OAuthError;
+import com.cardpay.sdk.model.PaymentCallback;
+import com.cardpay.sdk.model.PayoutCallback;
+import com.cardpay.sdk.model.RecurringCallback;
+import com.cardpay.sdk.model.RefundCallback;
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Converter;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
+
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
@@ -38,20 +47,17 @@ import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.UUID;
 import java.util.function.Consumer;
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Converter;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
+
+import static com.cardpay.sdk.model.OAuthError.NameEnum.TOKEN;
+import static java.lang.Integer.parseInt;
+import static java.lang.System.currentTimeMillis;
+import static java.lang.ThreadLocal.withInitial;
+import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
+import static java.util.Optional.ofNullable;
 
 public class ApiClient {
-    public static final String USER_AGENT = "CardpaySdk/3.5.9/Java";
+    public static final String USER_AGENT = "CardpaySdk/3.5.9.1/Java";
     public static final Optional<ProxySelector> ENV_VAR_PROXY_SELECTOR = createEnvVarProxySelector();
 
     private TokenProvider tokenProvider;
@@ -610,7 +616,7 @@ class TokenManagerInterceptor implements Interceptor {
     }
 
     private boolean isBadRequest(Response response) {
-        return response.code() == HttpURLConnection.HTTP_BAD_REQUEST;
+        return response.code() >= HttpURLConnection.HTTP_BAD_REQUEST;
     }
 
     private Response proceed(Chain chain, Request request, String accessToken) throws IOException {
