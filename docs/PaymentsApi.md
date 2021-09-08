@@ -295,11 +295,11 @@ Name | Type | Description  | Notes
 
 <a name="getPaymentMethods"></a>
 # **getPaymentMethods**
-> PaymentMethodsList getPaymentMethods(requestId, payoutMethodsOnly)
+> TransactionMethodsList getPaymentMethods(requestId, payoutMethodsOnly)
 
 Get payment and payout methods
 
-Endpoint to get payment methods by current terminal code
+Endpoint to get payment and payout methods by current terminal code
 
 ### Example
 ```java
@@ -322,7 +322,7 @@ PaymentsApi apiInstance = new PaymentsApi();
 String requestId = "2253145"; // String | Request ID, not unique ID of request
 Boolean payoutMethodsOnly = true; // Boolean | If `true` was received - **only** available payout methods section will be returned in response (without 'payment_methods' section).  If `false` or absent - available payment and payout methods (both the sections) will be returned in response.
 try {
-    PaymentMethodsList result = apiInstance.getPaymentMethods(requestId, payoutMethodsOnly);
+    TransactionMethodsList result = apiInstance.getPaymentMethods(requestId, payoutMethodsOnly);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling PaymentsApi#getPaymentMethods");
@@ -339,7 +339,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaymentMethodsList**](PaymentMethodsList.md)
+[**TransactionMethodsList**](TransactionMethodsList.md)
 
 ### Authorization
 

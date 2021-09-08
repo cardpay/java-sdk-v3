@@ -20,9 +20,11 @@ import lombok.Data;
 
 @Data
 
-public class PaymentMethodsList {
+public class TransactionMethodsList {
   @SerializedName("payment_methods")
   private List<PaymentMethodsResponse> paymentMethods = null;
+  @SerializedName("payout_methods")
+  private List<PaymentMethodsResponse> payoutMethods = null;
   
   public void setPaymentMethods(List<PaymentMethodsResponse> paymentMethods) {
       this.paymentMethods = paymentMethods;
@@ -32,12 +34,12 @@ public class PaymentMethodsList {
    * @param paymentMethods Payment methods list
    * @return bean instance
    **/
-  public PaymentMethodsList paymentMethods(List<PaymentMethodsResponse> paymentMethods) {
+  public TransactionMethodsList paymentMethods(List<PaymentMethodsResponse> paymentMethods) {
       this.paymentMethods = paymentMethods;
       return this;
   }
 
-  public PaymentMethodsList addPaymentMethodsItem(PaymentMethodsResponse paymentMethodsItem) {
+  public TransactionMethodsList addPaymentMethodsItem(PaymentMethodsResponse paymentMethodsItem) {
     if (this.paymentMethods == null) {
       this.paymentMethods = new ArrayList<>();
     }
@@ -45,13 +47,36 @@ public class PaymentMethodsList {
     return this;
   }
 
+  
+  public void setPayoutMethods(List<PaymentMethodsResponse> payoutMethods) {
+      this.payoutMethods = payoutMethods;
+  }
+
+  /**
+   * @param payoutMethods Payout methods list
+   * @return bean instance
+   **/
+  public TransactionMethodsList payoutMethods(List<PaymentMethodsResponse> payoutMethods) {
+      this.payoutMethods = payoutMethods;
+      return this;
+  }
+
+  public TransactionMethodsList addPayoutMethodsItem(PaymentMethodsResponse payoutMethodsItem) {
+    if (this.payoutMethods == null) {
+      this.payoutMethods = new ArrayList<>();
+    }
+    this.payoutMethods.add(payoutMethodsItem);
+    return this;
+  }
+
 
   @Override
   public String toString() {
      StringBuilder sb = new StringBuilder();
-     sb.append("PaymentMethodsList( ");
+     sb.append("TransactionMethodsList( ");
      
      if (paymentMethods != null) sb.append("paymentMethods=").append(paymentMethods.toString()).append("; ");
+     if (payoutMethods != null) sb.append("payoutMethods=").append(payoutMethods.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

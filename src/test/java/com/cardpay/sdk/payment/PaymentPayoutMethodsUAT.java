@@ -2,7 +2,7 @@ package com.cardpay.sdk.payment;
 
 import com.cardpay.sdk.api.PaymentsApi;
 import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.PaymentMethodsList;
+import com.cardpay.sdk.model.TransactionMethodsList;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -34,7 +34,7 @@ public class PaymentPayoutMethodsUAT {
     @Test
     public void getPaymentPayoutMethods() throws IOException {
         // perform get payment and payout methods
-        Response<PaymentMethodsList> response = payments
+        Response<TransactionMethodsList> response = payments
                 .getPaymentMethods(UUID.randomUUID().toString(), false)
                 .execute();
 
@@ -42,7 +42,7 @@ public class PaymentPayoutMethodsUAT {
         assertTrue(response.message(), response.isSuccessful());
 
         // explore response result
-        PaymentMethodsList data = response.body();
+        TransactionMethodsList data = response.body();
         assertNotNull(data);
         log.info("{}", data);
     }

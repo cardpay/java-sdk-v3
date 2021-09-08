@@ -33,7 +33,7 @@ public class PaymentMethodsResponse {
   }
 
   /**
-   * @param brands Available Card Brands, is presented only for \&quot;bankcard\&quot; payment method
+   * @param brands Available Card Brands, is presented only for &#39;BANKCARD&#39; payment method
    * @return bean instance
    **/
   public PaymentMethodsResponse brands(List<String> brands) {

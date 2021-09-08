@@ -4,12 +4,12 @@ import com.cardpay.sdk.client.CollectionFormats.*;
 import com.cardpay.sdk.model.AuthenticationDataResponse;
 import com.cardpay.sdk.model.DisputeList;
 import com.cardpay.sdk.model.PaymentGatewayCreationResponse;
-import com.cardpay.sdk.model.PaymentMethodsList;
 import com.cardpay.sdk.model.PaymentPatchRequest;
 import com.cardpay.sdk.model.PaymentRequest;
 import com.cardpay.sdk.model.PaymentResponse;
 import com.cardpay.sdk.model.PaymentUpdateResponse;
 import com.cardpay.sdk.model.PaymentsList;
+import com.cardpay.sdk.model.TransactionMethodsList;
 import java.time.OffsetDateTime;
 import retrofit2.Call;
 import retrofit2.http.*;
@@ -81,13 +81,13 @@ public interface PaymentsApi {
 
   /**
    * Get payment and payout methods
-   * Endpoint to get payment methods by current terminal code
+   * Endpoint to get payment and payout methods by current terminal code
    * @param requestId Request ID, not unique ID of request (required)
    * @param payoutMethodsOnly If &#x60;true&#x60; was received - **only** available payout methods section will be returned in response (without &#39;payment_methods&#39; section).  If &#x60;false&#x60; or absent - available payment and payout methods (both the sections) will be returned in response. (optional)
-   * @return Call&lt;PaymentMethodsList&gt;
+   * @return Call&lt;TransactionMethodsList&gt;
    */
   @GET("api/payment_methods")
-  Call<PaymentMethodsList> getPaymentMethods(
+  Call<TransactionMethodsList> getPaymentMethods(
     @retrofit2.http.Query("request_id") String requestId, @retrofit2.http.Query("payout_methods_only") Boolean payoutMethodsOnly
   );
 
