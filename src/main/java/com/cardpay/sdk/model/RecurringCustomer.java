@@ -24,6 +24,8 @@ import lombok.Data;
 @Data
 
 public class RecurringCustomer {
+  @SerializedName("contract_number")
+  private String contractNumber = null;
   @SerializedName("email")
   private String email = null;
   @SerializedName("home_phone")
@@ -91,6 +93,20 @@ public class RecurringCustomer {
   private String phone = null;
   @SerializedName("work_phone")
   private String workPhone = null;
+  
+  public void setContractNumber(String contractNumber) {
+      this.contractNumber = contractNumber;
+  }
+
+  /**
+   * @param contractNumber Contract number between customer and merchant. Required for Mexican merchants for scheduled payments.
+   * @return bean instance
+   **/
+  public RecurringCustomer contractNumber(String contractNumber) {
+      this.contractNumber = contractNumber;
+      return this;
+  }
+
   
   public void setEmail(String email) {
       this.email = email;
@@ -209,6 +225,7 @@ public class RecurringCustomer {
      StringBuilder sb = new StringBuilder();
      sb.append("RecurringCustomer( ");
      
+     if (contractNumber != null) sb.append("contractNumber=").append(contractNumber.toString()).append("; ");
      if (email != null) sb.append("email=").append(email.toString()).append("; ");
      if (homePhone != null) sb.append("homePhone=").append(homePhone.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
