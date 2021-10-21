@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**actionCode** | **String** | Action code (only in decline case) |  [optional]
 **amount** | [**BigDecimal**](BigDecimal.md) | Payment amount |  [optional]
 **arn** | **String** | ARN (Acquirer Reference Number), supplied by the acquiring financial institution, return only after receiving ARN from bank acquirer *(for BANKCARD payment method only)* |  [optional]
 **authCode** | **String** | Authorization code, provided by bank *(for BANKCARD payment method only)* |  [optional]

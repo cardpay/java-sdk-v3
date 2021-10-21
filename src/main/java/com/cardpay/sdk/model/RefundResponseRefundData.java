@@ -25,6 +25,8 @@ import lombok.Data;
 @Data
 
 public class RefundResponseRefundData {
+  @SerializedName("action_code")
+  private String actionCode = null;
   @SerializedName("amount")
   private BigDecimal amount = null;
   @SerializedName("arn")
@@ -112,6 +114,20 @@ public class RefundResponseRefundData {
 
   @SerializedName("status")
   private StatusEnum status = null;
+  
+  public void setActionCode(String actionCode) {
+      this.actionCode = actionCode;
+  }
+
+  /**
+   * @param actionCode Refund action code (only for &#x60;DECLINED&#x60; refund status)
+   * @return bean instance
+   **/
+  public RefundResponseRefundData actionCode(String actionCode) {
+      this.actionCode = actionCode;
+      return this;
+  }
+
   
   public void setAmount(BigDecimal amount) {
       this.amount = amount;
@@ -272,6 +288,7 @@ public class RefundResponseRefundData {
      StringBuilder sb = new StringBuilder();
      sb.append("RefundResponseRefundData( ");
      
+     if (actionCode != null) sb.append("actionCode=").append(actionCode.toString()).append("; ");
      if (amount != null) sb.append("amount=").append(amount.toString()).append("; ");
      if (arn != null) sb.append("arn=").append(arn.toString()).append("; ");
      if (authCode != null) sb.append("authCode=").append(authCode.toString()).append("; ");

@@ -27,6 +27,8 @@ import lombok.Data;
 @Data
 
 public class RecurringResponseRecurringData {
+  @SerializedName("action_code")
+  private String actionCode = null;
   @SerializedName("amount")
   private BigDecimal amount = null;
   @SerializedName("arn")
@@ -285,6 +287,20 @@ public class RecurringResponseRecurringData {
 
   @SerializedName("trans_type")
   private TransTypeEnum transType = null;
+  
+  public void setActionCode(String actionCode) {
+      this.actionCode = actionCode;
+  }
+
+  /**
+   * @param actionCode Action code (only in decline case)
+   * @return bean instance
+   **/
+  public RecurringResponseRecurringData actionCode(String actionCode) {
+      this.actionCode = actionCode;
+      return this;
+  }
+
   
   public void setAmount(BigDecimal amount) {
       this.amount = amount;
@@ -607,6 +623,7 @@ public class RecurringResponseRecurringData {
      StringBuilder sb = new StringBuilder();
      sb.append("RecurringResponseRecurringData( ");
      
+     if (actionCode != null) sb.append("actionCode=").append(actionCode.toString()).append("; ");
      if (amount != null) sb.append("amount=").append(amount.toString()).append("; ");
      if (arn != null) sb.append("arn=").append(arn.toString()).append("; ");
      if (authCode != null) sb.append("authCode=").append(authCode.toString()).append("; ");

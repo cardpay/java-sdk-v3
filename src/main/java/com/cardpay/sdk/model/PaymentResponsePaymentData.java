@@ -27,6 +27,8 @@ import lombok.Data;
 @Data
 
 public class PaymentResponsePaymentData {
+  @SerializedName("action_code")
+  private String actionCode = null;
   @SerializedName("amount")
   private BigDecimal amount = null;
   @SerializedName("arn")
@@ -173,6 +175,20 @@ public class PaymentResponsePaymentData {
 
   @SerializedName("trans_type")
   private TransTypeEnum transType = null;
+  
+  public void setActionCode(String actionCode) {
+      this.actionCode = actionCode;
+  }
+
+  /**
+   * @param actionCode Action code (only in decline case)
+   * @return bean instance
+   **/
+  public PaymentResponsePaymentData actionCode(String actionCode) {
+      this.actionCode = actionCode;
+      return this;
+  }
+
   
   public void setAmount(BigDecimal amount) {
       this.amount = amount;
@@ -383,6 +399,7 @@ public class PaymentResponsePaymentData {
      StringBuilder sb = new StringBuilder();
      sb.append("PaymentResponsePaymentData( ");
      
+     if (actionCode != null) sb.append("actionCode=").append(actionCode.toString()).append("; ");
      if (amount != null) sb.append("amount=").append(amount.toString()).append("; ");
      if (arn != null) sb.append("arn=").append(arn.toString()).append("; ");
      if (authCode != null) sb.append("authCode=").append(authCode.toString()).append("; ");

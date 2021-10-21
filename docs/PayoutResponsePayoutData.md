@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**actionCode** | **String** | Action code (only in decline case) |  [optional]
 **amount** | [**BigDecimal**](BigDecimal.md) | Payout amount |  [optional]
 **arn** | **String** | ARN (Acquirer Reference Number), supplied by the acquiring financial institution, return only after receiving ARN from bank acquirer *(for BANKCARD payment method only)* |  [optional]
 **created** | **String** | Date and time when this payout was created, [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format |  [optional]

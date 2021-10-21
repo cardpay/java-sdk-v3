@@ -25,6 +25,8 @@ import lombok.Data;
 @Data
 
 public class BankCardPayoutData {
+  @SerializedName("action_code")
+  private String actionCode = null;
   @SerializedName("amount")
   private BigDecimal amount = null;
   @SerializedName("arn")
@@ -110,6 +112,20 @@ public class BankCardPayoutData {
 
   @SerializedName("status")
   private StatusEnum status = null;
+  
+  public void setActionCode(String actionCode) {
+      this.actionCode = actionCode;
+  }
+
+  /**
+   * @param actionCode Action code (only in decline case)
+   * @return bean instance
+   **/
+  public BankCardPayoutData actionCode(String actionCode) {
+      this.actionCode = actionCode;
+      return this;
+  }
+
   
   public void setAmount(BigDecimal amount) {
       this.amount = amount;
@@ -256,6 +272,7 @@ public class BankCardPayoutData {
      StringBuilder sb = new StringBuilder();
      sb.append("BankCardPayoutData( ");
      
+     if (actionCode != null) sb.append("actionCode=").append(actionCode.toString()).append("; ");
      if (amount != null) sb.append("amount=").append(amount.toString()).append("; ");
      if (arn != null) sb.append("arn=").append(arn.toString()).append("; ");
      if (created != null) sb.append("created=").append(created.toString()).append("; ");

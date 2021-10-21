@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**actionCode** | **String** | Refund action code (only for &#x60;DECLINED&#x60; refund status) |  [optional]
 **amount** | [**BigDecimal**](BigDecimal.md) | Refund transaction amount |  [optional]
 **arn** | **String** | ARN (Acquirer Reference Number), supplied by the acquiring financial institution, return only after receiving ARN from bank acquirer *(for BANKCARD payment method only)* |  [optional]
 **authCode** | **String** | Authorization code, provided by bank *(for BANKCARD payment method only)* |  [optional]
