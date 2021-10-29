@@ -5,7 +5,7 @@
 
     <groupId>com.cardpay</groupId>
     <artifactId>java-sdk</artifactId>
-    <version>3.9.14</version>
+    <version>3.9.14.1</version>
 
     <packaging>jar</packaging>
 
@@ -71,6 +71,7 @@
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>io.swagger</groupId>
             <artifactId>swagger-annotations</artifactId>
@@ -172,7 +173,6 @@
             <version>1.2.3</version>
             <scope>test</scope>
         </dependency>
-
 
     </dependencies>
 

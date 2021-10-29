@@ -68,6 +68,7 @@ public class ApiClient {
     private OkHttpClient.Builder okBuilder;
     private Retrofit.Builder adapterBuilder;
     private List<Interceptor> interceptors;
+    private Interceptor authInterceptor;
 
     public ApiClient() {
         this.interceptors = new ArrayList<>();
@@ -88,6 +89,11 @@ public class ApiClient {
         this(baseUrl);
         this.terminalCode = terminalCode;
         this.password = password;
+    }
+
+    public ApiClient(String baseUrl, Interceptor authInterceptor) {
+        this(baseUrl);
+        this.authInterceptor = authInterceptor;
     }
 
     public void setBaseUrl(String baseUrl) {
@@ -131,14 +137,18 @@ public class ApiClient {
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonCustomConverterFactory.create(new JSON().getGson()));
 
-        addAuthorization("Bearer", new TokenManagerInterceptor(
-                ofNullable(this.tokenProvider)
-                        .orElseGet(() -> new DefaultTokenProvider(
-                                createService(AuthApi.class),
-                                this.terminalCode,
-                                this.password)
-                        )
-        ));
+        if (authInterceptor == null) {
+            addAuthorization("Bearer", new TokenManagerInterceptor(
+                    ofNullable(this.tokenProvider)
+                            .orElseGet(() -> new DefaultTokenProvider(
+                                    createService(AuthApi.class),
+                                    this.terminalCode,
+                                    this.password)
+                            )
+            ));
+        } else {
+            okBuilder.addInterceptor(authInterceptor);
+        }
     }
 
     private Retrofit.Builder getAdapterBuilder() {
