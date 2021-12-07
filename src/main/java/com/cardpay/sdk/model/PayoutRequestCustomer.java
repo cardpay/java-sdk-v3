@@ -37,6 +37,8 @@ public class PayoutRequestCustomer {
   private PayoutRequestLivingAddress livingAddress = null;
   @SerializedName("phone")
   private String phone = null;
+  @SerializedName("tax_reason_code")
+  private String taxReasonCode = null;
   
   public void setDocumentType(String documentType) {
       this.documentType = documentType;
@@ -163,6 +165,20 @@ public class PayoutRequestCustomer {
       return this;
   }
 
+  
+  public void setTaxReasonCode(String taxReasonCode) {
+      this.taxReasonCode = taxReasonCode;
+  }
+
+  /**
+   * @param taxReasonCode Customer&#39;s tax reason codeFor &#39;BANK131 back account mode&#39; is required for methods where country &#x3D; RU
+   * @return bean instance
+   **/
+  public PayoutRequestCustomer taxReasonCode(String taxReasonCode) {
+      this.taxReasonCode = taxReasonCode;
+      return this;
+  }
+
 
   @Override
   public String toString() {
@@ -178,6 +194,7 @@ public class PayoutRequestCustomer {
      if (lastName != null) sb.append("lastName=").append(lastName.toString()).append("; ");
      if (livingAddress != null) sb.append("livingAddress=").append(livingAddress.toString()).append("; ");
      if (phone != null) sb.append("phone=").append(phone.toString()).append("; ");
+     if (taxReasonCode != null) sb.append("taxReasonCode=").append(taxReasonCode.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

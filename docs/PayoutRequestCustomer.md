@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **lastName** | **String** | Customer last name *(mandatory for &#39;Latin America&#39; methods only)* For &#39;Latin America&#39; is required for methods where country &#x3D; AR, BR, CO, MX, PE, UY |  [optional]
 **livingAddress** | [**PayoutRequestLivingAddress**](PayoutRequestLivingAddress.md) | Customer address *(mandatory for &#39;Latin America&#39; methods only)* For &#39;Latin America&#39; is required for methods where country &#x3D; CO |  [optional]
 **phone** | **String** | Customer&#39;s phone number |  [optional]
+**taxReasonCode** | **String** | Customer&#39;s tax reason codeFor &#39;BANK131 back account mode&#39; is required for methods where country &#x3D; RU |  [optional]
 
 
 

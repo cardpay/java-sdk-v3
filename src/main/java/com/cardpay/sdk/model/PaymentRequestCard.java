@@ -81,6 +81,8 @@ public class PaymentRequestCard {
   private String holder = null;
   @SerializedName("pan")
   private String pan = null;
+  @SerializedName("pin_code")
+  private String pinCode = null;
   @SerializedName("security_code")
   private String securityCode = null;
   
@@ -140,6 +142,20 @@ public class PaymentRequestCard {
   }
 
   
+  public void setPinCode(String pinCode) {
+      this.pinCode = pinCode;
+  }
+
+  /**
+   * @param pinCode pinCode
+   * @return bean instance
+   **/
+  public PaymentRequestCard pinCode(String pinCode) {
+      this.pinCode = pinCode;
+      return this;
+  }
+
+  
   public void setSecurityCode(String securityCode) {
       this.securityCode = securityCode;
   }
@@ -163,6 +179,7 @@ public class PaymentRequestCard {
      if (expiration != null) sb.append("expiration=").append(expiration.toString()).append("; ");
      if (holder != null) sb.append("holder=").append(holder.toString()).append("; ");
      if (pan != null) sb.append("pan=").append(pan.toString()).append("; ");
+     if (pinCode != null) sb.append("pinCode=").append(pinCode.toString()).append("; ");
      if (securityCode != null) sb.append("securityCode=").append(securityCode.toString()).append("; ");
      sb.append(")");
      return sb.toString();
