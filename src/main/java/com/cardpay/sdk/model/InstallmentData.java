@@ -20,7 +20,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
 import lombok.Data;
 
 @Data
@@ -40,73 +39,12 @@ public class InstallmentData {
   private BigDecimal installmentAmount = null;
   @SerializedName("installment_type")
   private String installmentType = null;
-  @SerializedName("interval")
-  private Integer interval = null;
   @SerializedName("note")
   private String note = null;
   @SerializedName("payments")
   private Integer payments = null;
-  /**
-   * Initial period of recurring, can be &#x60;day&#x60;, &#x60;week&#x60;, &#x60;month&#x60;, &#x60;year&#x60;
-   */
-  @JsonAdapter(PeriodEnum.Adapter.class)
-  public enum PeriodEnum {
-    MINUTE("minute"),
-    
-    DAY("day"),
-    
-    WEEK("week"),
-    
-    MONTH("month"),
-    
-    YEAR("year");
-
-    private String value;
-
-    PeriodEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static PeriodEnum fromValue(String text) {
-      for (PeriodEnum b : PeriodEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-
-    public static class Adapter extends TypeAdapter<PeriodEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final PeriodEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public PeriodEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return PeriodEnum.fromValue(String.valueOf(value));
-      }
-    }
-  }
-
-  @SerializedName("period")
-  private PeriodEnum period = null;
   @SerializedName("preauth")
   private Boolean preauth = null;
-  @SerializedName("retries")
-  private Integer retries = null;
-  @SerializedName("subscription_start")
-  private OffsetDateTime subscriptionStart = null;
   /**
    * Gets or Sets transType
    */
@@ -252,26 +190,11 @@ public class InstallmentData {
   }
 
   /**
-   * @param installmentType Installment type, 4 possible values: &#x60;IF&#x60; - issuer financed &#x60;MF_HOLD&#39; - merchant financed hold &#x60;MF_HOLD_SPLIT&#39; - merchant financed split &#x60;MF_WITHOUT_HOLD&#39; - merchant financed without hold 
+   * @param installmentType Installment type, 2 possible values: &#x60;IF&#x60; - issuer financed &#x60;MF_HOLD&#39; - merchant financed hold
    * @return bean instance
    **/
   public InstallmentData installmentType(String installmentType) {
       this.installmentType = installmentType;
-      return this;
-  }
-
-  
-  public void setInterval(Integer interval) {
-      this.interval = interval;
-  }
-
-  /**
-   * minimum: 1
-   * @param interval Frequency interval of period, can be 1-365 depending on selected period value. Minimum value of period + interval can be 7 days / 1 week. Maximum value of period + interval plan can be 365 days / 52 weeks / 12 months / 1 year. 1-60 minutes - for **sandbox environment** and testing purpose only.
-   * @return bean instance
-   **/
-  public InstallmentData interval(Integer interval) {
-      this.interval = interval;
       return this;
   }
 
@@ -295,25 +218,11 @@ public class InstallmentData {
   }
 
   /**
-   * @param payments Number of total payments to be charged per defined interval, can be 2-200. For Mexican installment subscription (installment_type &#x3D; &#x60;IF&#x60;) should be 1-99.
+   * @param payments Number of total payments, to be charged per defined interval. For installment subscription with installment_type &#x3D; &#x60;MF_HOLD&#x60; can be 2-12. For Mexican installment subscription (installment_type &#x3D; &#x60;IF&#x60;) should be 1-99.
    * @return bean instance
    **/
   public InstallmentData payments(Integer payments) {
       this.payments = payments;
-      return this;
-  }
-
-  
-  public void setPeriod(PeriodEnum period) {
-      this.period = period;
-  }
-
-  /**
-   * @param period Initial period of recurring, can be &#x60;day&#x60;, &#x60;week&#x60;, &#x60;month&#x60;, &#x60;year&#x60;
-   * @return bean instance
-   **/
-  public InstallmentData period(PeriodEnum period) {
-      this.period = period;
       return this;
   }
 
@@ -323,39 +232,11 @@ public class InstallmentData {
   }
 
   /**
-   * @param preauth If set to &#x60;true&#x60;, the amount will not be captured but only blocked. Installment with &#x60;preauth&#x60; attribute will be voided automatically in 5 days from the time of creating the preauth transaction.
+   * @param preauth If set to &#x60;true&#x60;, the amount will not be captured but only blocked. Installment with &#x60;preauth&#x60; attribute will be voided automatically in 7 days from the time of creating the preauth transaction.
    * @return bean instance
    **/
   public InstallmentData preauth(Boolean preauth) {
       this.preauth = preauth;
-      return this;
-  }
-
-  
-  public void setRetries(Integer retries) {
-      this.retries = retries;
-  }
-
-  /**
-   * @param retries Number of daily basis retry attempts in case of payment has not been captured successfully, from 1 to 15 attempts can be specified.
-   * @return bean instance
-   **/
-  public InstallmentData retries(Integer retries) {
-      this.retries = retries;
-      return this;
-  }
-
-  
-  public void setSubscriptionStart(OffsetDateTime subscriptionStart) {
-      this.subscriptionStart = subscriptionStart;
-  }
-
-  /**
-   * @param subscriptionStart The date in yyyy-MM-dd format when subscription will actually become activated (grace period). Auth request will be created but Customer will be charged only when subscription start date comes. Leave it empty or specify the current date to activate subscription at once without any grace period applied.
-   * @return bean instance
-   **/
-  public InstallmentData subscriptionStart(OffsetDateTime subscriptionStart) {
-      this.subscriptionStart = subscriptionStart;
       return this;
   }
 
@@ -386,13 +267,9 @@ public class InstallmentData {
      if (initiator != null) sb.append("initiator=").append(initiator.toString()).append("; ");
      if (installmentAmount != null) sb.append("installmentAmount=").append(installmentAmount.toString()).append("; ");
      if (installmentType != null) sb.append("installmentType=").append(installmentType.toString()).append("; ");
-     if (interval != null) sb.append("interval=").append(interval.toString()).append("; ");
      if (note != null) sb.append("note=").append(note.toString()).append("; ");
      if (payments != null) sb.append("payments=").append(payments.toString()).append("; ");
-     if (period != null) sb.append("period=").append(period.toString()).append("; ");
      if (preauth != null) sb.append("preauth=").append(preauth.toString()).append("; ");
-     if (retries != null) sb.append("retries=").append(retries.toString()).append("; ");
-     if (subscriptionStart != null) sb.append("subscriptionStart=").append(subscriptionStart.toString()).append("; ");
      if (transType != null) sb.append("transType=").append(transType.toString()).append("; ");
      sb.append(")");
      return sb.toString();

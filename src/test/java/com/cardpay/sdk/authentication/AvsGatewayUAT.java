@@ -2,7 +2,14 @@ package com.cardpay.sdk.authentication;
 
 import com.cardpay.sdk.api.PaymentsApi;
 import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.*;
+import com.cardpay.sdk.model.BillingAddress;
+import com.cardpay.sdk.model.PaymentGatewayCreationResponse;
+import com.cardpay.sdk.model.PaymentRequest;
+import com.cardpay.sdk.model.PaymentRequestCard;
+import com.cardpay.sdk.model.PaymentRequestCardAccount;
+import com.cardpay.sdk.model.PaymentRequestCustomer;
+import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
+import com.cardpay.sdk.model.PaymentRequestPaymentData;
 import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.BaseProducer;
 import io.codearte.jfairy.producer.person.Person;
@@ -16,13 +23,22 @@ import retrofit2.Response;
 
 import java.io.IOException;
 
-import static com.cardpay.sdk.Config.*;
+import static com.cardpay.sdk.Config.AVS_GATEWAY_PASSWORD;
+import static com.cardpay.sdk.Config.AVS_GATEWAY_TERMINAL_CODE;
+import static com.cardpay.sdk.Config.CARDPAY_API_URL;
+import static com.cardpay.sdk.Config.LOGGING_LEVEL;
+import static com.cardpay.sdk.Config.TERMINAL_CURRENCY;
 import static com.cardpay.sdk.Constants.CARD_NON3DS_CONFIRMED;
 import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
 import static com.cardpay.sdk.client.StringUtil.formatBirthDate;
 import static com.cardpay.sdk.client.StringUtil.formatExpirationDate;
-import static com.cardpay.sdk.utils.DataUtils.*;
-import static org.junit.Assert.*;
+import static com.cardpay.sdk.utils.DataUtils.generateCardExpiration;
+import static com.cardpay.sdk.utils.DataUtils.generateEmail;
+import static com.cardpay.sdk.utils.DataUtils.generateMerchantOrderId;
+import static com.cardpay.sdk.utils.DataUtils.returnUrls;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class AvsGatewayUAT {
 

@@ -1,9 +1,18 @@
 package com.cardpay.sdk.recurring.installment;
 
-import com.cardpay.sdk.api.PaymentsApi;
 import com.cardpay.sdk.api.RecurringsInstallmentsApi;
 import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.*;
+import com.cardpay.sdk.model.BillingAddress;
+import com.cardpay.sdk.model.InstallmentData;
+import com.cardpay.sdk.model.InstallmentSubscriptionRequest;
+import com.cardpay.sdk.model.Item;
+import com.cardpay.sdk.model.PaymentRequestCard;
+import com.cardpay.sdk.model.PaymentRequestCardAccount;
+import com.cardpay.sdk.model.RecurringCustomer;
+import com.cardpay.sdk.model.RecurringGatewayCreationResponse;
+import com.cardpay.sdk.model.RecurringRequestMerchantOrder;
+import com.cardpay.sdk.model.RecurringResponse;
+import com.cardpay.sdk.model.ShippingAddress;
 import com.cardpay.sdk.utils.DataUtils;
 import com.cardpay.sdk.utils.HttpUtils;
 import io.codearte.jfairy.Fairy;
@@ -21,12 +30,20 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.cardpay.sdk.Config.*;
+import static com.cardpay.sdk.Config.CARDPAY_API_URL;
+import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
+import static com.cardpay.sdk.Config.GATEWAY_TERMINAL_CODE;
+import static com.cardpay.sdk.Config.LOGGING_LEVEL;
+import static com.cardpay.sdk.Config.TERMINAL_CURRENCY;
 import static com.cardpay.sdk.Constants.CARD_NON3DS_CONFIRMED;
 import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
 import static com.cardpay.sdk.client.StringUtil.formatExpirationDate;
-import static com.cardpay.sdk.utils.DataUtils.*;
-import static org.junit.Assert.*;
+import static com.cardpay.sdk.utils.DataUtils.generateCardExpiration;
+import static com.cardpay.sdk.utils.DataUtils.generateMerchantOrderId;
+import static com.cardpay.sdk.utils.DataUtils.returnUrls;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class RecurringInstallmentSubscriptionUAT {
 
@@ -52,13 +69,13 @@ public class RecurringInstallmentSubscriptionUAT {
         String merchantOrderId = generateMerchantOrderId();
         String merchantDescription = text.sentence();
         BigDecimal amount = BigDecimal.valueOf(producer.randomBetween(10, 300));
-        List<Item> items = new ArrayList<Item>(){{
-                add(new Item().name("T-Shirt").description("Funny T-Shirt").count(15).price(new BigDecimal(99.99)));
-                add(new Item().name("T-Shirt").description("T-Shirt(red)").count(15).price(new BigDecimal(65.99)));
+        List<Item> items = new ArrayList<Item>() {{
+            add(new Item().name("T-Shirt").description("Funny T-Shirt").count(15).price(new BigDecimal(99.99)));
+            add(new Item().name("T-Shirt").description("T-Shirt(red)").count(15).price(new BigDecimal(65.99)));
         }};
 
         //recurring data
-        String installmentType = "MF_WITHOUT_HOLD";
+        String installmentType = "MF_HOLD";
         String initiator = "cit";
         String currency = TERMINAL_CURRENCY;
 
@@ -105,12 +122,9 @@ public class RecurringInstallmentSubscriptionUAT {
                 .recurringData(new InstallmentData()
                         .installmentType(installmentType)
                         .initiator(initiator)
-                        .period(InstallmentData.PeriodEnum.MONTH)
-                        .interval(1)
                         .currency(currency)
                         .amount(amount)
                         .payments(10)
-                        .retries(3)
                         .transType(InstallmentData.TransTypeEnum._01)
                         .preauth(true))
                 .customer(new RecurringCustomer()
@@ -155,7 +169,7 @@ public class RecurringInstallmentSubscriptionUAT {
     }
 
     private RecurringResponse fetchInstallmentPayment(String recurringId) throws IOException {
-        Response<RecurringResponse> response= recurringsInstallments
+        Response<RecurringResponse> response = recurringsInstallments
                 .getInstallmentPayment(recurringId)
                 .execute();
         log.info("{}", response);

@@ -12,7 +12,6 @@ import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
 import com.cardpay.sdk.model.PaymentRequestPaymentData;
 import com.cardpay.sdk.model.PaymentResponse;
 import com.cardpay.sdk.model.PaymentResponsePaymentData;
-import com.cardpay.sdk.model.PaymentsList;
 import com.cardpay.sdk.utils.HttpUtils;
 import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.BaseProducer;
@@ -26,8 +25,6 @@ import retrofit2.Response;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.UUID;
 
 import static com.cardpay.sdk.Config.CARDPAY_API_URL;
 import static com.cardpay.sdk.Config.GATEWAY_POSTPONED_PASSWORD;

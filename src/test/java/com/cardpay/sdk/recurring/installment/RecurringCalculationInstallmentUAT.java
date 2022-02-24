@@ -15,7 +15,11 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-import static com.cardpay.sdk.Config.*;
+import static com.cardpay.sdk.Config.CARDPAY_API_URL;
+import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
+import static com.cardpay.sdk.Config.GATEWAY_TERMINAL_CODE;
+import static com.cardpay.sdk.Config.LOGGING_LEVEL;
+import static com.cardpay.sdk.Config.TERMINAL_CURRENCY;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 

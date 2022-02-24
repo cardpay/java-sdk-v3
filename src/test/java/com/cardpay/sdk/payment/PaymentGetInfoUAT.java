@@ -7,7 +7,6 @@ import com.cardpay.sdk.model.PaymentRequest;
 import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
 import com.cardpay.sdk.model.PaymentResponse;
 import com.cardpay.sdk.model.PaymentResponsePaymentData;
-import com.cardpay.sdk.model.PaymentsList;
 import com.cardpay.sdk.utils.HttpUtils;
 import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.BaseProducer;
@@ -17,12 +16,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import retrofit2.Call;
 import retrofit2.Response;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.UUID;
 
 import static com.cardpay.sdk.Config.CARDPAY_API_URL;
 import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
@@ -35,7 +31,8 @@ import static com.cardpay.sdk.utils.DataUtils.paymentRequestCardAccount;
 import static com.cardpay.sdk.utils.DataUtils.paymentRequestCustomer;
 import static com.cardpay.sdk.utils.DataUtils.paymentRequestPaymentData;
 import static com.cardpay.sdk.utils.DataUtils.returnUrls;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class PaymentGetInfoUAT {
 

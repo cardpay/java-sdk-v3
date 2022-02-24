@@ -2,7 +2,17 @@ package com.cardpay.sdk.recurring.installment;
 
 import com.cardpay.sdk.api.RecurringsInstallmentsApi;
 import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.*;
+import com.cardpay.sdk.model.InstallmentData;
+import com.cardpay.sdk.model.InstallmentSubscriptionRequest;
+import com.cardpay.sdk.model.Item;
+import com.cardpay.sdk.model.PaymentRequestCardAccount;
+import com.cardpay.sdk.model.RecurringCustomer;
+import com.cardpay.sdk.model.RecurringGatewayCreationResponse;
+import com.cardpay.sdk.model.RecurringRequestMerchantOrder;
+import com.cardpay.sdk.model.RecurringResponse;
+import com.cardpay.sdk.model.RecurringResponseRecurringData;
+import com.cardpay.sdk.model.RecurringsList;
+import com.cardpay.sdk.model.ShippingAddress;
 import com.cardpay.sdk.utils.DataUtils;
 import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.BaseProducer;
@@ -26,10 +36,17 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.IntStream;
 
-import static com.cardpay.sdk.Config.*;
+import static com.cardpay.sdk.Config.CARDPAY_API_URL;
+import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
+import static com.cardpay.sdk.Config.GATEWAY_TERMINAL_CODE;
+import static com.cardpay.sdk.Config.LOGGING_LEVEL;
+import static com.cardpay.sdk.Config.TERMINAL_CURRENCY;
 import static com.cardpay.sdk.Constants.CARD_NON3DS_CONFIRMED;
 import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
-import static com.cardpay.sdk.utils.DataUtils.*;
+import static com.cardpay.sdk.utils.DataUtils.billingAddress;
+import static com.cardpay.sdk.utils.DataUtils.generateMerchantOrderId;
+import static com.cardpay.sdk.utils.DataUtils.paymentRequestCard;
+import static com.cardpay.sdk.utils.DataUtils.returnUrls;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 import static junit.framework.TestCase.assertTrue;
@@ -139,13 +156,13 @@ public class RecurringGetInstallmentPaymentsUAT {
         String merchantOrderId = generateMerchantOrderId();
         String merchantDescription = text.sentence();
         BigDecimal amount = BigDecimal.valueOf(producer.randomBetween(10, 300));
-        List<Item> items = new ArrayList<Item>(){{
+        List<Item> items = new ArrayList<Item>() {{
             add(new Item().name("T-Shirt").description("Funny T-Shirt").count(15).price(new BigDecimal(99.99)));
             add(new Item().name("T-Shirt").description("T-Shirt(red)").count(15).price(new BigDecimal(65.99)));
         }};
 
         //recurring data
-        String installmentType = "MF_WITHOUT_HOLD";
+        String installmentType = "MF_HOLD";
         String initiator = "cit";
         String currency = TERMINAL_CURRENCY;
 
@@ -174,12 +191,9 @@ public class RecurringGetInstallmentPaymentsUAT {
                 .recurringData(new InstallmentData()
                         .installmentType(installmentType)
                         .initiator(initiator)
-                        .period(InstallmentData.PeriodEnum.MONTH)
-                        .interval(1)
                         .currency(currency)
                         .amount(amount)
                         .payments(10)
-                        .retries(3)
                         .transType(InstallmentData.TransTypeEnum._01)
                         .preauth(true))
                 .customer(new RecurringCustomer()

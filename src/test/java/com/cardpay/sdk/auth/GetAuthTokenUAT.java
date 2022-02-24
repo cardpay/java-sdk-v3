@@ -6,13 +6,16 @@ import com.cardpay.sdk.model.ApiTokens;
 import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
-import retrofit2.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import retrofit2.Response;
 
 import java.io.IOException;
 
-import static com.cardpay.sdk.Config.*;
+import static com.cardpay.sdk.Config.CARDPAY_API_URL;
+import static com.cardpay.sdk.Config.LOGGING_LEVEL;
+import static com.cardpay.sdk.Config.PAYMENTPAGE_PASSWORD;
+import static com.cardpay.sdk.Config.PAYMENTPAGE_TERMINAL_CODE;
 import static org.junit.Assert.assertNotNull;
 
 public class GetAuthTokenUAT {

@@ -2,7 +2,13 @@ package com.cardpay.sdk.payment;
 
 import com.cardpay.sdk.api.PaymentsApi;
 import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.*;
+import com.cardpay.sdk.model.PaymentGatewayCreationResponse;
+import com.cardpay.sdk.model.PaymentRequest;
+import com.cardpay.sdk.model.PaymentRequestCard;
+import com.cardpay.sdk.model.PaymentRequestCardAccount;
+import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
+import com.cardpay.sdk.model.PaymentRequestPaymentData;
+import com.cardpay.sdk.model.PaymentResponse;
 import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.BaseProducer;
 import io.codearte.jfairy.producer.text.TextProducer;
@@ -15,10 +21,19 @@ import retrofit2.Response;
 import java.io.IOException;
 import java.math.BigDecimal;
 
-import static com.cardpay.sdk.Config.*;
+import static com.cardpay.sdk.Config.CARDPAY_API_URL;
+import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
+import static com.cardpay.sdk.Config.GATEWAY_TERMINAL_CODE;
+import static com.cardpay.sdk.Config.LOGGING_LEVEL;
+import static com.cardpay.sdk.Config.TERMINAL_CURRENCY;
 import static com.cardpay.sdk.Constants.CARD_NON3DS_CONFIRMED;
 import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
-import static com.cardpay.sdk.utils.DataUtils.*;
+import static com.cardpay.sdk.utils.DataUtils.billingAddress;
+import static com.cardpay.sdk.utils.DataUtils.generateMerchantOrderId;
+import static com.cardpay.sdk.utils.DataUtils.paymentRequestCard;
+import static com.cardpay.sdk.utils.DataUtils.paymentRequestCustomer;
+import static com.cardpay.sdk.utils.DataUtils.paymentRequestPaymentData;
+import static com.cardpay.sdk.utils.DataUtils.returnUrls;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
