@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **dynamicDescriptor** | **String** | Short description of the service or product, must be enabled by CardPay manager to be used |  [optional]
 **initiator** | **String** | Can be only &#x60;cit&#x60; (cardholder initiated transaction) |  [optional]
 **note** | **String** | Note about the transaction that will not be displayed to Customer |  [optional]
+**threeDsChallengeIndicator** | **String** |  |  [optional]
 **transType** | [**TransTypeEnum**](#TransTypeEnum) |  |  [optional]
 
 

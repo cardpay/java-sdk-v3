@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **initiator** | **String** | Can be only 2 values - &#39;mit&#39; (merchant initiated transaction), &#39;cit&#39; (cardholder initiated transaction). | 
 **note** | **String** | Note about the recurring that will not be displayed to customer. |  [optional]
 **preauth** | **Boolean** | This parameter allowed to be used only for first recurring payment. If set to &#39;true&#39;, the amount will not be captured but only blocked. One-click payments with &#39;preauth&#39; attribute will be captured automatically in 7 days from the time of creating the preauth transaction. In continue recurring request (with &#39;filing_id&#39;) this parameter shouldn&#39;t be used. |  [optional]
+**threeDsChallengeIndicator** | **String** |  |  [optional]
 **transType** | [**TransTypeEnum**](#TransTypeEnum) |  |  [optional]
 
 

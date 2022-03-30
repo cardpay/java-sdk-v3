@@ -21,7 +21,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.cardpay</groupId>
   <artifactId>java-sdk</artifactId>
-  <version>3.13.8</version>
+  <version>3.15.9</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -31,7 +31,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.cardpay:java-sdk:3.13.8"
+compile "com.cardpay:java-sdk:3.15.9"
 ```
 
 ## Proxy usage

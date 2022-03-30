@@ -41,6 +41,8 @@ public class OneclickData {
   private String note = null;
   @SerializedName("preauth")
   private Boolean preauth = null;
+  @SerializedName("three_ds_challenge_indicator")
+  private String threeDsChallengeIndicator = null;
   /**
    * Gets or Sets transType
    */
@@ -209,6 +211,20 @@ public class OneclickData {
   }
 
   
+  public void setThreeDsChallengeIndicator(String threeDsChallengeIndicator) {
+      this.threeDsChallengeIndicator = threeDsChallengeIndicator;
+  }
+
+  /**
+   * @param threeDsChallengeIndicator threeDsChallengeIndicator
+   * @return bean instance
+   **/
+  public OneclickData threeDsChallengeIndicator(String threeDsChallengeIndicator) {
+      this.threeDsChallengeIndicator = threeDsChallengeIndicator;
+      return this;
+  }
+
+  
   public void setTransType(TransTypeEnum transType) {
       this.transType = transType;
   }
@@ -236,6 +252,7 @@ public class OneclickData {
      if (initiator != null) sb.append("initiator=").append(initiator.toString()).append("; ");
      if (note != null) sb.append("note=").append(note.toString()).append("; ");
      if (preauth != null) sb.append("preauth=").append(preauth.toString()).append("; ");
+     if (threeDsChallengeIndicator != null) sb.append("threeDsChallengeIndicator=").append(threeDsChallengeIndicator.toString()).append("; ");
      if (transType != null) sb.append("transType=").append(transType.toString()).append("; ");
      sb.append(")");
      return sb.toString();

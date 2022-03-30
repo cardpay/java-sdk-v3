@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **initiator** | **String** | Use &#x60;cit&#x60; for initiator attribute for cardholder initiated transactions (first scheduled payment by merchant transactions) Use &#x60;mit&#x60; for initiator attribute for merchant initiated transactions (continue scheduled payment by merchant transactions) | 
 **note** | **String** | Note about the recurring that will not be displayed to customer. |  [optional]
 **scheduledType** | **String** | Scheduled payment type attribute. For scheduled payments by merchant value should be &#x60;SM&#x60; - scheduled by merchant | 
+**threeDsChallengeIndicator** | **String** |  |  [optional]
 **transType** | [**TransTypeEnum**](#TransTypeEnum) |  |  [optional]
 
 

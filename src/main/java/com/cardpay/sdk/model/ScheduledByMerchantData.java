@@ -41,6 +41,8 @@ public class ScheduledByMerchantData {
   private String note = null;
   @SerializedName("scheduled_type")
   private String scheduledType = null;
+  @SerializedName("three_ds_challenge_indicator")
+  private String threeDsChallengeIndicator = null;
   /**
    * Gets or Sets transType
    */
@@ -209,6 +211,20 @@ public class ScheduledByMerchantData {
   }
 
   
+  public void setThreeDsChallengeIndicator(String threeDsChallengeIndicator) {
+      this.threeDsChallengeIndicator = threeDsChallengeIndicator;
+  }
+
+  /**
+   * @param threeDsChallengeIndicator threeDsChallengeIndicator
+   * @return bean instance
+   **/
+  public ScheduledByMerchantData threeDsChallengeIndicator(String threeDsChallengeIndicator) {
+      this.threeDsChallengeIndicator = threeDsChallengeIndicator;
+      return this;
+  }
+
+  
   public void setTransType(TransTypeEnum transType) {
       this.transType = transType;
   }
@@ -236,6 +252,7 @@ public class ScheduledByMerchantData {
      if (initiator != null) sb.append("initiator=").append(initiator.toString()).append("; ");
      if (note != null) sb.append("note=").append(note.toString()).append("; ");
      if (scheduledType != null) sb.append("scheduledType=").append(scheduledType.toString()).append("; ");
+     if (threeDsChallengeIndicator != null) sb.append("threeDsChallengeIndicator=").append(threeDsChallengeIndicator.toString()).append("; ");
      if (transType != null) sb.append("transType=").append(transType.toString()).append("; ");
      sb.append(")");
      return sb.toString();

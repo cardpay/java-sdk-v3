@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **note** | **String** | Note about the recurring that will not be displayed to customer. |  [optional]
 **payments** | **Integer** | Number of total payments, to be charged per defined interval. For installment subscription with installment_type &#x3D; &#x60;MF_HOLD&#x60; can be 2-12. For Mexican installment subscription (installment_type &#x3D; &#x60;IF&#x60;) should be 1-99. |  [optional]
 **preauth** | **Boolean** | If set to &#x60;true&#x60;, the amount will not be captured but only blocked. Installment with &#x60;preauth&#x60; attribute will be voided automatically in 7 days from the time of creating the preauth transaction. |  [optional]
+**threeDsChallengeIndicator** | **String** |  |  [optional]
 **transType** | [**TransTypeEnum**](#TransTypeEnum) |  |  [optional]
 
 

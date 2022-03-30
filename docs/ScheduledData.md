@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **plan** | [**Plan**](Plan.md) | Plan data |  [optional]
 **scheduledType** | **String** | Scheduled payment type attribute. For typical scheduled payments should be absent or &#x60;SA&#x60; - scheduled by acquirer |  [optional]
 **subscriptionStart** | [**OffsetDateTime**](OffsetDateTime.md) | The time in &#39;yyyy-MM-dd&#39; format when subscription will actually become activated (grace period).Leave it empty to activate subscription at once without any grace period applied. |  [optional]
+**threeDsChallengeIndicator** | **String** |  |  [optional]
 **transType** | [**TransTypeEnum**](#TransTypeEnum) |  |  [optional]
 
 
