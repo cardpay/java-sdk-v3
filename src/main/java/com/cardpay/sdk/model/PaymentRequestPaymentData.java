@@ -37,6 +37,12 @@ public class PaymentRequestPaymentData {
   private String encryptedData = null;
   @SerializedName("generate_token")
   private Boolean generateToken = null;
+  @SerializedName("installment_amount")
+  private BigDecimal installmentAmount = null;
+  @SerializedName("installment_type")
+  private String installmentType = null;
+  @SerializedName("installments")
+  private Integer installments = null;
   @SerializedName("note")
   private String note = null;
   @SerializedName("preauth")
@@ -183,6 +189,48 @@ public class PaymentRequestPaymentData {
   }
 
   
+  public void setInstallmentAmount(BigDecimal installmentAmount) {
+      this.installmentAmount = installmentAmount;
+  }
+
+  /**
+   * @param installmentAmount Amount of 1 installment payment, should be less or equal to total amount of subscription, can have dot as a decimal separator. Mandatory for Payment Page Mode only.
+   * @return bean instance
+   **/
+  public PaymentRequestPaymentData installmentAmount(BigDecimal installmentAmount) {
+      this.installmentAmount = installmentAmount;
+      return this;
+  }
+
+  
+  public void setInstallmentType(String installmentType) {
+      this.installmentType = installmentType;
+  }
+
+  /**
+   * @param installmentType Installment type, 2 possible values: &#x60;IF&#x60; - issuer financed &#x60;MF_HOLD&#39; - merchant financed. For installment subscription with hold rest amount.
+   * @return bean instance
+   **/
+  public PaymentRequestPaymentData installmentType(String installmentType) {
+      this.installmentType = installmentType;
+      return this;
+  }
+
+  
+  public void setInstallments(Integer installments) {
+      this.installments = installments;
+  }
+
+  /**
+   * @param installments Number of total installment payments, to be charged per defined interval. For installment subscription with installment_type &#x3D; &#x60;MF_HOLD&#x60; can be 1-12. For installment subscription with installment_type &#x3D; &#x60;IF&#x60; can be 1-99.
+   * @return bean instance
+   **/
+  public PaymentRequestPaymentData installments(Integer installments) {
+      this.installments = installments;
+      return this;
+  }
+
+  
   public void setNote(String note) {
       this.note = note;
   }
@@ -250,6 +298,9 @@ public class PaymentRequestPaymentData {
      if (dynamicDescriptor != null) sb.append("dynamicDescriptor=").append(dynamicDescriptor.toString()).append("; ");
      if (encryptedData != null) sb.append("encryptedData=").append(encryptedData.toString()).append("; ");
      if (generateToken != null) sb.append("generateToken=").append(generateToken.toString()).append("; ");
+     if (installmentAmount != null) sb.append("installmentAmount=").append(installmentAmount.toString()).append("; ");
+     if (installmentType != null) sb.append("installmentType=").append(installmentType.toString()).append("; ");
+     if (installments != null) sb.append("installments=").append(installments.toString()).append("; ");
      if (note != null) sb.append("note=").append(note.toString()).append("; ");
      if (preauth != null) sb.append("preauth=").append(preauth.toString()).append("; ");
      if (threeDsChallengeIndicator != null) sb.append("threeDsChallengeIndicator=").append(threeDsChallengeIndicator.toString()).append("; ");

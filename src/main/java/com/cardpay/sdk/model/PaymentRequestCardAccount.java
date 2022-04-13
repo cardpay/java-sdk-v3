@@ -23,6 +23,8 @@ public class PaymentRequestCardAccount {
   private BillingAddress billingAddress = null;
   @SerializedName("card")
   private PaymentRequestCard card = null;
+  @SerializedName("encrypted_card_data")
+  private String encryptedCardData = null;
   @SerializedName("token")
   private String token = null;
   
@@ -54,6 +56,20 @@ public class PaymentRequestCardAccount {
   }
 
   
+  public void setEncryptedCardData(String encryptedCardData) {
+      this.encryptedCardData = encryptedCardData;
+  }
+
+  /**
+   * @param encryptedCardData Encrypted card data. The field includes: pan, security_code, expiration. Only for Gateway mode.
+   * @return bean instance
+   **/
+  public PaymentRequestCardAccount encryptedCardData(String encryptedCardData) {
+      this.encryptedCardData = encryptedCardData;
+      return this;
+  }
+
+  
   public void setToken(String token) {
       this.token = token;
   }
@@ -75,6 +91,7 @@ public class PaymentRequestCardAccount {
      
      if (billingAddress != null) sb.append("billingAddress=").append(billingAddress.toString()).append("; ");
      if (card != null) sb.append("card=").append(card.toString()).append("; ");
+     if (encryptedCardData != null) sb.append("encryptedCardData=").append(encryptedCardData.toString()).append("; ");
      if (token != null) sb.append("token=").append(token.toString()).append("; ");
      sb.append(")");
      return sb.toString();

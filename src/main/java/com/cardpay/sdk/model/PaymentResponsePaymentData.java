@@ -45,6 +45,10 @@ public class PaymentResponsePaymentData {
   private String declineReason = null;
   @SerializedName("id")
   private String id = null;
+  @SerializedName("installment_type")
+  private String installmentType = null;
+  @SerializedName("installments")
+  private String installments = null;
   @SerializedName("invalid_data")
   private List<String> invalidData = null;
   @SerializedName("is_3d")
@@ -302,6 +306,34 @@ public class PaymentResponsePaymentData {
   }
 
   
+  public void setInstallmentType(String installmentType) {
+      this.installmentType = installmentType;
+  }
+
+  /**
+   * @param installmentType Selected installment type
+   * @return bean instance
+   **/
+  public PaymentResponsePaymentData installmentType(String installmentType) {
+      this.installmentType = installmentType;
+      return this;
+  }
+
+  
+  public void setInstallments(String installments) {
+      this.installments = installments;
+  }
+
+  /**
+   * @param installments Number of total installment payments, to be charged
+   * @return bean instance
+   **/
+  public PaymentResponsePaymentData installments(String installments) {
+      this.installments = installments;
+      return this;
+  }
+
+  
   public void setInvalidData(List<String> invalidData) {
       this.invalidData = invalidData;
   }
@@ -408,6 +440,8 @@ public class PaymentResponsePaymentData {
      if (declineCode != null) sb.append("declineCode=").append(declineCode.toString()).append("; ");
      if (declineReason != null) sb.append("declineReason=").append(declineReason.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (installmentType != null) sb.append("installmentType=").append(installmentType.toString()).append("; ");
+     if (installments != null) sb.append("installments=").append(installments.toString()).append("; ");
      if (invalidData != null) sb.append("invalidData=").append(invalidData.toString()).append("; ");
      if (is3d != null) sb.append("is3d=").append(is3d.toString()).append("; ");
      if (note != null) sb.append("note=").append(note.toString()).append("; ");
