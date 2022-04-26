@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **cavv** | **String** | Cardholder authentication verification value |  [optional]
 **cavvAlgorithm** | **String** | CAVV algorithm |  [optional]
 **challengeCancel** | **String** | Indicator informing that the authentication has been cancelled |  [optional]
+**dsTransactionId** | **String** | Transaction Id |  [optional]
 **eci** | **String** | The electronic commerce indicator |  [optional]
 **paRes** | **String** | PaRes bank authentication result |  [optional]
 **protocolVersion** | **String** | Protocol version identifier |  [optional]

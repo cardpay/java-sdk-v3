@@ -29,6 +29,8 @@ public class ThreeDSecureResponse {
   private String cavvAlgorithm = null;
   @SerializedName("challenge_cancel")
   private String challengeCancel = null;
+  @SerializedName("ds_transaction_id")
+  private String dsTransactionId = null;
   @SerializedName("eci")
   private String eci = null;
   @SerializedName("pa_res")
@@ -112,6 +114,20 @@ public class ThreeDSecureResponse {
    **/
   public ThreeDSecureResponse challengeCancel(String challengeCancel) {
       this.challengeCancel = challengeCancel;
+      return this;
+  }
+
+  
+  public void setDsTransactionId(String dsTransactionId) {
+      this.dsTransactionId = dsTransactionId;
+  }
+
+  /**
+   * @param dsTransactionId Transaction Id
+   * @return bean instance
+   **/
+  public ThreeDSecureResponse dsTransactionId(String dsTransactionId) {
+      this.dsTransactionId = dsTransactionId;
       return this;
   }
 
@@ -238,6 +254,7 @@ public class ThreeDSecureResponse {
      if (cavv != null) sb.append("cavv=").append(cavv.toString()).append("; ");
      if (cavvAlgorithm != null) sb.append("cavvAlgorithm=").append(cavvAlgorithm.toString()).append("; ");
      if (challengeCancel != null) sb.append("challengeCancel=").append(challengeCancel.toString()).append("; ");
+     if (dsTransactionId != null) sb.append("dsTransactionId=").append(dsTransactionId.toString()).append("; ");
      if (eci != null) sb.append("eci=").append(eci.toString()).append("; ");
      if (paRes != null) sb.append("paRes=").append(paRes.toString()).append("; ");
      if (protocolVersion != null) sb.append("protocolVersion=").append(protocolVersion.toString()).append("; ");
