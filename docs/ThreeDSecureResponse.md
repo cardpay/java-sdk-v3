@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **eci** | **String** | The electronic commerce indicator |  [optional]
 **paRes** | **String** | PaRes bank authentication result |  [optional]
 **protocolVersion** | **String** | Protocol version identifier |  [optional]
-**status** | **String** | 3DS status (from PaRes for 3Ds 1.0, ARes message for 3Ds 2.0) (possible values Y,A,U) |  [optional]
+**status** | **String** | 3DS status (from PaRes for 3Ds 1.0, ARes message for 3Ds 2.0) (possible values Y,A,U,N) |  [optional]
 **statusReason** | **String** | Provides information on why the Status field has the specified value |  [optional]
 **threeDSecure2Passed** | **Boolean** | Sign of trying to pass 3ds2 |  [optional]
 **threeDSecureFlow** | **String** | Possible values: 3DS1 - 3DS 1.0 flow, 3DS2C - 3DS 2.0 challenge flow, 3DS2F - 3DS 2.0 frictionless flow |  [optional]

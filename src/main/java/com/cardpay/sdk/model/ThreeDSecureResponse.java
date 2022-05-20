@@ -179,7 +179,7 @@ public class ThreeDSecureResponse {
   }
 
   /**
-   * @param status 3DS status (from PaRes for 3Ds 1.0, ARes message for 3Ds 2.0) (possible values Y,A,U)
+   * @param status 3DS status (from PaRes for 3Ds 1.0, ARes message for 3Ds 2.0) (possible values Y,A,U,N)
    * @return bean instance
    **/
   public ThreeDSecureResponse status(String status) {
