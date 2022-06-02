@@ -5,7 +5,7 @@ All URIs are relative to *https://sandbox.cardpay.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createPayment**](PaymentsApi.md#createPayment) | **POST** api/payments | Create payment
-[**getAuthenticationData1**](PaymentsApi.md#getAuthenticationData1) | **GET** api/payments/{paymentId}/threedsecure | Get payment 3DS result information
+[**getAuthenticationData**](PaymentsApi.md#getAuthenticationData) | **GET** api/payments/{paymentId}/threedsecure | Get payment 3DS result information
 [**getDispute**](PaymentsApi.md#getDispute) | **GET** api/disputes/{paymentId} | Get a list of disputes by payment id
 [**getDisputes**](PaymentsApi.md#getDisputes) | **GET** api/disputes | Get a list of disputes
 [**getPayment**](PaymentsApi.md#getPayment) | **GET** api/payments/{paymentId} | Get payment information
@@ -69,9 +69,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="getAuthenticationData1"></a>
-# **getAuthenticationData1**
-> AuthenticationDataResponse getAuthenticationData1(paymentId)
+<a name="getAuthenticationData"></a>
+# **getAuthenticationData**
+> AuthenticationDataResponse getAuthenticationData(paymentId)
 
 Get payment 3DS result information
 
@@ -95,10 +95,10 @@ Bearer.setApiKey("YOUR API KEY");
 PaymentsApi apiInstance = new PaymentsApi();
 String paymentId = "paymentId_example"; // String | Payment ID
 try {
-    AuthenticationDataResponse result = apiInstance.getAuthenticationData1(paymentId);
+    AuthenticationDataResponse result = apiInstance.getAuthenticationData(paymentId);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling PaymentsApi#getAuthenticationData1");
+    System.err.println("Exception when calling PaymentsApi#getAuthenticationData");
     e.printStackTrace();
 }
 ```

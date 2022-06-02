@@ -25,26 +25,24 @@ import lombok.Data;
 @Data
 
 public class Report {
-  @SerializedName("currency")
-  private String currency = null;
-  @SerializedName("downloadUrl")
+  @SerializedName("download_url")
   private String downloadUrl = null;
-  @SerializedName("fileId")
+  @SerializedName("file_id")
   private UUID fileId = null;
-  @SerializedName("fileName")
+  @SerializedName("file_name")
   private String fileName = null;
-  @SerializedName("hashSum")
+  @SerializedName("hash_sum")
   private String hashSum = null;
-  @SerializedName("reportType")
+  @SerializedName("report_type")
   private String reportType = null;
-  @SerializedName("settlementDate")
+  @SerializedName("settlement_date")
   private String settlementDate = null;
-  @SerializedName("settlementId")
+  @SerializedName("settlement_id")
   private Long settlementId = null;
   @SerializedName("size")
   private Long size = null;
   /**
-   * Gets or Sets status
+   * One of statuses:  \&quot;IN_PROGRESS\&quot;  \&quot;COMPLETED\&quot;  \&quot;FAILED\&quot;
    */
   @JsonAdapter(StatusEnum.Adapter.class)
   public enum StatusEnum {
@@ -94,29 +92,15 @@ public class Report {
 
   @SerializedName("status")
   private StatusEnum status = null;
-  @SerializedName("websiteName")
+  @SerializedName("website_name")
   private String websiteName = null;
-  
-  public void setCurrency(String currency) {
-      this.currency = currency;
-  }
-
-  /**
-   * @param currency currency
-   * @return bean instance
-   **/
-  public Report currency(String currency) {
-      this.currency = currency;
-      return this;
-  }
-
   
   public void setDownloadUrl(String downloadUrl) {
       this.downloadUrl = downloadUrl;
   }
 
   /**
-   * @param downloadUrl downloadUrl
+   * @param downloadUrl Link to archive downloading. Link is available for 24 hours
    * @return bean instance
    **/
   public Report downloadUrl(String downloadUrl) {
@@ -130,7 +114,7 @@ public class Report {
   }
 
   /**
-   * @param fileId fileId
+   * @param fileId The identifier of report&#39;s file
    * @return bean instance
    **/
   public Report fileId(UUID fileId) {
@@ -144,7 +128,7 @@ public class Report {
   }
 
   /**
-   * @param fileName fileName
+   * @param fileName The file name
    * @return bean instance
    **/
   public Report fileName(String fileName) {
@@ -158,7 +142,7 @@ public class Report {
   }
 
   /**
-   * @param hashSum hashSum
+   * @param hashSum Hash sum of file (sha256)
    * @return bean instance
    **/
   public Report hashSum(String hashSum) {
@@ -172,7 +156,7 @@ public class Report {
   }
 
   /**
-   * @param reportType reportType
+   * @param reportType Specific report type, one of: \&quot;regular_settlement\&quot;, \&quot;icpp_settlement\&quot;
    * @return bean instance
    **/
   public Report reportType(String reportType) {
@@ -186,7 +170,7 @@ public class Report {
   }
 
   /**
-   * @param settlementDate settlementDate
+   * @param settlementDate Date of settlement. The format is yyyy-MM-dd
    * @return bean instance
    **/
   public Report settlementDate(String settlementDate) {
@@ -200,7 +184,7 @@ public class Report {
   }
 
   /**
-   * @param settlementId settlementId
+   * @param settlementId The identifier of settlement. Can be the same for several objects in sample
    * @return bean instance
    **/
   public Report settlementId(Long settlementId) {
@@ -214,7 +198,7 @@ public class Report {
   }
 
   /**
-   * @param size size
+   * @param size Size of file in bytes
    * @return bean instance
    **/
   public Report size(Long size) {
@@ -228,7 +212,7 @@ public class Report {
   }
 
   /**
-   * @param status status
+   * @param status One of statuses:  \&quot;IN_PROGRESS\&quot;  \&quot;COMPLETED\&quot;  \&quot;FAILED\&quot;
    * @return bean instance
    **/
   public Report status(StatusEnum status) {
@@ -242,7 +226,7 @@ public class Report {
   }
 
   /**
-   * @param websiteName websiteName
+   * @param websiteName Name of website
    * @return bean instance
    **/
   public Report websiteName(String websiteName) {
@@ -256,7 +240,6 @@ public class Report {
      StringBuilder sb = new StringBuilder();
      sb.append("Report( ");
      
-     if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
      if (downloadUrl != null) sb.append("downloadUrl=").append(downloadUrl.toString()).append("; ");
      if (fileId != null) sb.append("fileId=").append(fileId.toString()).append("; ");
      if (fileName != null) sb.append("fileName=").append(fileName.toString()).append("; ");

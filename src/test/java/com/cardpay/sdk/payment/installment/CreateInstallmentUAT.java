@@ -1,17 +1,17 @@
-package com.cardpay.sdk.recurring.installment;
+package com.cardpay.sdk.payment.installment;
 
-import com.cardpay.sdk.api.RecurringsInstallmentsApi;
+import com.cardpay.sdk.api.PaymentsApi;
 import com.cardpay.sdk.client.ApiClient;
 import com.cardpay.sdk.model.BillingAddress;
-import com.cardpay.sdk.model.InstallmentData;
-import com.cardpay.sdk.model.InstallmentSubscriptionRequest;
 import com.cardpay.sdk.model.Item;
+import com.cardpay.sdk.model.PaymentGatewayCreationResponse;
+import com.cardpay.sdk.model.PaymentRequest;
 import com.cardpay.sdk.model.PaymentRequestCard;
 import com.cardpay.sdk.model.PaymentRequestCardAccount;
-import com.cardpay.sdk.model.RecurringCustomer;
-import com.cardpay.sdk.model.RecurringGatewayCreationResponse;
-import com.cardpay.sdk.model.RecurringRequestMerchantOrder;
-import com.cardpay.sdk.model.RecurringResponse;
+import com.cardpay.sdk.model.PaymentRequestCustomer;
+import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
+import com.cardpay.sdk.model.PaymentRequestPaymentData;
+import com.cardpay.sdk.model.PaymentResponse;
 import com.cardpay.sdk.model.ShippingAddress;
 import com.cardpay.sdk.utils.DataUtils;
 import com.cardpay.sdk.utils.HttpUtils;
@@ -20,6 +20,7 @@ import io.codearte.jfairy.producer.BaseProducer;
 import io.codearte.jfairy.producer.person.Person;
 import io.codearte.jfairy.producer.text.TextProducer;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,11 +42,12 @@ import static com.cardpay.sdk.client.StringUtil.formatExpirationDate;
 import static com.cardpay.sdk.utils.DataUtils.generateCardExpiration;
 import static com.cardpay.sdk.utils.DataUtils.generateMerchantOrderId;
 import static com.cardpay.sdk.utils.DataUtils.returnUrls;
+import static org.apache.commons.lang3.RandomUtils.nextInt;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-public class RecurringInstallmentSubscriptionUAT {
+public class CreateInstallmentUAT {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
@@ -54,24 +56,25 @@ public class RecurringInstallmentSubscriptionUAT {
     private BaseProducer producer = fairy.baseProducer();
     private TextProducer text = fairy.textProducer();
 
-    private RecurringsInstallmentsApi recurringsInstallments;
+    private PaymentsApi paymentsApi;
 
     @Before
     public void setUp() {
-        recurringsInstallments = new ApiClient(CARDPAY_API_URL, GATEWAY_TERMINAL_CODE, GATEWAY_PASSWORD)
+        paymentsApi = new ApiClient(CARDPAY_API_URL, GATEWAY_TERMINAL_CODE, GATEWAY_PASSWORD)
                 .addLogging(LOGGING_LEVEL)
-                .createService(RecurringsInstallmentsApi.class);
+                .createService(PaymentsApi.class);
     }
 
     @Test
+    @Ignore
     public void createInstallmentSubscription() throws IOException {
         // merchant order data
         String merchantOrderId = generateMerchantOrderId();
         String merchantDescription = text.sentence();
         BigDecimal amount = BigDecimal.valueOf(producer.randomBetween(10, 300));
         List<Item> items = new ArrayList<Item>() {{
-            add(new Item().name("T-Shirt").description("Funny T-Shirt").count(15).price(new BigDecimal(99.99)));
-            add(new Item().name("T-Shirt").description("T-Shirt(red)").count(15).price(new BigDecimal(65.99)));
+            add(new Item().name("T-Shirt").description("Funny T-Shirt").count(15).price(new BigDecimal("99.99")));
+            add(new Item().name("T-Shirt").description("T-Shirt(red)").count(15).price(new BigDecimal("65.99")));
         }};
 
         //recurring data
@@ -84,6 +87,7 @@ public class RecurringInstallmentSubscriptionUAT {
         String cardHolder = person.getFullName().toUpperCase();
         String securityCode = "100";
         String cardExpiration = formatExpirationDate(generateCardExpiration());
+        int installments = nextInt(2, 10);
 
         // customer data
         String customerId = text.randomString(15);
@@ -91,9 +95,9 @@ public class RecurringInstallmentSubscriptionUAT {
         String customerPhoneNumber = producer.numerify("+###########");
 
         // prepare request data
-        final InstallmentSubscriptionRequest installmentSubscriptionRequest = new InstallmentSubscriptionRequest()
+        final PaymentRequest installmentRequest = new PaymentRequest()
                 .request(ApiClient.uuidRequest())
-                .merchantOrder(new RecurringRequestMerchantOrder()
+                .merchantOrder(new PaymentRequestMerchantOrder()
                         .id(merchantOrderId)
                         .description(merchantDescription)
                         .shippingAddress(new ShippingAddress()
@@ -119,35 +123,33 @@ public class RecurringInstallmentSubscriptionUAT {
                                 .city("New York")
                                 .addrLine1(person.getAddress().getAddressLine1())
                                 .addrLine2(person.getAddress().getAddressLine2())))
-                .recurringData(new InstallmentData()
+                .paymentData(new PaymentRequestPaymentData()
                         .installmentType(installmentType)
-                        .initiator(initiator)
+                        .installments(installments)
                         .currency(currency)
                         .amount(amount)
-                        .payments(10)
-                        .transType(InstallmentData.TransTypeEnum._01)
-                        .preauth(true))
-                .customer(new RecurringCustomer()
+                        .transType(PaymentRequestPaymentData.TransTypeEnum._01))
+                .customer(new PaymentRequestCustomer()
                         .id(customerId)
                         .email(customerEmail)
                         .phone(customerPhoneNumber)
                         .workPhone(customerPhoneNumber)
                         .homePhone(customerPhoneNumber)
-                        .locale(RecurringCustomer.LocaleEnum.EN))
+                        .locale("en"))
                 .returnUrls(returnUrls());
 
-        log.info("{}", installmentSubscriptionRequest);
+        log.info("{}", installmentRequest);
 
         // perform create payment
-        Response<RecurringGatewayCreationResponse> response = recurringsInstallments
-                .createInstallment(installmentSubscriptionRequest)
+        Response<PaymentGatewayCreationResponse> response = paymentsApi
+                .createPayment(installmentRequest)
                 .execute();
 
         log.info("{}", response);
         assertTrue(response.message(), response.isSuccessful());
 
         // explore response result
-        RecurringGatewayCreationResponse creationResponse = response.body();
+        PaymentGatewayCreationResponse creationResponse = response.body();
         assertNotNull(creationResponse);
         log.info("{}", creationResponse);
 
@@ -160,22 +162,22 @@ public class RecurringInstallmentSubscriptionUAT {
         HttpUtils.doGetSilent(redirectUrl);
 
         //get recurring id
-        String recurringId = creationResponse.getRecurringData().getId();
+        String recurringId = creationResponse.getPaymentData().getId();
 
         // explore response result
-        RecurringResponse paymentData = fetchInstallmentPayment(recurringId);
+        PaymentResponse paymentData = fetchInstallmentPayment(recurringId);
         assertNotNull(paymentData);
         log.info("{}", paymentData);
     }
 
-    private RecurringResponse fetchInstallmentPayment(String recurringId) throws IOException {
-        Response<RecurringResponse> response = recurringsInstallments
-                .getInstallmentPayment(recurringId)
+    private PaymentResponse fetchInstallmentPayment(String recurringId) throws IOException {
+        Response<PaymentResponse> response = paymentsApi
+                .getPayment(recurringId)
                 .execute();
         log.info("{}", response);
         assertTrue(response.message(), response.isSuccessful());
 
-        RecurringResponse body = response.body();
+        PaymentResponse body = response.body();
         assertNotNull(body);
 
         return body;

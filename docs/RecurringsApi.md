@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**createPlan**](RecurringsApi.md#createPlan) | **POST** api/recurring_plans | Create recurring plan
 [**createRecurring**](RecurringsApi.md#createRecurring) | **POST** api/recurrings | Create recurring
 [**deletePlan**](RecurringsApi.md#deletePlan) | **DELETE** api/recurring_plans/{plan_id} | Delete plan
-[**getAuthenticationData2**](RecurringsApi.md#getAuthenticationData2) | **GET** api/recurrings/{recurringId}/threedsecure | Get recurring payment 3DS result information
+[**getAuthenticationData1**](RecurringsApi.md#getAuthenticationData1) | **GET** api/recurrings/{recurringId}/threedsecure | Get recurring payment 3DS result information
 [**getChangeStatusClaim**](RecurringsApi.md#getChangeStatusClaim) | **GET** api/recurring_subscriptions/{subscriptionId}/change_status_claims/{claimId} | Get information about Change subscription status claim
 [**getFiling**](RecurringsApi.md#getFiling) | **GET** api/recurring_filings/{filingId} | Get filing order information
 [**getPlan**](RecurringsApi.md#getPlan) | **GET** api/recurring_plans/{plan_id} | Get plan information
@@ -233,9 +233,9 @@ null (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: */*
 
-<a name="getAuthenticationData2"></a>
-# **getAuthenticationData2**
-> AuthenticationDataResponse getAuthenticationData2(recurringId)
+<a name="getAuthenticationData1"></a>
+# **getAuthenticationData1**
+> AuthenticationDataResponse getAuthenticationData1(recurringId)
 
 Get recurring payment 3DS result information
 
@@ -259,10 +259,10 @@ Bearer.setApiKey("YOUR API KEY");
 RecurringsApi apiInstance = new RecurringsApi();
 String recurringId = "recurringId_example"; // String | Recurring ID
 try {
-    AuthenticationDataResponse result = apiInstance.getAuthenticationData2(recurringId);
+    AuthenticationDataResponse result = apiInstance.getAuthenticationData1(recurringId);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling RecurringsApi#getAuthenticationData2");
+    System.err.println("Exception when calling RecurringsApi#getAuthenticationData1");
     e.printStackTrace();
 }
 ```

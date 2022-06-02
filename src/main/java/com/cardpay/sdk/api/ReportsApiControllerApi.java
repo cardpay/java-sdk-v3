@@ -19,18 +19,18 @@ public interface ReportsApiControllerApi {
   );
 
   /**
-   * Download prepared file: single report by id or all reports collected into archive by sample id
+   * Download the report file
    * 
-   * @param fileId file_id (required)
+   * @param id id (required)
    * @return Call&lt;byte[]&gt;
    */
-  @GET("api/reports/download")
+  @GET("api/reports/download/{id}")
   Call<byte[]> gETReportsContent(
-    @retrofit2.http.Query("file_id") String fileId
+    @retrofit2.http.Path("id") String id
   );
 
   /**
-   * Starts preparation of settlement reports for merchants
+   * Initiate the reports&#39; preparation
    * 
    * @param request request (required)
    * @return Call&lt;ReportsResponse&gt;

@@ -85,7 +85,7 @@ public interface RecurringsApi {
    * @return Call&lt;AuthenticationDataResponse&gt;
    */
   @GET("api/recurrings/{recurringId}/threedsecure")
-  Call<AuthenticationDataResponse> getAuthenticationData2(
+  Call<AuthenticationDataResponse> getAuthenticationData1(
     @retrofit2.http.Path("recurringId") String recurringId
   );
 

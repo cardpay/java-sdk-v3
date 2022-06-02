@@ -5,8 +5,8 @@ All URIs are relative to *https://sandbox.cardpay.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**gETReports**](ReportsApiControllerApi.md#gETReports) | **GET** api/reports/{id} | Gets actual state of processing of requested settlement reports
-[**gETReportsContent**](ReportsApiControllerApi.md#gETReportsContent) | **GET** api/reports/download | Download prepared file: single report by id or all reports collected into archive by sample id
-[**pOSTReports**](ReportsApiControllerApi.md#pOSTReports) | **POST** api/reports | Starts preparation of settlement reports for merchants
+[**gETReportsContent**](ReportsApiControllerApi.md#gETReportsContent) | **GET** api/reports/download/{id} | Download the report file
+[**pOSTReports**](ReportsApiControllerApi.md#pOSTReports) | **POST** api/reports | Initiate the reports&#39; preparation
 
 
 <a name="gETReports"></a>
@@ -64,9 +64,9 @@ Name | Type | Description  | Notes
 
 <a name="gETReportsContent"></a>
 # **gETReportsContent**
-> byte[] gETReportsContent(fileId)
+> byte[] gETReportsContent(id)
 
-Download prepared file: single report by id or all reports collected into archive by sample id
+Download the report file
 
 ### Example
 ```java
@@ -86,9 +86,9 @@ Bearer.setApiKey("YOUR API KEY");
 //Bearer.setApiKeyPrefix("Token");
 
 ReportsApiControllerApi apiInstance = new ReportsApiControllerApi();
-String fileId = "fileId_example"; // String | file_id
+String id = "id_example"; // String | id
 try {
-    byte[] result = apiInstance.gETReportsContent(fileId);
+    byte[] result = apiInstance.gETReportsContent(id);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ReportsApiControllerApi#gETReportsContent");
@@ -100,7 +100,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fileId** | **String**| file_id |
+ **id** | **String**| id |
 
 ### Return type
 
@@ -119,7 +119,7 @@ Name | Type | Description  | Notes
 # **pOSTReports**
 > ReportsResponse pOSTReports(request)
 
-Starts preparation of settlement reports for merchants
+Initiate the reports&#39; preparation
 
 ### Example
 ```java

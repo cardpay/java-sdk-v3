@@ -27,6 +27,8 @@ public class PaymentMethodsResponse {
   private String category = null;
   @SerializedName("name")
   private String name = null;
+  @SerializedName("supported_payment_methods")
+  private List<SupportedPaymentMethod> supportedPaymentMethods = null;
   
   public void setBrands(List<String> brands) {
       this.brands = brands;
@@ -77,6 +79,28 @@ public class PaymentMethodsResponse {
       return this;
   }
 
+  
+  public void setSupportedPaymentMethods(List<SupportedPaymentMethod> supportedPaymentMethods) {
+      this.supportedPaymentMethods = supportedPaymentMethods;
+  }
+
+  /**
+   * @param supportedPaymentMethods Supported by adapter Payment Methods
+   * @return bean instance
+   **/
+  public PaymentMethodsResponse supportedPaymentMethods(List<SupportedPaymentMethod> supportedPaymentMethods) {
+      this.supportedPaymentMethods = supportedPaymentMethods;
+      return this;
+  }
+
+  public PaymentMethodsResponse addSupportedPaymentMethodsItem(SupportedPaymentMethod supportedPaymentMethodsItem) {
+    if (this.supportedPaymentMethods == null) {
+      this.supportedPaymentMethods = new ArrayList<>();
+    }
+    this.supportedPaymentMethods.add(supportedPaymentMethodsItem);
+    return this;
+  }
+
 
   @Override
   public String toString() {
@@ -86,6 +110,7 @@ public class PaymentMethodsResponse {
      if (brands != null) sb.append("brands=").append(brands.toString()).append("; ");
      if (category != null) sb.append("category=").append(category.toString()).append("; ");
      if (name != null) sb.append("name=").append(name.toString()).append("; ");
+     if (supportedPaymentMethods != null) sb.append("supportedPaymentMethods=").append(supportedPaymentMethods.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

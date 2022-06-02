@@ -36,7 +36,7 @@ public interface PaymentsApi {
    * @return Call&lt;AuthenticationDataResponse&gt;
    */
   @GET("api/payments/{paymentId}/threedsecure")
-  Call<AuthenticationDataResponse> getAuthenticationData1(
+  Call<AuthenticationDataResponse> getAuthenticationData(
     @retrofit2.http.Path("paymentId") String paymentId
   );
 

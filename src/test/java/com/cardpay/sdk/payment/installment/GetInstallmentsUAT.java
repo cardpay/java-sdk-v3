@@ -1,17 +1,17 @@
-package com.cardpay.sdk.recurring.installment;
+package com.cardpay.sdk.payment.installment;
 
-import com.cardpay.sdk.api.RecurringsInstallmentsApi;
+import com.cardpay.sdk.api.PaymentsApi;
 import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.InstallmentData;
-import com.cardpay.sdk.model.InstallmentSubscriptionRequest;
 import com.cardpay.sdk.model.Item;
+import com.cardpay.sdk.model.PaymentGatewayCreationResponse;
+import com.cardpay.sdk.model.PaymentRequest;
 import com.cardpay.sdk.model.PaymentRequestCardAccount;
-import com.cardpay.sdk.model.RecurringCustomer;
-import com.cardpay.sdk.model.RecurringGatewayCreationResponse;
-import com.cardpay.sdk.model.RecurringRequestMerchantOrder;
-import com.cardpay.sdk.model.RecurringResponse;
-import com.cardpay.sdk.model.RecurringResponseRecurringData;
-import com.cardpay.sdk.model.RecurringsList;
+import com.cardpay.sdk.model.PaymentRequestCustomer;
+import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
+import com.cardpay.sdk.model.PaymentRequestPaymentData;
+import com.cardpay.sdk.model.PaymentResponse;
+import com.cardpay.sdk.model.PaymentResponsePaymentData;
+import com.cardpay.sdk.model.PaymentsList;
 import com.cardpay.sdk.model.ShippingAddress;
 import com.cardpay.sdk.utils.DataUtils;
 import io.codearte.jfairy.Fairy;
@@ -22,6 +22,7 @@ import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,9 +51,10 @@ import static com.cardpay.sdk.utils.DataUtils.returnUrls;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 import static junit.framework.TestCase.assertTrue;
+import static org.apache.commons.lang3.RandomUtils.nextInt;
 import static org.junit.Assert.assertNotNull;
 
-public class RecurringGetInstallmentPaymentsUAT {
+public class GetInstallmentsUAT {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
@@ -61,23 +63,24 @@ public class RecurringGetInstallmentPaymentsUAT {
     private BaseProducer producer = fairy.baseProducer();
     private TextProducer text = fairy.textProducer();
 
-    private RecurringsInstallmentsApi recurringsInstallments;
+    private PaymentsApi paymentsApi;
 
     @Before
     public void setUp() {
-        recurringsInstallments = new ApiClient(CARDPAY_API_URL, GATEWAY_TERMINAL_CODE, GATEWAY_PASSWORD)
+        paymentsApi = new ApiClient(CARDPAY_API_URL, GATEWAY_TERMINAL_CODE, GATEWAY_PASSWORD)
                 .addLogging(LOGGING_LEVEL)
-                .createService(RecurringsInstallmentsApi.class);
+                .createService(PaymentsApi.class);
     }
 
     @Test
+    @Ignore
     public void getInstallmentPaymentsInfo() throws IOException {
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        // Phase 1: create installment subscriptions
+        // Phase 1: create installment payment
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         List<String> ids = IntStream.range(0, 3)
                 .parallel()
-                .mapToObj(index -> createInstallmentSubscription())
+                .mapToObj(index -> performInstallmentRequest())
                 .filter(StringUtils::isNotEmpty)
                 .collect(toList());
         log.info("ids: {}", ids);
@@ -93,24 +96,19 @@ public class RecurringGetInstallmentPaymentsUAT {
         Integer maxCount = 50;
         String merchantOrderId = null;
         String paymentMethod = null;
-        List<String> recurringTypes = null;
         String sortOrder = null;
         OffsetDateTime startTime = null;
-        String type = null;
 
-        // perform getting installment payments information
-        Response<RecurringsList> response = recurringsInstallments
-                .getInstallmentPayments(
-                        requestId,
+        // get installment payments information
+        Response<PaymentsList> response = paymentsApi
+                .getPayments(requestId,
                         currency,
                         endTime,
                         maxCount,
                         merchantOrderId,
                         paymentMethod,
-                        recurringTypes,
                         sortOrder,
-                        startTime,
-                        type)
+                        startTime)
                 .execute();
 
         log.info("{}", response);
@@ -119,51 +117,52 @@ public class RecurringGetInstallmentPaymentsUAT {
         assertNotNull(response.body());
 
         // explore response result
-        List<RecurringResponse> recurrings = response.body().getData();
-        log.info("Count: {}", recurrings.size());
+        List<PaymentResponse> payments = response.body().getData();
+        log.info("Count: {}", payments.size());
 
-        for (RecurringResponse recurring : recurrings) {
-            RecurringResponseRecurringData data = recurring.getRecurringData();
+        for (PaymentResponse payment : payments) {
+            PaymentResponsePaymentData data = payment.getPaymentData();
             log.info("{} {}: {} {} {}", data.getCreated(), data.getId(),
                     String.format("%-6.2f %s", data.getAmount(), data.getCurrency()),
                     data.getStatus(),
-                    recurring.getMerchantOrder().getId()
+                    payment.getMerchantOrder().getId()
             );
         }
 
-        Set<String> fetchedIds = recurrings.stream().map(r -> r.getRecurringData().getId()).collect(toSet());
+        Set<String> fetchedIds = payments.stream().map(r -> r.getPaymentData().getId()).collect(toSet());
         Assert.assertTrue(fetchedIds.containsAll(ids));
     }
 
     @SneakyThrows
-    private String createInstallmentSubscription() {
-        InstallmentSubscriptionRequest installmentSubscriptionRequest = createInstallmentSubscriptionRequest();
-        log.info("{}", installmentSubscriptionRequest);
+    private String performInstallmentRequest() {
+        PaymentRequest installmentRequest = createInstallmentRequest();
+        log.info("{}", installmentRequest);
 
-        Response<RecurringGatewayCreationResponse> response = recurringsInstallments
-                .createInstallment(installmentSubscriptionRequest)
+        Response<PaymentGatewayCreationResponse> response = paymentsApi
+                .createPayment(installmentRequest)
                 .execute();
         log.info("{}", response);
 
-        RecurringGatewayCreationResponse creationResponse = response.body();
+        PaymentGatewayCreationResponse creationResponse = response.body();
         assertNotNull(creationResponse);
 
-        return creationResponse.getRecurringData().getId();
+        return creationResponse.getPaymentData().getId();
     }
 
-    private InstallmentSubscriptionRequest createInstallmentSubscriptionRequest() {
+    private PaymentRequest createInstallmentRequest() {
         // merchant order data
         String merchantOrderId = generateMerchantOrderId();
         String merchantDescription = text.sentence();
         BigDecimal amount = BigDecimal.valueOf(producer.randomBetween(10, 300));
+        int installments = nextInt(2, 10);
+
         List<Item> items = new ArrayList<Item>() {{
-            add(new Item().name("T-Shirt").description("Funny T-Shirt").count(15).price(new BigDecimal(99.99)));
-            add(new Item().name("T-Shirt").description("T-Shirt(red)").count(15).price(new BigDecimal(65.99)));
+            add(new Item().name("T-Shirt").description("Funny T-Shirt").count(15).price(new BigDecimal("99.99")));
+            add(new Item().name("T-Shirt").description("T-Shirt(red)").count(15).price(new BigDecimal("65.99")));
         }};
 
         //recurring data
         String installmentType = "MF_HOLD";
-        String initiator = "cit";
         String currency = TERMINAL_CURRENCY;
 
         // customer data
@@ -171,9 +170,9 @@ public class RecurringGetInstallmentPaymentsUAT {
         String customerEmail = DataUtils.generateEmail();
         String customerPhoneNumber = producer.numerify("+###########");
 
-        return new InstallmentSubscriptionRequest()
+        return new PaymentRequest()
                 .request(ApiClient.uuidRequest())
-                .merchantOrder(new RecurringRequestMerchantOrder()
+                .merchantOrder(new PaymentRequestMerchantOrder()
                         .id(merchantOrderId)
                         .description(merchantDescription)
                         .shippingAddress(new ShippingAddress()
@@ -188,21 +187,19 @@ public class RecurringGetInstallmentPaymentsUAT {
                 .cardAccount(new PaymentRequestCardAccount()
                         .card(paymentRequestCard(CARD_NON3DS_CONFIRMED))
                         .billingAddress(billingAddress()))
-                .recurringData(new InstallmentData()
+                .paymentData(new PaymentRequestPaymentData()
                         .installmentType(installmentType)
-                        .initiator(initiator)
+                        .installments(installments)
                         .currency(currency)
                         .amount(amount)
-                        .payments(10)
-                        .transType(InstallmentData.TransTypeEnum._01)
-                        .preauth(true))
-                .customer(new RecurringCustomer()
+                        .transType(PaymentRequestPaymentData.TransTypeEnum._01))
+                .customer(new PaymentRequestCustomer()
                         .id(customerId)
                         .email(customerEmail)
                         .phone(customerPhoneNumber)
                         .workPhone(customerPhoneNumber)
                         .homePhone(customerPhoneNumber)
-                        .locale(RecurringCustomer.LocaleEnum.EN))
+                        .locale("en"))
                 .returnUrls(returnUrls());
     }
 }

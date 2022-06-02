@@ -34,7 +34,7 @@ public class ReportsData {
   }
 
   /**
-   * @param endDate End date of period in which the reports were generated. Period between dates is no more than 7 days. Format: yyyy-MM-dd
+   * @param endDate End date of period on which the reports were generated. Period between dates is no more than 7 days.  The format is yyyy-MM-dd  If ‘end_date’ is skipped then default value is used: ‘start_date’ + 7 days
    * @return bean instance
    **/
   public ReportsData endDate(LocalDate endDate) {
@@ -70,7 +70,7 @@ public class ReportsData {
   }
 
   /**
-   * @param startDate Start date of period in which the reports were generated. Format: yyyy-MM-dd
+   * @param startDate Start date of period on which the reports were generated. The format is yyyy-MM-dd
    * @return bean instance
    **/
   public ReportsData startDate(LocalDate startDate) {

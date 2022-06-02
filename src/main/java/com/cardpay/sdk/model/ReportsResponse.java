@@ -22,13 +22,13 @@ import lombok.Data;
 @Data
 
 public class ReportsResponse {
-  @SerializedName("downloadUrl")
+  @SerializedName("download_url")
   private String downloadUrl = null;
-  @SerializedName("hashSum")
+  @SerializedName("hash_sum")
   private String hashSum = null;
   @SerializedName("reports")
   private List<Report> reports = null;
-  @SerializedName("sampleId")
+  @SerializedName("sample_id")
   private UUID sampleId = null;
   @SerializedName("size")
   private Long size = null;
@@ -38,7 +38,7 @@ public class ReportsResponse {
   }
 
   /**
-   * @param downloadUrl downloadUrl
+   * @param downloadUrl Link to file downloading. Link is available for 24 hours
    * @return bean instance
    **/
   public ReportsResponse downloadUrl(String downloadUrl) {
@@ -52,7 +52,7 @@ public class ReportsResponse {
   }
 
   /**
-   * @param hashSum hashSum
+   * @param hashSum Hash sum of file (sha256)
    * @return bean instance
    **/
   public ReportsResponse hashSum(String hashSum) {
@@ -66,7 +66,7 @@ public class ReportsResponse {
   }
 
   /**
-   * @param reports reports
+   * @param reports List of settlement reports
    * @return bean instance
    **/
   public ReportsResponse reports(List<Report> reports) {
@@ -88,7 +88,7 @@ public class ReportsResponse {
   }
 
   /**
-   * @param sampleId sampleId
+   * @param sampleId The identifier of reports&#39; sample
    * @return bean instance
    **/
   public ReportsResponse sampleId(UUID sampleId) {
@@ -102,7 +102,7 @@ public class ReportsResponse {
   }
 
   /**
-   * @param size size
+   * @param size Size of file in bytes
    * @return bean instance
    **/
   public ReportsResponse size(Long size) {
