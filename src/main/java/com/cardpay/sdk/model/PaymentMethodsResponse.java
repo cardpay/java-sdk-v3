@@ -85,7 +85,7 @@ public class PaymentMethodsResponse {
   }
 
   /**
-   * @param supportedPaymentMethods Supported by adapter Payment Methods
+   * @param supportedPaymentMethods Supported payment methods
    * @return bean instance
    **/
   public PaymentMethodsResponse supportedPaymentMethods(List<SupportedPaymentMethod> supportedPaymentMethods) {

@@ -31,7 +31,7 @@ public class ReportsRequest {
   }
 
   /**
-   * @param callbackUrl Url for sending resulted callback. If field is skipped then callback won&#39;t be sent.  Common requirements for callback are actual https://integration.cardpay-test.com/#callbacks
+   * @param callbackUrl Url for sending resulted callback. If field is skipped then callback won&#39;t be sent.
    * @return bean instance
    **/
   public ReportsRequest callbackUrl(String callbackUrl) {
