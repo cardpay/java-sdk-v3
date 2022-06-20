@@ -19,10 +19,26 @@ import lombok.Data;
 @Data
 
 public class PayoutRequestMerchantOrder {
+  @SerializedName("cryptocurrency_indicator")
+  private Boolean cryptocurrencyIndicator = null;
   @SerializedName("description")
   private String description = null;
   @SerializedName("id")
   private String id = null;
+  
+  public void setCryptocurrencyIndicator(Boolean cryptocurrencyIndicator) {
+      this.cryptocurrencyIndicator = cryptocurrencyIndicator;
+  }
+
+  /**
+   * @param cryptocurrencyIndicator Indicator should be added if there will be cryptocurrency in transaction
+   * @return bean instance
+   **/
+  public PayoutRequestMerchantOrder cryptocurrencyIndicator(Boolean cryptocurrencyIndicator) {
+      this.cryptocurrencyIndicator = cryptocurrencyIndicator;
+      return this;
+  }
+
   
   public void setDescription(String description) {
       this.description = description;
@@ -57,6 +73,7 @@ public class PayoutRequestMerchantOrder {
      StringBuilder sb = new StringBuilder();
      sb.append("PayoutRequestMerchantOrder( ");
      
+     if (cryptocurrencyIndicator != null) sb.append("cryptocurrencyIndicator=").append(cryptocurrencyIndicator.toString()).append("; ");
      if (description != null) sb.append("description=").append(description.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
      sb.append(")");

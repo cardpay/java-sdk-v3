@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import lombok.Data;
 
 @Data
@@ -43,6 +44,8 @@ public class PaymentResponsePaymentData {
   private String declineCode = null;
   @SerializedName("decline_reason")
   private String declineReason = null;
+  @SerializedName("extended_data")
+  private Map<String, String> extendedData = null;
   @SerializedName("id")
   private String id = null;
   @SerializedName("installment_type")
@@ -292,6 +295,20 @@ public class PaymentResponsePaymentData {
   }
 
   
+  public void setExtendedData(Map<String, String> extendedData) {
+      this.extendedData = extendedData;
+  }
+
+  /**
+   * @param extendedData Extended structure with information for processing a payment in gateway mode. Contact your account manager to enable it
+   * @return bean instance
+   **/
+  public PaymentResponsePaymentData extendedData(Map<String, String> extendedData) {
+      this.extendedData = extendedData;
+      return this;
+  }
+
+  
   public void setId(String id) {
       this.id = id;
   }
@@ -439,6 +456,7 @@ public class PaymentResponsePaymentData {
      if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
      if (declineCode != null) sb.append("declineCode=").append(declineCode.toString()).append("; ");
      if (declineReason != null) sb.append("declineReason=").append(declineReason.toString()).append("; ");
+     if (extendedData != null) sb.append("extendedData=").append(extendedData.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
      if (installmentType != null) sb.append("installmentType=").append(installmentType.toString()).append("; ");
      if (installments != null) sb.append("installments=").append(installments.toString()).append("; ");
