@@ -51,7 +51,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class ApiClient {
-    public static final String USER_AGENT = "CardpaySdk/3.21.3/Java";
+    public static final String USER_AGENT = "CardpaySdk/3.24.2/Java";
     public static final Optional<ProxySelector> ENV_VAR_PROXY_SELECTOR = createEnvVarProxySelector();
 
     private TokenProvider tokenProvider;

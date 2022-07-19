@@ -28,6 +28,8 @@ import lombok.Data;
 public class ScheduledData {
   @SerializedName("dynamic_descriptor")
   private String dynamicDescriptor = null;
+  @SerializedName("encrypted_data")
+  private String encryptedData = null;
   @SerializedName("generate_token")
   private Boolean generateToken = null;
   @SerializedName("initial_amount")
@@ -110,6 +112,20 @@ public class ScheduledData {
    **/
   public ScheduledData dynamicDescriptor(String dynamicDescriptor) {
       this.dynamicDescriptor = dynamicDescriptor;
+      return this;
+  }
+
+  
+  public void setEncryptedData(String encryptedData) {
+      this.encryptedData = encryptedData;
+  }
+
+  /**
+   * @param encryptedData The encrypted payment credentials encoded in base64. *(for APPLEPAY payment method only)*
+   * @return bean instance
+   **/
+  public ScheduledData encryptedData(String encryptedData) {
+      this.encryptedData = encryptedData;
       return this;
   }
 
@@ -246,6 +262,7 @@ public class ScheduledData {
      sb.append("ScheduledData( ");
      
      if (dynamicDescriptor != null) sb.append("dynamicDescriptor=").append(dynamicDescriptor.toString()).append("; ");
+     if (encryptedData != null) sb.append("encryptedData=").append(encryptedData.toString()).append("; ");
      if (generateToken != null) sb.append("generateToken=").append(generateToken.toString()).append("; ");
      if (initialAmount != null) sb.append("initialAmount=").append(initialAmount.toString()).append("; ");
      if (initiator != null) sb.append("initiator=").append(initiator.toString()).append("; ");

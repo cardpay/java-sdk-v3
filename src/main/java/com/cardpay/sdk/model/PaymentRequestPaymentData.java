@@ -42,7 +42,7 @@ public class PaymentRequestPaymentData {
   @SerializedName("installment_type")
   private String installmentType = null;
   @SerializedName("installments")
-  private Integer installments = null;
+  private String installments = null;
   @SerializedName("note")
   private String note = null;
   @SerializedName("preauth")
@@ -217,7 +217,7 @@ public class PaymentRequestPaymentData {
   }
 
   
-  public void setInstallments(Integer installments) {
+  public void setInstallments(String installments) {
       this.installments = installments;
   }
 
@@ -225,7 +225,7 @@ public class PaymentRequestPaymentData {
    * @param installments Number of total installment payments, to be charged per defined interval. For installment subscription with installment_type &#x3D; &#x60;MF_HOLD&#x60; can be 1-12. For installment subscription with installment_type &#x3D; &#x60;IF&#x60; can be 1-99.
    * @return bean instance
    **/
-  public PaymentRequestPaymentData installments(Integer installments) {
+  public PaymentRequestPaymentData installments(String installments) {
       this.installments = installments;
       return this;
   }

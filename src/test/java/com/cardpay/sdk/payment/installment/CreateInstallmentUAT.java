@@ -87,7 +87,7 @@ public class CreateInstallmentUAT {
         String cardHolder = person.getFullName().toUpperCase();
         String securityCode = "100";
         String cardExpiration = formatExpirationDate(generateCardExpiration());
-        int installments = nextInt(2, 10);
+        String installments = String.valueOf(nextInt(2, 10));
 
         // customer data
         String customerId = text.randomString(15);

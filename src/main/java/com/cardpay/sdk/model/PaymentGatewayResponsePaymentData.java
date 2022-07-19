@@ -14,15 +14,32 @@
 package com.cardpay.sdk.model;
 
 import com.google.gson.annotations.SerializedName;
+import java.util.Map;
 import lombok.Data;
 
 @Data
 
 public class PaymentGatewayResponsePaymentData {
+  @SerializedName("extended_data")
+  private Map<String, String> extendedData = null;
   @SerializedName("id")
   private String id = null;
   @SerializedName("separate_auth")
   private Boolean separateAuth = null;
+  
+  public void setExtendedData(Map<String, String> extendedData) {
+      this.extendedData = extendedData;
+  }
+
+  /**
+   * @param extendedData Extended structure with information for processing a payment in gateway mode. Contact your account manager to enable it
+   * @return bean instance
+   **/
+  public PaymentGatewayResponsePaymentData extendedData(Map<String, String> extendedData) {
+      this.extendedData = extendedData;
+      return this;
+  }
+
   
   public void setId(String id) {
       this.id = id;
@@ -57,6 +74,7 @@ public class PaymentGatewayResponsePaymentData {
      StringBuilder sb = new StringBuilder();
      sb.append("PaymentGatewayResponsePaymentData( ");
      
+     if (extendedData != null) sb.append("extendedData=").append(extendedData.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
      if (separateAuth != null) sb.append("separateAuth=").append(separateAuth.toString()).append("; ");
      sb.append(")");

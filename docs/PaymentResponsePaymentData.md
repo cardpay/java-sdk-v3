@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **currency** | **String** | Payment currency code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code) |  [optional]
 **declineCode** | **String** | Decline code (only in decline case) |  [optional]
 **declineReason** | **String** | Bank&#39;s message about transaction decline reason (only in decline case) |  [optional]
-**extendedData** | **Map&lt;String, String&gt;** | Extended structure with information for processing a payment in gateway mode. Contact your account manager to enable it |  [optional]
 **id** | **String** | CardPay&#39;s payment id |  [optional]
 **installmentType** | **String** | Selected installment type |  [optional]
 **installments** | **String** | Number of total installment payments, to be charged |  [optional]
