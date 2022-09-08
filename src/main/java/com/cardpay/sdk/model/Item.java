@@ -77,7 +77,7 @@ public class Item {
   }
 
   /**
-   * @param price Price of product / service with dot as a decimal separator, must be less than 1 million
+   * @param price Price of product / service with dot as a decimal separator, must be less than 200 million
    * @return bean instance
    **/
   public Item price(BigDecimal price) {

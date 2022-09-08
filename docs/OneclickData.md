@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**amount** | [**BigDecimal**](BigDecimal.md) | The total transaction amount in selected currency with dot as a decimal separator, must be less than 100 millions |  [optional]
+**amount** | [**BigDecimal**](BigDecimal.md) | The total transaction amount in selected currency with dot as a decimal separator, must be less than 10 billion |  [optional]
 **currency** | **String** | [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code | 
 **dynamicDescriptor** | **String** | Short description of the service or product, must be enabled by CardPay manager to be used. |  [optional]
 **filing** | [**RecurringRequestFiling**](RecurringRequestFiling.md) | Filing data, should be send in all recurring requests besides first recurring request First recurring request should be send without filing attribute |  [optional]
@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **initiator** | **String** | Can be only 2 values - &#39;mit&#39; (merchant initiated transaction), &#39;cit&#39; (cardholder initiated transaction). | 
 **note** | **String** | Note about the recurring that will not be displayed to customer. |  [optional]
 **preauth** | **Boolean** | This parameter allowed to be used only for first recurring payment. If set to &#39;true&#39;, the amount will not be captured but only blocked. One-click payments with &#39;preauth&#39; attribute will be captured automatically in 7 days from the time of creating the preauth transaction. In continue recurring request (with &#39;filing_id&#39;) this parameter shouldn&#39;t be used. |  [optional]
+**scaExemption** | **String** | Indicates the exemption type that you want to request for the transaction. Possible value: LOW_VALUE |  [optional]
 **threeDsChallengeIndicator** | **String** |  |  [optional]
 **transType** | [**TransTypeEnum**](#TransTypeEnum) |  |  [optional]
 

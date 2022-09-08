@@ -25,6 +25,8 @@ public class PaymentRequestCardAccount {
   private PaymentRequestCard card = null;
   @SerializedName("encrypted_card_data")
   private String encryptedCardData = null;
+  @SerializedName("recipient_info")
+  private String recipientInfo = null;
   @SerializedName("token")
   private String token = null;
   
@@ -70,6 +72,20 @@ public class PaymentRequestCardAccount {
   }
 
   
+  public void setRecipientInfo(String recipientInfo) {
+      this.recipientInfo = recipientInfo;
+  }
+
+  /**
+   * @param recipientInfo Recipient full name. Property &#x60;recipient_info&#x60; may be required by Bank. In most cases it&#39;s Cardholder&#39;s name, contact Unlimint manager for requirements. Mandatory only for money transfer operation.
+   * @return bean instance
+   **/
+  public PaymentRequestCardAccount recipientInfo(String recipientInfo) {
+      this.recipientInfo = recipientInfo;
+      return this;
+  }
+
+  
   public void setToken(String token) {
       this.token = token;
   }
@@ -92,6 +108,7 @@ public class PaymentRequestCardAccount {
      if (billingAddress != null) sb.append("billingAddress=").append(billingAddress.toString()).append("; ");
      if (card != null) sb.append("card=").append(card.toString()).append("; ");
      if (encryptedCardData != null) sb.append("encryptedCardData=").append(encryptedCardData.toString()).append("; ");
+     if (recipientInfo != null) sb.append("recipientInfo=").append(recipientInfo.toString()).append("; ");
      if (token != null) sb.append("token=").append(token.toString()).append("; ");
      sb.append(")");
      return sb.toString();

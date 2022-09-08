@@ -47,6 +47,8 @@ public class PaymentRequestPaymentData {
   private String note = null;
   @SerializedName("preauth")
   private Boolean preauth = null;
+  @SerializedName("sca_exemption")
+  private String scaExemption = null;
   @SerializedName("three_ds_challenge_indicator")
   private String threeDsChallengeIndicator = null;
   /**
@@ -259,6 +261,20 @@ public class PaymentRequestPaymentData {
   }
 
   
+  public void setScaExemption(String scaExemption) {
+      this.scaExemption = scaExemption;
+  }
+
+  /**
+   * @param scaExemption Indicates the exemption type that you want to request for the transaction. Possible value: LOW_VALUE
+   * @return bean instance
+   **/
+  public PaymentRequestPaymentData scaExemption(String scaExemption) {
+      this.scaExemption = scaExemption;
+      return this;
+  }
+
+  
   public void setThreeDsChallengeIndicator(String threeDsChallengeIndicator) {
       this.threeDsChallengeIndicator = threeDsChallengeIndicator;
   }
@@ -303,6 +319,7 @@ public class PaymentRequestPaymentData {
      if (installments != null) sb.append("installments=").append(installments.toString()).append("; ");
      if (note != null) sb.append("note=").append(note.toString()).append("; ");
      if (preauth != null) sb.append("preauth=").append(preauth.toString()).append("; ");
+     if (scaExemption != null) sb.append("scaExemption=").append(scaExemption.toString()).append("; ");
      if (threeDsChallengeIndicator != null) sb.append("threeDsChallengeIndicator=").append(threeDsChallengeIndicator.toString()).append("; ");
      if (transType != null) sb.append("transType=").append(transType.toString()).append("; ");
      sb.append(")");

@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **installments** | **String** | Number of total installment payments, to be charged per defined interval. For installment subscription with installment_type &#x3D; &#x60;MF_HOLD&#x60; can be 1-12. For installment subscription with installment_type &#x3D; &#x60;IF&#x60; can be 1-99. |  [optional]
 **note** | **String** | Note about the transaction that will not be displayed to Customer |  [optional]
 **preauth** | **Boolean** | If set to &#x60;true&#x60;, the amount will not be captured but only blocked. Payments with &#39;preauth&#39; attribute will be captured automatically in 7 days from the time of creating the preauth transaction. *(for BANKCARD payment method only)*. |  [optional]
+**scaExemption** | **String** | Indicates the exemption type that you want to request for the transaction. Possible value: LOW_VALUE |  [optional]
 **threeDsChallengeIndicator** | **String** |  |  [optional]
 **transType** | [**TransTypeEnum**](#TransTypeEnum) |  |  [optional]
 

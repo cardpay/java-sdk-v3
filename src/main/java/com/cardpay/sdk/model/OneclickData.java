@@ -41,6 +41,8 @@ public class OneclickData {
   private String note = null;
   @SerializedName("preauth")
   private Boolean preauth = null;
+  @SerializedName("sca_exemption")
+  private String scaExemption = null;
   @SerializedName("three_ds_challenge_indicator")
   private String threeDsChallengeIndicator = null;
   /**
@@ -104,7 +106,7 @@ public class OneclickData {
   }
 
   /**
-   * @param amount The total transaction amount in selected currency with dot as a decimal separator, must be less than 100 millions
+   * @param amount The total transaction amount in selected currency with dot as a decimal separator, must be less than 10 billion
    * @return bean instance
    **/
   public OneclickData amount(BigDecimal amount) {
@@ -211,6 +213,20 @@ public class OneclickData {
   }
 
   
+  public void setScaExemption(String scaExemption) {
+      this.scaExemption = scaExemption;
+  }
+
+  /**
+   * @param scaExemption Indicates the exemption type that you want to request for the transaction. Possible value: LOW_VALUE
+   * @return bean instance
+   **/
+  public OneclickData scaExemption(String scaExemption) {
+      this.scaExemption = scaExemption;
+      return this;
+  }
+
+  
   public void setThreeDsChallengeIndicator(String threeDsChallengeIndicator) {
       this.threeDsChallengeIndicator = threeDsChallengeIndicator;
   }
@@ -252,6 +268,7 @@ public class OneclickData {
      if (initiator != null) sb.append("initiator=").append(initiator.toString()).append("; ");
      if (note != null) sb.append("note=").append(note.toString()).append("; ");
      if (preauth != null) sb.append("preauth=").append(preauth.toString()).append("; ");
+     if (scaExemption != null) sb.append("scaExemption=").append(scaExemption.toString()).append("; ");
      if (threeDsChallengeIndicator != null) sb.append("threeDsChallengeIndicator=").append(threeDsChallengeIndicator.toString()).append("; ");
      if (transType != null) sb.append("transType=").append(transType.toString()).append("; ");
      sb.append(")");
