@@ -23,8 +23,12 @@ public class PayoutResponseCustomer {
   private String email = null;
   @SerializedName("id")
   private String id = null;
+  @SerializedName("ip_country")
+  private String ipCountry = null;
   @SerializedName("phone")
   private String phone = null;
+  @SerializedName("user_agent")
+  private String userAgent = null;
   
   public void setEmail(String email) {
       this.email = email;
@@ -54,6 +58,20 @@ public class PayoutResponseCustomer {
   }
 
   
+  public void setIpCountry(String ipCountry) {
+      this.ipCountry = ipCountry;
+  }
+
+  /**
+   * @param ipCountry Customer country by IP
+   * @return bean instance
+   **/
+  public PayoutResponseCustomer ipCountry(String ipCountry) {
+      this.ipCountry = ipCountry;
+      return this;
+  }
+
+  
   public void setPhone(String phone) {
       this.phone = phone;
   }
@@ -67,6 +85,20 @@ public class PayoutResponseCustomer {
       return this;
   }
 
+  
+  public void setUserAgent(String userAgent) {
+      this.userAgent = userAgent;
+  }
+
+  /**
+   * @param userAgent User agent
+   * @return bean instance
+   **/
+  public PayoutResponseCustomer userAgent(String userAgent) {
+      this.userAgent = userAgent;
+      return this;
+  }
+
 
   @Override
   public String toString() {
@@ -75,7 +107,9 @@ public class PayoutResponseCustomer {
      
      if (email != null) sb.append("email=").append(email.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (ipCountry != null) sb.append("ipCountry=").append(ipCountry.toString()).append("; ");
      if (phone != null) sb.append("phone=").append(phone.toString()).append("; ");
+     if (userAgent != null) sb.append("userAgent=").append(userAgent.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

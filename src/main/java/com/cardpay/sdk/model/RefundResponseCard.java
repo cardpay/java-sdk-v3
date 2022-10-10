@@ -13,16 +13,122 @@
 
 package com.cardpay.sdk.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import lombok.Data;
 
 @Data
 
 public class RefundResponseCard {
+  @SerializedName("card_brand")
+  private String cardBrand = null;
+  /**
+   * Card type
+   */
+  @JsonAdapter(CardTypeEnum.Adapter.class)
+  public enum CardTypeEnum {
+    DEBIT("DEBIT"),
+    
+    CREDIT("CREDIT"),
+    
+    PREPAID("PREPAID"),
+    
+    OTHER("OTHER"),
+    
+    UNKNOWN("UNKNOWN");
+
+    private String value;
+
+    CardTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static CardTypeEnum fromValue(String text) {
+      for (CardTypeEnum b : CardTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<CardTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final CardTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public CardTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return CardTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName("card_type")
+  private CardTypeEnum cardType = null;
+  @SerializedName("issuer")
+  private String issuer = null;
   @SerializedName("issuing_country_code")
   private String issuingCountryCode = null;
   @SerializedName("masked_pan")
   private String maskedPan = null;
+  
+  public void setCardBrand(String cardBrand) {
+      this.cardBrand = cardBrand;
+  }
+
+  /**
+   * @param cardBrand Card brand
+   * @return bean instance
+   **/
+  public RefundResponseCard cardBrand(String cardBrand) {
+      this.cardBrand = cardBrand;
+      return this;
+  }
+
+  
+  public void setCardType(CardTypeEnum cardType) {
+      this.cardType = cardType;
+  }
+
+  /**
+   * @param cardType Card type
+   * @return bean instance
+   **/
+  public RefundResponseCard cardType(CardTypeEnum cardType) {
+      this.cardType = cardType;
+      return this;
+  }
+
+  
+  public void setIssuer(String issuer) {
+      this.issuer = issuer;
+  }
+
+  /**
+   * @param issuer Card issuer
+   * @return bean instance
+   **/
+  public RefundResponseCard issuer(String issuer) {
+      this.issuer = issuer;
+      return this;
+  }
+
   
   public void setIssuingCountryCode(String issuingCountryCode) {
       this.issuingCountryCode = issuingCountryCode;
@@ -57,6 +163,9 @@ public class RefundResponseCard {
      StringBuilder sb = new StringBuilder();
      sb.append("RefundResponseCard( ");
      
+     if (cardBrand != null) sb.append("cardBrand=").append(cardBrand.toString()).append("; ");
+     if (cardType != null) sb.append("cardType=").append(cardType.toString()).append("; ");
+     if (issuer != null) sb.append("issuer=").append(issuer.toString()).append("; ");
      if (issuingCountryCode != null) sb.append("issuingCountryCode=").append(issuingCountryCode.toString()).append("; ");
      if (maskedPan != null) sb.append("maskedPan=").append(maskedPan.toString()).append("; ");
      sb.append(")");

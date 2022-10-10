@@ -29,10 +29,14 @@ public class PaymentResponseCustomer {
   private String id = null;
   @SerializedName("ip")
   private String ip = null;
+  @SerializedName("ip_country")
+  private String ipCountry = null;
   @SerializedName("locale")
   private String locale = null;
   @SerializedName("phone")
   private String phone = null;
+  @SerializedName("user_agent")
+  private String userAgent = null;
   @SerializedName("work_phone")
   private String workPhone = null;
   
@@ -106,6 +110,20 @@ public class PaymentResponseCustomer {
   }
 
   
+  public void setIpCountry(String ipCountry) {
+      this.ipCountry = ipCountry;
+  }
+
+  /**
+   * @param ipCountry Customer country by IP
+   * @return bean instance
+   **/
+  public PaymentResponseCustomer ipCountry(String ipCountry) {
+      this.ipCountry = ipCountry;
+      return this;
+  }
+
+  
   public void setLocale(String locale) {
       this.locale = locale;
   }
@@ -134,6 +152,20 @@ public class PaymentResponseCustomer {
   }
 
   
+  public void setUserAgent(String userAgent) {
+      this.userAgent = userAgent;
+  }
+
+  /**
+   * @param userAgent User agent
+   * @return bean instance
+   **/
+  public PaymentResponseCustomer userAgent(String userAgent) {
+      this.userAgent = userAgent;
+      return this;
+  }
+
+  
   public void setWorkPhone(String workPhone) {
       this.workPhone = workPhone;
   }
@@ -158,8 +190,10 @@ public class PaymentResponseCustomer {
      if (homePhone != null) sb.append("homePhone=").append(homePhone.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
      if (ip != null) sb.append("ip=").append(ip.toString()).append("; ");
+     if (ipCountry != null) sb.append("ipCountry=").append(ipCountry.toString()).append("; ");
      if (locale != null) sb.append("locale=").append(locale.toString()).append("; ");
      if (phone != null) sb.append("phone=").append(phone.toString()).append("; ");
+     if (userAgent != null) sb.append("userAgent=").append(userAgent.toString()).append("; ");
      if (workPhone != null) sb.append("workPhone=").append(workPhone.toString()).append("; ");
      sb.append(")");
      return sb.toString();
