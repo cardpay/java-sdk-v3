@@ -18,22 +18,40 @@ import lombok.Data;
 
 @Data
 
-public class TransactionResponseMerchantOrder {
-  @SerializedName("description")
-  private String description = null;
+public class EwalletAccount {
+  @SerializedName("bank_branch")
+  private String bankBranch = null;
+  @SerializedName("bank_code")
+  private String bankCode = null;
   @SerializedName("id")
   private String id = null;
+  @SerializedName("type")
+  private String type = null;
   
-  public void setDescription(String description) {
-      this.description = description;
+  public void setBankBranch(String bankBranch) {
+      this.bankBranch = bankBranch;
   }
 
   /**
-   * @param description Description of product/service being sold
+   * @param bankBranch Customer bank branch number (name)
    * @return bean instance
    **/
-  public TransactionResponseMerchantOrder description(String description) {
-      this.description = description;
+  public EwalletAccount bankBranch(String bankBranch) {
+      this.bankBranch = bankBranch;
+      return this;
+  }
+
+  
+  public void setBankCode(String bankCode) {
+      this.bankCode = bankCode;
+  }
+
+  /**
+   * @param bankCode Customer bank code
+   * @return bean instance
+   **/
+  public EwalletAccount bankCode(String bankCode) {
+      this.bankCode = bankCode;
       return this;
   }
 
@@ -43,11 +61,25 @@ public class TransactionResponseMerchantOrder {
   }
 
   /**
-   * @param id Merchant&#39;s ID of the order
+   * @param id Customer personal identification number
    * @return bean instance
    **/
-  public TransactionResponseMerchantOrder id(String id) {
+  public EwalletAccount id(String id) {
       this.id = id;
+      return this;
+  }
+
+  
+  public void setType(String type) {
+      this.type = type;
+  }
+
+  /**
+   * @param type Customer account type
+   * @return bean instance
+   **/
+  public EwalletAccount type(String type) {
+      this.type = type;
       return this;
   }
 
@@ -55,10 +87,12 @@ public class TransactionResponseMerchantOrder {
   @Override
   public String toString() {
      StringBuilder sb = new StringBuilder();
-     sb.append("TransactionResponseMerchantOrder( ");
+     sb.append("EwalletAccount( ");
      
-     if (description != null) sb.append("description=").append(description.toString()).append("; ");
+     if (bankBranch != null) sb.append("bankBranch=").append(bankBranch.toString()).append("; ");
+     if (bankCode != null) sb.append("bankCode=").append(bankCode.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (type != null) sb.append("type=").append(type.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

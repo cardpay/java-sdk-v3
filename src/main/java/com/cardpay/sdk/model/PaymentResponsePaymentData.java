@@ -179,6 +179,8 @@ public class PaymentResponsePaymentData {
 
   @SerializedName("trans_type")
   private TransTypeEnum transType = null;
+  @SerializedName("type")
+  private String type = null;
   
   public void setActionCode(String actionCode) {
       this.actionCode = actionCode;
@@ -425,6 +427,20 @@ public class PaymentResponsePaymentData {
       return this;
   }
 
+  
+  public void setType(String type) {
+      this.type = type;
+  }
+
+  /**
+   * @param type Payment type, can be PAYMENT, INSTALLMENT
+   * @return bean instance
+   **/
+  public PaymentResponsePaymentData type(String type) {
+      this.type = type;
+      return this;
+  }
+
 
   @Override
   public String toString() {
@@ -448,6 +464,7 @@ public class PaymentResponsePaymentData {
      if (rrn != null) sb.append("rrn=").append(rrn.toString()).append("; ");
      if (status != null) sb.append("status=").append(status.toString()).append("; ");
      if (transType != null) sb.append("transType=").append(transType.toString()).append("; ");
+     if (type != null) sb.append("type=").append(type.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

@@ -18,36 +18,20 @@ import lombok.Data;
 
 @Data
 
-public class TransactionResponseMerchantOrder {
-  @SerializedName("description")
-  private String description = null;
-  @SerializedName("id")
-  private String id = null;
+public class PixAccountDetailsRequest {
+  @SerializedName("customer_identity")
+  private String customerIdentity = null;
   
-  public void setDescription(String description) {
-      this.description = description;
+  public void setCustomerIdentity(String customerIdentity) {
+      this.customerIdentity = customerIdentity;
   }
 
   /**
-   * @param description Description of product/service being sold
+   * @param customerIdentity Customer identity
    * @return bean instance
    **/
-  public TransactionResponseMerchantOrder description(String description) {
-      this.description = description;
-      return this;
-  }
-
-  
-  public void setId(String id) {
-      this.id = id;
-  }
-
-  /**
-   * @param id Merchant&#39;s ID of the order
-   * @return bean instance
-   **/
-  public TransactionResponseMerchantOrder id(String id) {
-      this.id = id;
+  public PixAccountDetailsRequest customerIdentity(String customerIdentity) {
+      this.customerIdentity = customerIdentity;
       return this;
   }
 
@@ -55,10 +39,9 @@ public class TransactionResponseMerchantOrder {
   @Override
   public String toString() {
      StringBuilder sb = new StringBuilder();
-     sb.append("TransactionResponseMerchantOrder( ");
+     sb.append("PixAccountDetailsRequest( ");
      
-     if (description != null) sb.append("description=").append(description.toString()).append("; ");
-     if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (customerIdentity != null) sb.append("customerIdentity=").append(customerIdentity.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

@@ -18,36 +18,20 @@ import lombok.Data;
 
 @Data
 
-public class TransactionResponseMerchantOrder {
-  @SerializedName("description")
-  private String description = null;
-  @SerializedName("id")
-  private String id = null;
+public class PixAccountDetailsResponse {
+  @SerializedName("ewallet_account")
+  private EwalletAccount ewalletAccount = null;
   
-  public void setDescription(String description) {
-      this.description = description;
+  public void setEwalletAccount(EwalletAccount ewalletAccount) {
+      this.ewalletAccount = ewalletAccount;
   }
 
   /**
-   * @param description Description of product/service being sold
+   * @param ewalletAccount An object containing customer account details
    * @return bean instance
    **/
-  public TransactionResponseMerchantOrder description(String description) {
-      this.description = description;
-      return this;
-  }
-
-  
-  public void setId(String id) {
-      this.id = id;
-  }
-
-  /**
-   * @param id Merchant&#39;s ID of the order
-   * @return bean instance
-   **/
-  public TransactionResponseMerchantOrder id(String id) {
-      this.id = id;
+  public PixAccountDetailsResponse ewalletAccount(EwalletAccount ewalletAccount) {
+      this.ewalletAccount = ewalletAccount;
       return this;
   }
 
@@ -55,10 +39,9 @@ public class TransactionResponseMerchantOrder {
   @Override
   public String toString() {
      StringBuilder sb = new StringBuilder();
-     sb.append("TransactionResponseMerchantOrder( ");
+     sb.append("PixAccountDetailsResponse( ");
      
-     if (description != null) sb.append("description=").append(description.toString()).append("; ");
-     if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (ewalletAccount != null) sb.append("ewalletAccount=").append(ewalletAccount.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

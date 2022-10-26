@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **rrn** | **String** | RRN (Retrieval Reference Number), supplied by the acquiring financial institution *(for BANKCARD payment method only)* |  [optional]
 **status** | [**StatusEnum**](#StatusEnum) | Current payment status, *(mandatory for WEBMONEY and BITCOIN payment method only)* |  [optional]
 **transType** | [**TransTypeEnum**](#TransTypeEnum) |  |  [optional]
+**type** | **String** | Payment type, can be PAYMENT, INSTALLMENT |  [optional]
 
 
 <a name="StatusEnum"></a>
