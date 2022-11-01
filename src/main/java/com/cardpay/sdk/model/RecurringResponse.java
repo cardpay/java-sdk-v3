@@ -29,6 +29,8 @@ public class RecurringResponse {
   private PaymentResponseCardAccount cardAccount = null;
   @SerializedName("customer")
   private RecurringCustomer customer = null;
+  @SerializedName("authentication_data")
+  private AuthenticationData authenticationData = null;
   
   public void setPaymentMethod(String paymentMethod) {
       this.paymentMethod = paymentMethod;
@@ -99,6 +101,20 @@ public class RecurringResponse {
       return this;
   }
 
+  
+  public void setAuthenticationData(AuthenticationData authenticationData) {
+      this.authenticationData = authenticationData;
+  }
+
+  /**
+   * @param authenticationData Authentication data
+   * @return bean instance
+   **/
+  public RecurringResponse authenticationData(AuthenticationData authenticationData) {
+      this.authenticationData = authenticationData;
+      return this;
+  }
+
 
   @Override
   public String toString() {
@@ -110,6 +126,7 @@ public class RecurringResponse {
      if (recurringData != null) sb.append("recurringData=").append(recurringData.toString()).append("; ");
      if (cardAccount != null) sb.append("cardAccount=").append(cardAccount.toString()).append("; ");
      if (customer != null) sb.append("customer=").append(customer.toString()).append("; ");
+     if (authenticationData != null) sb.append("authenticationData=").append(authenticationData.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }
