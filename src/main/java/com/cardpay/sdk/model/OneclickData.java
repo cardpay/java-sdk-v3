@@ -27,6 +27,8 @@ import lombok.Data;
 public class OneclickData {
   @SerializedName("amount")
   private BigDecimal amount = null;
+  @SerializedName("contract_number")
+  private String contractNumber = null;
   @SerializedName("currency")
   private String currency = null;
   @SerializedName("dynamic_descriptor")
@@ -111,6 +113,20 @@ public class OneclickData {
    **/
   public OneclickData amount(BigDecimal amount) {
       this.amount = amount;
+      return this;
+  }
+
+  
+  public void setContractNumber(String contractNumber) {
+      this.contractNumber = contractNumber;
+  }
+
+  /**
+   * @param contractNumber Contract number between customer and merchant. Required for Mexican merchants for scheduled payments.
+   * @return bean instance
+   **/
+  public OneclickData contractNumber(String contractNumber) {
+      this.contractNumber = contractNumber;
       return this;
   }
 
@@ -261,6 +277,7 @@ public class OneclickData {
      sb.append("OneclickData( ");
      
      if (amount != null) sb.append("amount=").append(amount.toString()).append("; ");
+     if (contractNumber != null) sb.append("contractNumber=").append(contractNumber.toString()).append("; ");
      if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
      if (dynamicDescriptor != null) sb.append("dynamicDescriptor=").append(dynamicDescriptor.toString()).append("; ");
      if (filing != null) sb.append("filing=").append(filing.toString()).append("; ");

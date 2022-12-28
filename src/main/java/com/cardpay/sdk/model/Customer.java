@@ -19,35 +19,35 @@ import lombok.Data;
 @Data
 
 public class Customer {
-  @SerializedName("phone")
-  private String phone = null;
   @SerializedName("email")
   private String email = null;
-  
-  public void setPhone(String phone) {
-      this.phone = phone;
-  }
-
-  /**
-   * @param phone phone
-   * @return bean instance
-   **/
-  public Customer phone(String phone) {
-      this.phone = phone;
-      return this;
-  }
-
+  @SerializedName("phone")
+  private String phone = null;
   
   public void setEmail(String email) {
       this.email = email;
   }
 
   /**
-   * @param email email
+   * @param email Email address of the customer
    * @return bean instance
    **/
   public Customer email(String email) {
       this.email = email;
+      return this;
+  }
+
+  
+  public void setPhone(String phone) {
+      this.phone = phone;
+  }
+
+  /**
+   * @param phone Customer phone number
+   * @return bean instance
+   **/
+  public Customer phone(String phone) {
+      this.phone = phone;
       return this;
   }
 
@@ -57,8 +57,8 @@ public class Customer {
      StringBuilder sb = new StringBuilder();
      sb.append("Customer( ");
      
-     if (phone != null) sb.append("phone=").append(phone.toString()).append("; ");
      if (email != null) sb.append("email=").append(email.toString()).append("; ");
+     if (phone != null) sb.append("phone=").append(phone.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

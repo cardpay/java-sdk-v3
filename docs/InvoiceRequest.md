@@ -5,11 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **request** | [**Request**](Request.md) | Request | 
-**customer** | [**Customer**](Customer.md) |  |  [optional]
-**invoiceData** | [**InvoiceDataRequest**](InvoiceDataRequest.md) |  | 
-**merchantOrder** | [**MerchantOrder**](MerchantOrder.md) |  | 
-**paymentMethods** | **List&lt;String&gt;** |  |  [optional]
-**returnUrls** | [**ReturnUrls**](ReturnUrls.md) |  |  [optional]
+**customer** | [**Customer**](Customer.md) | Customer data |  [optional]
+**invoiceData** | [**InvoiceDataRequest**](InvoiceDataRequest.md) | Invoice data | 
+**merchantOrder** | [**MerchantOrder**](MerchantOrder.md) | Merchant order data | 
+**returnUrls** | [**ReturnUrls**](ReturnUrls.md) | Return URLs are the URLs where customer returns by pressing “Back to the shop” or “Cancel” button in Payment Page mode |  [optional]
 
 
 

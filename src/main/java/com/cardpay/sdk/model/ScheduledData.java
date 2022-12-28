@@ -26,6 +26,8 @@ import lombok.Data;
 @Data
 
 public class ScheduledData {
+  @SerializedName("contract_number")
+  private String contractNumber = null;
   @SerializedName("dynamic_descriptor")
   private String dynamicDescriptor = null;
   @SerializedName("encrypted_data")
@@ -101,6 +103,20 @@ public class ScheduledData {
 
   @SerializedName("trans_type")
   private TransTypeEnum transType = null;
+  
+  public void setContractNumber(String contractNumber) {
+      this.contractNumber = contractNumber;
+  }
+
+  /**
+   * @param contractNumber Contract number between customer and merchant. Required for Mexican merchants for scheduled payments.
+   * @return bean instance
+   **/
+  public ScheduledData contractNumber(String contractNumber) {
+      this.contractNumber = contractNumber;
+      return this;
+  }
+
   
   public void setDynamicDescriptor(String dynamicDescriptor) {
       this.dynamicDescriptor = dynamicDescriptor;
@@ -261,6 +277,7 @@ public class ScheduledData {
      StringBuilder sb = new StringBuilder();
      sb.append("ScheduledData( ");
      
+     if (contractNumber != null) sb.append("contractNumber=").append(contractNumber.toString()).append("; ");
      if (dynamicDescriptor != null) sb.append("dynamicDescriptor=").append(dynamicDescriptor.toString()).append("; ");
      if (encryptedData != null) sb.append("encryptedData=").append(encryptedData.toString()).append("; ");
      if (generateToken != null) sb.append("generateToken=").append(generateToken.toString()).append("; ");

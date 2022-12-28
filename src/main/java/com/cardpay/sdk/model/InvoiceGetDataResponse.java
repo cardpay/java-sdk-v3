@@ -29,12 +29,6 @@ public class InvoiceGetDataResponse {
   private OffsetDateTime expireAt = null;
   @SerializedName("id")
   private String id = null;
-  @SerializedName("installment_amount")
-  private BigDecimal installmentAmount = null;
-  @SerializedName("installment_type")
-  private String installmentType = null;
-  @SerializedName("installments")
-  private Integer installments = null;
   @SerializedName("status")
   private String status = null;
   
@@ -43,7 +37,7 @@ public class InvoiceGetDataResponse {
   }
 
   /**
-   * @param amount amount
+   * @param amount The total invoice amount in selected currency with dot as a decimal separator
    * @return bean instance
    **/
   public InvoiceGetDataResponse amount(BigDecimal amount) {
@@ -57,7 +51,7 @@ public class InvoiceGetDataResponse {
   }
 
   /**
-   * @param currency currency
+   * @param currency ISO 4217 currency code
    * @return bean instance
    **/
   public InvoiceGetDataResponse currency(String currency) {
@@ -71,7 +65,7 @@ public class InvoiceGetDataResponse {
   }
 
   /**
-   * @param expireAt expireAt
+   * @param expireAt Date of invoice expiring. Invoice cannot be used after this date.
    * @return bean instance
    **/
   public InvoiceGetDataResponse expireAt(OffsetDateTime expireAt) {
@@ -85,53 +79,11 @@ public class InvoiceGetDataResponse {
   }
 
   /**
-   * @param id id
+   * @param id Identifier of created invoice.
    * @return bean instance
    **/
   public InvoiceGetDataResponse id(String id) {
       this.id = id;
-      return this;
-  }
-
-  
-  public void setInstallmentAmount(BigDecimal installmentAmount) {
-      this.installmentAmount = installmentAmount;
-  }
-
-  /**
-   * @param installmentAmount installmentAmount
-   * @return bean instance
-   **/
-  public InvoiceGetDataResponse installmentAmount(BigDecimal installmentAmount) {
-      this.installmentAmount = installmentAmount;
-      return this;
-  }
-
-  
-  public void setInstallmentType(String installmentType) {
-      this.installmentType = installmentType;
-  }
-
-  /**
-   * @param installmentType installmentType
-   * @return bean instance
-   **/
-  public InvoiceGetDataResponse installmentType(String installmentType) {
-      this.installmentType = installmentType;
-      return this;
-  }
-
-  
-  public void setInstallments(Integer installments) {
-      this.installments = installments;
-  }
-
-  /**
-   * @param installments installments
-   * @return bean instance
-   **/
-  public InvoiceGetDataResponse installments(Integer installments) {
-      this.installments = installments;
       return this;
   }
 
@@ -141,7 +93,7 @@ public class InvoiceGetDataResponse {
   }
 
   /**
-   * @param status status
+   * @param status Status of invoice.
    * @return bean instance
    **/
   public InvoiceGetDataResponse status(String status) {
@@ -159,9 +111,6 @@ public class InvoiceGetDataResponse {
      if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
      if (expireAt != null) sb.append("expireAt=").append(expireAt.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
-     if (installmentAmount != null) sb.append("installmentAmount=").append(installmentAmount.toString()).append("; ");
-     if (installmentType != null) sb.append("installmentType=").append(installmentType.toString()).append("; ");
-     if (installments != null) sb.append("installments=").append(installments.toString()).append("; ");
      if (status != null) sb.append("status=").append(status.toString()).append("; ");
      sb.append(")");
      return sb.toString();

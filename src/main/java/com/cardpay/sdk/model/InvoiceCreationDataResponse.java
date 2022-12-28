@@ -27,7 +27,7 @@ public class InvoiceCreationDataResponse {
   }
 
   /**
-   * @param id id
+   * @param id Identifier of invoice
    * @return bean instance
    **/
   public InvoiceCreationDataResponse id(String id) {

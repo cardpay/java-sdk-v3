@@ -29,7 +29,7 @@ public class InvoiceCreationResponse {
   }
 
   /**
-   * @param invoiceData invoiceData
+   * @param invoiceData Structure of invoice data
    * @return bean instance
    **/
   public InvoiceCreationResponse invoiceData(InvoiceCreationDataResponse invoiceData) {
@@ -43,7 +43,7 @@ public class InvoiceCreationResponse {
   }
 
   /**
-   * @param invoiceUrl invoiceUrl
+   * @param invoiceUrl Invoice URL
    * @return bean instance
    **/
   public InvoiceCreationResponse invoiceUrl(String invoiceUrl) {

@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**phone** | **String** |  |  [optional]
-**email** | **String** |  |  [optional]
+**email** | **String** | Email address of the customer |  [optional]
+**phone** | **String** | Customer phone number |  [optional]
 
 
 

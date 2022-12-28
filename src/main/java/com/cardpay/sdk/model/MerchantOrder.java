@@ -24,14 +24,14 @@ public class MerchantOrder {
   @SerializedName("id")
   private String id = null;
   @SerializedName("items")
-  private List<Item> items = null;
+  private List<Item> items = new ArrayList<>();
   
   public void setId(String id) {
       this.id = id;
   }
 
   /**
-   * @param id id
+   * @param id Order ID used by the merchant’s shopping cart
    * @return bean instance
    **/
   public MerchantOrder id(String id) {
@@ -45,7 +45,7 @@ public class MerchantOrder {
   }
 
   /**
-   * @param items items
+   * @param items Array of items (in the shopping cart)
    * @return bean instance
    **/
   public MerchantOrder items(List<Item> items) {
@@ -54,9 +54,6 @@ public class MerchantOrder {
   }
 
   public MerchantOrder addItemsItem(Item itemsItem) {
-    if (this.items == null) {
-      this.items = new ArrayList<>();
-    }
     this.items.add(itemsItem);
     return this;
   }

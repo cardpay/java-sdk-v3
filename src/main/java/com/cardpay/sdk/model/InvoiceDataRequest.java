@@ -16,8 +16,6 @@ package com.cardpay.sdk.model;
 import com.google.gson.annotations.SerializedName;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import lombok.Data;
 
 @Data
@@ -29,19 +27,13 @@ public class InvoiceDataRequest {
   private String currency = null;
   @SerializedName("expire_at")
   private OffsetDateTime expireAt = null;
-  @SerializedName("installment_amount")
-  private BigDecimal installmentAmount = null;
-  @SerializedName("installment_type")
-  private String installmentType = null;
-  @SerializedName("installments")
-  private List<Integer> installments = null;
   
   public void setAmount(BigDecimal amount) {
       this.amount = amount;
   }
 
   /**
-   * @param amount amount
+   * @param amount The total invoice amount in selected currency with dot as a decimal separator, must be less than 10 billion
    * @return bean instance
    **/
   public InvoiceDataRequest amount(BigDecimal amount) {
@@ -55,7 +47,7 @@ public class InvoiceDataRequest {
   }
 
   /**
-   * @param currency currency
+   * @param currency ISO 4217 currency code
    * @return bean instance
    **/
   public InvoiceDataRequest currency(String currency) {
@@ -69,62 +61,12 @@ public class InvoiceDataRequest {
   }
 
   /**
-   * @param expireAt expireAt
+   * @param expireAt Date of invoice expiring. Invoice cannot be used after this date.
    * @return bean instance
    **/
   public InvoiceDataRequest expireAt(OffsetDateTime expireAt) {
       this.expireAt = expireAt;
       return this;
-  }
-
-  
-  public void setInstallmentAmount(BigDecimal installmentAmount) {
-      this.installmentAmount = installmentAmount;
-  }
-
-  /**
-   * @param installmentAmount installmentAmount
-   * @return bean instance
-   **/
-  public InvoiceDataRequest installmentAmount(BigDecimal installmentAmount) {
-      this.installmentAmount = installmentAmount;
-      return this;
-  }
-
-  
-  public void setInstallmentType(String installmentType) {
-      this.installmentType = installmentType;
-  }
-
-  /**
-   * @param installmentType installmentType
-   * @return bean instance
-   **/
-  public InvoiceDataRequest installmentType(String installmentType) {
-      this.installmentType = installmentType;
-      return this;
-  }
-
-  
-  public void setInstallments(List<Integer> installments) {
-      this.installments = installments;
-  }
-
-  /**
-   * @param installments installments
-   * @return bean instance
-   **/
-  public InvoiceDataRequest installments(List<Integer> installments) {
-      this.installments = installments;
-      return this;
-  }
-
-  public InvoiceDataRequest addInstallmentsItem(Integer installmentsItem) {
-    if (this.installments == null) {
-      this.installments = new ArrayList<>();
-    }
-    this.installments.add(installmentsItem);
-    return this;
   }
 
 
@@ -136,9 +78,6 @@ public class InvoiceDataRequest {
      if (amount != null) sb.append("amount=").append(amount.toString()).append("; ");
      if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
      if (expireAt != null) sb.append("expireAt=").append(expireAt.toString()).append("; ");
-     if (installmentAmount != null) sb.append("installmentAmount=").append(installmentAmount.toString()).append("; ");
-     if (installmentType != null) sb.append("installmentType=").append(installmentType.toString()).append("; ");
-     if (installments != null) sb.append("installments=").append(installments.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

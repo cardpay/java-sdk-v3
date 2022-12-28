@@ -33,7 +33,7 @@ public class InvoiceGetResponse {
   }
 
   /**
-   * @param customer customer
+   * @param customer Customer data
    * @return bean instance
    **/
   public InvoiceGetResponse customer(Customer customer) {
@@ -47,7 +47,7 @@ public class InvoiceGetResponse {
   }
 
   /**
-   * @param invoiceData invoiceData
+   * @param invoiceData Invoice data
    * @return bean instance
    **/
   public InvoiceGetResponse invoiceData(InvoiceGetDataResponse invoiceData) {
@@ -61,7 +61,7 @@ public class InvoiceGetResponse {
   }
 
   /**
-   * @param invoiceUrl invoiceUrl
+   * @param invoiceUrl Invoice URL
    * @return bean instance
    **/
   public InvoiceGetResponse invoiceUrl(String invoiceUrl) {
@@ -75,7 +75,7 @@ public class InvoiceGetResponse {
   }
 
   /**
-   * @param merchantOrder merchantOrder
+   * @param merchantOrder Merchant order data
    * @return bean instance
    **/
   public InvoiceGetResponse merchantOrder(MerchantOrder merchantOrder) {

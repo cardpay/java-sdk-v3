@@ -14,8 +14,6 @@
 package com.cardpay.sdk.model;
 
 import com.google.gson.annotations.SerializedName;
-import java.util.ArrayList;
-import java.util.List;
 import lombok.Data;
 
 @Data
@@ -29,8 +27,6 @@ public class InvoiceRequest {
   private InvoiceDataRequest invoiceData = null;
   @SerializedName("merchant_order")
   private MerchantOrder merchantOrder = null;
-  @SerializedName("payment_methods")
-  private List<String> paymentMethods = null;
   @SerializedName("return_urls")
   private ReturnUrls returnUrls = null;
   
@@ -53,7 +49,7 @@ public class InvoiceRequest {
   }
 
   /**
-   * @param customer customer
+   * @param customer Customer data
    * @return bean instance
    **/
   public InvoiceRequest customer(Customer customer) {
@@ -67,7 +63,7 @@ public class InvoiceRequest {
   }
 
   /**
-   * @param invoiceData invoiceData
+   * @param invoiceData Invoice data
    * @return bean instance
    **/
   public InvoiceRequest invoiceData(InvoiceDataRequest invoiceData) {
@@ -81,7 +77,7 @@ public class InvoiceRequest {
   }
 
   /**
-   * @param merchantOrder merchantOrder
+   * @param merchantOrder Merchant order data
    * @return bean instance
    **/
   public InvoiceRequest merchantOrder(MerchantOrder merchantOrder) {
@@ -90,34 +86,12 @@ public class InvoiceRequest {
   }
 
   
-  public void setPaymentMethods(List<String> paymentMethods) {
-      this.paymentMethods = paymentMethods;
-  }
-
-  /**
-   * @param paymentMethods paymentMethods
-   * @return bean instance
-   **/
-  public InvoiceRequest paymentMethods(List<String> paymentMethods) {
-      this.paymentMethods = paymentMethods;
-      return this;
-  }
-
-  public InvoiceRequest addPaymentMethodsItem(String paymentMethodsItem) {
-    if (this.paymentMethods == null) {
-      this.paymentMethods = new ArrayList<>();
-    }
-    this.paymentMethods.add(paymentMethodsItem);
-    return this;
-  }
-
-  
   public void setReturnUrls(ReturnUrls returnUrls) {
       this.returnUrls = returnUrls;
   }
 
   /**
-   * @param returnUrls returnUrls
+   * @param returnUrls Return URLs are the URLs where customer returns by pressing “Back to the shop” or “Cancel” button in Payment Page mode
    * @return bean instance
    **/
   public InvoiceRequest returnUrls(ReturnUrls returnUrls) {
@@ -135,7 +109,6 @@ public class InvoiceRequest {
      if (customer != null) sb.append("customer=").append(customer.toString()).append("; ");
      if (invoiceData != null) sb.append("invoiceData=").append(invoiceData.toString()).append("; ");
      if (merchantOrder != null) sb.append("merchantOrder=").append(merchantOrder.toString()).append("; ");
-     if (paymentMethods != null) sb.append("paymentMethods=").append(paymentMethods.toString()).append("; ");
      if (returnUrls != null) sb.append("returnUrls=").append(returnUrls.toString()).append("; ");
      sb.append(")");
      return sb.toString();
