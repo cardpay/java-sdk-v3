@@ -22,11 +22,11 @@ public class InvoiceRequest {
   @SerializedName("request")
   private Request request = null;
   @SerializedName("customer")
-  private Customer customer = null;
+  private InvoiceCustomer customer = null;
   @SerializedName("invoice_data")
   private InvoiceDataRequest invoiceData = null;
   @SerializedName("merchant_order")
-  private MerchantOrder merchantOrder = null;
+  private InvoiceMerchantOrder merchantOrder = null;
   @SerializedName("return_urls")
   private ReturnUrls returnUrls = null;
   
@@ -44,7 +44,7 @@ public class InvoiceRequest {
   }
 
   
-  public void setCustomer(Customer customer) {
+  public void setCustomer(InvoiceCustomer customer) {
       this.customer = customer;
   }
 
@@ -52,7 +52,7 @@ public class InvoiceRequest {
    * @param customer Customer data
    * @return bean instance
    **/
-  public InvoiceRequest customer(Customer customer) {
+  public InvoiceRequest customer(InvoiceCustomer customer) {
       this.customer = customer;
       return this;
   }
@@ -72,7 +72,7 @@ public class InvoiceRequest {
   }
 
   
-  public void setMerchantOrder(MerchantOrder merchantOrder) {
+  public void setMerchantOrder(InvoiceMerchantOrder merchantOrder) {
       this.merchantOrder = merchantOrder;
   }
 
@@ -80,7 +80,7 @@ public class InvoiceRequest {
    * @param merchantOrder Merchant order data
    * @return bean instance
    **/
-  public InvoiceRequest merchantOrder(MerchantOrder merchantOrder) {
+  public InvoiceRequest merchantOrder(InvoiceMerchantOrder merchantOrder) {
       this.merchantOrder = merchantOrder;
       return this;
   }

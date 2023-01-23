@@ -20,15 +20,15 @@ import lombok.Data;
 
 public class InvoiceGetResponse {
   @SerializedName("customer")
-  private Customer customer = null;
+  private InvoiceCustomer customer = null;
   @SerializedName("invoice_data")
   private InvoiceGetDataResponse invoiceData = null;
   @SerializedName("invoice_url")
   private String invoiceUrl = null;
   @SerializedName("merchant_order")
-  private MerchantOrder merchantOrder = null;
+  private InvoiceMerchantOrder merchantOrder = null;
   
-  public void setCustomer(Customer customer) {
+  public void setCustomer(InvoiceCustomer customer) {
       this.customer = customer;
   }
 
@@ -36,7 +36,7 @@ public class InvoiceGetResponse {
    * @param customer Customer data
    * @return bean instance
    **/
-  public InvoiceGetResponse customer(Customer customer) {
+  public InvoiceGetResponse customer(InvoiceCustomer customer) {
       this.customer = customer;
       return this;
   }
@@ -70,7 +70,7 @@ public class InvoiceGetResponse {
   }
 
   
-  public void setMerchantOrder(MerchantOrder merchantOrder) {
+  public void setMerchantOrder(InvoiceMerchantOrder merchantOrder) {
       this.merchantOrder = merchantOrder;
   }
 
@@ -78,7 +78,7 @@ public class InvoiceGetResponse {
    * @param merchantOrder Merchant order data
    * @return bean instance
    **/
-  public InvoiceGetResponse merchantOrder(MerchantOrder merchantOrder) {
+  public InvoiceGetResponse merchantOrder(InvoiceMerchantOrder merchantOrder) {
       this.merchantOrder = merchantOrder;
       return this;
   }

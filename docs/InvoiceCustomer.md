@@ -1,5 +1,5 @@
 
-# Customer
+# InvoiceCustomer
 
 ## Properties
 Name | Type | Description | Notes

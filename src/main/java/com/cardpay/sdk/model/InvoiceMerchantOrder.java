@@ -20,11 +20,11 @@ import lombok.Data;
 
 @Data
 
-public class MerchantOrder {
+public class InvoiceMerchantOrder {
   @SerializedName("id")
   private String id = null;
   @SerializedName("items")
-  private List<Item> items = new ArrayList<>();
+  private List<InvoiceItem> items = new ArrayList<>();
   
   public void setId(String id) {
       this.id = id;
@@ -34,13 +34,13 @@ public class MerchantOrder {
    * @param id Order ID used by the merchant’s shopping cart
    * @return bean instance
    **/
-  public MerchantOrder id(String id) {
+  public InvoiceMerchantOrder id(String id) {
       this.id = id;
       return this;
   }
 
   
-  public void setItems(List<Item> items) {
+  public void setItems(List<InvoiceItem> items) {
       this.items = items;
   }
 
@@ -48,12 +48,12 @@ public class MerchantOrder {
    * @param items Array of items (in the shopping cart)
    * @return bean instance
    **/
-  public MerchantOrder items(List<Item> items) {
+  public InvoiceMerchantOrder items(List<InvoiceItem> items) {
       this.items = items;
       return this;
   }
 
-  public MerchantOrder addItemsItem(Item itemsItem) {
+  public InvoiceMerchantOrder addItemsItem(InvoiceItem itemsItem) {
     this.items.add(itemsItem);
     return this;
   }
@@ -62,7 +62,7 @@ public class MerchantOrder {
   @Override
   public String toString() {
      StringBuilder sb = new StringBuilder();
-     sb.append("MerchantOrder( ");
+     sb.append("InvoiceMerchantOrder( ");
      
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
      if (items != null) sb.append("items=").append(items.toString()).append("; ");

@@ -4,10 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer** | [**Customer**](Customer.md) | Customer data | 
+**customer** | [**InvoiceCustomer**](InvoiceCustomer.md) | Customer data | 
 **invoiceData** | [**InvoiceGetDataResponse**](InvoiceGetDataResponse.md) | Invoice data | 
 **invoiceUrl** | **String** | Invoice URL |  [optional]
-**merchantOrder** | [**MerchantOrder**](MerchantOrder.md) | Merchant order data | 
+**merchantOrder** | [**InvoiceMerchantOrder**](InvoiceMerchantOrder.md) | Merchant order data | 
 
 
 

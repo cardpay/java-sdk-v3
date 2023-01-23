@@ -7,10 +7,10 @@ import com.cardpay.sdk.model.InvoiceRequest;
 import retrofit2.Call;
 import retrofit2.http.*;
 
-public interface InvoiceRestControllerApi {
+public interface InvoicesApi {
   /**
-   * createInvoice
-   * 
+   * Create invoice
+   * Endpoint for invoice creation
    * @param invoiceRequest invoiceRequest (required)
    * @return Call&lt;InvoiceCreationResponse&gt;
    */
@@ -18,18 +18,18 @@ public interface InvoiceRestControllerApi {
     "Content-Type:application/json"
   })
   @POST("api/invoices")
-  Call<InvoiceCreationResponse> createInvoiceUsingPOST(
+  Call<InvoiceCreationResponse> createInvoice(
     @retrofit2.http.Body InvoiceRequest invoiceRequest
   );
 
   /**
-   * getInvoiceInfo
-   * 
-   * @param invoiceId invoiceId (required)
+   * Get invoice information
+   * Method allows to get information about single invoice.
+   * @param invoiceId Invoice ID (required)
    * @return Call&lt;InvoiceGetResponse&gt;
    */
   @GET("api/invoices/{invoiceId}")
-  Call<InvoiceGetResponse> getInvoiceInfoUsingGET(
+  Call<InvoiceGetResponse> getInvoice(
     @retrofit2.http.Path("invoiceId") String invoiceId
   );
 

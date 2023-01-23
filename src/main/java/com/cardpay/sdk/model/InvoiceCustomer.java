@@ -18,7 +18,7 @@ import lombok.Data;
 
 @Data
 
-public class Customer {
+public class InvoiceCustomer {
   @SerializedName("email")
   private String email = null;
   @SerializedName("phone")
@@ -32,7 +32,7 @@ public class Customer {
    * @param email Email address of the customer
    * @return bean instance
    **/
-  public Customer email(String email) {
+  public InvoiceCustomer email(String email) {
       this.email = email;
       return this;
   }
@@ -46,7 +46,7 @@ public class Customer {
    * @param phone Customer phone number
    * @return bean instance
    **/
-  public Customer phone(String phone) {
+  public InvoiceCustomer phone(String phone) {
       this.phone = phone;
       return this;
   }
@@ -55,7 +55,7 @@ public class Customer {
   @Override
   public String toString() {
      StringBuilder sb = new StringBuilder();
-     sb.append("Customer( ");
+     sb.append("InvoiceCustomer( ");
      
      if (email != null) sb.append("email=").append(email.toString()).append("; ");
      if (phone != null) sb.append("phone=").append(phone.toString()).append("; ");

@@ -1,18 +1,20 @@
-# InvoiceRestControllerApi
+# InvoicesApi
 
 All URIs are relative to *https://sandbox.cardpay.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createInvoiceUsingPOST**](InvoiceRestControllerApi.md#createInvoiceUsingPOST) | **POST** api/invoices | createInvoice
-[**getInvoiceInfoUsingGET**](InvoiceRestControllerApi.md#getInvoiceInfoUsingGET) | **GET** api/invoices/{invoiceId} | getInvoiceInfo
+[**createInvoice**](InvoicesApi.md#createInvoice) | **POST** api/invoices | Create invoice
+[**getInvoice**](InvoicesApi.md#getInvoice) | **GET** api/invoices/{invoiceId} | Get invoice information
 
 
-<a name="createInvoiceUsingPOST"></a>
-# **createInvoiceUsingPOST**
-> InvoiceCreationResponse createInvoiceUsingPOST(invoiceRequest)
+<a name="createInvoice"></a>
+# **createInvoice**
+> InvoiceCreationResponse createInvoice(invoiceRequest)
 
-createInvoice
+Create invoice
+
+Endpoint for invoice creation
 
 ### Example
 ```java
@@ -21,7 +23,7 @@ createInvoice
 //import com.cardpay.sdk.client.ApiException;
 //import com.cardpay.sdk.client.Configuration;
 //import com.cardpay.sdk.client.auth.*;
-//import com.cardpay.sdk.api.InvoiceRestControllerApi;
+//import com.cardpay.sdk.api.InvoicesApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -31,13 +33,13 @@ Bearer.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //Bearer.setApiKeyPrefix("Token");
 
-InvoiceRestControllerApi apiInstance = new InvoiceRestControllerApi();
+InvoicesApi apiInstance = new InvoicesApi();
 InvoiceRequest invoiceRequest = new InvoiceRequest(); // InvoiceRequest | invoiceRequest
 try {
-    InvoiceCreationResponse result = apiInstance.createInvoiceUsingPOST(invoiceRequest);
+    InvoiceCreationResponse result = apiInstance.createInvoice(invoiceRequest);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling InvoiceRestControllerApi#createInvoiceUsingPOST");
+    System.err.println("Exception when calling InvoicesApi#createInvoice");
     e.printStackTrace();
 }
 ```
@@ -59,13 +61,15 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: */*
+ - **Accept**: application/json
 
-<a name="getInvoiceInfoUsingGET"></a>
-# **getInvoiceInfoUsingGET**
-> InvoiceGetResponse getInvoiceInfoUsingGET(invoiceId)
+<a name="getInvoice"></a>
+# **getInvoice**
+> InvoiceGetResponse getInvoice(invoiceId)
 
-getInvoiceInfo
+Get invoice information
+
+Method allows to get information about single invoice.
 
 ### Example
 ```java
@@ -74,7 +78,7 @@ getInvoiceInfo
 //import com.cardpay.sdk.client.ApiException;
 //import com.cardpay.sdk.client.Configuration;
 //import com.cardpay.sdk.client.auth.*;
-//import com.cardpay.sdk.api.InvoiceRestControllerApi;
+//import com.cardpay.sdk.api.InvoicesApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -84,13 +88,13 @@ Bearer.setApiKey("YOUR API KEY");
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //Bearer.setApiKeyPrefix("Token");
 
-InvoiceRestControllerApi apiInstance = new InvoiceRestControllerApi();
-String invoiceId = "invoiceId_example"; // String | invoiceId
+InvoicesApi apiInstance = new InvoicesApi();
+String invoiceId = "invoiceId_example"; // String | Invoice ID
 try {
-    InvoiceGetResponse result = apiInstance.getInvoiceInfoUsingGET(invoiceId);
+    InvoiceGetResponse result = apiInstance.getInvoice(invoiceId);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling InvoiceRestControllerApi#getInvoiceInfoUsingGET");
+    System.err.println("Exception when calling InvoicesApi#getInvoice");
     e.printStackTrace();
 }
 ```
@@ -99,7 +103,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **invoiceId** | **String**| invoiceId |
+ **invoiceId** | **String**| Invoice ID |
 
 ### Return type
 
@@ -112,5 +116,5 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: application/json
 
