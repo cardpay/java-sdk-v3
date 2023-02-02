@@ -61,7 +61,7 @@ public class InvoiceDataRequest {
   }
 
   /**
-   * @param expireAt Date of invoice expiring. Invoice cannot be used after this date.
+   * @param expireAt Date and time of invoice expiring. Invoice cannot be used after this date and time.
    * @return bean instance
    **/
   public InvoiceDataRequest expireAt(OffsetDateTime expireAt) {
