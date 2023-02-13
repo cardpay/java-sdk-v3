@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="cardInfo"></a>
 # **cardInfo**
-> CardInfoResponse cardInfo(cardInfoRequest)
+> List&lt;CardInfoResponse&gt; cardInfo(cardInfoRequest)
 
 Get card information
 
@@ -33,7 +33,7 @@ Bearer.setApiKey("YOUR API KEY");
 CardInfoApi apiInstance = new CardInfoApi();
 CardInfoRequest cardInfoRequest = new CardInfoRequest(); // CardInfoRequest | cardInfoRequest
 try {
-    CardInfoResponse result = apiInstance.cardInfo(cardInfoRequest);
+    List<CardInfoResponse> result = apiInstance.cardInfo(cardInfoRequest);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling CardInfoApi#cardInfo");
@@ -49,7 +49,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CardInfoResponse**](CardInfoResponse.md)
+[**List&lt;CardInfoResponse&gt;**](CardInfoResponse.md)
 
 ### Authorization
 
