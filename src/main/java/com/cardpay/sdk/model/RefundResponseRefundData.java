@@ -25,8 +25,6 @@ import lombok.Data;
 @Data
 
 public class RefundResponseRefundData {
-  @SerializedName("action_code")
-  private String actionCode = null;
   @SerializedName("amount")
   private BigDecimal amount = null;
   @SerializedName("arn")
@@ -41,6 +39,8 @@ public class RefundResponseRefundData {
   private String declineCode = null;
   @SerializedName("decline_reason")
   private String declineReason = null;
+  @SerializedName("extended_decline_reason")
+  private String extendedDeclineReason = null;
   @SerializedName("id")
   private String id = null;
   @SerializedName("is_3d")
@@ -114,20 +114,6 @@ public class RefundResponseRefundData {
 
   @SerializedName("status")
   private StatusEnum status = null;
-  
-  public void setActionCode(String actionCode) {
-      this.actionCode = actionCode;
-  }
-
-  /**
-   * @param actionCode Refund action code (only for &#x60;DECLINED&#x60; refund status)
-   * @return bean instance
-   **/
-  public RefundResponseRefundData actionCode(String actionCode) {
-      this.actionCode = actionCode;
-      return this;
-  }
-
   
   public void setAmount(BigDecimal amount) {
       this.amount = amount;
@@ -227,6 +213,20 @@ public class RefundResponseRefundData {
   }
 
   
+  public void setExtendedDeclineReason(String extendedDeclineReason) {
+      this.extendedDeclineReason = extendedDeclineReason;
+  }
+
+  /**
+   * @param extendedDeclineReason Original decline reason. Can be presented in responses if original network response code is presented and option is enabled for Merchant. Not presented by default, ask Unlimint manager to enable it if needed.
+   * @return bean instance
+   **/
+  public RefundResponseRefundData extendedDeclineReason(String extendedDeclineReason) {
+      this.extendedDeclineReason = extendedDeclineReason;
+      return this;
+  }
+
+  
   public void setId(String id) {
       this.id = id;
   }
@@ -288,7 +288,6 @@ public class RefundResponseRefundData {
      StringBuilder sb = new StringBuilder();
      sb.append("RefundResponseRefundData( ");
      
-     if (actionCode != null) sb.append("actionCode=").append(actionCode.toString()).append("; ");
      if (amount != null) sb.append("amount=").append(amount.toString()).append("; ");
      if (arn != null) sb.append("arn=").append(arn.toString()).append("; ");
      if (authCode != null) sb.append("authCode=").append(authCode.toString()).append("; ");
@@ -296,6 +295,7 @@ public class RefundResponseRefundData {
      if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
      if (declineCode != null) sb.append("declineCode=").append(declineCode.toString()).append("; ");
      if (declineReason != null) sb.append("declineReason=").append(declineReason.toString()).append("; ");
+     if (extendedDeclineReason != null) sb.append("extendedDeclineReason=").append(extendedDeclineReason.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
      if (is3d != null) sb.append("is3d=").append(is3d.toString()).append("; ");
      if (rrn != null) sb.append("rrn=").append(rrn.toString()).append("; ");

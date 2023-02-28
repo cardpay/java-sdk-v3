@@ -4,13 +4,13 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**actionCode** | **String** | Action code (only in decline case) |  [optional]
 **amount** | [**BigDecimal**](BigDecimal.md) | Payout amount |  [optional]
 **arn** | **String** | ARN (Acquirer Reference Number), supplied by the acquiring financial institution, return only after receiving ARN from bank acquirer *(for BANKCARD payment method only)* |  [optional]
 **created** | **String** | Date and time when this payout was created, [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format |  [optional]
 **currency** | **String** | Payout currency ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format) |  [optional]
 **declineCode** | **String** | Decline code (only in decline case) |  [optional]
 **declineReason** | **String** | Bank&#39;s message about payout decline reason (only in decline case) |  [optional]
+**extendedDeclineReason** | **String** | Original decline reason. Can be presented in responses if original network response code is presented and option is enabled for Merchant. Not presented by default, ask Unlimint manager to enable it if needed. |  [optional]
 **id** | **String** | CardPay&#39;s payout id |  [optional]
 **note** | **String** | Payout note |  [optional]
 **rrn** | **String** | RRN (Retrieval Reference Number), supplied by the acquiring financial institution *(for BANKCARD method only)* |  [optional]

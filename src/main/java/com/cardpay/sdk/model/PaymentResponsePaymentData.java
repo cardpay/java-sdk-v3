@@ -27,8 +27,6 @@ import lombok.Data;
 @Data
 
 public class PaymentResponsePaymentData {
-  @SerializedName("action_code")
-  private String actionCode = null;
   @SerializedName("amount")
   private BigDecimal amount = null;
   @SerializedName("arn")
@@ -43,6 +41,8 @@ public class PaymentResponsePaymentData {
   private String declineCode = null;
   @SerializedName("decline_reason")
   private String declineReason = null;
+  @SerializedName("extended_decline_reason")
+  private String extendedDeclineReason = null;
   @SerializedName("id")
   private String id = null;
   @SerializedName("installment_type")
@@ -182,20 +182,6 @@ public class PaymentResponsePaymentData {
   @SerializedName("type")
   private String type = null;
   
-  public void setActionCode(String actionCode) {
-      this.actionCode = actionCode;
-  }
-
-  /**
-   * @param actionCode Action code (only in decline case)
-   * @return bean instance
-   **/
-  public PaymentResponsePaymentData actionCode(String actionCode) {
-      this.actionCode = actionCode;
-      return this;
-  }
-
-  
   public void setAmount(BigDecimal amount) {
       this.amount = amount;
   }
@@ -290,6 +276,20 @@ public class PaymentResponsePaymentData {
    **/
   public PaymentResponsePaymentData declineReason(String declineReason) {
       this.declineReason = declineReason;
+      return this;
+  }
+
+  
+  public void setExtendedDeclineReason(String extendedDeclineReason) {
+      this.extendedDeclineReason = extendedDeclineReason;
+  }
+
+  /**
+   * @param extendedDeclineReason Original decline reason. Can be presented in responses if original network response code is presented and option is enabled for Merchant. Not presented by default, ask Unlimint manager to enable it if needed.
+   * @return bean instance
+   **/
+  public PaymentResponsePaymentData extendedDeclineReason(String extendedDeclineReason) {
+      this.extendedDeclineReason = extendedDeclineReason;
       return this;
   }
 
@@ -447,7 +447,6 @@ public class PaymentResponsePaymentData {
      StringBuilder sb = new StringBuilder();
      sb.append("PaymentResponsePaymentData( ");
      
-     if (actionCode != null) sb.append("actionCode=").append(actionCode.toString()).append("; ");
      if (amount != null) sb.append("amount=").append(amount.toString()).append("; ");
      if (arn != null) sb.append("arn=").append(arn.toString()).append("; ");
      if (authCode != null) sb.append("authCode=").append(authCode.toString()).append("; ");
@@ -455,6 +454,7 @@ public class PaymentResponsePaymentData {
      if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
      if (declineCode != null) sb.append("declineCode=").append(declineCode.toString()).append("; ");
      if (declineReason != null) sb.append("declineReason=").append(declineReason.toString()).append("; ");
+     if (extendedDeclineReason != null) sb.append("extendedDeclineReason=").append(extendedDeclineReason.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
      if (installmentType != null) sb.append("installmentType=").append(installmentType.toString()).append("; ");
      if (installments != null) sb.append("installments=").append(installments.toString()).append("; ");

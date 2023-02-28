@@ -4,7 +4,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**actionCode** | **String** | Refund action code (only for &#x60;DECLINED&#x60; refund status) |  [optional]
 **amount** | [**BigDecimal**](BigDecimal.md) | Refund transaction amount |  [optional]
 **arn** | **String** | ARN (Acquirer Reference Number), supplied by the acquiring financial institution, return only after receiving ARN from bank acquirer *(for BANKCARD payment method only)* |  [optional]
 **authCode** | **String** | Authorization code, provided by bank *(for BANKCARD payment method only)* |  [optional]
@@ -12,6 +11,7 @@ Name | Type | Description | Notes
 **currency** | **String** | Currency of refunded amount, [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code |  [optional]
 **declineCode** | **String** | Refund decline code (only for &#x60;DECLINED&#x60; refund status) |  [optional]
 **declineReason** | **String** | Refund decline reason (only for &#x60;DECLINED&#x60; refund status) |  [optional]
+**extendedDeclineReason** | **String** | Original decline reason. Can be presented in responses if original network response code is presented and option is enabled for Merchant. Not presented by default, ask Unlimint manager to enable it if needed. |  [optional]
 **id** | **String** | ID of the newly created refund in CardPay system |  [optional]
 **is3d** | **Boolean** | Was 3-D Secure authentication made or not *(for BANKCARD payment method only)* |  [optional]
 **rrn** | **String** | RRN (Retrieval Reference Number), supplied by the acquiring financial institution *(for BANKCARD payment method only)* |  [optional]

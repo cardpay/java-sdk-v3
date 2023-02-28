@@ -27,8 +27,6 @@ import lombok.Data;
 @Data
 
 public class RecurringResponseRecurringData {
-  @SerializedName("action_code")
-  private String actionCode = null;
   @SerializedName("amount")
   private BigDecimal amount = null;
   @SerializedName("arn")
@@ -43,6 +41,8 @@ public class RecurringResponseRecurringData {
   private String declineCode = null;
   @SerializedName("decline_reason")
   private String declineReason = null;
+  @SerializedName("extended_decline_reason")
+  private String extendedDeclineReason = null;
   @SerializedName("filing")
   private RecurringResponseFiling filing = null;
   @SerializedName("id")
@@ -288,20 +288,6 @@ public class RecurringResponseRecurringData {
   @SerializedName("trans_type")
   private TransTypeEnum transType = null;
   
-  public void setActionCode(String actionCode) {
-      this.actionCode = actionCode;
-  }
-
-  /**
-   * @param actionCode Action code (only in decline case)
-   * @return bean instance
-   **/
-  public RecurringResponseRecurringData actionCode(String actionCode) {
-      this.actionCode = actionCode;
-      return this;
-  }
-
-  
   public void setAmount(BigDecimal amount) {
       this.amount = amount;
   }
@@ -396,6 +382,20 @@ public class RecurringResponseRecurringData {
    **/
   public RecurringResponseRecurringData declineReason(String declineReason) {
       this.declineReason = declineReason;
+      return this;
+  }
+
+  
+  public void setExtendedDeclineReason(String extendedDeclineReason) {
+      this.extendedDeclineReason = extendedDeclineReason;
+  }
+
+  /**
+   * @param extendedDeclineReason Original decline reason. Can be presented in responses if original network response code is presented and option is enabled for Merchant. Not presented by default, ask Unlimint manager to enable it if needed.
+   * @return bean instance
+   **/
+  public RecurringResponseRecurringData extendedDeclineReason(String extendedDeclineReason) {
+      this.extendedDeclineReason = extendedDeclineReason;
       return this;
   }
 
@@ -623,7 +623,6 @@ public class RecurringResponseRecurringData {
      StringBuilder sb = new StringBuilder();
      sb.append("RecurringResponseRecurringData( ");
      
-     if (actionCode != null) sb.append("actionCode=").append(actionCode.toString()).append("; ");
      if (amount != null) sb.append("amount=").append(amount.toString()).append("; ");
      if (arn != null) sb.append("arn=").append(arn.toString()).append("; ");
      if (authCode != null) sb.append("authCode=").append(authCode.toString()).append("; ");
@@ -631,6 +630,7 @@ public class RecurringResponseRecurringData {
      if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
      if (declineCode != null) sb.append("declineCode=").append(declineCode.toString()).append("; ");
      if (declineReason != null) sb.append("declineReason=").append(declineReason.toString()).append("; ");
+     if (extendedDeclineReason != null) sb.append("extendedDeclineReason=").append(extendedDeclineReason.toString()).append("; ");
      if (filing != null) sb.append("filing=").append(filing.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
      if (initiator != null) sb.append("initiator=").append(initiator.toString()).append("; ");
