@@ -1,12 +1,14 @@
 
-# InvoiceDataRequest
+# InvoiceData
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **amount** | [**BigDecimal**](BigDecimal.md) | The total invoice amount in selected currency with dot as a decimal separator, must be less than 10 billion | 
-**currency** | **String** | ISO 4217 currency code | 
+**currency** | **String** | [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code | 
 **expireAt** | [**OffsetDateTime**](OffsetDateTime.md) | Date and time of invoice expiring. Invoice cannot be used after this date and time. |  [optional]
+**installmentType** | **String** | Installment type |  [optional]
+**installments** | **List&lt;Integer&gt;** | Number of installments. It depends on country. |  [optional]
 
 
 

@@ -24,7 +24,7 @@ public class InvoiceRequest {
   @SerializedName("customer")
   private InvoiceCustomer customer = null;
   @SerializedName("invoice_data")
-  private InvoiceDataRequest invoiceData = null;
+  private InvoiceData invoiceData = null;
   @SerializedName("merchant_order")
   private InvoiceMerchantOrder merchantOrder = null;
   @SerializedName("return_urls")
@@ -58,7 +58,7 @@ public class InvoiceRequest {
   }
 
   
-  public void setInvoiceData(InvoiceDataRequest invoiceData) {
+  public void setInvoiceData(InvoiceData invoiceData) {
       this.invoiceData = invoiceData;
   }
 
@@ -66,7 +66,7 @@ public class InvoiceRequest {
    * @param invoiceData Invoice data
    * @return bean instance
    **/
-  public InvoiceRequest invoiceData(InvoiceDataRequest invoiceData) {
+  public InvoiceRequest invoiceData(InvoiceData invoiceData) {
       this.invoiceData = invoiceData;
       return this;
   }
@@ -91,7 +91,7 @@ public class InvoiceRequest {
   }
 
   /**
-   * @param returnUrls Return URLs are the URLs where customer returns by pressing “Back to the shop” or “Cancel” button in Payment Page mode
+   * @param returnUrls Return URLs are the URLs where customer returns by pressing &#39;Back to the shop&#39; or &#39;Cancel&#39; button in Payment Page mode
    * @return bean instance
    **/
   public InvoiceRequest returnUrls(ReturnUrls returnUrls) {

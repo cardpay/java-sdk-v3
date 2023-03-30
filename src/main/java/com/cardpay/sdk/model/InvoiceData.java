@@ -16,17 +16,23 @@ package com.cardpay.sdk.model;
 import com.google.gson.annotations.SerializedName;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Data;
 
 @Data
 
-public class InvoiceDataRequest {
+public class InvoiceData {
   @SerializedName("amount")
   private BigDecimal amount = null;
   @SerializedName("currency")
   private String currency = null;
   @SerializedName("expire_at")
   private OffsetDateTime expireAt = null;
+  @SerializedName("installment_type")
+  private String installmentType = null;
+  @SerializedName("installments")
+  private List<Integer> installments = null;
   
   public void setAmount(BigDecimal amount) {
       this.amount = amount;
@@ -36,7 +42,7 @@ public class InvoiceDataRequest {
    * @param amount The total invoice amount in selected currency with dot as a decimal separator, must be less than 10 billion
    * @return bean instance
    **/
-  public InvoiceDataRequest amount(BigDecimal amount) {
+  public InvoiceData amount(BigDecimal amount) {
       this.amount = amount;
       return this;
   }
@@ -47,10 +53,10 @@ public class InvoiceDataRequest {
   }
 
   /**
-   * @param currency ISO 4217 currency code
+   * @param currency [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code
    * @return bean instance
    **/
-  public InvoiceDataRequest currency(String currency) {
+  public InvoiceData currency(String currency) {
       this.currency = currency;
       return this;
   }
@@ -64,20 +70,58 @@ public class InvoiceDataRequest {
    * @param expireAt Date and time of invoice expiring. Invoice cannot be used after this date and time.
    * @return bean instance
    **/
-  public InvoiceDataRequest expireAt(OffsetDateTime expireAt) {
+  public InvoiceData expireAt(OffsetDateTime expireAt) {
       this.expireAt = expireAt;
       return this;
+  }
+
+  
+  public void setInstallmentType(String installmentType) {
+      this.installmentType = installmentType;
+  }
+
+  /**
+   * @param installmentType Installment type
+   * @return bean instance
+   **/
+  public InvoiceData installmentType(String installmentType) {
+      this.installmentType = installmentType;
+      return this;
+  }
+
+  
+  public void setInstallments(List<Integer> installments) {
+      this.installments = installments;
+  }
+
+  /**
+   * @param installments Number of installments. It depends on country.
+   * @return bean instance
+   **/
+  public InvoiceData installments(List<Integer> installments) {
+      this.installments = installments;
+      return this;
+  }
+
+  public InvoiceData addInstallmentsItem(Integer installmentsItem) {
+    if (this.installments == null) {
+      this.installments = new ArrayList<>();
+    }
+    this.installments.add(installmentsItem);
+    return this;
   }
 
 
   @Override
   public String toString() {
      StringBuilder sb = new StringBuilder();
-     sb.append("InvoiceDataRequest( ");
+     sb.append("InvoiceData( ");
      
      if (amount != null) sb.append("amount=").append(amount.toString()).append("; ");
      if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
      if (expireAt != null) sb.append("expireAt=").append(expireAt.toString()).append("; ");
+     if (installmentType != null) sb.append("installmentType=").append(installmentType.toString()).append("; ");
+     if (installments != null) sb.append("installments=").append(installments.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }
