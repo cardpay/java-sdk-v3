@@ -57,6 +57,8 @@ public class RecurringResponseRecurringData {
   private List<String> invalidData = null;
   @SerializedName("is_3d")
   private Boolean is3d = null;
+  @SerializedName("network_trans_id")
+  private String networkTransId = null;
   @SerializedName("note")
   private String note = null;
   @SerializedName("payments")
@@ -506,6 +508,20 @@ public class RecurringResponseRecurringData {
   }
 
   
+  public void setNetworkTransId(String networkTransId) {
+      this.networkTransId = networkTransId;
+  }
+
+  /**
+   * @param networkTransId Network Reference Number of original transaction
+   * @return bean instance
+   **/
+  public RecurringResponseRecurringData networkTransId(String networkTransId) {
+      this.networkTransId = networkTransId;
+      return this;
+  }
+
+  
   public void setNote(String note) {
       this.note = note;
   }
@@ -638,6 +654,7 @@ public class RecurringResponseRecurringData {
      if (installmentType != null) sb.append("installmentType=").append(installmentType.toString()).append("; ");
      if (invalidData != null) sb.append("invalidData=").append(invalidData.toString()).append("; ");
      if (is3d != null) sb.append("is3d=").append(is3d.toString()).append("; ");
+     if (networkTransId != null) sb.append("networkTransId=").append(networkTransId.toString()).append("; ");
      if (note != null) sb.append("note=").append(note.toString()).append("; ");
      if (payments != null) sb.append("payments=").append(payments.toString()).append("; ");
      if (rrn != null) sb.append("rrn=").append(rrn.toString()).append("; ");

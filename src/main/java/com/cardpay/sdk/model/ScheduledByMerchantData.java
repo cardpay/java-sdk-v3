@@ -39,6 +39,8 @@ public class ScheduledByMerchantData {
   private Boolean generateToken = null;
   @SerializedName("initiator")
   private String initiator = null;
+  @SerializedName("network_trans_id")
+  private String networkTransId = null;
   @SerializedName("note")
   private String note = null;
   @SerializedName("scheduled_type")
@@ -199,6 +201,20 @@ public class ScheduledByMerchantData {
   }
 
   
+  public void setNetworkTransId(String networkTransId) {
+      this.networkTransId = networkTransId;
+  }
+
+  /**
+   * @param networkTransId Network Reference Number of original transaction
+   * @return bean instance
+   **/
+  public ScheduledByMerchantData networkTransId(String networkTransId) {
+      this.networkTransId = networkTransId;
+      return this;
+  }
+
+  
   public void setNote(String note) {
       this.note = note;
   }
@@ -267,6 +283,7 @@ public class ScheduledByMerchantData {
      if (filing != null) sb.append("filing=").append(filing.toString()).append("; ");
      if (generateToken != null) sb.append("generateToken=").append(generateToken.toString()).append("; ");
      if (initiator != null) sb.append("initiator=").append(initiator.toString()).append("; ");
+     if (networkTransId != null) sb.append("networkTransId=").append(networkTransId.toString()).append("; ");
      if (note != null) sb.append("note=").append(note.toString()).append("; ");
      if (scheduledType != null) sb.append("scheduledType=").append(scheduledType.toString()).append("; ");
      if (threeDsChallengeIndicator != null) sb.append("threeDsChallengeIndicator=").append(threeDsChallengeIndicator.toString()).append("; ");

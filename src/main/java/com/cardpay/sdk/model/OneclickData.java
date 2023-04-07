@@ -39,6 +39,8 @@ public class OneclickData {
   private Boolean generateToken = null;
   @SerializedName("initiator")
   private String initiator = null;
+  @SerializedName("network_trans_id")
+  private String networkTransId = null;
   @SerializedName("note")
   private String note = null;
   @SerializedName("preauth")
@@ -201,6 +203,20 @@ public class OneclickData {
   }
 
   
+  public void setNetworkTransId(String networkTransId) {
+      this.networkTransId = networkTransId;
+  }
+
+  /**
+   * @param networkTransId Network Reference Number of original transaction
+   * @return bean instance
+   **/
+  public OneclickData networkTransId(String networkTransId) {
+      this.networkTransId = networkTransId;
+      return this;
+  }
+
+  
   public void setNote(String note) {
       this.note = note;
   }
@@ -283,6 +299,7 @@ public class OneclickData {
      if (filing != null) sb.append("filing=").append(filing.toString()).append("; ");
      if (generateToken != null) sb.append("generateToken=").append(generateToken.toString()).append("; ");
      if (initiator != null) sb.append("initiator=").append(initiator.toString()).append("; ");
+     if (networkTransId != null) sb.append("networkTransId=").append(networkTransId.toString()).append("; ");
      if (note != null) sb.append("note=").append(note.toString()).append("; ");
      if (preauth != null) sb.append("preauth=").append(preauth.toString()).append("; ");
      if (scaExemption != null) sb.append("scaExemption=").append(scaExemption.toString()).append("; ");

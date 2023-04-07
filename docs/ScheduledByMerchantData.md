@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **filing** | [**RecurringResponseFiling**](RecurringResponseFiling.md) | Card filing data |  [optional]
 **generateToken** | **Boolean** | This attribute can be received only in first recurring request. In all requests with recurring_id card.token can&#39;t be generated. If set to &#39;true&#39;, Card token will be generated and returned in GET response. Will be generated only for successful transactions (not for declined). |  [optional]
 **initiator** | **String** | Use &#x60;cit&#x60; for initiator attribute for cardholder initiated transactions (first scheduled payment by merchant transactions) Use &#x60;mit&#x60; for initiator attribute for merchant initiated transactions (continue scheduled payment by merchant transactions) | 
+**networkTransId** | **String** | Network Reference Number of original transaction |  [optional]
 **note** | **String** | Note about the recurring that will not be displayed to customer. |  [optional]
 **scheduledType** | **String** | Scheduled payment type attribute. For scheduled payments by merchant value should be &#x60;SM&#x60; - scheduled by merchant | 
 **threeDsChallengeIndicator** | **String** |  |  [optional]

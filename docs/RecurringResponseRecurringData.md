@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **installmentType** | **String** | Selected installment type |  [optional]
 **invalidData** | **List&lt;String&gt;** | Invalid card or billing data |  [optional]
 **is3d** | **Boolean** | Was 3-D Secure authentication made or not |  [optional]
+**networkTransId** | **String** | Network Reference Number of original transaction |  [optional]
 **note** | **String** | Payment note |  [optional]
 **payments** | **String** | Number of total payments, to be charged |  [optional]
 **rrn** | **String** | RRN (Retrieval Reference Number), supplied by the acquiring financial institution |  [optional]
