@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**birthDate** | **String** | Customer birth date |  [optional]
 **documentType** | **String** | Customer document type *(mandatory for &#39;Latin America&#39; methods only)* For &#39;Latin America&#39; is required for methods where country &#x3D; CO, PE |  [optional]
 **email** | **String** | Customer e-mail address *(mandatory for &#39;Latin America&#39; methods only)* For &#39;Latin America&#39; is required for methods where country &#x3D; CO |  [optional]
 **firstName** | **String** | Customer first name *(mandatory for &#39;Latin America&#39; methods only)* |  [optional]

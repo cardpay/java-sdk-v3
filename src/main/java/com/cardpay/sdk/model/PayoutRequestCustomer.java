@@ -19,6 +19,8 @@ import lombok.Data;
 @Data
 
 public class PayoutRequestCustomer {
+  @SerializedName("birth_date")
+  private String birthDate = null;
   @SerializedName("document_type")
   private String documentType = null;
   @SerializedName("email")
@@ -39,6 +41,20 @@ public class PayoutRequestCustomer {
   private String phone = null;
   @SerializedName("tax_reason_code")
   private String taxReasonCode = null;
+  
+  public void setBirthDate(String birthDate) {
+      this.birthDate = birthDate;
+  }
+
+  /**
+   * @param birthDate Customer birth date
+   * @return bean instance
+   **/
+  public PayoutRequestCustomer birthDate(String birthDate) {
+      this.birthDate = birthDate;
+      return this;
+  }
+
   
   public void setDocumentType(String documentType) {
       this.documentType = documentType;
@@ -185,6 +201,7 @@ public class PayoutRequestCustomer {
      StringBuilder sb = new StringBuilder();
      sb.append("PayoutRequestCustomer( ");
      
+     if (birthDate != null) sb.append("birthDate=").append(birthDate.toString()).append("; ");
      if (documentType != null) sb.append("documentType=").append(documentType.toString()).append("; ");
      if (email != null) sb.append("email=").append(email.toString()).append("; ");
      if (firstName != null) sb.append("firstName=").append(firstName.toString()).append("; ");

@@ -13,27 +13,181 @@
 
 package com.cardpay.sdk.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 import lombok.Data;
 
 @Data
 
 public class PayoutResponseCardAccount {
-  @SerializedName("card")
-  private PayoutResponseCard card = null;
+  @SerializedName("card_brand")
+  private String cardBrand = null;
+  /**
+   * Card type
+   */
+  @JsonAdapter(CardTypeEnum.Adapter.class)
+  public enum CardTypeEnum {
+    DEBIT("DEBIT"),
+    
+    CREDIT("CREDIT"),
+    
+    PREPAID("PREPAID"),
+    
+    OTHER("OTHER"),
+    
+    UNKNOWN("UNKNOWN");
+
+    private String value;
+
+    CardTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static CardTypeEnum fromValue(String text) {
+      for (CardTypeEnum b : CardTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<CardTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final CardTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public CardTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return CardTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName("card_type")
+  private CardTypeEnum cardType = null;
+  @SerializedName("expiration")
+  private String expiration = null;
+  @SerializedName("holder")
+  private String holder = null;
+  @SerializedName("issuer")
+  private String issuer = null;
+  @SerializedName("issuing_country_code")
+  private String issuingCountryCode = null;
+  @SerializedName("masked_pan")
+  private String maskedPan = null;
   @SerializedName("token")
   private String token = null;
   
-  public void setCard(PayoutResponseCard card) {
-      this.card = card;
+  public void setCardBrand(String cardBrand) {
+      this.cardBrand = cardBrand;
   }
 
   /**
-   * @param card Bank card data
+   * @param cardBrand Card brand
    * @return bean instance
    **/
-  public PayoutResponseCardAccount card(PayoutResponseCard card) {
-      this.card = card;
+  public PayoutResponseCardAccount cardBrand(String cardBrand) {
+      this.cardBrand = cardBrand;
+      return this;
+  }
+
+  
+  public void setCardType(CardTypeEnum cardType) {
+      this.cardType = cardType;
+  }
+
+  /**
+   * @param cardType Card type
+   * @return bean instance
+   **/
+  public PayoutResponseCardAccount cardType(CardTypeEnum cardType) {
+      this.cardType = cardType;
+      return this;
+  }
+
+  
+  public void setExpiration(String expiration) {
+      this.expiration = expiration;
+  }
+
+  /**
+   * @param expiration Customer’s card expiration date. Format: &#x60;mm/yyyy&#x60;
+   * @return bean instance
+   **/
+  public PayoutResponseCardAccount expiration(String expiration) {
+      this.expiration = expiration;
+      return this;
+  }
+
+  
+  public void setHolder(String holder) {
+      this.holder = holder;
+  }
+
+  /**
+   * @param holder Customer&#39;s cardholder name. Any valid cardholder name. Not present by default, ask CardPay manager to enable it if needed.
+   * @return bean instance
+   **/
+  public PayoutResponseCardAccount holder(String holder) {
+      this.holder = holder;
+      return this;
+  }
+
+  
+  public void setIssuer(String issuer) {
+      this.issuer = issuer;
+  }
+
+  /**
+   * @param issuer Card issuer
+   * @return bean instance
+   **/
+  public PayoutResponseCardAccount issuer(String issuer) {
+      this.issuer = issuer;
+      return this;
+  }
+
+  
+  public void setIssuingCountryCode(String issuingCountryCode) {
+      this.issuingCountryCode = issuingCountryCode;
+  }
+
+  /**
+   * @param issuingCountryCode Country code of issuing card country
+   * @return bean instance
+   **/
+  public PayoutResponseCardAccount issuingCountryCode(String issuingCountryCode) {
+      this.issuingCountryCode = issuingCountryCode;
+      return this;
+  }
+
+  
+  public void setMaskedPan(String maskedPan) {
+      this.maskedPan = maskedPan;
+  }
+
+  /**
+   * @param maskedPan Masked PAN (shows first 6 digits and 4 last digits of the PAN)
+   * @return bean instance
+   **/
+  public PayoutResponseCardAccount maskedPan(String maskedPan) {
+      this.maskedPan = maskedPan;
       return this;
   }
 
@@ -57,7 +211,13 @@ public class PayoutResponseCardAccount {
      StringBuilder sb = new StringBuilder();
      sb.append("PayoutResponseCardAccount( ");
      
-     if (card != null) sb.append("card=").append(card.toString()).append("; ");
+     if (cardBrand != null) sb.append("cardBrand=").append(cardBrand.toString()).append("; ");
+     if (cardType != null) sb.append("cardType=").append(cardType.toString()).append("; ");
+     if (expiration != null) sb.append("expiration=").append(expiration.toString()).append("; ");
+     if (holder != null) sb.append("holder=").append(holder.toString()).append("; ");
+     if (issuer != null) sb.append("issuer=").append(issuer.toString()).append("; ");
+     if (issuingCountryCode != null) sb.append("issuingCountryCode=").append(issuingCountryCode.toString()).append("; ");
+     if (maskedPan != null) sb.append("maskedPan=").append(maskedPan.toString()).append("; ");
      if (token != null) sb.append("token=").append(token.toString()).append("; ");
      sb.append(")");
      return sb.toString();
