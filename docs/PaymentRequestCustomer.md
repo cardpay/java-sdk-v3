@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **birthDate** | **String** | Customer birth date in format &#x60;YYYY-MM-DD&#x60;. For Zenith bank in DIRECTBANKINGNGA: Customer password in format date of birth. *(mandatory for DIRECTBANKINGNGA payment method only)* |  [optional]
+**device** | [**Device**](Device.md) | Customer&#39;s device information |  [optional]
 **documentType** | **String** | Customer document type *(mandatory for &#39;PAGOEFECTIVO&#39; methods only)* |  [optional]
 **email** | **String** | Email address of Customer *(mandatory by default for BANKCARD, PAYPAL, &#39;Latin America&#39;, AIRTEL, MPESA, MTN, UGANDAMOBILE, VODAFONE, TIGO, DIRECTBANKINGNGA and AQRCODE payment methods only)*. Can be defined as optional by CardPay manager. |  [optional]
 **firstName** | **String** | Customer first name *(mandatory for &#39;PAGOEFECTIVO&#39; payment methods only)* |  [optional]
