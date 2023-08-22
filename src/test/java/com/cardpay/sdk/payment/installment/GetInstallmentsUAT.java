@@ -32,6 +32,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -154,7 +155,7 @@ public class GetInstallmentsUAT {
         String merchantOrderId = generateMerchantOrderId();
         String merchantDescription = text.sentence();
         BigDecimal amount = BigDecimal.valueOf(producer.randomBetween(10, 300));
-        String installments = String.valueOf(nextInt(2, 10));
+        List<Integer> installments = Collections.singletonList(nextInt(2, 10));
 
         List<Item> items = new ArrayList<Item>() {{
             add(new Item().name("T-Shirt").description("Funny T-Shirt").count(15).price(new BigDecimal("99.99")));

@@ -20,6 +20,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Data;
 
 @Data
@@ -42,7 +44,7 @@ public class PaymentRequestPaymentData {
   @SerializedName("installment_type")
   private String installmentType = null;
   @SerializedName("installments")
-  private String installments = null;
+  private List<Integer> installments = null;
   @SerializedName("note")
   private String note = null;
   @SerializedName("preauth")
@@ -219,7 +221,7 @@ public class PaymentRequestPaymentData {
   }
 
   
-  public void setInstallments(String installments) {
+  public void setInstallments(List<Integer> installments) {
       this.installments = installments;
   }
 
@@ -227,9 +229,17 @@ public class PaymentRequestPaymentData {
    * @param installments Number of total installment payments, to be charged per defined interval. For installment subscription with installment_type &#x3D; &#x60;MF_HOLD&#x60; can be 1-12. For installment subscription with installment_type &#x3D; &#x60;IF&#x60; can be 1-99.
    * @return bean instance
    **/
-  public PaymentRequestPaymentData installments(String installments) {
+  public PaymentRequestPaymentData installments(List<Integer> installments) {
       this.installments = installments;
       return this;
+  }
+
+  public PaymentRequestPaymentData addInstallmentsItem(Integer installmentsItem) {
+    if (this.installments == null) {
+      this.installments = new ArrayList<>();
+    }
+    this.installments.add(installmentsItem);
+    return this;
   }
 
   

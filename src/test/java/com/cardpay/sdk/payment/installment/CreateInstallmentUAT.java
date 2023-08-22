@@ -2,12 +2,9 @@ package com.cardpay.sdk.payment.installment;
 
 import com.cardpay.sdk.api.PaymentsApi;
 import com.cardpay.sdk.client.ApiClient;
-import com.cardpay.sdk.model.BillingAddress;
 import com.cardpay.sdk.model.Item;
 import com.cardpay.sdk.model.PaymentGatewayCreationResponse;
 import com.cardpay.sdk.model.PaymentRequest;
-import com.cardpay.sdk.model.PaymentRequestCard;
-import com.cardpay.sdk.model.PaymentRequestCardAccount;
 import com.cardpay.sdk.model.PaymentRequestCustomer;
 import com.cardpay.sdk.model.PaymentRequestMerchantOrder;
 import com.cardpay.sdk.model.PaymentRequestPaymentData;
@@ -29,17 +26,15 @@ import retrofit2.Response;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static com.cardpay.sdk.Config.CARDPAY_API_URL;
-import static com.cardpay.sdk.Config.GATEWAY_PASSWORD;
-import static com.cardpay.sdk.Config.GATEWAY_TERMINAL_CODE;
 import static com.cardpay.sdk.Config.LOGGING_LEVEL;
+import static com.cardpay.sdk.Config.PAYMENTPAGE_PASSWORD;
+import static com.cardpay.sdk.Config.PAYMENTPAGE_TERMINAL_CODE;
 import static com.cardpay.sdk.Config.TERMINAL_CURRENCY;
-import static com.cardpay.sdk.Constants.CARD_NON3DS_CONFIRMED;
 import static com.cardpay.sdk.Constants.PAYMENT_METHOD_BANKCARD;
-import static com.cardpay.sdk.client.StringUtil.formatExpirationDate;
-import static com.cardpay.sdk.utils.DataUtils.generateCardExpiration;
 import static com.cardpay.sdk.utils.DataUtils.generateMerchantOrderId;
 import static com.cardpay.sdk.utils.DataUtils.returnUrls;
 import static org.apache.commons.lang3.RandomUtils.nextInt;
@@ -60,7 +55,7 @@ public class CreateInstallmentUAT {
 
     @Before
     public void setUp() {
-        paymentsApi = new ApiClient(CARDPAY_API_URL, GATEWAY_TERMINAL_CODE, GATEWAY_PASSWORD)
+        paymentsApi = new ApiClient(CARDPAY_API_URL, PAYMENTPAGE_TERMINAL_CODE, PAYMENTPAGE_PASSWORD)
                 .addLogging(LOGGING_LEVEL)
                 .createService(PaymentsApi.class);
     }
@@ -83,11 +78,7 @@ public class CreateInstallmentUAT {
         String currency = TERMINAL_CURRENCY;
 
         // card data
-        String cardPan = CARD_NON3DS_CONFIRMED;
-        String cardHolder = person.getFullName().toUpperCase();
-        String securityCode = "100";
-        String cardExpiration = formatExpirationDate(generateCardExpiration());
-        String installments = String.valueOf(nextInt(2, 10));
+        List<Integer> installments = Collections.singletonList(nextInt(2, 10));
 
         // customer data
         String customerId = text.randomString(15);
@@ -109,20 +100,6 @@ public class CreateInstallmentUAT {
                                 .addrLine1(person.getAddress().getAddressLine1()))
                         .items(items))
                 .paymentMethod(PAYMENT_METHOD_BANKCARD)
-                .cardAccount(new PaymentRequestCardAccount()
-                        .card(new PaymentRequestCard()
-                                .pan(cardPan)
-                                .holder(cardHolder)
-                                .securityCode(securityCode)
-                                .expiration(cardExpiration)
-                                .acctType(PaymentRequestCard.AcctTypeEnum._03))
-                        .billingAddress(new BillingAddress()
-                                .country("USA")
-                                .state("NY")
-                                .zip("10001")
-                                .city("New York")
-                                .addrLine1(person.getAddress().getAddressLine1())
-                                .addrLine2(person.getAddress().getAddressLine2())))
                 .paymentData(new PaymentRequestPaymentData()
                         .installmentType(installmentType)
                         .installments(installments)
