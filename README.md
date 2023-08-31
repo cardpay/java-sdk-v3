@@ -1,6 +1,6 @@
-# Unlimint API v3 Java SDK
+# Unlimit API v3 Java SDK
 
-You can sign up for a Unlimint account at https://www.unlimint.com.
+You can sign up for a Unlimit account at https://www.unlimit.com.
 
 ## Getting Started
 
