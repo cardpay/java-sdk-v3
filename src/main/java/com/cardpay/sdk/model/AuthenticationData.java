@@ -239,7 +239,7 @@ public class AuthenticationData {
   }
 
   /**
-   * @param id Unlimint&#39;s payment id
+   * @param id Unlimit&#39;s payment id
    * @return bean instance
    **/
   public AuthenticationData id(String id) {

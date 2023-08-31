@@ -77,7 +77,7 @@ public class PaymentRequestCardAccount {
   }
 
   /**
-   * @param recipientInfo Recipient full name. Property &#x60;recipient_info&#x60; may be required by Bank. In most cases it&#39;s Cardholder&#39;s name, contact Unlimint manager for requirements. Mandatory only for money transfer operation.
+   * @param recipientInfo Recipient full name. Property &#x60;recipient_info&#x60; may be required by Bank. In most cases it&#39;s Cardholder&#39;s name, contact Unlimit manager for requirements. Mandatory only for money transfer operation.
    * @return bean instance
    **/
   public PaymentRequestCardAccount recipientInfo(String recipientInfo) {

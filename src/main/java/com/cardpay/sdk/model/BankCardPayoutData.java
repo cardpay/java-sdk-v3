@@ -202,7 +202,7 @@ public class BankCardPayoutData {
   }
 
   /**
-   * @param extendedDeclineReason Original decline reason. Can be presented in responses if original network response code is presented and option is enabled for Merchant. Not presented by default, ask Unlimint manager to enable it if needed.
+   * @param extendedDeclineReason Original decline reason. Can be presented in responses if original network response code is presented and option is enabled for Merchant. Not presented by default, ask Unlimit manager to enable it if needed.
    * @return bean instance
    **/
   public BankCardPayoutData extendedDeclineReason(String extendedDeclineReason) {

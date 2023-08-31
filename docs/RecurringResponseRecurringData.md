@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **currency** | **String** | Recurring currency code ([ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code) |  [optional]
 **declineCode** | **String** | Decline code (only in decline case) |  [optional]
 **declineReason** | **String** | Bank&#39;s message about transaction decline reason (only in decline case) |  [optional]
-**extendedDeclineReason** | **String** | Original decline reason. Can be presented in responses if original network response code is presented and option is enabled for Merchant. Not presented by default, ask Unlimint manager to enable it if needed. |  [optional]
+**extendedDeclineReason** | **String** | Original decline reason. Can be presented in responses if original network response code is presented and option is enabled for Merchant. Not presented by default, ask Unlimit manager to enable it if needed. |  [optional]
 **filing** | [**RecurringResponseFiling**](RecurringResponseFiling.md) | CardPay&#39;s filing data |  [optional]
 **id** | **String** | CardPay&#39;s recurring id |  [optional]
 **initiator** | **String** | Initiator of scheduled transaction (applicable only for scheduled by merchant payments) |  [optional]
