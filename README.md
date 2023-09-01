@@ -1,6 +1,6 @@
-# Unlimint API v3 Java SDK
+# Unlimit API v3 Java SDK
 
-You can sign up for a Unlimint account at https://www.unlimint.com.
+You can sign up for a Unlimit account at https://www.unlimit.com
 
 ## Getting Started
 
@@ -21,7 +21,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.cardpay</groupId>
   <artifactId>java-sdk</artifactId>
-  <version>3.55.10</version>
+  <version>3.55.11</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -31,7 +31,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.cardpay:java-sdk:3.55.10"
+compile "com.cardpay:java-sdk:3.55.11"
 ```
 
 Example for Auth

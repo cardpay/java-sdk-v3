@@ -111,8 +111,8 @@ public class RecurringOneClickGetInfoUAT {
         return data.size() > 0 ? data.get(0) : null;
     }
 
-    private RecurringResponse doOneClickPayment(String cardPlan) throws IOException {
-        RecurringCreationRequest recurringRequest = createRecurringRequest(cardPlan);
+    private RecurringResponse doOneClickPayment(String cardPan) throws IOException {
+        RecurringCreationRequest recurringRequest = createRecurringRequest(cardPan);
 
         log.info("{}", recurringRequest);
 

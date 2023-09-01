@@ -5,7 +5,7 @@
 
     <groupId>com.cardpay</groupId>
     <artifactId>java-sdk</artifactId>
-    <version>3.55.10</version>
+    <version>3.55.11</version>
 
     <packaging>jar</packaging>
 
@@ -30,9 +30,9 @@
 
     <developers>
         <developer>
-            <id>Unlimint</id>
-            <organization>Unlimint PSP Ltd.</organization>
-            <organizationUrl>https://integration.unlimint.com</organizationUrl>
+            <id>Unlimit</id>
+            <organization>Unlimit</organization>
+            <organizationUrl>https://integration.unlimit.com</organizationUrl>
             <roles>
                 <role>developer</role>
             </roles>
