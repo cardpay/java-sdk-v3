@@ -21,6 +21,8 @@ import lombok.Data;
 public class InvoiceCustomer {
   @SerializedName("email")
   private String email = null;
+  @SerializedName("id")
+  private String id = null;
   @SerializedName("phone")
   private String phone = null;
   
@@ -34,6 +36,20 @@ public class InvoiceCustomer {
    **/
   public InvoiceCustomer email(String email) {
       this.email = email;
+      return this;
+  }
+
+  
+  public void setId(String id) {
+      this.id = id;
+  }
+
+  /**
+   * @param id Customer&#39;s ID in Merchant&#39;s system
+   * @return bean instance
+   **/
+  public InvoiceCustomer id(String id) {
+      this.id = id;
       return this;
   }
 
@@ -58,6 +74,7 @@ public class InvoiceCustomer {
      sb.append("InvoiceCustomer( ");
      
      if (email != null) sb.append("email=").append(email.toString()).append("; ");
+     if (id != null) sb.append("id=").append(id.toString()).append("; ");
      if (phone != null) sb.append("phone=").append(phone.toString()).append("; ");
      sb.append(")");
      return sb.toString();

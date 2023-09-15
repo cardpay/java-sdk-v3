@@ -21,4 +21,16 @@ public interface PixAccountDetailsApi {
     @retrofit2.http.Body PixAccountDetailsRequest detailsRequest
   );
 
+  /**
+   * Get adapter banks list
+   * 
+   * @param currency currency (required)
+   * @param method method (required)
+   * @return Call&lt;Object&gt;
+   */
+  @GET("api/banks/{method}/{currency}")
+  Call<Object> banks(
+    @retrofit2.http.Path("currency") String currency, @retrofit2.http.Path("method") String method
+  );
+
 }

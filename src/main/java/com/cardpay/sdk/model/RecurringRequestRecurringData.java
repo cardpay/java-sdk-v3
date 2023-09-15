@@ -28,6 +28,8 @@ import lombok.Data;
 public class RecurringRequestRecurringData {
   @SerializedName("amount")
   private BigDecimal amount = null;
+  @SerializedName("contract_number")
+  private String contractNumber = null;
   @SerializedName("currency")
   private String currency = null;
   @SerializedName("dynamic_descriptor")
@@ -36,6 +38,8 @@ public class RecurringRequestRecurringData {
   private RecurringRequestFiling filing = null;
   @SerializedName("generate_token")
   private Boolean generateToken = null;
+  @SerializedName("initial_amount")
+  private BigDecimal initialAmount = null;
   @SerializedName("initiator")
   private String initiator = null;
   @SerializedName("interval")
@@ -105,8 +109,12 @@ public class RecurringRequestRecurringData {
   private Boolean preauth = null;
   @SerializedName("retries")
   private Integer retries = null;
+  @SerializedName("scheduled_type")
+  private String scheduledType = null;
   @SerializedName("subscription_start")
   private OffsetDateTime subscriptionStart = null;
+  @SerializedName("trans_type")
+  private String transType = null;
   
   public void setAmount(BigDecimal amount) {
       this.amount = amount;
@@ -118,6 +126,20 @@ public class RecurringRequestRecurringData {
    **/
   public RecurringRequestRecurringData amount(BigDecimal amount) {
       this.amount = amount;
+      return this;
+  }
+
+  
+  public void setContractNumber(String contractNumber) {
+      this.contractNumber = contractNumber;
+  }
+
+  /**
+   * @param contractNumber Contract number between customer and merchant. Required for Mexican merchants for scheduled payments.
+   * @return bean instance
+   **/
+  public RecurringRequestRecurringData contractNumber(String contractNumber) {
+      this.contractNumber = contractNumber;
       return this;
   }
 
@@ -174,6 +196,20 @@ public class RecurringRequestRecurringData {
    **/
   public RecurringRequestRecurringData generateToken(Boolean generateToken) {
       this.generateToken = generateToken;
+      return this;
+  }
+
+  
+  public void setInitialAmount(BigDecimal initialAmount) {
+      this.initialAmount = initialAmount;
+  }
+
+  /**
+   * @param initialAmount The amount charged for the initial period from the creation of the transaction to the start date of the subscription (&#39;subscription_start&#39;). It is indicated by the merchant in case of a discount or extra charge. It pays once during subscription.
+   * @return bean instance
+   **/
+  public RecurringRequestRecurringData initialAmount(BigDecimal initialAmount) {
+      this.initialAmount = initialAmount;
       return this;
   }
 
@@ -295,6 +331,20 @@ public class RecurringRequestRecurringData {
   }
 
   
+  public void setScheduledType(String scheduledType) {
+      this.scheduledType = scheduledType;
+  }
+
+  /**
+   * @param scheduledType Scheduled payment type attribute. For scheduled payments by merchant value should be &#x60;SM&#x60; - scheduled by merchant
+   * @return bean instance
+   **/
+  public RecurringRequestRecurringData scheduledType(String scheduledType) {
+      this.scheduledType = scheduledType;
+      return this;
+  }
+
+  
   public void setSubscriptionStart(OffsetDateTime subscriptionStart) {
       this.subscriptionStart = subscriptionStart;
   }
@@ -308,6 +358,20 @@ public class RecurringRequestRecurringData {
       return this;
   }
 
+  
+  public void setTransType(String transType) {
+      this.transType = transType;
+  }
+
+  /**
+   * @param transType Identifies the type of transaction being authenticated
+   * @return bean instance
+   **/
+  public RecurringRequestRecurringData transType(String transType) {
+      this.transType = transType;
+      return this;
+  }
+
 
   @Override
   public String toString() {
@@ -315,10 +379,12 @@ public class RecurringRequestRecurringData {
      sb.append("RecurringRequestRecurringData( ");
      
      if (amount != null) sb.append("amount=").append(amount.toString()).append("; ");
+     if (contractNumber != null) sb.append("contractNumber=").append(contractNumber.toString()).append("; ");
      if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
      if (dynamicDescriptor != null) sb.append("dynamicDescriptor=").append(dynamicDescriptor.toString()).append("; ");
      if (filing != null) sb.append("filing=").append(filing.toString()).append("; ");
      if (generateToken != null) sb.append("generateToken=").append(generateToken.toString()).append("; ");
+     if (initialAmount != null) sb.append("initialAmount=").append(initialAmount.toString()).append("; ");
      if (initiator != null) sb.append("initiator=").append(initiator.toString()).append("; ");
      if (interval != null) sb.append("interval=").append(interval.toString()).append("; ");
      if (note != null) sb.append("note=").append(note.toString()).append("; ");
@@ -327,7 +393,9 @@ public class RecurringRequestRecurringData {
      if (plan != null) sb.append("plan=").append(plan.toString()).append("; ");
      if (preauth != null) sb.append("preauth=").append(preauth.toString()).append("; ");
      if (retries != null) sb.append("retries=").append(retries.toString()).append("; ");
+     if (scheduledType != null) sb.append("scheduledType=").append(scheduledType.toString()).append("; ");
      if (subscriptionStart != null) sb.append("subscriptionStart=").append(subscriptionStart.toString()).append("; ");
+     if (transType != null) sb.append("transType=").append(transType.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

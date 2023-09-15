@@ -27,6 +27,8 @@ public class InvoiceRequest {
   private InvoiceData invoiceData = null;
   @SerializedName("merchant_order")
   private InvoiceMerchantOrder merchantOrder = null;
+  @SerializedName("recurring_data")
+  private RecurringData recurringData = null;
   @SerializedName("return_urls")
   private ReturnUrls returnUrls = null;
   
@@ -86,6 +88,20 @@ public class InvoiceRequest {
   }
 
   
+  public void setRecurringData(RecurringData recurringData) {
+      this.recurringData = recurringData;
+  }
+
+  /**
+   * @param recurringData Recurring data
+   * @return bean instance
+   **/
+  public InvoiceRequest recurringData(RecurringData recurringData) {
+      this.recurringData = recurringData;
+      return this;
+  }
+
+  
   public void setReturnUrls(ReturnUrls returnUrls) {
       this.returnUrls = returnUrls;
   }
@@ -109,6 +125,7 @@ public class InvoiceRequest {
      if (customer != null) sb.append("customer=").append(customer.toString()).append("; ");
      if (invoiceData != null) sb.append("invoiceData=").append(invoiceData.toString()).append("; ");
      if (merchantOrder != null) sb.append("merchantOrder=").append(merchantOrder.toString()).append("; ");
+     if (recurringData != null) sb.append("recurringData=").append(recurringData.toString()).append("; ");
      if (returnUrls != null) sb.append("returnUrls=").append(returnUrls.toString()).append("; ");
      sb.append(")");
      return sb.toString();
