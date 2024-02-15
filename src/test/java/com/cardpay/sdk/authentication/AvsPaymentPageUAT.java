@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import retrofit2.Response;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 import static com.cardpay.sdk.Config.AVS_PAYMENTPAGE_PASSWORD;
 import static com.cardpay.sdk.Config.AVS_PAYMENTPAGE_TERMINAL_CODE;
@@ -77,6 +78,7 @@ public class AvsPaymentPageUAT {
                 .paymentData(new PaymentRequestPaymentData()
                         .generateToken(true)
                         .currency(currency)
+                        .amount(new BigDecimal(10))
                         .note(note)
                 )
                 .customer(new PaymentRequestCustomer()
