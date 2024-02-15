@@ -35,7 +35,9 @@ public class PaymentExecuteRequest {
     
     CONFIRM_3DS("CONFIRM_3DS"),
     
-    EXECUTE("EXECUTE");
+    EXECUTE("EXECUTE"),
+    
+    INCREMENT("INCREMENT");
 
     private String value;
 

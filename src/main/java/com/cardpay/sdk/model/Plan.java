@@ -19,15 +19,31 @@ import lombok.Data;
 @Data
 
 public class Plan {
+  @SerializedName("change_date")
+  private String changeDate = null;
   @SerializedName("id")
   private String id = null;
+  
+  public void setChangeDate(String changeDate) {
+      this.changeDate = changeDate;
+  }
+
+  /**
+   * @param changeDate Date when the subscription plan will be changed
+   * @return bean instance
+   **/
+  public Plan changeDate(String changeDate) {
+      this.changeDate = changeDate;
+      return this;
+  }
+
   
   public void setId(String id) {
       this.id = id;
   }
 
   /**
-   * @param id Plan ID
+   * @param id Subscription plan identificator
    * @return bean instance
    **/
   public Plan id(String id) {
@@ -41,6 +57,7 @@ public class Plan {
      StringBuilder sb = new StringBuilder();
      sb.append("Plan( ");
      
+     if (changeDate != null) sb.append("changeDate=").append(changeDate.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
      sb.append(")");
      return sb.toString();

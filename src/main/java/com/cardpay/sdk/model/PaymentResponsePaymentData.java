@@ -43,6 +43,8 @@ public class PaymentResponsePaymentData {
   private String declineReason = null;
   @SerializedName("extended_decline_reason")
   private String extendedDeclineReason = null;
+  @SerializedName("hold_period")
+  private Integer holdPeriod = null;
   @SerializedName("id")
   private String id = null;
   @SerializedName("installment_type")
@@ -55,6 +57,8 @@ public class PaymentResponsePaymentData {
   private Boolean is3d = null;
   @SerializedName("note")
   private String note = null;
+  @SerializedName("postauth_status")
+  private String postauthStatus = null;
   @SerializedName("rrn")
   private String rrn = null;
   /**
@@ -294,6 +298,20 @@ public class PaymentResponsePaymentData {
   }
 
   
+  public void setHoldPeriod(Integer holdPeriod) {
+      this.holdPeriod = holdPeriod;
+  }
+
+  /**
+   * @param holdPeriod The delay between the authorisation and scheduled auto-capture or auto-void, specified in hours. The minimum hold period is 1 hour, maximum hold period is 7 days (168 hours).
+   * @return bean instance
+   **/
+  public PaymentResponsePaymentData holdPeriod(Integer holdPeriod) {
+      this.holdPeriod = holdPeriod;
+      return this;
+  }
+
+  
   public void setId(String id) {
       this.id = id;
   }
@@ -386,6 +404,20 @@ public class PaymentResponsePaymentData {
   }
 
   
+  public void setPostauthStatus(String postauthStatus) {
+      this.postauthStatus = postauthStatus;
+  }
+
+  /**
+   * @param postauthStatus The value contains payment status after hold period if payment has not been completed. Possible values: COMPLETE, REVERSE
+   * @return bean instance
+   **/
+  public PaymentResponsePaymentData postauthStatus(String postauthStatus) {
+      this.postauthStatus = postauthStatus;
+      return this;
+  }
+
+  
   public void setRrn(String rrn) {
       this.rrn = rrn;
   }
@@ -455,12 +487,14 @@ public class PaymentResponsePaymentData {
      if (declineCode != null) sb.append("declineCode=").append(declineCode.toString()).append("; ");
      if (declineReason != null) sb.append("declineReason=").append(declineReason.toString()).append("; ");
      if (extendedDeclineReason != null) sb.append("extendedDeclineReason=").append(extendedDeclineReason.toString()).append("; ");
+     if (holdPeriod != null) sb.append("holdPeriod=").append(holdPeriod.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
      if (installmentType != null) sb.append("installmentType=").append(installmentType.toString()).append("; ");
      if (installments != null) sb.append("installments=").append(installments.toString()).append("; ");
      if (invalidData != null) sb.append("invalidData=").append(invalidData.toString()).append("; ");
      if (is3d != null) sb.append("is3d=").append(is3d.toString()).append("; ");
      if (note != null) sb.append("note=").append(note.toString()).append("; ");
+     if (postauthStatus != null) sb.append("postauthStatus=").append(postauthStatus.toString()).append("; ");
      if (rrn != null) sb.append("rrn=").append(rrn.toString()).append("; ");
      if (status != null) sb.append("status=").append(status.toString()).append("; ");
      if (transType != null) sb.append("transType=").append(transType.toString()).append("; ");

@@ -67,7 +67,7 @@ public class RefundResponse {
   }
 
   /**
-   * @param ewalletAccount eWallet account data *(for ALIPAY and QIWI payment methods only)*
+   * @param ewalletAccount eWallet account data *(for QIWI payment methods only)*
    * @return bean instance
    **/
   public RefundResponse ewalletAccount(TransactionResponseEWalletAccount ewalletAccount) {

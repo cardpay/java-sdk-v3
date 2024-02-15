@@ -35,7 +35,9 @@ public class RecurringConfirm3dsRequest {
     
     CONFIRM_3DS("CONFIRM_3DS"),
     
-    EXECUTE("EXECUTE");
+    EXECUTE("EXECUTE"),
+    
+    INCREMENT("INCREMENT");
 
     private String value;
 
@@ -79,6 +81,8 @@ public class RecurringConfirm3dsRequest {
   private OperationEnum operation = null;
   @SerializedName("recurring_data")
   private PaymentUpdateTransactionData recurringData = null;
+  @SerializedName("CRes")
+  private String cres = null;
   @SerializedName("PaRes")
   private String paRes = null;
   
@@ -124,12 +128,26 @@ public class RecurringConfirm3dsRequest {
   }
 
   
+  public void setCres(String cres) {
+      this.cres = cres;
+  }
+
+  /**
+   * @param cres Bank authentication result, for 3-D Secure 2 *(for BANKCARD payment method only)*
+   * @return bean instance
+   **/
+  public RecurringConfirm3dsRequest cres(String cres) {
+      this.cres = cres;
+      return this;
+  }
+
+  
   public void setPaRes(String paRes) {
       this.paRes = paRes;
   }
 
   /**
-   * @param paRes Bank authentication result *(for BANKCARD payment method only)*
+   * @param paRes Bank authentication result, for 3-D Secure 1 *(for BANKCARD payment method only)*
    * @return bean instance
    **/
   public RecurringConfirm3dsRequest paRes(String paRes) {
@@ -146,6 +164,7 @@ public class RecurringConfirm3dsRequest {
      if (request != null) sb.append("request=").append(request.toString()).append("; ");
      if (operation != null) sb.append("operation=").append(operation.toString()).append("; ");
      if (recurringData != null) sb.append("recurringData=").append(recurringData.toString()).append("; ");
+     if (cres != null) sb.append("cres=").append(cres.toString()).append("; ");
      if (paRes != null) sb.append("paRes=").append(paRes.toString()).append("; ");
      sb.append(")");
      return sb.toString();

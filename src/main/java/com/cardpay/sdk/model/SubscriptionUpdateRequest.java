@@ -35,7 +35,13 @@ public class SubscriptionUpdateRequest {
     
     REPAYMENT("REPAYMENT"),
     
-    CHANGE_FILING("CHANGE_FILING");
+    CHANGE_FILING("CHANGE_FILING"),
+    
+    CHANGE_PLAN("CHANGE_PLAN"),
+    
+    CHANGE_PAYMENT_DATE("CHANGE_PAYMENT_DATE"),
+    
+    CHANGE_UNITS("CHANGE_UNITS");
 
     private String value;
 

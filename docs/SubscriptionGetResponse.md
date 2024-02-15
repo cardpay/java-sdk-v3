@@ -12,8 +12,10 @@ Name | Type | Description | Notes
 **description** | **String** | Description of subscription |  [optional]
 **id** | **String** | ID of subscription |  [optional]
 **interval** | **Integer** | Interval of subscription |  [optional]
+**isPaymentDateShifted** | **Boolean** | A sign of whether it is possible to change the subscription payment date, because it has already been changed before &#x60;true&#x60; - can&#39;t change &#x60;false&#x60; - can change |  [optional]
 **nextPayment** | [**NextSubscriptionPayment**](NextSubscriptionPayment.md) | Next payment data |  [optional]
 **paymentsDue** | **Integer** | Number of payments left to be captured |  [optional]
+**pendingPlanUpdate** | [**SubscriptionPendingPlanUpdate**](SubscriptionPendingPlanUpdate.md) | Pending plan update data |  [optional]
 **period** | [**PeriodEnum**](#PeriodEnum) | Period of subscription |  [optional]
 **plan** | [**SubscriptionGetResponsePlan**](SubscriptionGetResponsePlan.md) | Plan data |  [optional]
 **retries** | **Integer** | Number of daily basis retry attempts in case of payment has not been captured successfully. |  [optional]
@@ -21,6 +23,7 @@ Name | Type | Description | Notes
 **statusReason** | **String** | Reason of subscription cancellation that was made by CardPay |  [optional]
 **subscriptionStart** | [**OffsetDateTime**](OffsetDateTime.md) | The time in &#39;yyyy-MM-dd&#39; format when subscription actually becomes activated (grace period) |  [optional]
 **type** | [**TypeEnum**](#TypeEnum) | Recurring payment type name; can be ONECLICK, SCHEDULED, INSTALLMENT |  [optional]
+**units** | **Integer** | Units quantity of the subscription, who can consume their service. |  [optional]
 
 
 <a name="PeriodEnum"></a>

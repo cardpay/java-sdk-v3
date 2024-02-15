@@ -91,7 +91,6 @@ public class AvsGatewayUAT {
                 .paymentData(new PaymentRequestPaymentData()
                         .generateToken(true)
                         .currency(currency)
-                        .authenticationRequest(true)
                         .note(note))
                 .cardAccount(new PaymentRequestCardAccount()
                         .card(new PaymentRequestCard()

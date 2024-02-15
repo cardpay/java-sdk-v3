@@ -15,6 +15,7 @@ Name | Value
 ---- | -----
 CHANGE_STATUS | &quot;CHANGE_STATUS&quot;
 RENAME | &quot;RENAME&quot;
+CHANGE_QUANTITY | &quot;CHANGE_QUANTITY&quot;
 
 
 

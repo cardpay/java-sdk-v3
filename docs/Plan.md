@@ -4,7 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** | Plan ID |  [optional]
+**changeDate** | **String** | Date when the subscription plan will be changed |  [optional]
+**id** | **String** | Subscription plan identificator |  [optional]
 
 
 

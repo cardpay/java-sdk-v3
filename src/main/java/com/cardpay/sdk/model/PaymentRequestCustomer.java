@@ -21,6 +21,8 @@ import lombok.Data;
 public class PaymentRequestCustomer {
   @SerializedName("birth_date")
   private String birthDate = null;
+  @SerializedName("browser_info")
+  private BrowserInfo browserInfo = null;
   @SerializedName("device")
   private Device device = null;
   @SerializedName("document_type")
@@ -45,6 +47,8 @@ public class PaymentRequestCustomer {
   private String locale = null;
   @SerializedName("phone")
   private String phone = null;
+  @SerializedName("user_agent")
+  private String userAgent = null;
   @SerializedName("work_phone")
   private String workPhone = null;
   @SerializedName("ip")
@@ -60,6 +64,20 @@ public class PaymentRequestCustomer {
    **/
   public PaymentRequestCustomer birthDate(String birthDate) {
       this.birthDate = birthDate;
+      return this;
+  }
+
+  
+  public void setBrowserInfo(BrowserInfo browserInfo) {
+      this.browserInfo = browserInfo;
+  }
+
+  /**
+   * @param browserInfo Browser info
+   * @return bean instance
+   **/
+  public PaymentRequestCustomer browserInfo(BrowserInfo browserInfo) {
+      this.browserInfo = browserInfo;
       return this;
   }
 
@@ -232,6 +250,20 @@ public class PaymentRequestCustomer {
   }
 
   
+  public void setUserAgent(String userAgent) {
+      this.userAgent = userAgent;
+  }
+
+  /**
+   * @param userAgent User agent
+   * @return bean instance
+   **/
+  public PaymentRequestCustomer userAgent(String userAgent) {
+      this.userAgent = userAgent;
+      return this;
+  }
+
+  
   public void setWorkPhone(String workPhone) {
       this.workPhone = workPhone;
   }
@@ -266,6 +298,7 @@ public class PaymentRequestCustomer {
      sb.append("PaymentRequestCustomer( ");
      
      if (birthDate != null) sb.append("birthDate=").append(birthDate.toString()).append("; ");
+     if (browserInfo != null) sb.append("browserInfo=").append(browserInfo.toString()).append("; ");
      if (device != null) sb.append("device=").append(device.toString()).append("; ");
      if (documentType != null) sb.append("documentType=").append(documentType.toString()).append("; ");
      if (email != null) sb.append("email=").append(email.toString()).append("; ");
@@ -278,6 +311,7 @@ public class PaymentRequestCustomer {
      if (livingAddress != null) sb.append("livingAddress=").append(livingAddress.toString()).append("; ");
      if (locale != null) sb.append("locale=").append(locale.toString()).append("; ");
      if (phone != null) sb.append("phone=").append(phone.toString()).append("; ");
+     if (userAgent != null) sb.append("userAgent=").append(userAgent.toString()).append("; ");
      if (workPhone != null) sb.append("workPhone=").append(workPhone.toString()).append("; ");
      if (ip != null) sb.append("ip=").append(ip.toString()).append("; ");
      sb.append(")");

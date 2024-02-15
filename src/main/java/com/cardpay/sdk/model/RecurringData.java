@@ -15,7 +15,6 @@ package com.cardpay.sdk.model;
 
 import com.google.gson.annotations.SerializedName;
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
 import lombok.Data;
 
 @Data
@@ -28,7 +27,7 @@ public class RecurringData {
   @SerializedName("plan")
   private Plan plan = null;
   @SerializedName("subscription_start")
-  private OffsetDateTime subscriptionStart = null;
+  private String subscriptionStart = null;
   @SerializedName("type")
   private String type = null;
   
@@ -74,7 +73,7 @@ public class RecurringData {
   }
 
   
-  public void setSubscriptionStart(OffsetDateTime subscriptionStart) {
+  public void setSubscriptionStart(String subscriptionStart) {
       this.subscriptionStart = subscriptionStart;
   }
 
@@ -82,7 +81,7 @@ public class RecurringData {
    * @param subscriptionStart The time in &#39;yyyy-MM-dd&#39; format when subscription will actually become activated (grace period).Leave it empty to activate subscription at once without any grace period applied.
    * @return bean instance
    **/
-  public RecurringData subscriptionStart(OffsetDateTime subscriptionStart) {
+  public RecurringData subscriptionStart(String subscriptionStart) {
       this.subscriptionStart = subscriptionStart;
       return this;
   }

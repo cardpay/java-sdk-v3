@@ -14,6 +14,7 @@
 package com.cardpay.sdk.model;
 
 import com.google.gson.annotations.SerializedName;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
@@ -25,6 +26,8 @@ public class PaymentRequestMerchantOrder {
   private Boolean cryptocurrencyIndicator = null;
   @SerializedName("description")
   private String description = null;
+  @SerializedName("expire_at")
+  private OffsetDateTime expireAt = null;
   @SerializedName("flights")
   private Flights flights = null;
   @SerializedName("id")
@@ -58,6 +61,20 @@ public class PaymentRequestMerchantOrder {
    **/
   public PaymentRequestMerchantOrder description(String description) {
       this.description = description;
+      return this;
+  }
+
+  
+  public void setExpireAt(OffsetDateTime expireAt) {
+      this.expireAt = expireAt;
+  }
+
+  /**
+   * @param expireAt Payment expiration date and time in ISO 8601 format (example of format - yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;) Should be UTC time.  Not all payment methods support this options, contact the Unlimit manager for details.
+   * @return bean instance
+   **/
+  public PaymentRequestMerchantOrder expireAt(OffsetDateTime expireAt) {
+      this.expireAt = expireAt;
       return this;
   }
 
@@ -133,6 +150,7 @@ public class PaymentRequestMerchantOrder {
      
      if (cryptocurrencyIndicator != null) sb.append("cryptocurrencyIndicator=").append(cryptocurrencyIndicator.toString()).append("; ");
      if (description != null) sb.append("description=").append(description.toString()).append("; ");
+     if (expireAt != null) sb.append("expireAt=").append(expireAt.toString()).append("; ");
      if (flights != null) sb.append("flights=").append(flights.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
      if (items != null) sb.append("items=").append(items.toString()).append("; ");

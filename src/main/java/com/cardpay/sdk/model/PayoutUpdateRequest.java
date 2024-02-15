@@ -23,6 +23,8 @@ public class PayoutUpdateRequest {
   private Request request = null;
   @SerializedName("payout_data")
   private RequestUpdatedTransactionData payoutData = null;
+  @SerializedName("transaction_data")
+  private RequestUpdatedTransactionData transactionData = null;
   
   public void setRequest(Request request) {
       this.request = request;
@@ -43,11 +45,25 @@ public class PayoutUpdateRequest {
   }
 
   /**
-   * @param payoutData Transaction data
+   * @param payoutData Payout data
    * @return bean instance
    **/
   public PayoutUpdateRequest payoutData(RequestUpdatedTransactionData payoutData) {
       this.payoutData = payoutData;
+      return this;
+  }
+
+  
+  public void setTransactionData(RequestUpdatedTransactionData transactionData) {
+      this.transactionData = transactionData;
+  }
+
+  /**
+   * @param transactionData transactionData
+   * @return bean instance
+   **/
+  public PayoutUpdateRequest transactionData(RequestUpdatedTransactionData transactionData) {
+      this.transactionData = transactionData;
       return this;
   }
 
@@ -59,6 +75,7 @@ public class PayoutUpdateRequest {
      
      if (request != null) sb.append("request=").append(request.toString()).append("; ");
      if (payoutData != null) sb.append("payoutData=").append(payoutData.toString()).append("; ");
+     if (transactionData != null) sb.append("transactionData=").append(transactionData.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

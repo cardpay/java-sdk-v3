@@ -36,6 +36,10 @@ public class UpdatedSubscriptionData {
   private String id = null;
   @SerializedName("is_executed")
   private Boolean isExecuted = null;
+  @SerializedName("next_payment_date")
+  private OffsetDateTime nextPaymentDate = null;
+  @SerializedName("plan")
+  private Plan plan = null;
   @SerializedName("recurring_data")
   private UpdatedSubscriptionRecurringData recurringData = null;
   @SerializedName("remaining_amount")
@@ -162,6 +166,8 @@ public class UpdatedSubscriptionData {
 
   @SerializedName("status_to")
   private StatusToEnum statusTo = null;
+  @SerializedName("units")
+  private Integer units = null;
   @SerializedName("updated")
   private OffsetDateTime updated = null;
   
@@ -235,6 +241,34 @@ public class UpdatedSubscriptionData {
   }
 
   
+  public void setNextPaymentDate(OffsetDateTime nextPaymentDate) {
+      this.nextPaymentDate = nextPaymentDate;
+  }
+
+  /**
+   * @param nextPaymentDate nextPaymentDate
+   * @return bean instance
+   **/
+  public UpdatedSubscriptionData nextPaymentDate(OffsetDateTime nextPaymentDate) {
+      this.nextPaymentDate = nextPaymentDate;
+      return this;
+  }
+
+  
+  public void setPlan(Plan plan) {
+      this.plan = plan;
+  }
+
+  /**
+   * @param plan Plan data
+   * @return bean instance
+   **/
+  public UpdatedSubscriptionData plan(Plan plan) {
+      this.plan = plan;
+      return this;
+  }
+
+  
   public void setRecurringData(UpdatedSubscriptionRecurringData recurringData) {
       this.recurringData = recurringData;
   }
@@ -291,6 +325,20 @@ public class UpdatedSubscriptionData {
   }
 
   
+  public void setUnits(Integer units) {
+      this.units = units;
+  }
+
+  /**
+   * @param units New quantity of subscription units
+   * @return bean instance
+   **/
+  public UpdatedSubscriptionData units(Integer units) {
+      this.units = units;
+      return this;
+  }
+
+  
   public void setUpdated(OffsetDateTime updated) {
       this.updated = updated;
   }
@@ -315,10 +363,13 @@ public class UpdatedSubscriptionData {
      if (filing != null) sb.append("filing=").append(filing.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
      if (isExecuted != null) sb.append("isExecuted=").append(isExecuted.toString()).append("; ");
+     if (nextPaymentDate != null) sb.append("nextPaymentDate=").append(nextPaymentDate.toString()).append("; ");
+     if (plan != null) sb.append("plan=").append(plan.toString()).append("; ");
      if (recurringData != null) sb.append("recurringData=").append(recurringData.toString()).append("; ");
      if (remainingAmount != null) sb.append("remainingAmount=").append(remainingAmount.toString()).append("; ");
      if (status != null) sb.append("status=").append(status.toString()).append("; ");
      if (statusTo != null) sb.append("statusTo=").append(statusTo.toString()).append("; ");
+     if (units != null) sb.append("units=").append(units.toString()).append("; ");
      if (updated != null) sb.append("updated=").append(updated.toString()).append("; ");
      sb.append(")");
      return sb.toString();

@@ -34,6 +34,8 @@ public class RecurringRequestRecurringData {
   private String currency = null;
   @SerializedName("dynamic_descriptor")
   private String dynamicDescriptor = null;
+  @SerializedName("encrypted_data")
+  private String encryptedData = null;
   @SerializedName("filing")
   private RecurringRequestFiling filing = null;
   @SerializedName("generate_token")
@@ -168,6 +170,20 @@ public class RecurringRequestRecurringData {
    **/
   public RecurringRequestRecurringData dynamicDescriptor(String dynamicDescriptor) {
       this.dynamicDescriptor = dynamicDescriptor;
+      return this;
+  }
+
+  
+  public void setEncryptedData(String encryptedData) {
+      this.encryptedData = encryptedData;
+  }
+
+  /**
+   * @param encryptedData The encrypted payment credentials encoded in Base64
+   * @return bean instance
+   **/
+  public RecurringRequestRecurringData encryptedData(String encryptedData) {
+      this.encryptedData = encryptedData;
       return this;
   }
 
@@ -382,6 +398,7 @@ public class RecurringRequestRecurringData {
      if (contractNumber != null) sb.append("contractNumber=").append(contractNumber.toString()).append("; ");
      if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
      if (dynamicDescriptor != null) sb.append("dynamicDescriptor=").append(dynamicDescriptor.toString()).append("; ");
+     if (encryptedData != null) sb.append("encryptedData=").append(encryptedData.toString()).append("; ");
      if (filing != null) sb.append("filing=").append(filing.toString()).append("; ");
      if (generateToken != null) sb.append("generateToken=").append(generateToken.toString()).append("; ");
      if (initialAmount != null) sb.append("initialAmount=").append(initialAmount.toString()).append("; ");

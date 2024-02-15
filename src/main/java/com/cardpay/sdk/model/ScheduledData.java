@@ -103,6 +103,8 @@ public class ScheduledData {
 
   @SerializedName("trans_type")
   private TransTypeEnum transType = null;
+  @SerializedName("units")
+  private Integer units = null;
   
   public void setContractNumber(String contractNumber) {
       this.contractNumber = contractNumber;
@@ -271,6 +273,21 @@ public class ScheduledData {
       return this;
   }
 
+  
+  public void setUnits(Integer units) {
+      this.units = units;
+  }
+
+  /**
+   * minimum: 1
+   * @param units Units quantity of the subscription, who can consume their service.
+   * @return bean instance
+   **/
+  public ScheduledData units(Integer units) {
+      this.units = units;
+      return this;
+  }
+
 
   @Override
   public String toString() {
@@ -289,6 +306,7 @@ public class ScheduledData {
      if (subscriptionStart != null) sb.append("subscriptionStart=").append(subscriptionStart.toString()).append("; ");
      if (threeDsChallengeIndicator != null) sb.append("threeDsChallengeIndicator=").append(threeDsChallengeIndicator.toString()).append("; ");
      if (transType != null) sb.append("transType=").append(transType.toString()).append("; ");
+     if (units != null) sb.append("units=").append(units.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

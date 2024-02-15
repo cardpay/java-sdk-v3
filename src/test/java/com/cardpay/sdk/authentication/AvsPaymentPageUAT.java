@@ -77,7 +77,6 @@ public class AvsPaymentPageUAT {
                 .paymentData(new PaymentRequestPaymentData()
                         .generateToken(true)
                         .currency(currency)
-                        .authenticationRequest(true)
                         .note(note)
                 )
                 .customer(new PaymentRequestCustomer()

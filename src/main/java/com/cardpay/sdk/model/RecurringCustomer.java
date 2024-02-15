@@ -24,6 +24,10 @@ import lombok.Data;
 @Data
 
 public class RecurringCustomer {
+  @SerializedName("browser_info")
+  private BrowserInfo browserInfo = null;
+  @SerializedName("device")
+  private Device device = null;
   @SerializedName("email")
   private String email = null;
   @SerializedName("home_phone")
@@ -95,6 +99,34 @@ public class RecurringCustomer {
   private String userAgent = null;
   @SerializedName("work_phone")
   private String workPhone = null;
+  
+  public void setBrowserInfo(BrowserInfo browserInfo) {
+      this.browserInfo = browserInfo;
+  }
+
+  /**
+   * @param browserInfo Browser info
+   * @return bean instance
+   **/
+  public RecurringCustomer browserInfo(BrowserInfo browserInfo) {
+      this.browserInfo = browserInfo;
+      return this;
+  }
+
+  
+  public void setDevice(Device device) {
+      this.device = device;
+  }
+
+  /**
+   * @param device Customer&#39;s device information
+   * @return bean instance
+   **/
+  public RecurringCustomer device(Device device) {
+      this.device = device;
+      return this;
+  }
+
   
   public void setEmail(String email) {
       this.email = email;
@@ -241,6 +273,8 @@ public class RecurringCustomer {
      StringBuilder sb = new StringBuilder();
      sb.append("RecurringCustomer( ");
      
+     if (browserInfo != null) sb.append("browserInfo=").append(browserInfo.toString()).append("; ");
+     if (device != null) sb.append("device=").append(device.toString()).append("; ");
      if (email != null) sb.append("email=").append(email.toString()).append("; ");
      if (homePhone != null) sb.append("homePhone=").append(homePhone.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");

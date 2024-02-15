@@ -35,7 +35,9 @@ public class PaymentConfirm3dsRequest {
     
     CONFIRM_3DS("CONFIRM_3DS"),
     
-    EXECUTE("EXECUTE");
+    EXECUTE("EXECUTE"),
+    
+    INCREMENT("INCREMENT");
 
     private String value;
 
@@ -79,6 +81,8 @@ public class PaymentConfirm3dsRequest {
   private OperationEnum operation = null;
   @SerializedName("payment_data")
   private PaymentUpdateTransactionData paymentData = null;
+  @SerializedName("CRes")
+  private String cres = null;
   @SerializedName("PaRes")
   private String paRes = null;
   
@@ -124,12 +128,26 @@ public class PaymentConfirm3dsRequest {
   }
 
   
+  public void setCres(String cres) {
+      this.cres = cres;
+  }
+
+  /**
+   * @param cres Bank authentication result, for 3-D Secure 2 *(for BANKCARD payment method only)*
+   * @return bean instance
+   **/
+  public PaymentConfirm3dsRequest cres(String cres) {
+      this.cres = cres;
+      return this;
+  }
+
+  
   public void setPaRes(String paRes) {
       this.paRes = paRes;
   }
 
   /**
-   * @param paRes Bank authentication result *(for BANKCARD payment method only)*
+   * @param paRes Bank authentication result, for 3-D Secure 1 *(for BANKCARD payment method only)*
    * @return bean instance
    **/
   public PaymentConfirm3dsRequest paRes(String paRes) {
@@ -146,6 +164,7 @@ public class PaymentConfirm3dsRequest {
      if (request != null) sb.append("request=").append(request.toString()).append("; ");
      if (operation != null) sb.append("operation=").append(operation.toString()).append("; ");
      if (paymentData != null) sb.append("paymentData=").append(paymentData.toString()).append("; ");
+     if (cres != null) sb.append("cres=").append(cres.toString()).append("; ");
      if (paRes != null) sb.append("paRes=").append(paRes.toString()).append("; ");
      sb.append(")");
      return sb.toString();

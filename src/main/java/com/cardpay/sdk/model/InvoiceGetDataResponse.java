@@ -29,6 +29,8 @@ public class InvoiceGetDataResponse {
   private OffsetDateTime expireAt = null;
   @SerializedName("id")
   private String id = null;
+  @SerializedName("initial_amount")
+  private BigDecimal initialAmount = null;
   @SerializedName("status")
   private String status = null;
   
@@ -88,6 +90,20 @@ public class InvoiceGetDataResponse {
   }
 
   
+  public void setInitialAmount(BigDecimal initialAmount) {
+      this.initialAmount = initialAmount;
+  }
+
+  /**
+   * @param initialAmount The amount charged for the initial period from the creation of the transaction to the start date of the subscription
+   * @return bean instance
+   **/
+  public InvoiceGetDataResponse initialAmount(BigDecimal initialAmount) {
+      this.initialAmount = initialAmount;
+      return this;
+  }
+
+  
   public void setStatus(String status) {
       this.status = status;
   }
@@ -111,6 +127,7 @@ public class InvoiceGetDataResponse {
      if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
      if (expireAt != null) sb.append("expireAt=").append(expireAt.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (initialAmount != null) sb.append("initialAmount=").append(initialAmount.toString()).append("; ");
      if (status != null) sb.append("status=").append(status.toString()).append("; ");
      sb.append(")");
      return sb.toString();

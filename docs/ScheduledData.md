@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **subscriptionStart** | [**OffsetDateTime**](OffsetDateTime.md) | The time in &#39;yyyy-MM-dd&#39; format when subscription will actually become activated (grace period).Leave it empty to activate subscription at once without any grace period applied. |  [optional]
 **threeDsChallengeIndicator** | **String** |  |  [optional]
 **transType** | [**TransTypeEnum**](#TransTypeEnum) |  |  [optional]
+**units** | **Integer** | Units quantity of the subscription, who can consume their service. |  [optional]
 
 
 <a name="TransTypeEnum"></a>

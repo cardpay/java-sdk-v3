@@ -35,7 +35,9 @@ public class RecurringUpdateRequest {
     
     CONFIRM_3DS("CONFIRM_3DS"),
     
-    EXECUTE("EXECUTE");
+    EXECUTE("EXECUTE"),
+    
+    INCREMENT("INCREMENT");
 
     private String value;
 
@@ -79,6 +81,8 @@ public class RecurringUpdateRequest {
   private OperationEnum operation = null;
   @SerializedName("recurring_data")
   private PaymentUpdateTransactionData recurringData = null;
+  @SerializedName("transaction_data")
+  private PaymentUpdateTransactionData transactionData = null;
   
   public void setRequest(Request request) {
       this.request = request;
@@ -113,11 +117,25 @@ public class RecurringUpdateRequest {
   }
 
   /**
-   * @param recurringData Transaction data
+   * @param recurringData Recurring data
    * @return bean instance
    **/
   public RecurringUpdateRequest recurringData(PaymentUpdateTransactionData recurringData) {
       this.recurringData = recurringData;
+      return this;
+  }
+
+  
+  public void setTransactionData(PaymentUpdateTransactionData transactionData) {
+      this.transactionData = transactionData;
+  }
+
+  /**
+   * @param transactionData transactionData
+   * @return bean instance
+   **/
+  public RecurringUpdateRequest transactionData(PaymentUpdateTransactionData transactionData) {
+      this.transactionData = transactionData;
       return this;
   }
 
@@ -130,6 +148,7 @@ public class RecurringUpdateRequest {
      if (request != null) sb.append("request=").append(request.toString()).append("; ");
      if (operation != null) sb.append("operation=").append(operation.toString()).append("; ");
      if (recurringData != null) sb.append("recurringData=").append(recurringData.toString()).append("; ");
+     if (transactionData != null) sb.append("transactionData=").append(transactionData.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

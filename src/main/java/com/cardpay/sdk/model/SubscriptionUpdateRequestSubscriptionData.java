@@ -20,6 +20,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 import lombok.Data;
 
 @Data
@@ -27,6 +28,10 @@ import lombok.Data;
 public class SubscriptionUpdateRequestSubscriptionData {
   @SerializedName("amount")
   private BigDecimal amount = null;
+  @SerializedName("next_payment_date")
+  private OffsetDateTime nextPaymentDate = null;
+  @SerializedName("plan")
+  private Plan plan = null;
   /**
    * Set status and action on subscription. Mandatory for &#x60;CHANGE_STATUS&#x60; operation only: &#x60;CANCELLED&#x60; - cancels and ends &#x60;INACTIVE&#x60; - **for scheduled only**; suspends &#x60;ACTIVE&#x60; - **for scheduled only**; resumes after suspend
    */
@@ -88,6 +93,8 @@ public class SubscriptionUpdateRequestSubscriptionData {
 
   @SerializedName("status_to")
   private StatusToEnum statusTo = null;
+  @SerializedName("units")
+  private Integer units = null;
   
   public void setAmount(BigDecimal amount) {
       this.amount = amount;
@@ -99,6 +106,34 @@ public class SubscriptionUpdateRequestSubscriptionData {
    **/
   public SubscriptionUpdateRequestSubscriptionData amount(BigDecimal amount) {
       this.amount = amount;
+      return this;
+  }
+
+  
+  public void setNextPaymentDate(OffsetDateTime nextPaymentDate) {
+      this.nextPaymentDate = nextPaymentDate;
+  }
+
+  /**
+   * @param nextPaymentDate nextPaymentDate
+   * @return bean instance
+   **/
+  public SubscriptionUpdateRequestSubscriptionData nextPaymentDate(OffsetDateTime nextPaymentDate) {
+      this.nextPaymentDate = nextPaymentDate;
+      return this;
+  }
+
+  
+  public void setPlan(Plan plan) {
+      this.plan = plan;
+  }
+
+  /**
+   * @param plan Plan data to which the subscription will be changed
+   * @return bean instance
+   **/
+  public SubscriptionUpdateRequestSubscriptionData plan(Plan plan) {
+      this.plan = plan;
       return this;
   }
 
@@ -116,6 +151,20 @@ public class SubscriptionUpdateRequestSubscriptionData {
       return this;
   }
 
+  
+  public void setUnits(Integer units) {
+      this.units = units;
+  }
+
+  /**
+   * @param units New quantity of subscription units
+   * @return bean instance
+   **/
+  public SubscriptionUpdateRequestSubscriptionData units(Integer units) {
+      this.units = units;
+      return this;
+  }
+
 
   @Override
   public String toString() {
@@ -123,7 +172,10 @@ public class SubscriptionUpdateRequestSubscriptionData {
      sb.append("SubscriptionUpdateRequestSubscriptionData( ");
      
      if (amount != null) sb.append("amount=").append(amount.toString()).append("; ");
+     if (nextPaymentDate != null) sb.append("nextPaymentDate=").append(nextPaymentDate.toString()).append("; ");
+     if (plan != null) sb.append("plan=").append(plan.toString()).append("; ");
      if (statusTo != null) sb.append("statusTo=").append(statusTo.toString()).append("; ");
+     if (units != null) sb.append("units=").append(units.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

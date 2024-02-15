@@ -20,6 +20,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Data;
 
 @Data
@@ -88,6 +90,10 @@ public class RecurringPlanRequestPlanData {
 
   @SerializedName("period")
   private PeriodEnum period = null;
+  @SerializedName("pricing_model")
+  private String pricingModel = null;
+  @SerializedName("quantity")
+  private List<PlanQuantity> quantity = null;
   @SerializedName("retries")
   private Integer retries = null;
   
@@ -163,6 +169,42 @@ public class RecurringPlanRequestPlanData {
   }
 
   
+  public void setPricingModel(String pricingModel) {
+      this.pricingModel = pricingModel;
+  }
+
+  /**
+   * @param pricingModel Parameter regulates the price calculation pricing_model depending on the number of units Possible values: &#x60;FIXED&#x60; &#x60;TIERED&#x60; &#x60;VOLUME&#x60; By default - &#x60;FIXED&#x60;
+   * @return bean instance
+   **/
+  public RecurringPlanRequestPlanData pricingModel(String pricingModel) {
+      this.pricingModel = pricingModel;
+      return this;
+  }
+
+  
+  public void setQuantity(List<PlanQuantity> quantity) {
+      this.quantity = quantity;
+  }
+
+  /**
+   * @param quantity Array with units quantity. Mandatory if &#x60;pricing_model&#x60; is &#x60;TIERED&#x60; or &#x60;VOLUME&#x60;
+   * @return bean instance
+   **/
+  public RecurringPlanRequestPlanData quantity(List<PlanQuantity> quantity) {
+      this.quantity = quantity;
+      return this;
+  }
+
+  public RecurringPlanRequestPlanData addQuantityItem(PlanQuantity quantityItem) {
+    if (this.quantity == null) {
+      this.quantity = new ArrayList<>();
+    }
+    this.quantity.add(quantityItem);
+    return this;
+  }
+
+  
   public void setRetries(Integer retries) {
       this.retries = retries;
   }
@@ -189,6 +231,8 @@ public class RecurringPlanRequestPlanData {
      if (interval != null) sb.append("interval=").append(interval.toString()).append("; ");
      if (name != null) sb.append("name=").append(name.toString()).append("; ");
      if (period != null) sb.append("period=").append(period.toString()).append("; ");
+     if (pricingModel != null) sb.append("pricingModel=").append(pricingModel.toString()).append("; ");
+     if (quantity != null) sb.append("quantity=").append(quantity.toString()).append("; ");
      if (retries != null) sb.append("retries=").append(retries.toString()).append("; ");
      sb.append(")");
      return sb.toString();

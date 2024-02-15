@@ -21,6 +21,8 @@ import lombok.Data;
 public class Confirm3dsRequest {
   @SerializedName("request")
   private Request request = null;
+  @SerializedName("CRes")
+  private String cres = null;
   @SerializedName("PaRes")
   private String paRes = null;
   
@@ -38,12 +40,26 @@ public class Confirm3dsRequest {
   }
 
   
+  public void setCres(String cres) {
+      this.cres = cres;
+  }
+
+  /**
+   * @param cres Bank authentication result, for 3-D Secure 2 *(for BANKCARD payment method only)*
+   * @return bean instance
+   **/
+  public Confirm3dsRequest cres(String cres) {
+      this.cres = cres;
+      return this;
+  }
+
+  
   public void setPaRes(String paRes) {
       this.paRes = paRes;
   }
 
   /**
-   * @param paRes Bank authentication result *(for BANKCARD payment method only)*
+   * @param paRes Bank authentication result, for 3-D Secure 1 *(for BANKCARD payment method only)*
    * @return bean instance
    **/
   public Confirm3dsRequest paRes(String paRes) {
@@ -58,6 +74,7 @@ public class Confirm3dsRequest {
      sb.append("Confirm3dsRequest( ");
      
      if (request != null) sb.append("request=").append(request.toString()).append("; ");
+     if (cres != null) sb.append("cres=").append(cres.toString()).append("; ");
      if (paRes != null) sb.append("paRes=").append(paRes.toString()).append("; ");
      sb.append(")");
      return sb.toString();

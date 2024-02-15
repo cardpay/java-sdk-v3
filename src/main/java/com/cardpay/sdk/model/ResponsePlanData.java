@@ -21,6 +21,8 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Data;
 
 @Data
@@ -144,6 +146,10 @@ public class ResponsePlanData {
   private BigDecimal amount = null;
   @SerializedName("retries")
   private Integer retries = null;
+  @SerializedName("pricing_model")
+  private String pricingModel = null;
+  @SerializedName("quantity")
+  private List<PlanQuantity> quantity = null;
   
   public void setId(String id) {
       this.id = id;
@@ -270,6 +276,42 @@ public class ResponsePlanData {
       return this;
   }
 
+  
+  public void setPricingModel(String pricingModel) {
+      this.pricingModel = pricingModel;
+  }
+
+  /**
+   * @param pricingModel Parameter regulates the price calculation pricing_model depending on the number of units. Possible values: &#x60;FIXED&#x60; &#x60;TIERED&#x60; &#x60;VOLUME&#x60;
+   * @return bean instance
+   **/
+  public ResponsePlanData pricingModel(String pricingModel) {
+      this.pricingModel = pricingModel;
+      return this;
+  }
+
+  
+  public void setQuantity(List<PlanQuantity> quantity) {
+      this.quantity = quantity;
+  }
+
+  /**
+   * @param quantity Array with units params
+   * @return bean instance
+   **/
+  public ResponsePlanData quantity(List<PlanQuantity> quantity) {
+      this.quantity = quantity;
+      return this;
+  }
+
+  public ResponsePlanData addQuantityItem(PlanQuantity quantityItem) {
+    if (this.quantity == null) {
+      this.quantity = new ArrayList<>();
+    }
+    this.quantity.add(quantityItem);
+    return this;
+  }
+
 
   @Override
   public String toString() {
@@ -285,6 +327,8 @@ public class ResponsePlanData {
      if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
      if (amount != null) sb.append("amount=").append(amount.toString()).append("; ");
      if (retries != null) sb.append("retries=").append(retries.toString()).append("; ");
+     if (pricingModel != null) sb.append("pricingModel=").append(pricingModel.toString()).append("; ");
+     if (quantity != null) sb.append("quantity=").append(quantity.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

@@ -42,10 +42,14 @@ public class SubscriptionGetResponse {
   private String id = null;
   @SerializedName("interval")
   private Integer interval = null;
+  @SerializedName("is_payment_date_shifted")
+  private Boolean isPaymentDateShifted = null;
   @SerializedName("next_payment")
   private NextSubscriptionPayment nextPayment = null;
   @SerializedName("payments_due")
   private Integer paymentsDue = null;
+  @SerializedName("pending_plan_update")
+  private SubscriptionPendingPlanUpdate pendingPlanUpdate = null;
   /**
    * Period of subscription
    */
@@ -221,6 +225,8 @@ public class SubscriptionGetResponse {
 
   @SerializedName("type")
   private TypeEnum type = null;
+  @SerializedName("units")
+  private Integer units = null;
   
   public void setAmountDue(BigDecimal amountDue) {
       this.amountDue = amountDue;
@@ -334,6 +340,20 @@ public class SubscriptionGetResponse {
   }
 
   
+  public void setIsPaymentDateShifted(Boolean isPaymentDateShifted) {
+      this.isPaymentDateShifted = isPaymentDateShifted;
+  }
+
+  /**
+   * @param isPaymentDateShifted A sign of whether it is possible to change the subscription payment date, because it has already been changed before &#x60;true&#x60; - can&#39;t change &#x60;false&#x60; - can change
+   * @return bean instance
+   **/
+  public SubscriptionGetResponse isPaymentDateShifted(Boolean isPaymentDateShifted) {
+      this.isPaymentDateShifted = isPaymentDateShifted;
+      return this;
+  }
+
+  
   public void setNextPayment(NextSubscriptionPayment nextPayment) {
       this.nextPayment = nextPayment;
   }
@@ -358,6 +378,20 @@ public class SubscriptionGetResponse {
    **/
   public SubscriptionGetResponse paymentsDue(Integer paymentsDue) {
       this.paymentsDue = paymentsDue;
+      return this;
+  }
+
+  
+  public void setPendingPlanUpdate(SubscriptionPendingPlanUpdate pendingPlanUpdate) {
+      this.pendingPlanUpdate = pendingPlanUpdate;
+  }
+
+  /**
+   * @param pendingPlanUpdate Pending plan update data
+   * @return bean instance
+   **/
+  public SubscriptionGetResponse pendingPlanUpdate(SubscriptionPendingPlanUpdate pendingPlanUpdate) {
+      this.pendingPlanUpdate = pendingPlanUpdate;
       return this;
   }
 
@@ -459,6 +493,20 @@ public class SubscriptionGetResponse {
       return this;
   }
 
+  
+  public void setUnits(Integer units) {
+      this.units = units;
+  }
+
+  /**
+   * @param units Units quantity of the subscription, who can consume their service.
+   * @return bean instance
+   **/
+  public SubscriptionGetResponse units(Integer units) {
+      this.units = units;
+      return this;
+  }
+
 
   @Override
   public String toString() {
@@ -473,8 +521,10 @@ public class SubscriptionGetResponse {
      if (description != null) sb.append("description=").append(description.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
      if (interval != null) sb.append("interval=").append(interval.toString()).append("; ");
+     if (isPaymentDateShifted != null) sb.append("isPaymentDateShifted=").append(isPaymentDateShifted.toString()).append("; ");
      if (nextPayment != null) sb.append("nextPayment=").append(nextPayment.toString()).append("; ");
      if (paymentsDue != null) sb.append("paymentsDue=").append(paymentsDue.toString()).append("; ");
+     if (pendingPlanUpdate != null) sb.append("pendingPlanUpdate=").append(pendingPlanUpdate.toString()).append("; ");
      if (period != null) sb.append("period=").append(period.toString()).append("; ");
      if (plan != null) sb.append("plan=").append(plan.toString()).append("; ");
      if (retries != null) sb.append("retries=").append(retries.toString()).append("; ");
@@ -482,6 +532,7 @@ public class SubscriptionGetResponse {
      if (statusReason != null) sb.append("statusReason=").append(statusReason.toString()).append("; ");
      if (subscriptionStart != null) sb.append("subscriptionStart=").append(subscriptionStart.toString()).append("; ");
      if (type != null) sb.append("type=").append(type.toString()).append("; ");
+     if (units != null) sb.append("units=").append(units.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

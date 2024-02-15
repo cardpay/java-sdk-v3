@@ -33,7 +33,9 @@ public class PlanUpdateRequest {
   public enum OperationEnum {
     CHANGE_STATUS("CHANGE_STATUS"),
     
-    RENAME("RENAME");
+    RENAME("RENAME"),
+    
+    CHANGE_QUANTITY("CHANGE_QUANTITY");
 
     private String value;
 

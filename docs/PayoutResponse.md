@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **ewalletAccount** | [**PayoutResponseEWalletAccount**](PayoutResponseEWalletAccount.md) | eWallet account data *(for payout methods only)* |  [optional]
 **paymentData** | [**PayoutPaymentData**](PayoutPaymentData.md) | Payment data |  [optional]
 **payoutData** | [**PayoutResponsePayoutData**](PayoutResponsePayoutData.md) | Payout data | 
+**redirectUrl** | **String** | URL Customer should be redirected to |  [optional]
 **paymentMethod** | **String** | Used payment method type name from payment methods list |  [optional]
 **merchantOrder** | [**TransactionResponseMerchantOrder**](TransactionResponseMerchantOrder.md) | Merchant order data |  [optional]
 

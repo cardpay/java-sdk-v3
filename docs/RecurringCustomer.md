@@ -4,6 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**browserInfo** | [**BrowserInfo**](BrowserInfo.md) | Browser info |  [optional]
+**device** | [**Device**](Device.md) | Customer&#39;s device information |  [optional]
 **email** | **String** | Customer&#39;s e-mail address. Mandatory by default, can be defined as optional by CardPay manager. | 
 **homePhone** | **String** | The work phone number provided by the Cardholder. Required (if available), unless market or regional mandate restricts sending this information. Characters Format: string (10-18 symbols) country code + Subscriber number. Refer to ITU-E.164 for additional information on format and length. |  [optional]
 **id** | **String** | Customer&#39;s ID in Merchant&#39;s system | 

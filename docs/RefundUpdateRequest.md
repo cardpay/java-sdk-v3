@@ -5,7 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **request** | [**Request**](Request.md) | Request | 
-**refundData** | [**RequestUpdatedTransactionData**](RequestUpdatedTransactionData.md) | Transaction data |  [optional]
+**refundData** | [**RequestUpdatedTransactionData**](RequestUpdatedTransactionData.md) | Refund data |  [optional]
+**transactionData** | [**RequestUpdatedTransactionData**](RequestUpdatedTransactionData.md) |  |  [optional]
 
 
 

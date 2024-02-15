@@ -97,7 +97,7 @@ public class PaymentCallback {
   }
 
   /**
-   * @param ewalletAccount eWallet account data *(for ALIPAY, QIWI, WEBMONEY, NETELLER, YANDEXMONEY, DIRECTBANKINGNGA, AQRCODE, AIRTEL, MPESA, MTN, UGANDAMOBILE, VODAFONE, TIGO and &#39;Latin America&#39; payment methods only)*
+   * @param ewalletAccount eWallet account data *(for QIWI, WEBMONEY, NETELLER, DIRECTBANKINGNGA, AQRCODE, AIRTEL, MPESA, MTN, UGANDAMOBILE, VODAFONE, TIGO and &#39;Latin America&#39; payment methods only)*
    * @return bean instance
    **/
   public PaymentCallback ewalletAccount(TransactionResponseEWalletAccount ewalletAccount) {

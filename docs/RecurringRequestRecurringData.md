@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **contractNumber** | **String** | Contract number between customer and merchant. Required for Mexican merchants for scheduled payments. |  [optional]
 **currency** | **String** | [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code |  [optional]
 **dynamicDescriptor** | **String** | Short description of the service or product, must be enabled by CardPay manager to be used. |  [optional]
+**encryptedData** | **String** | The encrypted payment credentials encoded in Base64 |  [optional]
 **filing** | [**RecurringRequestFiling**](RecurringRequestFiling.md) | Filing data, should be send in all recurring requests besides first recurring request First recurring request should be send without filing attribute |  [optional]
 **generateToken** | **Boolean** | This attribute can be received only in first recurring request. In all requests with recurring_id card.token can&#39;t be generated. If set to &#39;true&#39;, card token will be generated and returned in GET response. Will be generated only for successful transactions (not for declined). |  [optional]
 **initialAmount** | [**BigDecimal**](BigDecimal.md) | The amount charged for the initial period from the creation of the transaction to the start date of the subscription (&#39;subscription_start&#39;). It is indicated by the merchant in case of a discount or extra charge. It pays once during subscription. |  [optional]

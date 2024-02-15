@@ -37,12 +37,63 @@ public class OneclickData {
   private RecurringRequestFiling filing = null;
   @SerializedName("generate_token")
   private Boolean generateToken = null;
+  @SerializedName("hold_period")
+  private Integer holdPeriod = null;
   @SerializedName("initiator")
   private String initiator = null;
   @SerializedName("network_trans_id")
   private String networkTransId = null;
   @SerializedName("note")
   private String note = null;
+  /**
+   * The value contains payment status after hold period if payment has not been completed. Possible values: COMPLETE, REVERSE
+   */
+  @JsonAdapter(PostauthStatusEnum.Adapter.class)
+  public enum PostauthStatusEnum {
+    REVERSE("REVERSE"),
+    
+    COMPLETE("COMPLETE");
+
+    private String value;
+
+    PostauthStatusEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PostauthStatusEnum fromValue(String text) {
+      for (PostauthStatusEnum b : PostauthStatusEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<PostauthStatusEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PostauthStatusEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PostauthStatusEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return PostauthStatusEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName("postauth_status")
+  private PostauthStatusEnum postauthStatus = null;
   @SerializedName("preauth")
   private Boolean preauth = null;
   @SerializedName("sca_exemption")
@@ -189,6 +240,22 @@ public class OneclickData {
   }
 
   
+  public void setHoldPeriod(Integer holdPeriod) {
+      this.holdPeriod = holdPeriod;
+  }
+
+  /**
+   * minimum: 1
+   * maximum: 168
+   * @param holdPeriod The delay between the authorisation and scheduled auto-capture or auto-void, specified in hours. The minimum hold period is 1 hour, maximum hold period is 7 days (168 hours).
+   * @return bean instance
+   **/
+  public OneclickData holdPeriod(Integer holdPeriod) {
+      this.holdPeriod = holdPeriod;
+      return this;
+  }
+
+  
   public void setInitiator(String initiator) {
       this.initiator = initiator;
   }
@@ -227,6 +294,20 @@ public class OneclickData {
    **/
   public OneclickData note(String note) {
       this.note = note;
+      return this;
+  }
+
+  
+  public void setPostauthStatus(PostauthStatusEnum postauthStatus) {
+      this.postauthStatus = postauthStatus;
+  }
+
+  /**
+   * @param postauthStatus The value contains payment status after hold period if payment has not been completed. Possible values: COMPLETE, REVERSE
+   * @return bean instance
+   **/
+  public OneclickData postauthStatus(PostauthStatusEnum postauthStatus) {
+      this.postauthStatus = postauthStatus;
       return this;
   }
 
@@ -298,9 +379,11 @@ public class OneclickData {
      if (dynamicDescriptor != null) sb.append("dynamicDescriptor=").append(dynamicDescriptor.toString()).append("; ");
      if (filing != null) sb.append("filing=").append(filing.toString()).append("; ");
      if (generateToken != null) sb.append("generateToken=").append(generateToken.toString()).append("; ");
+     if (holdPeriod != null) sb.append("holdPeriod=").append(holdPeriod.toString()).append("; ");
      if (initiator != null) sb.append("initiator=").append(initiator.toString()).append("; ");
      if (networkTransId != null) sb.append("networkTransId=").append(networkTransId.toString()).append("; ");
      if (note != null) sb.append("note=").append(note.toString()).append("; ");
+     if (postauthStatus != null) sb.append("postauthStatus=").append(postauthStatus.toString()).append("; ");
      if (preauth != null) sb.append("preauth=").append(preauth.toString()).append("; ");
      if (scaExemption != null) sb.append("scaExemption=").append(scaExemption.toString()).append("; ");
      if (threeDsChallengeIndicator != null) sb.append("threeDsChallengeIndicator=").append(threeDsChallengeIndicator.toString()).append("; ");

@@ -23,6 +23,8 @@ public class RefundUpdateRequest {
   private Request request = null;
   @SerializedName("refund_data")
   private RequestUpdatedTransactionData refundData = null;
+  @SerializedName("transaction_data")
+  private RequestUpdatedTransactionData transactionData = null;
   
   public void setRequest(Request request) {
       this.request = request;
@@ -43,11 +45,25 @@ public class RefundUpdateRequest {
   }
 
   /**
-   * @param refundData Transaction data
+   * @param refundData Refund data
    * @return bean instance
    **/
   public RefundUpdateRequest refundData(RequestUpdatedTransactionData refundData) {
       this.refundData = refundData;
+      return this;
+  }
+
+  
+  public void setTransactionData(RequestUpdatedTransactionData transactionData) {
+      this.transactionData = transactionData;
+  }
+
+  /**
+   * @param transactionData transactionData
+   * @return bean instance
+   **/
+  public RefundUpdateRequest transactionData(RequestUpdatedTransactionData transactionData) {
+      this.transactionData = transactionData;
       return this;
   }
 
@@ -59,6 +75,7 @@ public class RefundUpdateRequest {
      
      if (request != null) sb.append("request=").append(request.toString()).append("; ");
      if (refundData != null) sb.append("refundData=").append(refundData.toString()).append("; ");
+     if (transactionData != null) sb.append("transactionData=").append(transactionData.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

@@ -83,7 +83,7 @@ public class RefundCallback {
   }
 
   /**
-   * @param ewalletAccount eWallet account data *(for ALIPAY and QIWI payment methods only)*
+   * @param ewalletAccount eWallet account data *(for QIWI payment methods only)*
    * @return bean instance
    **/
   public RefundCallback ewalletAccount(TransactionResponseEWalletAccount ewalletAccount) {

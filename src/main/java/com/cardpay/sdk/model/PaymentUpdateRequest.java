@@ -35,7 +35,9 @@ public class PaymentUpdateRequest {
     
     CONFIRM_3DS("CONFIRM_3DS"),
     
-    EXECUTE("EXECUTE");
+    EXECUTE("EXECUTE"),
+    
+    INCREMENT("INCREMENT");
 
     private String value;
 
@@ -79,6 +81,8 @@ public class PaymentUpdateRequest {
   private OperationEnum operation = null;
   @SerializedName("payment_data")
   private PaymentUpdateTransactionData paymentData = null;
+  @SerializedName("transaction_data")
+  private PaymentUpdateTransactionData transactionData = null;
   
   public void setRequest(Request request) {
       this.request = request;
@@ -113,11 +117,25 @@ public class PaymentUpdateRequest {
   }
 
   /**
-   * @param paymentData Transaction data
+   * @param paymentData Payment data
    * @return bean instance
    **/
   public PaymentUpdateRequest paymentData(PaymentUpdateTransactionData paymentData) {
       this.paymentData = paymentData;
+      return this;
+  }
+
+  
+  public void setTransactionData(PaymentUpdateTransactionData transactionData) {
+      this.transactionData = transactionData;
+  }
+
+  /**
+   * @param transactionData transactionData
+   * @return bean instance
+   **/
+  public PaymentUpdateRequest transactionData(PaymentUpdateTransactionData transactionData) {
+      this.transactionData = transactionData;
       return this;
   }
 
@@ -130,6 +148,7 @@ public class PaymentUpdateRequest {
      if (request != null) sb.append("request=").append(request.toString()).append("; ");
      if (operation != null) sb.append("operation=").append(operation.toString()).append("; ");
      if (paymentData != null) sb.append("paymentData=").append(paymentData.toString()).append("; ");
+     if (transactionData != null) sb.append("transactionData=").append(transactionData.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

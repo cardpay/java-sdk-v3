@@ -33,6 +33,8 @@ public class RecurringResponseRecurringData {
   private String arn = null;
   @SerializedName("auth_code")
   private String authCode = null;
+  @SerializedName("begin")
+  private Boolean begin = null;
   @SerializedName("created")
   private String created = null;
   @SerializedName("currency")
@@ -45,6 +47,8 @@ public class RecurringResponseRecurringData {
   private String extendedDeclineReason = null;
   @SerializedName("filing")
   private RecurringResponseFiling filing = null;
+  @SerializedName("hold_period")
+  private Integer holdPeriod = null;
   @SerializedName("id")
   private String id = null;
   @SerializedName("initiator")
@@ -63,6 +67,8 @@ public class RecurringResponseRecurringData {
   private String note = null;
   @SerializedName("payments")
   private String payments = null;
+  @SerializedName("postauth_status")
+  private String postauthStatus = null;
   @SerializedName("rrn")
   private String rrn = null;
   /**
@@ -332,6 +338,20 @@ public class RecurringResponseRecurringData {
   }
 
   
+  public void setBegin(Boolean begin) {
+      this.begin = begin;
+  }
+
+  /**
+   * @param begin Callback: show first/next recurring
+   * @return bean instance
+   **/
+  public RecurringResponseRecurringData begin(Boolean begin) {
+      this.begin = begin;
+      return this;
+  }
+
+  
   public void setCreated(String created) {
       this.created = created;
   }
@@ -412,6 +432,20 @@ public class RecurringResponseRecurringData {
    **/
   public RecurringResponseRecurringData filing(RecurringResponseFiling filing) {
       this.filing = filing;
+      return this;
+  }
+
+  
+  public void setHoldPeriod(Integer holdPeriod) {
+      this.holdPeriod = holdPeriod;
+  }
+
+  /**
+   * @param holdPeriod The delay between the authorisation and scheduled auto-capture or auto-void, specified in hours. The minimum hold period is 1 hour, maximum hold period is 7 days (168 hours).
+   * @return bean instance
+   **/
+  public RecurringResponseRecurringData holdPeriod(Integer holdPeriod) {
+      this.holdPeriod = holdPeriod;
       return this;
   }
 
@@ -550,6 +584,20 @@ public class RecurringResponseRecurringData {
   }
 
   
+  public void setPostauthStatus(String postauthStatus) {
+      this.postauthStatus = postauthStatus;
+  }
+
+  /**
+   * @param postauthStatus The value contains payment status after hold period if payment has not been completed. Possible values: COMPLETE, REVERSE
+   * @return bean instance
+   **/
+  public RecurringResponseRecurringData postauthStatus(String postauthStatus) {
+      this.postauthStatus = postauthStatus;
+      return this;
+  }
+
+  
   public void setRrn(String rrn) {
       this.rrn = rrn;
   }
@@ -642,12 +690,14 @@ public class RecurringResponseRecurringData {
      if (amount != null) sb.append("amount=").append(amount.toString()).append("; ");
      if (arn != null) sb.append("arn=").append(arn.toString()).append("; ");
      if (authCode != null) sb.append("authCode=").append(authCode.toString()).append("; ");
+     if (begin != null) sb.append("begin=").append(begin.toString()).append("; ");
      if (created != null) sb.append("created=").append(created.toString()).append("; ");
      if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
      if (declineCode != null) sb.append("declineCode=").append(declineCode.toString()).append("; ");
      if (declineReason != null) sb.append("declineReason=").append(declineReason.toString()).append("; ");
      if (extendedDeclineReason != null) sb.append("extendedDeclineReason=").append(extendedDeclineReason.toString()).append("; ");
      if (filing != null) sb.append("filing=").append(filing.toString()).append("; ");
+     if (holdPeriod != null) sb.append("holdPeriod=").append(holdPeriod.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
      if (initiator != null) sb.append("initiator=").append(initiator.toString()).append("; ");
      if (installmentAmount != null) sb.append("installmentAmount=").append(installmentAmount.toString()).append("; ");
@@ -657,6 +707,7 @@ public class RecurringResponseRecurringData {
      if (networkTransId != null) sb.append("networkTransId=").append(networkTransId.toString()).append("; ");
      if (note != null) sb.append("note=").append(note.toString()).append("; ");
      if (payments != null) sb.append("payments=").append(payments.toString()).append("; ");
+     if (postauthStatus != null) sb.append("postauthStatus=").append(postauthStatus.toString()).append("; ");
      if (rrn != null) sb.append("rrn=").append(rrn.toString()).append("; ");
      if (scheduledType != null) sb.append("scheduledType=").append(scheduledType.toString()).append("; ");
      if (status != null) sb.append("status=").append(status.toString()).append("; ");

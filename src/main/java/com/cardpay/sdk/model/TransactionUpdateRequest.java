@@ -43,7 +43,7 @@ public class TransactionUpdateRequest {
   }
 
   /**
-   * @param transactionData Transaction data
+   * @param transactionData transactionData
    * @return bean instance
    **/
   public TransactionUpdateRequest transactionData(RequestUpdatedTransactionData transactionData) {

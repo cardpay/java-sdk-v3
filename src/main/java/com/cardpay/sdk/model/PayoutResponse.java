@@ -31,6 +31,8 @@ public class PayoutResponse {
   private PayoutPaymentData paymentData = null;
   @SerializedName("payout_data")
   private PayoutResponsePayoutData payoutData = null;
+  @SerializedName("redirect_url")
+  private String redirectUrl = null;
   @SerializedName("payment_method")
   private String paymentMethod = null;
   @SerializedName("merchant_order")
@@ -120,6 +122,20 @@ public class PayoutResponse {
   }
 
   
+  public void setRedirectUrl(String redirectUrl) {
+      this.redirectUrl = redirectUrl;
+  }
+
+  /**
+   * @param redirectUrl URL Customer should be redirected to
+   * @return bean instance
+   **/
+  public PayoutResponse redirectUrl(String redirectUrl) {
+      this.redirectUrl = redirectUrl;
+      return this;
+  }
+
+  
   public void setPaymentMethod(String paymentMethod) {
       this.paymentMethod = paymentMethod;
   }
@@ -159,6 +175,7 @@ public class PayoutResponse {
      if (ewalletAccount != null) sb.append("ewalletAccount=").append(ewalletAccount.toString()).append("; ");
      if (paymentData != null) sb.append("paymentData=").append(paymentData.toString()).append("; ");
      if (payoutData != null) sb.append("payoutData=").append(payoutData.toString()).append("; ");
+     if (redirectUrl != null) sb.append("redirectUrl=").append(redirectUrl.toString()).append("; ");
      if (paymentMethod != null) sb.append("paymentMethod=").append(paymentMethod.toString()).append("; ");
      if (merchantOrder != null) sb.append("merchantOrder=").append(merchantOrder.toString()).append("; ");
      sb.append(")");
