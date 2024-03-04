@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **note** | **String** | Note about the authentication, not shown to Customer |  [optional]
 **recurringData** | [**RecurringData**](RecurringData.md) | Recurring data |  [optional]
 **scaExemption** | **String** | Indicates the exemption type that you want to request for the authentication. Possible value: LOW_VALUE |  [optional]
+**threeDsChallengeIndicator** | **String** |  |  [optional]
 **transType** | **String** | Identifies the type of transaction being authenticated. |  [optional]
 **type** | [**TypeEnum**](#TypeEnum) |  |  [optional]
 

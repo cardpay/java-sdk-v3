@@ -47,6 +47,8 @@ public class AuthDataRequest {
   private RecurringData recurringData = null;
   @SerializedName("sca_exemption")
   private String scaExemption = null;
+  @SerializedName("three_ds_challenge_indicator")
+  private String threeDsChallengeIndicator = null;
   @SerializedName("trans_type")
   private String transType = null;
   /**
@@ -249,6 +251,20 @@ public class AuthDataRequest {
   }
 
   
+  public void setThreeDsChallengeIndicator(String threeDsChallengeIndicator) {
+      this.threeDsChallengeIndicator = threeDsChallengeIndicator;
+  }
+
+  /**
+   * @param threeDsChallengeIndicator threeDsChallengeIndicator
+   * @return bean instance
+   **/
+  public AuthDataRequest threeDsChallengeIndicator(String threeDsChallengeIndicator) {
+      this.threeDsChallengeIndicator = threeDsChallengeIndicator;
+      return this;
+  }
+
+  
   public void setTransType(String transType) {
       this.transType = transType;
   }
@@ -292,6 +308,7 @@ public class AuthDataRequest {
      if (note != null) sb.append("note=").append(note.toString()).append("; ");
      if (recurringData != null) sb.append("recurringData=").append(recurringData.toString()).append("; ");
      if (scaExemption != null) sb.append("scaExemption=").append(scaExemption.toString()).append("; ");
+     if (threeDsChallengeIndicator != null) sb.append("threeDsChallengeIndicator=").append(threeDsChallengeIndicator.toString()).append("; ");
      if (transType != null) sb.append("transType=").append(transType.toString()).append("; ");
      if (type != null) sb.append("type=").append(type.toString()).append("; ");
      sb.append(")");

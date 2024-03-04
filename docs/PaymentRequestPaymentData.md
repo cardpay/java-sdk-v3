@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **preauth** | **Boolean** | If set to &#x60;true&#x60;, the amount will not be captured but only blocked. Payments with &#39;preauth&#39; attribute will be captured automatically in 7 days from the time of creating the preauth transaction. *(for BANKCARD payment method only)*. |  [optional]
 **scaExemption** | **String** | Indicates the exemption type that you want to request for the transaction. Possible value: LOW_VALUE |  [optional]
 **threeDsChallengeIndicator** | **String** |  |  [optional]
+**threeDsMode** | **String** | Parameter &#39;three_ds_mode&#39; indicates desire to conduct the transaction with full 3-D Secure, partial 3-D Secure, or without it, possible values: &#x60;01&#x60; - FULL 3-D Secure &#x60;02&#x60; - 3DS required but can be skipped &#x60;03&#x60; - NON 3-D Secure |  [optional]
 **transType** | [**TransTypeEnum**](#TransTypeEnum) |  |  [optional]
 
 

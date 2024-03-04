@@ -102,6 +102,8 @@ public class PaymentRequestPaymentData {
   private String scaExemption = null;
   @SerializedName("three_ds_challenge_indicator")
   private String threeDsChallengeIndicator = null;
+  @SerializedName("three_ds_mode")
+  private String threeDsMode = null;
   /**
    * Gets or Sets transType
    */
@@ -364,6 +366,20 @@ public class PaymentRequestPaymentData {
   }
 
   
+  public void setThreeDsMode(String threeDsMode) {
+      this.threeDsMode = threeDsMode;
+  }
+
+  /**
+   * @param threeDsMode Parameter &#39;three_ds_mode&#39; indicates desire to conduct the transaction with full 3-D Secure, partial 3-D Secure, or without it, possible values: &#x60;01&#x60; - FULL 3-D Secure &#x60;02&#x60; - 3DS required but can be skipped &#x60;03&#x60; - NON 3-D Secure
+   * @return bean instance
+   **/
+  public PaymentRequestPaymentData threeDsMode(String threeDsMode) {
+      this.threeDsMode = threeDsMode;
+      return this;
+  }
+
+  
   public void setTransType(TransTypeEnum transType) {
       this.transType = transType;
   }
@@ -397,6 +413,7 @@ public class PaymentRequestPaymentData {
      if (preauth != null) sb.append("preauth=").append(preauth.toString()).append("; ");
      if (scaExemption != null) sb.append("scaExemption=").append(scaExemption.toString()).append("; ");
      if (threeDsChallengeIndicator != null) sb.append("threeDsChallengeIndicator=").append(threeDsChallengeIndicator.toString()).append("; ");
+     if (threeDsMode != null) sb.append("threeDsMode=").append(threeDsMode.toString()).append("; ");
      if (transType != null) sb.append("transType=").append(transType.toString()).append("; ");
      sb.append(")");
      return sb.toString();
