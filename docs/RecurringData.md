@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**begin** | **Boolean** | Is acceptable only for One-click type |  [optional]
 **contractNumber** | **String** | Contract number between customer and merchant. Required for Mexican merchants |  [optional]
 **initialAmount** | [**BigDecimal**](BigDecimal.md) | The amount of subscription initiated transaction in selected currency with dot as a decimal separator, must be less than 100 millions |  [optional]
 **plan** | [**Plan**](Plan.md) | Plan data |  [optional]

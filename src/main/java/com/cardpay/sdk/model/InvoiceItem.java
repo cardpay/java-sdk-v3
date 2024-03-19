@@ -61,7 +61,7 @@ public class InvoiceItem {
   }
 
   /**
-   * @param price Price of product / service with dot as a decimal separator, must be less than a 1000000 (one million, NOT inclusive)  For currencies with 0 digits after digital separator (like VND, IDR and others) - limit is 200000000 (200 million, NOT inclusive)
+   * @param price Price of product / service with dot as a decimal separator, must be less than 10 billion
    * @return bean instance
    **/
   public InvoiceItem price(BigDecimal price) {
