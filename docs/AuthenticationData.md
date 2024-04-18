@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **declineCode** | **String** | Decline code (only in decline case) |  [optional]
 **declineReason** | **String** | Bank&#39;s message about transaction decline reason (only in decline case) |  [optional]
 **id** | **String** | Unlimit&#39;s payment id |  [optional]
+**invalidData** | **List&lt;String&gt;** | List incorrect fields for decline |  [optional]
 **status** | [**StatusEnum**](#StatusEnum) | Current payment status |  [optional]
 **threeDSecure** | [**ThreeDSecureResponse**](ThreeDSecureResponse.md) | 3D Secure results data |  [optional]
 **transType** | [**TransTypeEnum**](#TransTypeEnum) |  |  [optional]

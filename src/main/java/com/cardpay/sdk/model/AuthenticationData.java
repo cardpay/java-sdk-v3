@@ -20,6 +20,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Data;
 
 @Data
@@ -37,6 +39,8 @@ public class AuthenticationData {
   private String declineReason = null;
   @SerializedName("id")
   private String id = null;
+  @SerializedName("invalid_data")
+  private List<String> invalidData = null;
   /**
    * Current payment status
    */
@@ -248,6 +252,28 @@ public class AuthenticationData {
   }
 
   
+  public void setInvalidData(List<String> invalidData) {
+      this.invalidData = invalidData;
+  }
+
+  /**
+   * @param invalidData List incorrect fields for decline
+   * @return bean instance
+   **/
+  public AuthenticationData invalidData(List<String> invalidData) {
+      this.invalidData = invalidData;
+      return this;
+  }
+
+  public AuthenticationData addInvalidDataItem(String invalidDataItem) {
+    if (this.invalidData == null) {
+      this.invalidData = new ArrayList<>();
+    }
+    this.invalidData.add(invalidDataItem);
+    return this;
+  }
+
+  
   public void setStatus(StatusEnum status) {
       this.status = status;
   }
@@ -315,6 +341,7 @@ public class AuthenticationData {
      if (declineCode != null) sb.append("declineCode=").append(declineCode.toString()).append("; ");
      if (declineReason != null) sb.append("declineReason=").append(declineReason.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (invalidData != null) sb.append("invalidData=").append(invalidData.toString()).append("; ");
      if (status != null) sb.append("status=").append(status.toString()).append("; ");
      if (threeDSecure != null) sb.append("threeDSecure=").append(threeDSecure.toString()).append("; ");
      if (transType != null) sb.append("transType=").append(transType.toString()).append("; ");
