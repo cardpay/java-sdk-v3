@@ -23,6 +23,8 @@ public class InvoiceCustomer {
   private String email = null;
   @SerializedName("id")
   private String id = null;
+  @SerializedName("locale")
+  private String locale = null;
   @SerializedName("phone")
   private String phone = null;
   
@@ -54,6 +56,20 @@ public class InvoiceCustomer {
   }
 
   
+  public void setLocale(String locale) {
+      this.locale = locale;
+  }
+
+  /**
+   * @param locale Preferred locale for the payment page ([ISO 639-1](https://en.wikipedia.org/wiki/ISO_639-1) language code). The default locale (en or other locale if it&#39;s set as default in Merchant account) will be applied if the selected locale (received in request) is not supported. Supported locales are: &#x60;ar&#x60;, &#x60;az&#x60;, &#x60;bg&#x60;, &#x60;cs&#x60;, &#x60;de&#x60;, &#x60;el&#x60;, &#x60;en&#x60;, &#x60;es&#x60;, &#x60;fr&#x60;, &#x60;hu&#x60;, &#x60;hy&#x60;, &#x60;id&#x60;, &#x60;it&#x60;, &#x60;ja&#x60;, &#x60;ka&#x60;, &#x60;ko&#x60;, &#x60;ms&#x60;, &#x60;nl&#x60;, &#x60;pl&#x60;, &#x60;pt&#x60;, &#x60;ro&#x60;, &#x60;ru&#x60;, &#x60;sr&#x60;, &#x60;sv&#x60;, &#x60;th&#x60;, &#x60;tr&#x60;, &#x60;uk&#x60;, &#x60;vi&#x60;, &#x60;zh&#x60;
+   * @return bean instance
+   **/
+  public InvoiceCustomer locale(String locale) {
+      this.locale = locale;
+      return this;
+  }
+
+  
   public void setPhone(String phone) {
       this.phone = phone;
   }
@@ -75,6 +91,7 @@ public class InvoiceCustomer {
      
      if (email != null) sb.append("email=").append(email.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (locale != null) sb.append("locale=").append(locale.toString()).append("; ");
      if (phone != null) sb.append("phone=").append(phone.toString()).append("; ");
      sb.append(")");
      return sb.toString();
