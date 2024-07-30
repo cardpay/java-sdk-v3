@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **customer** | [**PaymentRequestCustomer**](PaymentRequestCustomer.md) | Customer data | 
 **ewalletAccount** | [**PaymentRequestEWalletAccount**](PaymentRequestEWalletAccount.md) | eWallet account data *(for all payment method, excluding BANKCARD, BITCOIN, DIRECTBANKINGEU) |  [optional]
 **merchantOrder** | [**PaymentRequestMerchantOrder**](PaymentRequestMerchantOrder.md) | Merchant order data | 
+**paymentByInvoice** | **Boolean** |  |  [optional]
 **paymentData** | [**PaymentRequestPaymentData**](PaymentRequestPaymentData.md) | Payment data | 
 **paymentMethod** | **String** | Used payment method type name from payment methods list |  [optional]
 **paymentMethods** | **List&lt;String&gt;** | Array of payment methods to display on Checkout Page. If it is not set then all available methods will be displayed |  [optional]

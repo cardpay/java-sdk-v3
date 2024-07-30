@@ -21,6 +21,8 @@ import lombok.Data;
 public class PayoutRequestCustomer {
   @SerializedName("birth_date")
   private String birthDate = null;
+  @SerializedName("device")
+  private Device device = null;
   @SerializedName("document_type")
   private String documentType = null;
   @SerializedName("email")
@@ -52,6 +54,20 @@ public class PayoutRequestCustomer {
    **/
   public PayoutRequestCustomer birthDate(String birthDate) {
       this.birthDate = birthDate;
+      return this;
+  }
+
+  
+  public void setDevice(Device device) {
+      this.device = device;
+  }
+
+  /**
+   * @param device Customer&#39;s device information
+   * @return bean instance
+   **/
+  public PayoutRequestCustomer device(Device device) {
+      this.device = device;
       return this;
   }
 
@@ -202,6 +218,7 @@ public class PayoutRequestCustomer {
      sb.append("PayoutRequestCustomer( ");
      
      if (birthDate != null) sb.append("birthDate=").append(birthDate.toString()).append("; ");
+     if (device != null) sb.append("device=").append(device.toString()).append("; ");
      if (documentType != null) sb.append("documentType=").append(documentType.toString()).append("; ");
      if (email != null) sb.append("email=").append(email.toString()).append("; ");
      if (firstName != null) sb.append("firstName=").append(firstName.toString()).append("; ");

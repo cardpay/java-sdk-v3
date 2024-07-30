@@ -4,15 +4,15 @@ All URIs are relative to *https://sandbox.cardpay.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**accountDetails**](PixAccountDetailsApi.md#accountDetails) | **POST** api/account_details/pix | Get pix account details
+[**accountDetails**](PixAccountDetailsApi.md#accountDetails) | **POST** api/account_details/{method} | Get methods account details
 [**banks**](PixAccountDetailsApi.md#banks) | **GET** api/banks/{method}/{currency} | Get adapter banks list
 
 
 <a name="accountDetails"></a>
 # **accountDetails**
-> PixAccountDetailsResponse accountDetails(detailsRequest)
+> PixAccountDetailsResponse accountDetails(detailsRequest, method)
 
-Get pix account details
+Get methods account details
 
 ### Example
 ```java
@@ -32,9 +32,10 @@ Bearer.setApiKey("YOUR API KEY");
 //Bearer.setApiKeyPrefix("Token");
 
 PixAccountDetailsApi apiInstance = new PixAccountDetailsApi();
-PixAccountDetailsRequest detailsRequest = new PixAccountDetailsRequest(); // PixAccountDetailsRequest | detailsRequest
+AccountDetailsRequest detailsRequest = new AccountDetailsRequest(); // AccountDetailsRequest | detailsRequest
+String method = "method_example"; // String | method
 try {
-    PixAccountDetailsResponse result = apiInstance.accountDetails(detailsRequest);
+    PixAccountDetailsResponse result = apiInstance.accountDetails(detailsRequest, method);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling PixAccountDetailsApi#accountDetails");
@@ -46,7 +47,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **detailsRequest** | [**PixAccountDetailsRequest**](PixAccountDetailsRequest.md)| detailsRequest |
+ **detailsRequest** | [**AccountDetailsRequest**](AccountDetailsRequest.md)| detailsRequest |
+ **method** | **String**| method |
 
 ### Return type
 

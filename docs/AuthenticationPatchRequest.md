@@ -1,10 +1,10 @@
 
-# PixAccountDetailsRequest
+# AuthenticationPatchRequest
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customerIdentity** | **String** | Customer identity | 
+**request** | [**Request**](Request.md) | Request | 
 
 
 

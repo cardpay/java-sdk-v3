@@ -33,6 +33,8 @@ public class PaymentRequest {
   private PaymentRequestEWalletAccount ewalletAccount = null;
   @SerializedName("merchant_order")
   private PaymentRequestMerchantOrder merchantOrder = null;
+  @SerializedName("payment_by_invoice")
+  private Boolean paymentByInvoice = null;
   @SerializedName("payment_data")
   private PaymentRequestPaymentData paymentData = null;
   @SerializedName("payment_method")
@@ -126,6 +128,20 @@ public class PaymentRequest {
   }
 
   
+  public void setPaymentByInvoice(Boolean paymentByInvoice) {
+      this.paymentByInvoice = paymentByInvoice;
+  }
+
+  /**
+   * @param paymentByInvoice paymentByInvoice
+   * @return bean instance
+   **/
+  public PaymentRequest paymentByInvoice(Boolean paymentByInvoice) {
+      this.paymentByInvoice = paymentByInvoice;
+      return this;
+  }
+
+  
   public void setPaymentData(PaymentRequestPaymentData paymentData) {
       this.paymentData = paymentData;
   }
@@ -201,6 +217,7 @@ public class PaymentRequest {
      if (customer != null) sb.append("customer=").append(customer.toString()).append("; ");
      if (ewalletAccount != null) sb.append("ewalletAccount=").append(ewalletAccount.toString()).append("; ");
      if (merchantOrder != null) sb.append("merchantOrder=").append(merchantOrder.toString()).append("; ");
+     if (paymentByInvoice != null) sb.append("paymentByInvoice=").append(paymentByInvoice.toString()).append("; ");
      if (paymentData != null) sb.append("paymentData=").append(paymentData.toString()).append("; ");
      if (paymentMethod != null) sb.append("paymentMethod=").append(paymentMethod.toString()).append("; ");
      if (paymentMethods != null) sb.append("paymentMethods=").append(paymentMethods.toString()).append("; ");

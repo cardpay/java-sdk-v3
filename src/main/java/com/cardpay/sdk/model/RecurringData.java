@@ -20,8 +20,6 @@ import lombok.Data;
 @Data
 
 public class RecurringData {
-  @SerializedName("begin")
-  private Boolean begin = null;
   @SerializedName("contract_number")
   private String contractNumber = null;
   @SerializedName("initial_amount")
@@ -32,20 +30,6 @@ public class RecurringData {
   private String subscriptionStart = null;
   @SerializedName("type")
   private String type = null;
-  
-  public void setBegin(Boolean begin) {
-      this.begin = begin;
-  }
-
-  /**
-   * @param begin Is acceptable only for One-click type
-   * @return bean instance
-   **/
-  public RecurringData begin(Boolean begin) {
-      this.begin = begin;
-      return this;
-  }
-
   
   public void setContractNumber(String contractNumber) {
       this.contractNumber = contractNumber;
@@ -122,7 +106,6 @@ public class RecurringData {
      StringBuilder sb = new StringBuilder();
      sb.append("RecurringData( ");
      
-     if (begin != null) sb.append("begin=").append(begin.toString()).append("; ");
      if (contractNumber != null) sb.append("contractNumber=").append(contractNumber.toString()).append("; ");
      if (initialAmount != null) sb.append("initialAmount=").append(initialAmount.toString()).append("; ");
      if (plan != null) sb.append("plan=").append(plan.toString()).append("; ");

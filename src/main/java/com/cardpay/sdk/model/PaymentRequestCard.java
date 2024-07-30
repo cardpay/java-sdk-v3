@@ -79,12 +79,16 @@ public class PaymentRequestCard {
   private String expiration = null;
   @SerializedName("holder")
   private String holder = null;
+  @SerializedName("network_token")
+  private Boolean networkToken = null;
   @SerializedName("pan")
   private String pan = null;
   @SerializedName("pin_code")
   private String pinCode = null;
   @SerializedName("security_code")
   private String securityCode = null;
+  @SerializedName("token_cryptogram")
+  private String tokenCryptogram = null;
   
   public void setAcctType(AcctTypeEnum acctType) {
       this.acctType = acctType;
@@ -124,6 +128,20 @@ public class PaymentRequestCard {
    **/
   public PaymentRequestCard holder(String holder) {
       this.holder = holder;
+      return this;
+  }
+
+  
+  public void setNetworkToken(Boolean networkToken) {
+      this.networkToken = networkToken;
+  }
+
+  /**
+   * @param networkToken networkToken
+   * @return bean instance
+   **/
+  public PaymentRequestCard networkToken(Boolean networkToken) {
+      this.networkToken = networkToken;
       return this;
   }
 
@@ -169,6 +187,20 @@ public class PaymentRequestCard {
       return this;
   }
 
+  
+  public void setTokenCryptogram(String tokenCryptogram) {
+      this.tokenCryptogram = tokenCryptogram;
+  }
+
+  /**
+   * @param tokenCryptogram tokenCryptogram
+   * @return bean instance
+   **/
+  public PaymentRequestCard tokenCryptogram(String tokenCryptogram) {
+      this.tokenCryptogram = tokenCryptogram;
+      return this;
+  }
+
 
   @Override
   public String toString() {
@@ -178,9 +210,11 @@ public class PaymentRequestCard {
      if (acctType != null) sb.append("acctType=").append(acctType.toString()).append("; ");
      if (expiration != null) sb.append("expiration=").append(expiration.toString()).append("; ");
      if (holder != null) sb.append("holder=").append(holder.toString()).append("; ");
+     if (networkToken != null) sb.append("networkToken=").append(networkToken.toString()).append("; ");
      if (pan != null) sb.append("pan=").append(pan.toString()).append("; ");
      if (pinCode != null) sb.append("pinCode=").append(pinCode.toString()).append("; ");
      if (securityCode != null) sb.append("securityCode=").append(securityCode.toString()).append("; ");
+     if (tokenCryptogram != null) sb.append("tokenCryptogram=").append(tokenCryptogram.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

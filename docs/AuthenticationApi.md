@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createAuthentication**](AuthenticationApi.md#createAuthentication) | **POST** api/authentication | Create authentication
 [**getAuthentication**](AuthenticationApi.md#getAuthentication) | **GET** api/authentication/{authId} | Get authentication information
+[**updateAuthentication**](AuthenticationApi.md#updateAuthentication) | **PATCH** api/authentication/{authenticationId} | Update authentication
 
 
 <a name="createAuthentication"></a>
@@ -112,5 +113,60 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="updateAuthentication"></a>
+# **updateAuthentication**
+> AuthenticationUpdateResponse updateAuthentication(authenticationId, authenticationPatchRequest)
+
+Update authentication
+
+### Example
+```java
+// Import classes:
+//import com.cardpay.sdk.client.ApiClient;
+//import com.cardpay.sdk.client.ApiException;
+//import com.cardpay.sdk.client.Configuration;
+//import com.cardpay.sdk.client.auth.*;
+//import com.cardpay.sdk.api.AuthenticationApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: Bearer
+ApiKeyAuth Bearer = (ApiKeyAuth) defaultClient.getAuthentication("Bearer");
+Bearer.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//Bearer.setApiKeyPrefix("Token");
+
+AuthenticationApi apiInstance = new AuthenticationApi();
+String authenticationId = "authenticationId_example"; // String | Authentication ID
+AuthenticationPatchRequest authenticationPatchRequest = new AuthenticationPatchRequest(); // AuthenticationPatchRequest | authenticationPatchRequest
+try {
+    AuthenticationUpdateResponse result = apiInstance.updateAuthentication(authenticationId, authenticationPatchRequest);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling AuthenticationApi#updateAuthentication");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authenticationId** | **String**| Authentication ID |
+ **authenticationPatchRequest** | [**AuthenticationPatchRequest**](AuthenticationPatchRequest.md)| authenticationPatchRequest |
+
+### Return type
+
+[**AuthenticationUpdateResponse**](AuthenticationUpdateResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 

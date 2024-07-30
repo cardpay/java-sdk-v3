@@ -14,13 +14,39 @@
 package com.cardpay.sdk.model;
 
 import com.google.gson.annotations.SerializedName;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Data;
 
 @Data
 
-public class PixAccountDetailsRequest {
+public class AccountDetailsRequest {
+  @SerializedName("account_info")
+  private List<MapOfstringAndstring> accountInfo = null;
   @SerializedName("customer_identity")
   private String customerIdentity = null;
+  
+  public void setAccountInfo(List<MapOfstringAndstring> accountInfo) {
+      this.accountInfo = accountInfo;
+  }
+
+  /**
+   * @param accountInfo Customer account information
+   * @return bean instance
+   **/
+  public AccountDetailsRequest accountInfo(List<MapOfstringAndstring> accountInfo) {
+      this.accountInfo = accountInfo;
+      return this;
+  }
+
+  public AccountDetailsRequest addAccountInfoItem(MapOfstringAndstring accountInfoItem) {
+    if (this.accountInfo == null) {
+      this.accountInfo = new ArrayList<>();
+    }
+    this.accountInfo.add(accountInfoItem);
+    return this;
+  }
+
   
   public void setCustomerIdentity(String customerIdentity) {
       this.customerIdentity = customerIdentity;
@@ -30,7 +56,7 @@ public class PixAccountDetailsRequest {
    * @param customerIdentity Customer identity
    * @return bean instance
    **/
-  public PixAccountDetailsRequest customerIdentity(String customerIdentity) {
+  public AccountDetailsRequest customerIdentity(String customerIdentity) {
       this.customerIdentity = customerIdentity;
       return this;
   }
@@ -39,8 +65,9 @@ public class PixAccountDetailsRequest {
   @Override
   public String toString() {
      StringBuilder sb = new StringBuilder();
-     sb.append("PixAccountDetailsRequest( ");
+     sb.append("AccountDetailsRequest( ");
      
+     if (accountInfo != null) sb.append("accountInfo=").append(accountInfo.toString()).append("; ");
      if (customerIdentity != null) sb.append("customerIdentity=").append(customerIdentity.toString()).append("; ");
      sb.append(")");
      return sb.toString();
