@@ -96,6 +96,8 @@ public class RecurringPlanRequestPlanData {
   private List<PlanQuantity> quantity = null;
   @SerializedName("retries")
   private Integer retries = null;
+  @SerializedName("subscription_decline_logic")
+  private PlanSubscriptionDeclineLogic subscriptionDeclineLogic = null;
   
   public void setAmount(BigDecimal amount) {
       this.amount = amount;
@@ -220,6 +222,20 @@ public class RecurringPlanRequestPlanData {
       return this;
   }
 
+  
+  public void setSubscriptionDeclineLogic(PlanSubscriptionDeclineLogic subscriptionDeclineLogic) {
+      this.subscriptionDeclineLogic = subscriptionDeclineLogic;
+  }
+
+  /**
+   * @param subscriptionDeclineLogic Subscription decline logic
+   * @return bean instance
+   **/
+  public RecurringPlanRequestPlanData subscriptionDeclineLogic(PlanSubscriptionDeclineLogic subscriptionDeclineLogic) {
+      this.subscriptionDeclineLogic = subscriptionDeclineLogic;
+      return this;
+  }
+
 
   @Override
   public String toString() {
@@ -234,6 +250,7 @@ public class RecurringPlanRequestPlanData {
      if (pricingModel != null) sb.append("pricingModel=").append(pricingModel.toString()).append("; ");
      if (quantity != null) sb.append("quantity=").append(quantity.toString()).append("; ");
      if (retries != null) sb.append("retries=").append(retries.toString()).append("; ");
+     if (subscriptionDeclineLogic != null) sb.append("subscriptionDeclineLogic=").append(subscriptionDeclineLogic.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

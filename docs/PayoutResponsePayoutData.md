@@ -32,6 +32,8 @@ VOIDED | &quot;VOIDED&quot;
 TERMINATED | &quot;TERMINATED&quot;
 CHARGED_BACK | &quot;CHARGED_BACK&quot;
 CHARGEBACK_RESOLVED | &quot;CHARGEBACK_RESOLVED&quot;
+UNPAID | &quot;UNPAID&quot;
+WAITING | &quot;WAITING&quot;
 
 
 

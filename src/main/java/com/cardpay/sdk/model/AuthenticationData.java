@@ -66,7 +66,11 @@ public class AuthenticationData {
     
     CHARGED_BACK("CHARGED_BACK"),
     
-    CHARGEBACK_RESOLVED("CHARGEBACK_RESOLVED");
+    CHARGEBACK_RESOLVED("CHARGEBACK_RESOLVED"),
+    
+    UNPAID("UNPAID"),
+    
+    WAITING("WAITING");
 
     private String value;
 

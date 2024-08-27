@@ -63,7 +63,11 @@ public class UpdatedSubscriptionData {
     
     CARD_EXPIRED("CARD_EXPIRED"),
     
-    ACTIVATION_FAILED("ACTIVATION_FAILED");
+    ACTIVATION_FAILED("ACTIVATION_FAILED"),
+    
+    UNPAID("UNPAID"),
+    
+    WAITING("WAITING");
 
     private String value;
 
@@ -124,7 +128,11 @@ public class UpdatedSubscriptionData {
     
     CARD_EXPIRED("CARD_EXPIRED"),
     
-    ACTIVATION_FAILED("ACTIVATION_FAILED");
+    ACTIVATION_FAILED("ACTIVATION_FAILED"),
+    
+    UNPAID("UNPAID"),
+    
+    WAITING("WAITING");
 
     private String value;
 

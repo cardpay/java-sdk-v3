@@ -740,7 +740,7 @@ Name | Type | Description  | Notes
  **planId** | **String**| Id of plan. Use for searching scheduled subscriptions by plan | [optional]
  **sortOrder** | **String**| Sort based on order of results. &#39;asc&#39; for ascending order or &#39;desc&#39; for descending order (default value) | [optional]
  **startTime** | **OffsetDateTime**| Date and time up to milliseconds (in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format) when requested period starts (inclusive), UTC time, default is 24 hours before &#39;end_time&#39; (format: yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;) | [optional]
- **status** | **String**| Status of subscription | [optional] [enum: ACTIVE, INACTIVE, CANCELLED, PAST_DUE, PENDING, COMPLETED, CARD_EXPIRED, ACTIVATION_FAILED]
+ **status** | **String**| Status of subscription | [optional] [enum: ACTIVE, INACTIVE, CANCELLED, PAST_DUE, PENDING, COMPLETED, CARD_EXPIRED, ACTIVATION_FAILED, UNPAID, WAITING]
  **type** | **String**| Type of subscription. &#39;ONECLICK&#39; type will be ignored. | [optional] [enum: ONECLICK, SCHEDULED, INSTALLMENT]
 
 ### Return type

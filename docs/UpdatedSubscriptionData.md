@@ -31,6 +31,8 @@ PENDING | &quot;PENDING&quot;
 COMPLETED | &quot;COMPLETED&quot;
 CARD_EXPIRED | &quot;CARD_EXPIRED&quot;
 ACTIVATION_FAILED | &quot;ACTIVATION_FAILED&quot;
+UNPAID | &quot;UNPAID&quot;
+WAITING | &quot;WAITING&quot;
 
 
 <a name="StatusToEnum"></a>
@@ -45,6 +47,8 @@ PENDING | &quot;PENDING&quot;
 COMPLETED | &quot;COMPLETED&quot;
 CARD_EXPIRED | &quot;CARD_EXPIRED&quot;
 ACTIVATION_FAILED | &quot;ACTIVATION_FAILED&quot;
+UNPAID | &quot;UNPAID&quot;
+WAITING | &quot;WAITING&quot;
 
 
 

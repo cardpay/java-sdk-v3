@@ -150,6 +150,8 @@ public class ResponsePlanData {
   private String pricingModel = null;
   @SerializedName("quantity")
   private List<PlanQuantity> quantity = null;
+  @SerializedName("subscription_decline_logic")
+  private PlanSubscriptionDeclineLogic subscriptionDeclineLogic = null;
   
   public void setId(String id) {
       this.id = id;
@@ -312,6 +314,20 @@ public class ResponsePlanData {
     return this;
   }
 
+  
+  public void setSubscriptionDeclineLogic(PlanSubscriptionDeclineLogic subscriptionDeclineLogic) {
+      this.subscriptionDeclineLogic = subscriptionDeclineLogic;
+  }
+
+  /**
+   * @param subscriptionDeclineLogic Subscription decline logic
+   * @return bean instance
+   **/
+  public ResponsePlanData subscriptionDeclineLogic(PlanSubscriptionDeclineLogic subscriptionDeclineLogic) {
+      this.subscriptionDeclineLogic = subscriptionDeclineLogic;
+      return this;
+  }
+
 
   @Override
   public String toString() {
@@ -329,6 +345,7 @@ public class ResponsePlanData {
      if (retries != null) sb.append("retries=").append(retries.toString()).append("; ");
      if (pricingModel != null) sb.append("pricingModel=").append(pricingModel.toString()).append("; ");
      if (quantity != null) sb.append("quantity=").append(quantity.toString()).append("; ");
+     if (subscriptionDeclineLogic != null) sb.append("subscriptionDeclineLogic=").append(subscriptionDeclineLogic.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }
