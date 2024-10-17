@@ -28,6 +28,8 @@ public class PayoutRequestPayoutData {
   private String dynamicDescriptor = null;
   @SerializedName("generate_token")
   private Boolean generateToken = null;
+  @SerializedName("network_trans_id")
+  private String networkTransId = null;
   @SerializedName("note")
   private String note = null;
   
@@ -87,6 +89,20 @@ public class PayoutRequestPayoutData {
   }
 
   
+  public void setNetworkTransId(String networkTransId) {
+      this.networkTransId = networkTransId;
+  }
+
+  /**
+   * @param networkTransId Network Reference Number of original transaction
+   * @return bean instance
+   **/
+  public PayoutRequestPayoutData networkTransId(String networkTransId) {
+      this.networkTransId = networkTransId;
+      return this;
+  }
+
+  
   public void setNote(String note) {
       this.note = note;
   }
@@ -110,6 +126,7 @@ public class PayoutRequestPayoutData {
      if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
      if (dynamicDescriptor != null) sb.append("dynamicDescriptor=").append(dynamicDescriptor.toString()).append("; ");
      if (generateToken != null) sb.append("generateToken=").append(generateToken.toString()).append("; ");
+     if (networkTransId != null) sb.append("networkTransId=").append(networkTransId.toString()).append("; ");
      if (note != null) sb.append("note=").append(note.toString()).append("; ");
      sb.append(")");
      return sb.toString();

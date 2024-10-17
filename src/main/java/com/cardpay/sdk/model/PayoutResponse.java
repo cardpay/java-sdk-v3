@@ -14,11 +14,14 @@
 package com.cardpay.sdk.model;
 
 import com.google.gson.annotations.SerializedName;
+import java.util.Map;
 import lombok.Data;
 
 @Data
 
 public class PayoutResponse {
+  @SerializedName("additional_data")
+  private Map<String, String> additionalData = null;
   @SerializedName("card_account")
   private PayoutResponseCardAccount cardAccount = null;
   @SerializedName("cryptocurrency_account")
@@ -37,6 +40,20 @@ public class PayoutResponse {
   private String paymentMethod = null;
   @SerializedName("merchant_order")
   private TransactionResponseMerchantOrder merchantOrder = null;
+  
+  public void setAdditionalData(Map<String, String> additionalData) {
+      this.additionalData = additionalData;
+  }
+
+  /**
+   * @param additionalData Arbitrary-formatted key-value structure
+   * @return bean instance
+   **/
+  public PayoutResponse additionalData(Map<String, String> additionalData) {
+      this.additionalData = additionalData;
+      return this;
+  }
+
   
   public void setCardAccount(PayoutResponseCardAccount cardAccount) {
       this.cardAccount = cardAccount;
@@ -169,6 +186,7 @@ public class PayoutResponse {
      StringBuilder sb = new StringBuilder();
      sb.append("PayoutResponse( ");
      
+     if (additionalData != null) sb.append("additionalData=").append(additionalData.toString()).append("; ");
      if (cardAccount != null) sb.append("cardAccount=").append(cardAccount.toString()).append("; ");
      if (cryptocurrencyAccount != null) sb.append("cryptocurrencyAccount=").append(cryptocurrencyAccount.toString()).append("; ");
      if (customer != null) sb.append("customer=").append(customer.toString()).append("; ");

@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **installments** | **String** | Number of total installment payments, to be charged |  [optional]
 **invalidData** | **List&lt;String&gt;** | Invalid card or billing data |  [optional]
 **is3d** | **Boolean** | Was 3-D Secure authentication made or not *(for BANKCARD payment method only)* |  [optional]
+**networkTransId** | **String** | Network Reference Number of original transaction |  [optional]
 **note** | **String** | Payment note |  [optional]
 **postauthStatus** | **String** | The value contains payment status after hold period if payment has not been completed. Possible values: COMPLETE, REVERSE |  [optional]
 **rrn** | **String** | RRN (Retrieval Reference Number), supplied by the acquiring financial institution *(for BANKCARD payment method only)* |  [optional]

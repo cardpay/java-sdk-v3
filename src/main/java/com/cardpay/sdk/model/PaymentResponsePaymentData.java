@@ -55,6 +55,8 @@ public class PaymentResponsePaymentData {
   private List<String> invalidData = null;
   @SerializedName("is_3d")
   private Boolean is3d = null;
+  @SerializedName("network_trans_id")
+  private String networkTransId = null;
   @SerializedName("note")
   private String note = null;
   @SerializedName("postauth_status")
@@ -394,6 +396,20 @@ public class PaymentResponsePaymentData {
   }
 
   
+  public void setNetworkTransId(String networkTransId) {
+      this.networkTransId = networkTransId;
+  }
+
+  /**
+   * @param networkTransId Network Reference Number of original transaction
+   * @return bean instance
+   **/
+  public PaymentResponsePaymentData networkTransId(String networkTransId) {
+      this.networkTransId = networkTransId;
+      return this;
+  }
+
+  
   public void setNote(String note) {
       this.note = note;
   }
@@ -497,6 +513,7 @@ public class PaymentResponsePaymentData {
      if (installments != null) sb.append("installments=").append(installments.toString()).append("; ");
      if (invalidData != null) sb.append("invalidData=").append(invalidData.toString()).append("; ");
      if (is3d != null) sb.append("is3d=").append(is3d.toString()).append("; ");
+     if (networkTransId != null) sb.append("networkTransId=").append(networkTransId.toString()).append("; ");
      if (note != null) sb.append("note=").append(note.toString()).append("; ");
      if (postauthStatus != null) sb.append("postauthStatus=").append(postauthStatus.toString()).append("; ");
      if (rrn != null) sb.append("rrn=").append(rrn.toString()).append("; ");

@@ -96,6 +96,8 @@ public class RecurringPlanRequestPlanData {
   private List<PlanQuantity> quantity = null;
   @SerializedName("retries")
   private Integer retries = null;
+  @SerializedName("retry")
+  private PlanRetry retry = null;
   @SerializedName("subscription_decline_logic")
   private PlanSubscriptionDeclineLogic subscriptionDeclineLogic = null;
   
@@ -223,6 +225,20 @@ public class RecurringPlanRequestPlanData {
   }
 
   
+  public void setRetry(PlanRetry retry) {
+      this.retry = retry;
+  }
+
+  /**
+   * @param retry Structure for establishing the logic of retries for subscription based on created plan
+   * @return bean instance
+   **/
+  public RecurringPlanRequestPlanData retry(PlanRetry retry) {
+      this.retry = retry;
+      return this;
+  }
+
+  
   public void setSubscriptionDeclineLogic(PlanSubscriptionDeclineLogic subscriptionDeclineLogic) {
       this.subscriptionDeclineLogic = subscriptionDeclineLogic;
   }
@@ -250,6 +266,7 @@ public class RecurringPlanRequestPlanData {
      if (pricingModel != null) sb.append("pricingModel=").append(pricingModel.toString()).append("; ");
      if (quantity != null) sb.append("quantity=").append(quantity.toString()).append("; ");
      if (retries != null) sb.append("retries=").append(retries.toString()).append("; ");
+     if (retry != null) sb.append("retry=").append(retry.toString()).append("; ");
      if (subscriptionDeclineLogic != null) sb.append("subscriptionDeclineLogic=").append(subscriptionDeclineLogic.toString()).append("; ");
      sb.append(")");
      return sb.toString();

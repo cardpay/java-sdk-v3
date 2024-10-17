@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **contractNumber** | **String** | Contract number between customer and merchant. Required for Mexican merchants for scheduled payments. |  [optional]
 **currency** | **String** | [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code | 
 **dynamicDescriptor** | **String** | Short description of the service or product, must be enabled by CardPay manager to be used. |  [optional]
+**encryptedData** | **String** | The encrypted recurring credentials encoded in base64. *(for APPLEPAY payment method only)* |  [optional]
 **filing** | [**RecurringRequestFiling**](RecurringRequestFiling.md) | Filing data, should be send in all recurring requests besides first recurring request First recurring request should be send without filing attribute |  [optional]
 **generateToken** | **Boolean** | This attribute can be received only in first recurring request. If set to &#39;true&#39;, Card token will be generated and returned in GET response for all successful transactions (can&#39;t be generated for declined transactions). In all requests with filing_id card.token can&#39;t be generated. |  [optional]
 **holdPeriod** | **Integer** | The delay between the authorisation and scheduled auto-capture or auto-void, specified in hours. The minimum hold period is 1 hour, maximum hold period is 7 days (168 hours). |  [optional]

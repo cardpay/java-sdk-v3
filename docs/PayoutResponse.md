@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**additionalData** | **Map&lt;String, String&gt;** | Arbitrary-formatted key-value structure |  [optional]
 **cardAccount** | [**PayoutResponseCardAccount**](PayoutResponseCardAccount.md) | Card account data *(for BANKCARD method only)* |  [optional]
 **cryptocurrencyAccount** | [**PayoutResponseCryptocurrencyAccount**](PayoutResponseCryptocurrencyAccount.md) | Cryptocurrency account data *(for BITCOIN method only)* |  [optional]
 **customer** | [**PayoutResponseCustomer**](PayoutResponseCustomer.md) | Customer data |  [optional]

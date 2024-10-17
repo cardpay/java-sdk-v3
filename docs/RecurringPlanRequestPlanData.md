@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **pricingModel** | **String** | Parameter regulates the price calculation pricing_model depending on the number of units Possible values: &#x60;FIXED&#x60; &#x60;TIERED&#x60; &#x60;VOLUME&#x60; By default - &#x60;FIXED&#x60; |  [optional]
 **quantity** | [**List&lt;PlanQuantity&gt;**](PlanQuantity.md) | Array with units quantity. Mandatory if &#x60;pricing_model&#x60; is &#x60;TIERED&#x60; or &#x60;VOLUME&#x60; |  [optional]
 **retries** | **Integer** | Number of daily basis retry attempts in case of payment has not been captured successfully, from 1 to 15 attempts can be specified. |  [optional]
+**retry** | [**PlanRetry**](PlanRetry.md) | Structure for establishing the logic of retries for subscription based on created plan |  [optional]
 **subscriptionDeclineLogic** | [**PlanSubscriptionDeclineLogic**](PlanSubscriptionDeclineLogic.md) | Subscription decline logic |  [optional]
 
 

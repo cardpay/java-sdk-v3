@@ -150,6 +150,8 @@ public class ResponsePlanData {
   private String pricingModel = null;
   @SerializedName("quantity")
   private List<PlanQuantity> quantity = null;
+  @SerializedName("retry")
+  private PlanRetryResponse retry = null;
   @SerializedName("subscription_decline_logic")
   private PlanSubscriptionDeclineLogic subscriptionDeclineLogic = null;
   
@@ -315,6 +317,20 @@ public class ResponsePlanData {
   }
 
   
+  public void setRetry(PlanRetryResponse retry) {
+      this.retry = retry;
+  }
+
+  /**
+   * @param retry Retry
+   * @return bean instance
+   **/
+  public ResponsePlanData retry(PlanRetryResponse retry) {
+      this.retry = retry;
+      return this;
+  }
+
+  
   public void setSubscriptionDeclineLogic(PlanSubscriptionDeclineLogic subscriptionDeclineLogic) {
       this.subscriptionDeclineLogic = subscriptionDeclineLogic;
   }
@@ -345,6 +361,7 @@ public class ResponsePlanData {
      if (retries != null) sb.append("retries=").append(retries.toString()).append("; ");
      if (pricingModel != null) sb.append("pricingModel=").append(pricingModel.toString()).append("; ");
      if (quantity != null) sb.append("quantity=").append(quantity.toString()).append("; ");
+     if (retry != null) sb.append("retry=").append(retry.toString()).append("; ");
      if (subscriptionDeclineLogic != null) sb.append("subscriptionDeclineLogic=").append(subscriptionDeclineLogic.toString()).append("; ");
      sb.append(")");
      return sb.toString();

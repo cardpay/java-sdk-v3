@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **retries** | **Integer** | Number of daily basis retry attempts in case of payment has not been captured successfully, from 1 to 15 attempts |  [optional]
 **pricingModel** | **String** | Parameter regulates the price calculation pricing_model depending on the number of units. Possible values: &#x60;FIXED&#x60; &#x60;TIERED&#x60; &#x60;VOLUME&#x60; |  [optional]
 **quantity** | [**List&lt;PlanQuantity&gt;**](PlanQuantity.md) | Array with units params |  [optional]
+**retry** | [**PlanRetryResponse**](PlanRetryResponse.md) | Retry |  [optional]
 **subscriptionDeclineLogic** | [**PlanSubscriptionDeclineLogic**](PlanSubscriptionDeclineLogic.md) | Subscription decline logic |  [optional]
 
 

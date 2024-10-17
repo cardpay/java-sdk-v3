@@ -39,8 +39,14 @@ public class AuthenticationData {
   private String declineReason = null;
   @SerializedName("id")
   private String id = null;
+  @SerializedName("installment_type")
+  private String installmentType = null;
+  @SerializedName("installments")
+  private String installments = null;
   @SerializedName("invalid_data")
   private List<String> invalidData = null;
+  @SerializedName("recurring_data")
+  private RecurringResponseRecurringData recurringData = null;
   /**
    * Current payment status
    */
@@ -256,6 +262,34 @@ public class AuthenticationData {
   }
 
   
+  public void setInstallmentType(String installmentType) {
+      this.installmentType = installmentType;
+  }
+
+  /**
+   * @param installmentType Installment type, 2 possible values: &#x60;IF&#x60; - issuer financed &#x60;MF_HOLD&#39; - merchant financed. For installment subscription with hold rest amount.
+   * @return bean instance
+   **/
+  public AuthenticationData installmentType(String installmentType) {
+      this.installmentType = installmentType;
+      return this;
+  }
+
+  
+  public void setInstallments(String installments) {
+      this.installments = installments;
+  }
+
+  /**
+   * @param installments Number of total installment payments.
+   * @return bean instance
+   **/
+  public AuthenticationData installments(String installments) {
+      this.installments = installments;
+      return this;
+  }
+
+  
   public void setInvalidData(List<String> invalidData) {
       this.invalidData = invalidData;
   }
@@ -275,6 +309,20 @@ public class AuthenticationData {
     }
     this.invalidData.add(invalidDataItem);
     return this;
+  }
+
+  
+  public void setRecurringData(RecurringResponseRecurringData recurringData) {
+      this.recurringData = recurringData;
+  }
+
+  /**
+   * @param recurringData Recurring data
+   * @return bean instance
+   **/
+  public AuthenticationData recurringData(RecurringResponseRecurringData recurringData) {
+      this.recurringData = recurringData;
+      return this;
   }
 
   
@@ -345,7 +393,10 @@ public class AuthenticationData {
      if (declineCode != null) sb.append("declineCode=").append(declineCode.toString()).append("; ");
      if (declineReason != null) sb.append("declineReason=").append(declineReason.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
+     if (installmentType != null) sb.append("installmentType=").append(installmentType.toString()).append("; ");
+     if (installments != null) sb.append("installments=").append(installments.toString()).append("; ");
      if (invalidData != null) sb.append("invalidData=").append(invalidData.toString()).append("; ");
+     if (recurringData != null) sb.append("recurringData=").append(recurringData.toString()).append("; ");
      if (status != null) sb.append("status=").append(status.toString()).append("; ");
      if (threeDSecure != null) sb.append("threeDSecure=").append(threeDSecure.toString()).append("; ");
      if (transType != null) sb.append("transType=").append(transType.toString()).append("; ");

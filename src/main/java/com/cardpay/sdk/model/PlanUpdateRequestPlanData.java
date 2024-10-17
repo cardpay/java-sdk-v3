@@ -19,8 +19,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import lombok.Data;
 
 @Data
@@ -28,8 +26,6 @@ import lombok.Data;
 public class PlanUpdateRequestPlanData {
   @SerializedName("name_to")
   private String nameTo = null;
-  @SerializedName("quantity")
-  private List<PlanQuantity> quantity = null;
   /**
    * New state of plan (ACTIVE or INACTIVE) - for CHANGE_STATUS operation only
    */
@@ -94,28 +90,6 @@ public class PlanUpdateRequestPlanData {
   }
 
   
-  public void setQuantity(List<PlanQuantity> quantity) {
-      this.quantity = quantity;
-  }
-
-  /**
-   * @param quantity Array with units params
-   * @return bean instance
-   **/
-  public PlanUpdateRequestPlanData quantity(List<PlanQuantity> quantity) {
-      this.quantity = quantity;
-      return this;
-  }
-
-  public PlanUpdateRequestPlanData addQuantityItem(PlanQuantity quantityItem) {
-    if (this.quantity == null) {
-      this.quantity = new ArrayList<>();
-    }
-    this.quantity.add(quantityItem);
-    return this;
-  }
-
-  
   public void setStatusTo(StatusToEnum statusTo) {
       this.statusTo = statusTo;
   }
@@ -136,7 +110,6 @@ public class PlanUpdateRequestPlanData {
      sb.append("PlanUpdateRequestPlanData( ");
      
      if (nameTo != null) sb.append("nameTo=").append(nameTo.toString()).append("; ");
-     if (quantity != null) sb.append("quantity=").append(quantity.toString()).append("; ");
      if (statusTo != null) sb.append("statusTo=").append(statusTo.toString()).append("; ");
      sb.append(")");
      return sb.toString();

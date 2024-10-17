@@ -33,6 +33,8 @@ public class OneclickData {
   private String currency = null;
   @SerializedName("dynamic_descriptor")
   private String dynamicDescriptor = null;
+  @SerializedName("encrypted_data")
+  private String encryptedData = null;
   @SerializedName("filing")
   private RecurringRequestFiling filing = null;
   @SerializedName("generate_token")
@@ -212,6 +214,20 @@ public class OneclickData {
   }
 
   
+  public void setEncryptedData(String encryptedData) {
+      this.encryptedData = encryptedData;
+  }
+
+  /**
+   * @param encryptedData The encrypted recurring credentials encoded in base64. *(for APPLEPAY payment method only)*
+   * @return bean instance
+   **/
+  public OneclickData encryptedData(String encryptedData) {
+      this.encryptedData = encryptedData;
+      return this;
+  }
+
+  
   public void setFiling(RecurringRequestFiling filing) {
       this.filing = filing;
   }
@@ -377,6 +393,7 @@ public class OneclickData {
      if (contractNumber != null) sb.append("contractNumber=").append(contractNumber.toString()).append("; ");
      if (currency != null) sb.append("currency=").append(currency.toString()).append("; ");
      if (dynamicDescriptor != null) sb.append("dynamicDescriptor=").append(dynamicDescriptor.toString()).append("; ");
+     if (encryptedData != null) sb.append("encryptedData=").append(encryptedData.toString()).append("; ");
      if (filing != null) sb.append("filing=").append(filing.toString()).append("; ");
      if (generateToken != null) sb.append("generateToken=").append(generateToken.toString()).append("; ");
      if (holdPeriod != null) sb.append("holdPeriod=").append(holdPeriod.toString()).append("; ");
