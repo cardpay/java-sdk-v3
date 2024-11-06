@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **invoiceData** | [**InvoiceGetDataResponse**](InvoiceGetDataResponse.md) | Invoice data | 
 **invoiceUrl** | **String** | Invoice URL |  [optional]
 **merchantOrder** | [**InvoiceMerchantOrder**](InvoiceMerchantOrder.md) | Merchant order data | 
+**paymentData** | [**List&lt;PaymentData&gt;**](PaymentData.md) |  |  [optional]
 
 
 

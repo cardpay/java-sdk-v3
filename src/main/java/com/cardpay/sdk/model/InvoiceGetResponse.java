@@ -14,6 +14,8 @@
 package com.cardpay.sdk.model;
 
 import com.google.gson.annotations.SerializedName;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Data;
 
 @Data
@@ -27,6 +29,8 @@ public class InvoiceGetResponse {
   private String invoiceUrl = null;
   @SerializedName("merchant_order")
   private InvoiceMerchantOrder merchantOrder = null;
+  @SerializedName("payment_data")
+  private List<PaymentData> paymentData = null;
   
   public void setCustomer(InvoiceCustomer customer) {
       this.customer = customer;
@@ -83,6 +87,28 @@ public class InvoiceGetResponse {
       return this;
   }
 
+  
+  public void setPaymentData(List<PaymentData> paymentData) {
+      this.paymentData = paymentData;
+  }
+
+  /**
+   * @param paymentData paymentData
+   * @return bean instance
+   **/
+  public InvoiceGetResponse paymentData(List<PaymentData> paymentData) {
+      this.paymentData = paymentData;
+      return this;
+  }
+
+  public InvoiceGetResponse addPaymentDataItem(PaymentData paymentDataItem) {
+    if (this.paymentData == null) {
+      this.paymentData = new ArrayList<>();
+    }
+    this.paymentData.add(paymentDataItem);
+    return this;
+  }
+
 
   @Override
   public String toString() {
@@ -93,6 +119,7 @@ public class InvoiceGetResponse {
      if (invoiceData != null) sb.append("invoiceData=").append(invoiceData.toString()).append("; ");
      if (invoiceUrl != null) sb.append("invoiceUrl=").append(invoiceUrl.toString()).append("; ");
      if (merchantOrder != null) sb.append("merchantOrder=").append(merchantOrder.toString()).append("; ");
+     if (paymentData != null) sb.append("paymentData=").append(paymentData.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

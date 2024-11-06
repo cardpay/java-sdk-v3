@@ -31,6 +31,10 @@ public class InvoiceGetDataResponse {
   private String id = null;
   @SerializedName("initial_amount")
   private BigDecimal initialAmount = null;
+  @SerializedName("remaining_count")
+  private Integer remainingCount = null;
+  @SerializedName("reusable")
+  private Boolean reusable = null;
   @SerializedName("status")
   private String status = null;
   
@@ -104,6 +108,34 @@ public class InvoiceGetDataResponse {
   }
 
   
+  public void setRemainingCount(Integer remainingCount) {
+      this.remainingCount = remainingCount;
+  }
+
+  /**
+   * @param remainingCount Number of allowed payments by invoice.
+   * @return bean instance
+   **/
+  public InvoiceGetDataResponse remainingCount(Integer remainingCount) {
+      this.remainingCount = remainingCount;
+      return this;
+  }
+
+  
+  public void setReusable(Boolean reusable) {
+      this.reusable = reusable;
+  }
+
+  /**
+   * @param reusable reusable
+   * @return bean instance
+   **/
+  public InvoiceGetDataResponse reusable(Boolean reusable) {
+      this.reusable = reusable;
+      return this;
+  }
+
+  
   public void setStatus(String status) {
       this.status = status;
   }
@@ -128,6 +160,8 @@ public class InvoiceGetDataResponse {
      if (expireAt != null) sb.append("expireAt=").append(expireAt.toString()).append("; ");
      if (id != null) sb.append("id=").append(id.toString()).append("; ");
      if (initialAmount != null) sb.append("initialAmount=").append(initialAmount.toString()).append("; ");
+     if (remainingCount != null) sb.append("remainingCount=").append(remainingCount.toString()).append("; ");
+     if (reusable != null) sb.append("reusable=").append(reusable.toString()).append("; ");
      if (status != null) sb.append("status=").append(status.toString()).append("; ");
      sb.append(")");
      return sb.toString();

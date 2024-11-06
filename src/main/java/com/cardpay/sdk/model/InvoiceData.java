@@ -33,6 +33,10 @@ public class InvoiceData {
   private String installmentType = null;
   @SerializedName("installments")
   private List<Integer> installments = null;
+  @SerializedName("reusable")
+  private Boolean reusable = null;
+  @SerializedName("reuse_count")
+  private Integer reuseCount = null;
   
   public void setAmount(BigDecimal amount) {
       this.amount = amount;
@@ -111,6 +115,35 @@ public class InvoiceData {
     return this;
   }
 
+  
+  public void setReusable(Boolean reusable) {
+      this.reusable = reusable;
+  }
+
+  /**
+   * @param reusable The flag that can be used for enabling payment link multiple times
+   * @return bean instance
+   **/
+  public InvoiceData reusable(Boolean reusable) {
+      this.reusable = reusable;
+      return this;
+  }
+
+  
+  public void setReuseCount(Integer reuseCount) {
+      this.reuseCount = reuseCount;
+  }
+
+  /**
+   * minimum: 1
+   * @param reuseCount The number that customer can pay by this link. Default value 10
+   * @return bean instance
+   **/
+  public InvoiceData reuseCount(Integer reuseCount) {
+      this.reuseCount = reuseCount;
+      return this;
+  }
+
 
   @Override
   public String toString() {
@@ -122,6 +155,8 @@ public class InvoiceData {
      if (expireAt != null) sb.append("expireAt=").append(expireAt.toString()).append("; ");
      if (installmentType != null) sb.append("installmentType=").append(installmentType.toString()).append("; ");
      if (installments != null) sb.append("installments=").append(installments.toString()).append("; ");
+     if (reusable != null) sb.append("reusable=").append(reusable.toString()).append("; ");
+     if (reuseCount != null) sb.append("reuseCount=").append(reuseCount.toString()).append("; ");
      sb.append(")");
      return sb.toString();
   }

@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **expireAt** | [**OffsetDateTime**](OffsetDateTime.md) | Date of invoice expiring. Invoice cannot be used after this date. |  [optional]
 **id** | **String** | Identifier of created invoice. | 
 **initialAmount** | [**BigDecimal**](BigDecimal.md) | The amount charged for the initial period from the creation of the transaction to the start date of the subscription |  [optional]
+**remainingCount** | **Integer** | Number of allowed payments by invoice. |  [optional]
+**reusable** | **Boolean** |  |  [optional]
 **status** | **String** | Status of invoice. |  [optional]
 
 

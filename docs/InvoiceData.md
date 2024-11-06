@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **expireAt** | [**OffsetDateTime**](OffsetDateTime.md) | Date and time of invoice expiring. Invoice cannot be used after this date and time. |  [optional]
 **installmentType** | **String** | Installment type |  [optional]
 **installments** | **List&lt;Integer&gt;** | Number of installments. It depends on country. |  [optional]
+**reusable** | **Boolean** | The flag that can be used for enabling payment link multiple times |  [optional]
+**reuseCount** | **Integer** | The number that customer can pay by this link. Default value 10 |  [optional]
 
 
 
